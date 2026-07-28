@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Smart links are redirects, not content — no reason to index them.
+Disallow: /thc
+Disallow: /caffeine
+Disallow: /nicotine
+Disallow: /dragon
+
+Sitemap: https://dlonem.com/sitemap.xml

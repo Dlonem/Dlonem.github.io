@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,follow">
+<title>Caffeine Break Buddy — Dlonem</title>
+<meta name="description" content="Get Caffeine Break Buddy by Dlonem LLC on your device.">
+<meta name="theme-color" content="#3a2a0d">
+<style>
+html,body{margin:0;height:100%;background:#3a2a0d;color:#fff;
+font-family:'Sora',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+display:grid;place-items:center;text-align:center;padding:24px;box-sizing:border-box}
+.wrap{max-width:340px}
+.icon{width:88px;height:88px;border-radius:20px;margin:0 auto 20px;display:block;
+background:rgba(255,255,255,.08)}
+h1{font-size:21px;line-height:1.3;margin:0 0 8px;font-weight:700}
+p{font-size:14px;line-height:1.55;color:rgba(255,255,255,.72);margin:0 0 22px}
+a.btn{display:block;padding:14px 18px;border-radius:13px;background:#f0a020;color:#0b0b0b;
+text-decoration:none;font-weight:700;font-size:15px;margin-bottom:10px}
+a.alt{display:inline-block;color:rgba(255,255,255,.6);font-size:13px;text-decoration:none;
+border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:1px}
+.by{margin-top:26px;font-size:11.5px;color:rgba(255,255,255,.38);letter-spacing:.04em}
+</style>
+</head>
+<body>
+<div class="wrap">
+<img class="icon" src="/assets/icons/caffeine.png" alt="" onerror="this.style.visibility='hidden'">
+<h1>Caffeine Break Buddy</h1>
+<p id="msg">Taking you to your app store&hellip;</p>
+<a class="btn" id="primary" href="https://play.google.com/store/apps/details?id=com.dlonem.caffeinebreakbuddy">Get it on Google Play</a>
+<a class="alt" href="/apps.html">See all Dlonem apps</a>
+<div class="by">Dlonem LLC &middot; dlonem.com</div>
+</div>
+<script>
+/* One link, every device. The QR code and any shared link point here — never straight at a
+   store — so destinations can change (iOS launch, new stores) without reprinting anything. */
+(function(){
+  var PLAY = "https://play.google.com/store/apps/details?id=com.dlonem.caffeinebreakbuddy";
+  var IOS  = "";          /* <-- paste the App Store URL here when iOS goes live */
+  var WEB  = "/apps.html";
+
+  /* ?s=  tags where the visitor came from, so Play Console shows which channel earned installs.
+     dlonem.com/caffeine?s=card  |  ?s=reddit  |  ?s=youtube  |  ?s=discord            */
+  var src = (location.search.match(/[?&]s=([a-z0-9_-]+)/i) || [])[1] || "dlonem_link";
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && "ontouchend" in document);
+  var isAndroid = /Android/.test(ua);
+
+  var target, label;
+  if (isAndroid) {
+    var ref = encodeURIComponent("utm_source=" + src + "&utm_medium=smartlink&utm_campaign=dlonem");
+    target = PLAY + "&referrer=" + ref;
+    label  = "Get it on Google Play";
+  } else if (isIOS) {
+    if (IOS) { target = IOS; label = "Download on the App Store"; }
+    else {
+      document.getElementById("msg").textContent =
+        "The iPhone version lands August 2026. Here's everything else in the meantime.";
+      var pb = document.getElementById("primary");
+      pb.textContent = "See all Dlonem apps"; pb.href = WEB;
+      var alt = document.querySelector("a.alt");
+      if (alt) { alt.textContent = "Read the privacy promise"; alt.href = "/privacy.html"; }
+      return;
+    }
+  } else {
+    target = WEB; label = "Browse the apps";
+  }
+
+  var btn = document.getElementById("primary");
+  btn.href = target; btn.textContent = label;
+  location.replace(target);   /* replace() keeps this page out of the back-button history */
+})();
+</script>
+</body>
+</html>
