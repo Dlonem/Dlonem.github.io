@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=6"><link rel="icon" href="/assets/logo.png">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=7"><link rel="icon" href="/assets/logo.png">
 <title>Weed Tolerance Break: How Long It Takes and What to Expect — THC Break Buddy</title>
 <meta name="description" content="What a THC tolerance break actually does, a day-by-day timeline of what to expect, and what helps. Plus THC Break Buddy — a free, private t-break tracker for Android and iOS.">
 <meta name="theme-color" content="#0D3A2A">
@@ -61,6 +61,9 @@
 .tbb main a:not(.btn):not(.store){color:var(--accent-ink)}
 .tbb .free-tag{color:var(--accent-ink)}
 .tbb .nav nav a.active{background:linear-gradient(90deg,#0E9F6E,#34DEA0);color:#04231A}
+/* carousel chrome inherits the site's indigo by default — clashes on green */
+.tbb .gal-dot.is-on{background:linear-gradient(90deg,#0E9F6E,#34DEA0)}
+.tbb .gal-btn:hover{background:linear-gradient(90deg,#0E9F6E,#34DEA0);color:#04231A}
 
 /* ---- compact hero, icon centred above the type (matches /apps scale) ---- */
 .tbb .hero.compact{padding:44px 0 52px}
@@ -209,6 +212,24 @@
 
 <section class="tight">
 <div class="wrap section-head">
+<span class="eyebrow">Inside the app</span>
+<h2>What it looks like</h2>
+<p>Five screens, no clutter. Tap any shot to see it full size.</p>
+</div>
+<div class="wrap">
+<div class="shots shots--phone" data-interval="5000">
+<div class="shot"><img src="/assets/img/tbb/reset-your-baseline.jpg" alt="THC Break Buddy screenshot — set your break length and see the finish line from day one" loading="lazy" onerror="this.parentNode.remove()"></div>
+<div class="shot"><img src="/assets/img/tbb/daily-check-in.jpg" alt="THC Break Buddy screenshot — a daily check-in that takes seconds" loading="lazy" onerror="this.parentNode.remove()"></div>
+<div class="shot"><img src="/assets/img/tbb/progress-check.jpg" alt="THC Break Buddy screenshot — progress at a glance, with the milestones that matter" loading="lazy" onerror="this.parentNode.remove()"></div>
+<div class="shot"><img src="/assets/img/tbb/test-tracker.jpg" alt="THC Break Buddy screenshot — track how each day actually went" loading="lazy" onerror="this.parentNode.remove()"></div>
+<div class="shot"><img src="/assets/img/tbb/no-subscription.jpg" alt="THC Break Buddy screenshot — free, no account, nothing to buy" loading="lazy" onerror="this.parentNode.remove()"></div>
+</div>
+<p class="gallery-hint">click any screen to enlarge</p>
+</div>
+</section>
+
+<section class="tight">
+<div class="wrap section-head">
 <span class="eyebrow">The app</span>
 <h2>What THC Break Buddy actually does</h2>
 <p>It is a day counter with the timeline above built into it, and that's deliberately the whole idea.</p>
@@ -285,5 +306,6 @@
 <div><h4>Studio</h4><a href="/privacy">Privacy policy</a><a href="/support">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
 </div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word.</div></footer>
 <script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});</script>
+<script src="/js/carousel.js" defer></script>
 </body>
 </html>
