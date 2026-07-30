@@ -1,0 +1,19 @@
+# Old flat .html URLs -> clean paths. Keeps Play Console privacy links,
+# any indexed pages and previously shared links alive.
+/index.html / 301
+/apps.html /apps 301
+/apps/thc-break-buddy.html /apps/thc-break-buddy 301
+/caffeine.html /caffeine 301
+/community.html /community 301
+/dragon.html /dragon 301
+/games.html /games 301
+/legacy.html /legacy 301
+/nicotine.html /nicotine 301
+/privacy.html /privacy 301
+/privacy/caffeine.html /privacy/caffeine 301
+/privacy/nicotine.html /privacy/nicotine 301
+/privacy/tdh.html /privacy/tdh 301
+/privacy/thc.html /privacy/thc 301
+/supernatural.html /supernatural 301
+/support.html /support 301
+/thc.html /thc 301

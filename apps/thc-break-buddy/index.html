@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="../css/style.css?v=4"><link rel="icon" href="../assets/logo.png">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=6"><link rel="icon" href="/assets/logo.png">
 <title>Weed Tolerance Break: How Long It Takes and What to Expect — THC Break Buddy</title>
 <meta name="description" content="What a THC tolerance break actually does, a day-by-day timeline of what to expect, and what helps. Plus THC Break Buddy — a free, private t-break tracker for Android and iOS.">
-<meta name="theme-color" content="#1A0F42">
-<link rel="canonical" href="https://dlonem.com/apps/thc-break-buddy.html">
+<meta name="theme-color" content="#0D3A2A">
+<link rel="canonical" href="https://dlonem.com/apps/thc-break-buddy">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dlonem">
-<meta property="og:url" content="https://dlonem.com/apps/thc-break-buddy.html">
+<meta property="og:url" content="https://dlonem.com/apps/thc-break-buddy">
 <meta property="og:title" content="Weed tolerance break: how long it takes and what to expect">
 <meta property="og:description" content="A day-by-day timeline of a THC tolerance break, what the research actually says, and what helps. Plus a free, private tracker.">
-<meta property="og:image" content="https://dlonem.com/assets/img/og-thc.png">
-<meta property="og:image:secure_url" content="https://dlonem.com/assets/img/og-thc.png">
+<meta property="og:image" content="https://dlonem.com//assets/img/og-thc.png">
+<meta property="og:image:secure_url" content="https://dlonem.com//assets/img/og-thc.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -20,17 +20,17 @@
 <meta name="twitter:site" content="@officialdlonem">
 <meta name="twitter:title" content="Weed tolerance break: how long it takes and what to expect">
 <meta name="twitter:description" content="A day-by-day timeline of a THC tolerance break, what the research actually says, and what helps. Plus a free, private tracker.">
-<meta name="twitter:image" content="https://dlonem.com/assets/img/og-thc.png">
+<meta name="twitter:image" content="https://dlonem.com//assets/img/og-thc.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"BreadcrumbList","itemListElement":[
  {"@type":"ListItem","position":1,"name":"Home","item":"https://dlonem.com/"},
- {"@type":"ListItem","position":2,"name":"Apps","item":"https://dlonem.com/apps.html"},
- {"@type":"ListItem","position":3,"name":"THC Break Buddy","item":"https://dlonem.com/apps/thc-break-buddy.html"}]},
+ {"@type":"ListItem","position":2,"name":"Apps","item":"https://dlonem.com/apps"},
+ {"@type":"ListItem","position":3,"name":"THC Break Buddy","item":"https://dlonem.com/apps/thc-break-buddy"}]},
 {"@type":"SoftwareApplication","name":"THC Break Buddy","operatingSystem":"Android",
- "applicationCategory":"HealthApplication","url":"https://dlonem.com/apps/thc-break-buddy.html",
+ "applicationCategory":"HealthApplication","url":"https://dlonem.com/apps/thc-break-buddy",
  "installUrl":"https://play.google.com/store/apps/details?id=com.dlonem.thcbreakbuddy",
- "image":"https://dlonem.com/assets/icons/thc.png",
+ "image":"https://dlonem.com//assets/icons/thc.png",
  "description":"A free, private tolerance break tracker. Day counter, day-by-day expectations, and notes — all stored on your device.",
  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
  "publisher":{"@type":"Organization","name":"Dlonem LLC","url":"https://dlonem.com/"}},
@@ -47,49 +47,71 @@
   "acceptedAnswer":{"@type":"Answer","text":"Yes. It is free with no account required, and everything you enter stays on your device."}}]}
 ]}</script>
 <style>
-/* scoped to this page */
-.hero-app{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
-.hero-app img{width:84px;height:84px;border-radius:20px;box-shadow:0 10px 28px rgba(0,0,0,.35)}
+/* ---- THC Break Buddy theme: the app's greens, not the site's violets ---- */
+.tbb{--accent:#10B981;--accent-soft:#34DEA0;--accent-deep:#0D3A2A;--accent-ink:#0B5C43}
+.tbb .hero{background:linear-gradient(115deg,#06251A 0%,#0D3A2A 32%,#10714F 68%,#34DEA0 100%)}
+/* mint reads well on the dark hero; on white sections it needs the deep ink */
+.tbb .hero .eyebrow{color:var(--accent-soft)}
+.tbb main section .eyebrow{color:var(--accent-ink)}
+.tbb .btn-solid{background:linear-gradient(90deg,#0E9F6E,#34DEA0);color:#04231A;
+  box-shadow:0 6px 18px rgba(16,185,129,.32)}
+.tbb .stat b{color:var(--accent-ink)}
+/* scope link recolouring to body content — a bare `.tbb a` also repainted
+   the nav brand and footer links, which killed their contrast */
+.tbb main a:not(.btn):not(.store){color:var(--accent-ink)}
+.tbb .free-tag{color:var(--accent-ink)}
+.tbb .nav nav a.active{background:linear-gradient(90deg,#0E9F6E,#34DEA0);color:#04231A}
+
+/* ---- compact hero, icon centred above the type (matches /apps scale) ---- */
+.tbb .hero.compact{padding:44px 0 52px}
+.tbb-icon{width:76px;height:76px;border-radius:19px;margin:0 auto 18px;display:block;
+  box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.tbb .hero h1{font-size:clamp(1.6rem,4vw,2.5rem)}
+.tbb .hero .lede{max-width:620px;margin-left:auto;margin-right:auto}
+
 .crumbs{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.08em;
   color:var(--ink-soft);margin-bottom:26px}
-.crumbs a{color:var(--indigo);text-decoration:none}
+.crumbs a{color:var(--accent-ink);text-decoration:none}
 .crumbs a:hover{text-decoration:underline}
+
 .days{max-width:760px;margin:0 auto;display:grid;gap:12px}
 .day{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:start;
   background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
 .day b{font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.06em;
-  color:var(--violet);padding-top:2px}
+  color:var(--accent-ink);padding-top:2px}
 .day p{color:var(--ink-soft);font-size:.93rem}
-.day.peak{border-left:4px solid var(--rose)}
-.day.good{border-left:4px solid var(--cyan)}
+.day.peak{border-left:4px solid #C97A4A}
+.day.good{border-left:4px solid var(--accent)}
 @media(max-width:560px){.day{grid-template-columns:1fr;gap:4px}}
+
 .twocol{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   max-width:900px;margin:0 auto}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
 .panel h3{margin-bottom:10px}
 .panel ul{margin:0;padding-left:20px}
 .panel li{color:var(--ink-soft);font-size:.92rem;margin-bottom:7px}
-.panel.no{border-left:4px solid #C94A8C}
-.panel.yes{border-left:4px solid #25AFC4}
+.panel.no{border-left:4px solid #C97A4A}
+.panel.yes{border-left:4px solid var(--accent)}
+
 .faq{max-width:760px;margin:0 auto}
 .faq details{border-bottom:1px solid var(--line);padding:14px 0}
 .faq summary{cursor:pointer;font-weight:600;font-family:'Sora',sans-serif}
-.faq summary::marker{color:var(--cyan)}
+.faq summary::marker{color:var(--accent)}
 .faq p{color:var(--ink-soft);font-size:.93rem;margin-top:8px}
 .srcnote{max-width:760px;margin:24px auto 0;font-size:.82rem;color:var(--ink-soft)}
 </style>
 </head>
-<body data-page="apps">
+<body class="tbb" data-page="apps">
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="nav-inner">
-<a class="brand" href="../index.html"><img src="../assets/logo.png" alt="" onerror="this.remove()"><span>Dlonem</span></a>
+<a class="brand" href="/"><img src="/assets/logo.png" alt="" onerror="this.remove()"><span>Dlonem</span></a>
 <nav aria-label="Main">
-<a href="../index.html" data-p="home">Home</a>
-<a href="../apps.html" data-p="apps">Apps</a>
-<a href="../supernatural.html" data-p="spn">Supernatural</a>
-<a href="../community.html" data-p="comm">Community</a>
-<a href="../legacy.html" data-p="legacy">Legacy</a>
-<a href="../games.html" data-p="games">Games</a>
+<a href="/" data-p="home">Home</a>
+<a href="/apps" data-p="apps">Apps</a>
+<a href="/supernatural" data-p="spn">Supernatural</a>
+<a href="/community" data-p="comm">Community</a>
+<a href="/legacy" data-p="legacy">Legacy</a>
+<a href="/games" data-p="games">Games</a>
 <a class="join" href="https://discord.gg/StACe9hVtT">Join the Den</a>
 </nav>
 </div></header>
@@ -100,13 +122,9 @@
 <span class="spark s2" style="top:64%;left:86%"></span>
 <span class="spark s3" style="top:34%;left:72%"></span>
 <div class="wrap">
-<div class="hero-app">
-<img src="../assets/icons/thc.png" alt="THC Break Buddy app icon" onerror="this.remove()">
-<div>
+<img class="tbb-icon" src="/assets/icons/thc.png" alt="THC Break Buddy app icon" onerror="this.remove()">
 <span class="eyebrow">THC Break Buddy</span>
 <h1>Reset your tolerance, day by day</h1>
-</div>
-</div>
 <p class="lede">A free tolerance break tracker — and an honest guide to what actually happens when you take one. No preaching in either direction, and nothing you enter ever leaves your phone.</p>
 <div class="btn-row">
 <a class="btn btn-solid" href="https://play.google.com/store/apps/details?id=com.dlonem.thcbreakbuddy">Get it on Google Play</a>
@@ -117,7 +135,7 @@
 
 <section class="tight">
 <div class="wrap">
-<p class="crumbs"><a href="../index.html">Home</a> › <a href="../apps.html">Apps</a> › THC Break Buddy</p>
+<p class="crumbs"><a href="/">Home</a> › <a href="/apps">Apps</a> › THC Break Buddy</p>
 <div class="stats">
 <div class="stat"><b>21.4M</b><span>US adults and teens using cannabis daily or near-daily, 2025</span></div>
 <div class="stat"><b>~20%</b><span>Fewer CB1 receptors measured in chronic daily smokers</span></div>
@@ -215,7 +233,7 @@
 <li>No position on whether you should be using at all</li>
 <li>Nothing to buy — it's free</li>
 </ul>
-<p style="margin-top:12px;font-size:.86rem"><a href="../privacy/thc.html">Read the privacy policy</a> — it's short, because there isn't much to disclose.</p>
+<p style="margin-top:12px;font-size:.86rem"><a href="/privacy/thc">Read the privacy policy</a> — it's short, because there isn't much to disclose.</p>
 </div>
 </div>
 <div class="wrap" style="text-align:center;margin-top:28px">
@@ -261,10 +279,10 @@
 
 </main>
 <footer><div class="foot-inner">
-<div><h4>Dlonem</h4><a href="../apps.html">Apps</a><a href="../supernatural.html">Supernatural mod</a><a href="../legacy.html">Legacy</a><a href="../games.html">Recommended games</a></div>
+<div><h4>Dlonem</h4><a href="/apps">Apps</a><a href="/supernatural">Supernatural mod</a><a href="/legacy">Legacy</a><a href="/games">Recommended games</a></div>
 <div><h4>Community</h4><a href="https://discord.gg/StACe9hVtT">Dlonem's Den (Discord)</a><a href="https://discord.gg/hvZGMeJhB7">The Game Center (Discord)</a><a href="https://discord.gg/Efvd2B97xx">Supernatural (Discord)</a></div>
 <div><h4>Elsewhere</h4><a href="https://www.youtube.com/c/Dlonem">YouTube</a><a href="https://x.com/officialdlonem">X / Twitter</a><a href="https://www.facebook.com/Dlonem/">Facebook</a><a href="https://steamcommunity.com/id/Dlonem">Steam</a></div>
-<div><h4>Studio</h4><a href="../privacy.html">Privacy policy</a><a href="../support.html">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
+<div><h4>Studio</h4><a href="/privacy">Privacy policy</a><a href="/support">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
 </div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word.</div></footer>
 <script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});</script>
 </body>

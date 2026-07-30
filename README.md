@@ -2,6 +2,18 @@
 
 Static site. No build step. Every page is plain HTML + one shared stylesheet.
 
+## URL structure
+
+Every page is `<name>/index.html`, which Cloudflare Pages serves at `/<name>` —
+no `.html` anywhere in the public URLs. All internal links and asset paths are
+root-absolute (`/apps`, `/css/style.css`) so they don't care how deep a file
+sits. `_redirects` 301s every old flat `.html` path to its clean equivalent, so
+previously shared links and the Play Console privacy URLs keep working.
+
+Adding a page: create `newpage/index.html`, link to it as `/newpage`, add it to
+`sitemap.xml`. Bump the `?v=` on `/css/style.css` whenever the stylesheet changes
+or returning visitors get the cached copy.
+
 ## Assets
 
 - `assets/logo.png` — blurple crescent mark (nav + favicon). In place.
@@ -43,9 +55,11 @@ Static site. No build step. Every page is plain HTML + one shared stylesheet.
 
 - Store listing contact details > developer website: `https://dlonem.com`
 - Per-app privacy policies live at:
-  `https://dlonem.com/privacy/thc.html`, `/privacy/caffeine.html`,
-  `/privacy/nicotine.html`, `/privacy/tdh.html` (canonical for store
-  listings); `https://dlonem.com/privacy.html` is the studio-wide hub.
+  `https://dlonem.com/privacy/thc`, `/privacy/caffeine`,
+  `/privacy/nicotine`, `/privacy/tdh` (canonical for store listings);
+  `https://dlonem.com/privacy` is the studio-wide hub. The old `.html`
+  versions 301 to these, so existing Play Console entries still resolve —
+  but update them when convenient.
 - Old one-page anchors (`dlonem.github.io/#privacy`, `#support`,
   `#apps`) redirect via a snippet in index.html, and GitHub redirects
   dlonem.github.io → dlonem.com once the custom domain is set.
