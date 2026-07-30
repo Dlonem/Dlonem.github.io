@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=7"><link rel="icon" href="/assets/logo.png">
+<title>Tiny Dragon Hoard — a cozy fantasy flight adventure for Android</title>
+<meta name="description" content="Raise a roost of one-of-a-kind dragons, breach castle walls, hunt elite rivals for Dragon Stones, and build a treasury worth hoarding. Free, offline, no account — a cozy fantasy flight adventure from Dlonem.">
+<meta name="theme-color" content="#241640">
+<link rel="canonical" href="https://dlonem.com/apps/tiny-dragon-hoard">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dlonem">
+<meta property="og:url" content="https://dlonem.com/apps/tiny-dragon-hoard">
+<meta property="og:title" content="Tiny Dragon Hoard — every flight fills your hoard">
+<meta property="og:description" content="Raise a roost of one-of-a-kind dragons, torch castle walls, and build the hoard of legend. Free, offline, no account required.">
+<meta property="og:image" content="https://dlonem.com/assets/img/og-dragon.png">
+<meta property="og:image:secure_url" content="https://dlonem.com/assets/img/og-dragon.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tiny Dragon Hoard — a cozy fantasy flight adventure">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@officialdlonem">
+<meta name="twitter:title" content="Tiny Dragon Hoard — every flight fills your hoard">
+<meta name="twitter:description" content="Raise a roost of one-of-a-kind dragons, torch castle walls, and build the hoard of legend. Free, offline, no account required.">
+<meta name="twitter:image" content="https://dlonem.com/assets/img/og-dragon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+ {"@type":"ListItem","position":1,"name":"Home","item":"https://dlonem.com/"},
+ {"@type":"ListItem","position":2,"name":"Apps","item":"https://dlonem.com/apps"},
+ {"@type":"ListItem","position":3,"name":"Tiny Dragon Hoard","item":"https://dlonem.com/apps/tiny-dragon-hoard"}]},
+{"@type":"VideoGame","name":"Tiny Dragon Hoard","operatingSystem":"Android",
+ "applicationCategory":"GameApplication","genre":["Arcade","Casual","Fantasy"],
+ "url":"https://dlonem.com/apps/tiny-dragon-hoard",
+ "installUrl":"https://play.google.com/store/apps/details?id=com.dlonem.tinydragonhoard",
+ "image":"https://dlonem.com/assets/icons/dragon.png",
+ "playMode":"SinglePlayer",
+ "description":"A cozy fantasy flight adventure. Raise a roost of one-of-a-kind dragons, breach castle walls, hunt elite rivals for Dragon Stones, and build a treasury that grows with you. Free with optional ads, no account required.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+ "publisher":{"@type":"Organization","name":"Dlonem LLC","url":"https://dlonem.com/"}},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Is Tiny Dragon Hoard free?",
+  "acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to play with optional ads, which the one-time Clear Skies purchase removes permanently. There are optional purchases but nothing is required to progress."}},
+ {"@type":"Question","name":"Does Tiny Dragon Hoard work offline?",
+  "acceptedAnswer":{"@type":"Answer","text":"Yes. It is a single-player game and your progress saves directly on your device. No account or sign-up is required, and no internet connection is needed to play."}},
+ {"@type":"Question","name":"Is Tiny Dragon Hoard suitable for kids?",
+  "acceptedAnswer":{"@type":"Answer","text":"It is a general-audience, family-friendly game with cartoon fantasy action — dragons breathing fire and breaking castle walls. There is no account, no chat, and no personal information required to play. Purchases use real money, so parents should turn on purchase authentication in the Play Store."}},
+ {"@type":"Question","name":"How long is a session?",
+  "acceptedAnswer":{"@type":"Answer","text":"As long as you want. A single flight takes about two minutes, so it works as a quick pickup, but the treasury, roost and perk trees are built for longer hoarding sessions."}},
+ {"@type":"Question","name":"How many dragons are there?",
+  "acceptedAnswer":{"@type":"Answer","text":"A whole roost, each with a distinct perk tree and playstyle — fire-breathers, frost tanks, poison stingers, shadow hunters and the living-gold Sovereign among them. Bond with a dragon and it grows."}}]}
+]}</script>
+<style>
+/* ---- Tiny Dragon Hoard theme: treasure gold on deep dusk, not the site's violets ---- */
+.tdh{--accent:#E0A82E;--accent-soft:#FFD166;--accent-deep:#241640;--accent-ink:#8A5A0B}
+.tdh .hero{background:linear-gradient(115deg,#120B22 0%,#241640 30%,#6C3E8A 62%,#FFD166 100%)}
+.tdh .hero .eyebrow{color:var(--accent-soft)}
+.tdh main section .eyebrow{color:var(--accent-ink)}
+.tdh .btn-solid{background:linear-gradient(90deg,#D2951B,#FFD166);color:#2B1B06;
+  box-shadow:0 6px 18px rgba(224,168,46,.34)}
+.tdh .stat b{color:var(--accent-ink)}
+.tdh main a:not(.btn):not(.store){color:var(--accent-ink)}
+.tdh .free-tag{color:var(--accent-ink)}
+.tdh .nav nav a.active{background:linear-gradient(90deg,#D2951B,#FFD166);color:#2B1B06}
+.tdh .gal-dot.is-on{background:linear-gradient(90deg,#D2951B,#FFD166)}
+.tdh .gal-btn:hover{background:linear-gradient(90deg,#D2951B,#FFD166);color:#2B1B06}
+.tdh .shots--phone .shot{background:#1A1030;border-color:#4A3170}
+
+.tdh .hero.compact{padding:44px 0 52px}
+.tdh-icon{width:76px;height:76px;border-radius:19px;margin:0 auto 18px;display:block;
+  box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.tdh .hero h1{font-size:clamp(1.6rem,4vw,2.5rem)}
+.tdh .hero .lede{max-width:620px;margin-left:auto;margin-right:auto}
+.pricetag{display:inline-block;margin-top:14px;font-family:'Space Mono',monospace;
+  font-size:.76rem;letter-spacing:.06em;color:rgba(255,255,255,.84);
+  border:1px solid rgba(255,255,255,.34);border-radius:999px;padding:5px 13px}
+
+.crumbs{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.08em;
+  color:var(--ink-soft);margin-bottom:26px}
+.crumbs a{color:var(--accent-ink);text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+
+/* the core loop, as numbered beats */
+.loop{max-width:820px;margin:0 auto;display:grid;gap:12px}
+.beat{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 18px}
+.beat b{font-family:'Unbounded',sans-serif;font-size:1.15rem;color:var(--accent);
+  line-height:1;padding-top:3px}
+.beat p{color:var(--ink-soft);font-size:.93rem}
+.beat h3{font-size:1rem;margin-bottom:3px}
+
+.roost{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  max-width:940px;margin:0 auto}
+.drake{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;border-top:3px solid var(--accent)}
+.drake b{display:block;font-family:'Sora',sans-serif;font-weight:600;margin-bottom:4px}
+.drake span{color:var(--ink-soft);font-size:.9rem}
+
+.twocol{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  max-width:900px;margin:0 auto}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.panel h3{margin-bottom:10px}
+.panel ul{margin:0;padding-left:20px}
+.panel li{color:var(--ink-soft);font-size:.92rem;margin-bottom:7px}
+.panel.yes{border-left:4px solid var(--accent)}
+.panel.no{border-left:4px solid #7E57A8}
+
+.faq{max-width:760px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{cursor:pointer;font-weight:600;font-family:'Sora',sans-serif}
+.faq summary::marker{color:var(--accent)}
+.faq p{color:var(--ink-soft);font-size:.93rem;margin-top:8px}
+</style>
+</head>
+<body class="tdh" data-page="apps">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="nav-inner">
+<a class="brand" href="/"><img src="/assets/logo.png" alt="" onerror="this.remove()"><span>Dlonem</span></a>
+<nav aria-label="Main">
+<a href="/" data-p="home">Home</a>
+<a href="/apps" data-p="apps">Apps</a>
+<a href="/supernatural" data-p="spn">Supernatural</a>
+<a href="/community" data-p="comm">Community</a>
+<a href="/legacy" data-p="legacy">Legacy</a>
+<a href="/games" data-p="games">Games</a>
+<a class="join" href="https://discord.gg/StACe9hVtT">Join the Den</a>
+</nav>
+</div></header>
+<main id="main">
+
+<div class="hero compact">
+<span class="spark" style="top:24%;left:11%"></span>
+<span class="spark s2" style="top:64%;left:86%"></span>
+<span class="spark s3" style="top:34%;left:72%"></span>
+<div class="wrap">
+<img class="tdh-icon" src="/assets/icons/dragon.png" alt="Tiny Dragon Hoard app icon" onerror="this.remove()">
+<span class="eyebrow">Tiny Dragon Hoard</span>
+<h1>Every flight fills your hoard</h1>
+<p class="lede">A cozy fantasy flight adventure. Soar six living biomes, torch castle walls, and pour every coin into a treasury that grows with you. Raise a whole roost of one-of-a-kind dragons and build the hoard of legend.</p>
+<div class="btn-row">
+<a class="btn btn-solid" href="https://play.google.com/store/apps/details?id=com.dlonem.tinydragonhoard">Get it on Google Play</a>
+<span class="btn soon">App Store — later</span>
+</div>
+<span class="pricetag">Free · no account · plays offline</span>
+</div>
+</div>
+
+<section class="tight">
+<div class="wrap">
+<p class="crumbs"><a href="/">Home</a> › <a href="/apps">Apps</a> › Tiny Dragon Hoard</p>
+<div class="stats">
+<div class="stat"><b>6</b><span>Living biomes to fly, from cozy caves to storm-taken keeps</span></div>
+<div class="stat"><b>~2 min</b><span>A single flight — or settle in for a long hoarding session</span></div>
+<div class="stat"><b>Daily</b><span>A brand-new Royal Bounty course, the same sky for everyone</span></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap section-head">
+<span class="eyebrow">The loop</span>
+<h2>What you actually do</h2>
+<p>Fly, burn, hoard, upgrade, fly further. It's a simple loop that keeps opening up.</p>
+</div>
+<div class="wrap">
+<div class="loop">
+<div class="beat"><b>1</b><div><h3>Take off</h3><p>Send your dragon soaring across six living biomes. Dodge storms, weave through obstacles, and keep your breath up — every coin on the course is yours if you can reach it.</p></div></div>
+<div class="beat"><b>2</b><div><h3>Breach the walls</h3><p>Blast through siege walls, out-fly wild rival dragons, and hunt named <strong>ELITE</strong> bosses for rare Dragon Stones. Storm the Knight's Keep, herd a stampede of sheep, and rescue a princess whose Royal Favor pays you back.</p></div></div>
+<div class="beat"><b>3</b><div><h3>Pour it into the hoard</h3><p>Upgrade your Gold Vault, your goblins, your forge. Claim grander estates as you go and watch the gold rise across the whole scene — the treasury is the progress bar.</p></div></div>
+<div class="beat"><b>4</b><div><h3>Grow the roost</h3><p>Spend Dragon Stones on new dragons and dig into their perk trees. Pierce through obstacles, widen your breath, chain lightning, magnetize coins. Bond with a dragon and it literally grows.</p></div></div>
+<div class="beat"><b>5</b><div><h3>Chase the leaderboard</h3><p>The daily Royal Bounty shuffles a fresh course every morning — identical for every keeper — then shows you where you landed on the Realm Rankings.</p></div></div>
+</div>
+</div>
+</section>
+
+<section class="tight">
+<div class="wrap section-head">
+<span class="eyebrow">The roost</span>
+<h2>Every dragon flies differently</h2>
+<p>Not skins with different colours — distinct perk trees and distinct playstyles.</p>
+</div>
+<div class="wrap roost">
+<div class="drake"><b>Fire-breathers</b><span>The classic. Wide breath, straight lines, walls that stop existing.</span></div>
+<div class="drake"><b>Frost tanks</b><span>Built to absorb what would end a lighter run. Slow, unbothered.</span></div>
+<div class="drake"><b>Poison stingers</b><span>Damage over time. Rewards precision over brute force.</span></div>
+<div class="drake"><b>Shadow hunters</b><span>Built for elite rivals and the Dragon Stones they drop.</span></div>
+<div class="drake"><b>The Sovereign</b><span>Living gold. The one you're working toward.</span></div>
+<div class="drake"><b>Make them yours</b><span>Colour skins and stackable accessories — a Santa Hat, an Ember Tail, a Storm Halo — mixed freely across the roost.</span></div>
+</div>
+</section>
+
+<section>
+<div class="wrap section-head">
+<span class="eyebrow">Inside the game</span>
+<h2>What it looks like</h2>
+<p>Five screens from the roost. Tap any shot to see it full size.</p>
+</div>
+<div class="wrap">
+<div class="shots shots--phone" data-interval="5000">
+<div class="shot"><img src="/assets/img/tdh/flight.jpg" alt="Tiny Dragon Hoard screenshot — soaring a biome, collecting gold in flight" loading="lazy" onerror="this.parentNode.remove()"></div>
+<div class="shot"><img src="/assets/img/tdh/siege.jpg" alt="Tiny Dragon Hoard screenshot — breaching a castle siege wall" loading="lazy" onerror="this.parentNode.remove()"></div>
+<div class="shot"><img src="/assets/img/tdh/roster.jpg" alt="Tiny Dragon Hoard screenshot — the roost of one-of-a-kind dragons" loading="lazy" onerror="this.parentNode.remove()"></div>
+<div class="shot"><img src="/assets/img/tdh/perks.jpg" alt="Tiny Dragon Hoard screenshot — a dragon's perk tree" loading="lazy" onerror="this.parentNode.remove()"></div>
+<div class="shot"><img src="/assets/img/tdh/rankings.jpg" alt="Tiny Dragon Hoard screenshot — the daily Royal Bounty and Realm Rankings" loading="lazy" onerror="this.parentNode.remove()"></div>
+</div>
+<p class="gallery-hint">click any screen to enlarge</p>
+</div>
+</section>
+
+<section class="tight">
+<div class="wrap section-head">
+<span class="eyebrow">How it treats you</span>
+<h2>A game that respects your time</h2>
+<p>Free to play, but not the kind of free-to-play that holds your dragons hostage.</p>
+</div>
+<div class="wrap twocol">
+<div class="panel yes">
+<h3>What you get</h3>
+<ul>
+<li>The whole game, free — no paywalled chapters</li>
+<li>Six biomes, the full roost, every perk tree</li>
+<li>A daily Royal Bounty and the Realm Rankings</li>
+<li>Progress that always feels earned, whether you play two minutes or an hour</li>
+<li>Plays entirely offline — no connection needed</li>
+<li>Optional Google Play Games sign-in if you want cloud saves and achievements</li>
+</ul>
+</div>
+<div class="panel no">
+<h3>What it doesn't do</h3>
+<ul>
+<li>No account, no sign-up, no email — progress saves on your device</li>
+<li>No energy timers gating when you're allowed to play</li>
+<li>No subscription</li>
+<li>Ads are optional and the one-time <strong>Clear Skies</strong> purchase removes them for good</li>
+<li>Nothing you do in the game is sent to us — we run no servers that could receive it</li>
+</ul>
+<p style="margin-top:12px;font-size:.86rem"><a href="/privacy/tiny-dragon-hoard">Read the privacy policy</a> — it's short, because there isn't much to disclose.</p>
+</div>
+</div>
+<div class="wrap" style="text-align:center;margin-top:28px">
+<div class="btn-row" style="justify-content:center">
+<a class="btn btn-solid" href="https://play.google.com/store/apps/details?id=com.dlonem.tinydragonhoard">Get it on Google Play</a>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap section-head">
+<span class="eyebrow">Common questions</span>
+<h2>Before you fly</h2>
+</div>
+<div class="wrap faq">
+<details><summary>Is it actually free, or free-to-play free?</summary>
+<p>Free, with optional ads. The one-time <em>Clear Skies</em> purchase removes ads permanently, and it's also bundled into the Dragonlord's Boon. There are other optional purchases — gold and gem packs, starter bundles, Dragon Stone caches — but none of them gate content, and there's no subscription and no energy timer.</p></details>
+<details><summary>Does it work offline?</summary>
+<p>Yes. It's single-player and your save lives on your device, so it works on a plane or in a tunnel. If you want cloud saves, leaderboards and achievements you can optionally sign in to Google Play Games, and that copy lives in your own Google account — not ours.</p></details>
+<details><summary>Is it okay for kids?</summary>
+<p>It's a general-audience, family-friendly game — cartoon fantasy action, dragons breathing fire and knocking down castle walls. No account, no chat, no personal information required from anyone. Purchases are real money, though, so if you're handing a phone to a child it's worth switching on purchase authentication in the Play Store first.</p></details>
+<details><summary>How long does a run take?</summary>
+<p>About two minutes for a single flight. The meta layers — treasury upgrades, the roost, perk trees, estates — are what turn it into a longer session when you want one.</p></details>
+<details><summary>What are Dragon Stones for?</summary>
+<p>They're the rare currency, dropped mainly by named ELITE bosses, and they're what unlocks and deepens dragons. Hunting elites is the reliable way to grow the roost rather than just the vault.</p></details>
+<details><summary>Does the daily course differ between players?</summary>
+<p>No — the Royal Bounty shuffles one course each morning and it's the same sky for every keeper that day. That's what makes the Realm Rankings mean anything.</p></details>
+</div>
+</section>
+
+<section class="tight">
+<div class="wrap section-head">
+<span class="eyebrow">More from the roost</span>
+<h2>While you're here</h2>
+<p>Tiny Dragon Hoard is the one game among four apps. The others are habit trackers — <a href="/apps/thc-break-buddy">THC</a>, <a href="/apps/caffeine-break-buddy">Caffeine</a> and <a href="/apps/nicotine-break-buddy">Nicotine Break Buddy</a> — and they share the same rule: your data stays on your phone. If you'd rather talk than tap, there's a <a href="https://discord.gg/StACe9hVtT">Discord</a>. <a href="/apps">See all the apps</a>.</p>
+</div>
+</section>
+
+</main>
+<footer><div class="foot-inner">
+<div><h4>Dlonem</h4><a href="/apps">Apps</a><a href="/supernatural">Supernatural mod</a><a href="/legacy">Legacy</a><a href="/games">Recommended games</a></div>
+<div><h4>Community</h4><a href="https://discord.gg/StACe9hVtT">Dlonem's Den (Discord)</a><a href="https://discord.gg/hvZGMeJhB7">The Game Center (Discord)</a><a href="https://discord.gg/Efvd2B97xx">Supernatural (Discord)</a></div>
+<div><h4>Elsewhere</h4><a href="https://www.youtube.com/c/Dlonem">YouTube</a><a href="https://x.com/officialdlonem">X / Twitter</a><a href="https://www.facebook.com/Dlonem/">Facebook</a><a href="https://steamcommunity.com/id/Dlonem">Steam</a></div>
+<div><h4>Studio</h4><a href="/privacy">Privacy policy</a><a href="/support">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
+</div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word.</div></footer>
+<script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});</script>
+<script src="/js/carousel.js" defer></script>
+</body>
+</html>
