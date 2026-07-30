@@ -1,10 +1,9 @@
 User-agent: *
 Allow: /
 
-# Smart links are redirects, not content — no reason to index them.
-Disallow: /thc
-Disallow: /caffeine
-Disallow: /nicotine
-Disallow: /dragon
+# Smart links carry <meta name="robots" content="noindex"> instead of a
+# Disallow here: Twitterbot and facebookexternalhit both honour robots.txt,
+# and blocking them means shared links render no preview card at all.
+
 
 Sitemap: https://dlonem.com/sitemap.xml
