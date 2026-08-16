@@ -14,6 +14,8 @@
 /privacy/nicotine.html /privacy/nicotine-break-buddy 301
 /privacy/tdh.html /privacy/tiny-dragon-hoard 301
 /privacy/thc.html /privacy/thc-break-buddy 301
-/supernatural.html /supernatural 301
+/supernatural.html /mods/supernatural 301
 /support.html /support 301
 /thc.html /thc 301
+# Supernatural moved under the mods hub once a second CK3 mod existed.
+/supernatural /mods/supernatural 301

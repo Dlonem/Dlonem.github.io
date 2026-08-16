@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=7"><link rel="icon" href="/assets/logo.png">
+<title>Mods for Crusader Kings III — Dlonem</title>
+<meta name="description" content="Two Crusader Kings III mods: Supernatural, which adds vampires, werewolves, witches and hunters to the base game, and The Long Night & Azor Ahai, a full undead endgame for A Game of Thrones.">
+<meta name="theme-color" content="#1A0F42">
+<link rel="canonical" href="https://dlonem.com/mods">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dlonem">
+<meta property="og:url" content="https://dlonem.com/mods">
+<meta property="og:title" content="Mods for Crusader Kings III — Dlonem">
+<meta property="og:description" content="Supernatural, and The Long Night & Azor Ahai. Two CK3 mods, 14,000+ subscribers between them.">
+<meta property="og:image" content="https://dlonem.com/assets/img/og-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@officialdlonem">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+ {"@type":"ListItem","position":1,"name":"Home","item":"https://dlonem.com/"},
+ {"@type":"ListItem","position":2,"name":"Mods","item":"https://dlonem.com/mods"}]},
+{"@type":"CollectionPage","name":"Mods for Crusader Kings III",
+ "url":"https://dlonem.com/mods",
+ "description":"Crusader Kings III mods by Dlonem LLC.",
+ "hasPart":[
+  {"@type":"CreativeWork","name":"Supernatural","url":"https://dlonem.com/supernatural",
+   "genre":"Video game modification"},
+  {"@type":"CreativeWork","name":"AGOT: The Long Night & Azor Ahai","url":"https://dlonem.com/mods/the-long-night",
+   "genre":"Video game modification"}]}
+]}</script>
+<style>
+.modcard{display:grid;grid-template-columns:132px 1fr;gap:22px;align-items:start;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px;
+  margin-bottom:18px;position:relative;overflow:hidden;transition:border-color .2s ease,transform .2s ease}
+.modcard:hover{transform:translateY(-2px)}
+.modcard img{width:132px;height:132px;border-radius:14px;display:block;
+  box-shadow:0 10px 26px rgba(0,0,0,.28)}
+.modcard h3{font-size:1.3rem;margin-bottom:4px}
+.modcard h3 a{text-decoration:none}
+.modcard .kicker{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.09em;
+  text-transform:uppercase;margin-bottom:8px;display:block}
+.modcard p{color:var(--ink-soft);font-size:.95rem;margin-bottom:14px}
+.modcard .nums{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px}
+.modcard .nums div{font-size:.84rem;color:var(--ink-soft)}
+.modcard .nums b{display:block;font-family:'Unbounded',sans-serif;font-size:1.1rem;color:var(--ink)}
+.modcard .row{display:flex;gap:10px;flex-wrap:wrap}
+.modcard.spn{border-top:4px solid #C2334D}
+.modcard.spn .kicker{color:#A3223B}
+.modcard.spn h3 a{color:#A3223B}
+.modcard.spn .btn-solid{background:linear-gradient(90deg,#A3223B,#E0536E);color:#fff;
+  box-shadow:0 6px 18px rgba(194,51,77,.28)}
+.modcard.tln{border-top:4px solid #4C9FD4}
+.modcard.tln .kicker{color:#175A85}
+.modcard.tln h3 a{color:#175A85}
+.modcard.tln .btn-solid{background:linear-gradient(90deg,#2E7FB4,#8FCBEC);color:#061019;
+  box-shadow:0 6px 18px rgba(76,159,212,.28)}
+.newtag{display:inline-block;font-family:'Space Mono',monospace;font-size:.66rem;
+  letter-spacing:.1em;background:#D9A441;color:#2B1B06;border-radius:999px;
+  padding:3px 9px;margin-left:8px;vertical-align:middle}
+/* the patch belongs to both mods, so its edge blends both accents */
+.patch{position:relative;background:var(--card);border:1px solid var(--line);
+  border-radius:16px;padding:26px 28px;margin:0 auto;max-width:900px;overflow:hidden}
+.patch::before{content:"";position:absolute;inset:0 0 auto;height:4px;
+  background:linear-gradient(90deg,#C2334D,#8E4A8C,#4C9FD4)}
+.patch .ptop{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.patch h3{font-size:1.2rem;margin:0}
+.patch .req{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.09em;
+  background:rgba(142,74,140,.14);color:#7A3F78;border:1px solid rgba(142,74,140,.35);
+  border-radius:999px;padding:4px 10px;white-space:nowrap}
+.patch .lead{color:var(--ink);font-weight:600;font-size:.98rem;margin:8px 0 14px}
+.patch p{color:var(--ink-soft);font-size:.93rem}
+.patch ul{margin:0 0 16px;padding-left:20px}
+.patch li{color:var(--ink-soft);font-size:.92rem;margin-bottom:6px}
+.patch li strong{color:var(--ink)}
+.patch .nums{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 18px}
+.patch .nums div{font-size:.84rem;color:var(--ink-soft)}
+.patch .nums b{display:block;font-family:'Unbounded',sans-serif;font-size:1.1rem;color:var(--ink)}
+.patch .btn-solid{background:linear-gradient(90deg,#8E4A8C,#4C9FD4);color:#fff;
+  box-shadow:0 6px 18px rgba(142,74,140,.28)}
+.order{counter-reset:step;list-style:none;padding:0;margin:0 0 4px}
+.order li{counter-increment:step;position:relative;padding:9px 12px 9px 44px;
+  border-bottom:1px solid var(--line);color:var(--ink-soft);font-size:.9rem}
+.order li:last-child{border-bottom:0}
+.order li::before{content:counter(step);position:absolute;left:12px;top:8px;
+  width:21px;height:21px;border-radius:6px;display:grid;place-items:center;
+  font-family:'Space Mono',monospace;font-size:.7rem;
+  background:rgba(120,120,150,.12);color:var(--ink-soft);border:1px solid var(--line)}
+.order li.here{color:var(--ink);font-weight:600}
+.order li.here::before{background:linear-gradient(90deg,#8E4A8C,#4C9FD4);color:#fff;border-color:transparent}
+@media(max-width:620px){
+  .modcard{grid-template-columns:1fr}
+  .modcard img{width:96px;height:96px}
+}
+</style>
+</head>
+<body data-page="mods">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="nav-inner">
+<a class="brand" href="/"><img src="/assets/logo.png" alt="" onerror="this.remove()"><span>Dlonem</span></a>
+<nav aria-label="Main">
+<a href="/" data-p="home">Home</a>
+<a href="/apps" data-p="apps">Apps</a>
+<a href="/mods" data-p="mods">Mods</a>
+<a href="/community" data-p="comm">Community</a>
+<a href="/legacy" data-p="legacy">Legacy</a>
+<a href="/games" data-p="games">Games</a>
+<a class="join" href="https://discord.gg/StACe9hVtT">Join the Den</a>
+</nav>
+</div></header>
+<main id="main">
+
+<div class="hero compact">
+<div class="wrap">
+<span class="eyebrow">Crusader Kings III</span>
+<h1>Two mods, one obsession</h1>
+<p class="lede">I've been modding CK3 for years. One mod adds the monsters to the base game; the other finishes the story the show fumbled. Both are free on the Steam Workshop, and both have their own Discord where players shape what gets built next.</p>
+</div>
+</div>
+
+<section class="tight">
+<div class="wrap">
+<div class="stats">
+<div class="stat"><b>14,400+</b><span>subscribers across both mods</span></div>
+<div class="stat"><b>62,000+</b><span>unique Workshop visitors</span></div>
+<div class="stat"><b>2,100+</b><span>favorites</span></div>
+<div class="stat"><b>2022</b><span>first mod published</span></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap section-head">
+<span class="eyebrow">Pick your apocalypse</span>
+<h2>The mods</h2>
+</div>
+<div class="wrap" style="max-width:900px">
+
+<article class="modcard tln">
+<img src="/assets/icons/long-night.png" alt="The Long Night &amp; Azor Ahai mod icon" onerror="this.remove()">
+<div>
+<span class="kicker">A Game of Thrones submod</span>
+<h3><a href="/mods/the-long-night">The Long Night &amp; Azor Ahai</a><span class="newtag">NEW</span></h3>
+<p>The Long Night as a full endgame. The dead get back up wearing their own faces and ruling their own realms. The Wall comes down on camera. You can lay down your lands and serve on the Wall for real — hold a castle, or ride out with a ranging company. And Azor Ahai is a working prophecy the world resolves on its own, rather than a trait you tick at the start.</p>
+<div class="nums">
+<div><b>3,900+</b>subscribers</div>
+<div><b>13,300+</b>visitors</div>
+<div><b>329</b>favorites</div>
+</div>
+<div class="row">
+<a class="btn btn-solid" href="/mods/the-long-night">Read the full breakdown</a>
+<a class="btn" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3780269495">Steam Workshop</a>
+<a class="btn" href="https://discord.gg/PTJzPQbqG7">Discord</a>
+</div>
+</div>
+</article>
+
+<article class="modcard spn">
+<img src="/supernatural-icon.png" alt="Supernatural mod icon" onerror="this.remove()">
+<div>
+<span class="kicker">Base-game overhaul</span>
+<h3><a href="/mods/supernatural">Supernatural</a></h3>
+<p>A realm where the boundaries between the known and the unknown blur. Four supernatural traits, five lifestyles with seven perk trees, mystical men-at-arms, arcane artifacts and a potion-crafting system. Walk the path of a hunter, or rule as something far older.</p>
+<div class="nums">
+<div><b>10,400+</b>subscribers</div>
+<div><b>49,000+</b>visitors</div>
+<div><b>1,700+</b>favorites</div>
+</div>
+<div class="row">
+<a class="btn btn-solid" href="/mods/supernatural">Read the full breakdown</a>
+<a class="btn" href="https://steamcommunity.com/sharedfiles/filedetails/?id=2856525601">Steam Workshop</a>
+<a class="btn" href="https://discord.gg/Efvd2B97xx">Discord</a>
+</div>
+</div>
+</article>
+
+</div>
+</section>
+
+<section class="tight">
+<div class="wrap section-head">
+<span class="eyebrow">Running both at once</span>
+<h2>The compatibility patch</h2>
+<p>Want vampires <em>and</em> the army of the dead in the same campaign? Both mods rewrite some of the same files, and whichever loads second silently erases the other's version. This fixes that.</p>
+</div>
+<div class="wrap">
+<div class="patch">
+<div class="ptop">
+<h3>AGOT: Supernatural &amp; The Long Night Compatibility Patch</h3>
+<span class="req">needs all three mods</span>
+</div>
+<p class="lead">It does nothing on its own — and it has to load last.</p>
+<p style="margin-bottom:12px">Twenty-two entries that both mods define. Each one is a three-way merge against the base game's own version, so neither mod's changes are guessed at.</p>
+<ul>
+<li><strong>Marriage acceptance</strong> — AGOT's full 1,000-line house and legitimacy logic, plus Supernatural's fertility exemptions. Without the patch one of the two is simply gone; this entry alone was behind multiplayer desyncs in testing.</li>
+<li><strong>Births</strong> — AGOT's entire birth pipeline (house looks, Valyrian genetics, dragon dreams) and Supernatural's, in one file. Both ship it at the same path, so the later one was deleting the other wholesale.</li>
+<li><strong>The Originals</strong> — Supernatural's founding vampire family is written for the vanilla map, with a Norse culture and faith that don't exist in Westeros. Under the patch they become First Men of the North: northman culture, Old Gods faith.</li>
+<li>Plus disinheritance, the witch ritual, secrets, schemes, abductions, artifact demands, traits, imprisonment and resurrection rules.</li>
+</ul>
+<div class="nums">
+<div><b>745</b>running it right now</div>
+<div><b>22</b>merged entries</div>
+<div><b>v1.0</b>current release</div>
+</div>
+<p style="font-weight:600;color:var(--ink);margin-bottom:8px">Load order — drag the patch to the very bottom</p>
+<ol class="order">
+<li>A Game of Thrones</li>
+<li>AGOT submods — AGOT+, Valyrian Steel, Submod Core, Nobility…</li>
+<li>AGOT: The Long Night &amp; Azor Ahai</li>
+<li>Supernatural</li>
+<li class="here">The Compatibility Patch — <em>this one, last</em></li>
+</ol>
+<p style="font-size:.88rem;margin:12px 0 18px">Every fix works by defining the entry the two mods fight over. Anything loaded after it wins instead, and the patch does nothing at all.</p>
+<a class="btn btn-solid" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3780270228">View on Steam Workshop</a>
+</div>
+</div>
+</section>
+
+</main>
+<footer><div class="foot-inner">
+<div><h4>Dlonem</h4><a href="/apps">Apps</a><a href="/mods">Mods for CK3</a><a href="/legacy">Legacy</a><a href="/games">Recommended games</a></div>
+<div><h4>Community</h4><a href="https://discord.gg/StACe9hVtT">Dlonem's Den (Discord)</a><a href="https://discord.gg/PTJzPQbqG7">The Long Night (Discord)</a><a href="https://discord.gg/Efvd2B97xx">Supernatural (Discord)</a></div>
+<div><h4>Elsewhere</h4><a href="https://www.youtube.com/c/Dlonem">YouTube</a><a href="https://x.com/officialdlonem">X / Twitter</a><a href="https://www.facebook.com/Dlonem/">Facebook</a><a href="https://steamcommunity.com/id/Dlonem">Steam</a></div>
+<div><h4>Studio</h4><a href="/privacy">Privacy policy</a><a href="/support">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
+</div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word.</div></footer>
+<script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});</script>
+</body>
+</html>
