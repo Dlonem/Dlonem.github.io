@@ -536,3 +536,97 @@ details summary::marker{transition:none}
 @media(prefers-reduced-motion:reduce){
   details > *:not(summary){animation:none}
 }
+
+/* ==========================================================================
+   Polish pass — accessible eyebrows, a real mobile menu, scroll reveals.
+   Everything here degrades safely: with JS off the menu is a plain list and
+   every revealed section is simply visible.
+   ========================================================================== */
+
+/* ---- eyebrow contrast -------------------------------------------------- */
+/* --cyan (#25AFC4) reads at 2.41:1 on the light page background — it fails
+   WCAG AA for 12px text and looks washed out. Light sections get a darker
+   teal; heroes keep the bright one, which has plenty of contrast on dark. */
+:root{ --cyan-ink:#0B7285; }
+.eyebrow{ color:var(--cyan-ink); }
+.hero .eyebrow{ color:var(--cyan); }
+
+/* ---- mobile menu ------------------------------------------------------- */
+/* Below 780px the seven nav links wrapped to two rows and made the header
+   145px tall — 17% of a phone screen, on every page. */
+.nav-toggle{
+  display:none; align-items:center; justify-content:center; gap:8px;
+  margin-left:auto; min-height:44px; padding:9px 14px;
+  background:rgba(255,255,255,.10); color:#fff;
+  border:1px solid rgba(255,255,255,.26); border-radius:11px;
+  font:600 .88rem/1 'Sora',sans-serif; cursor:pointer;
+  transition:background .18s ease, border-color .18s ease;
+}
+.nav-toggle:hover{ background:rgba(255,255,255,.18) }
+.nav-toggle .bars{ position:relative; width:16px; height:11px; flex:none }
+.nav-toggle .bars i{
+  position:absolute; left:0; width:100%; height:2px; border-radius:2px;
+  background:currentColor; transition:transform .24s ease, opacity .18s ease;
+}
+.nav-toggle .bars i:nth-child(1){ top:0 }
+.nav-toggle .bars i:nth-child(2){ top:4.5px }
+.nav-toggle .bars i:nth-child(3){ top:9px }
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(1){ transform:translateY(4.5px) rotate(45deg) }
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(2){ opacity:0 }
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(3){ transform:translateY(-4.5px) rotate(-45deg) }
+
+@media(max-width:780px){
+  .nav-inner{ flex-wrap:nowrap }
+  .nav-toggle{ display:inline-flex }
+  .nav .nav-inner nav{
+    position:absolute; left:0; right:0; top:100%;
+    flex-direction:column; align-items:stretch; gap:4px;
+    padding:10px 14px 16px;
+    /* solid, not translucent: a nested backdrop-filter inside the header's own
+       blur composites unpredictably and let the hero bleed through */
+    background:#160C3A; backdrop-filter:none; -webkit-backdrop-filter:none;
+    border-top:1px solid rgba(255,255,255,.10);
+    box-shadow:0 18px 40px rgba(0,0,0,.34);
+    /* closed state — animated, but never hides content when JS is off */
+    display:none;
+  }
+  .nav.is-open .nav-inner nav{ display:flex; animation:navdrop .22s ease both }
+  .nav .nav-inner nav a{
+    min-height:44px; display:flex; align-items:center;
+    padding:11px 14px; border-radius:10px; font-size:1rem;
+  }
+  .nav .nav-inner nav a.join{ justify-content:center; margin-top:6px }
+  .nav{ position:relative }
+  /* JS off: no toggle button, so show the list as it was */
+  html:not(.js) .nav .nav-inner nav{ position:static; display:flex; flex-direction:row;
+    flex-wrap:wrap; background:none; box-shadow:none; border-top:0; padding:0 }
+  html:not(.js) .nav-toggle{ display:none }
+}
+@keyframes navdrop{ from{opacity:0; transform:translateY(-8px)} to{opacity:1; transform:none} }
+
+/* ---- scroll reveal ----------------------------------------------------- */
+/* Only applied once JS confirms it can un-hide things again. */
+html.js .reveal{ opacity:0; transform:translateY(16px);
+  transition:opacity .62s cubic-bezier(.22,.61,.36,1), transform .62s cubic-bezier(.22,.61,.36,1);
+  transition-delay:var(--d,0ms); will-change:opacity,transform }
+html.js .reveal.in{ opacity:1; transform:none }
+
+/* ---- focus + hover polish ---------------------------------------------- */
+a:focus-visible, button:focus-visible, summary:focus-visible{
+  outline:2px solid var(--cyan-ink); outline-offset:3px; border-radius:6px;
+}
+.hero a:focus-visible, .nav a:focus-visible, .nav-toggle:focus-visible,
+footer a:focus-visible{ outline-color:#8FE3F2 }
+.card, .tile{ transition:transform .24s cubic-bezier(.22,.61,.36,1), box-shadow .24s ease }
+
+@media(prefers-reduced-motion:reduce){
+  html.js .reveal{ opacity:1 !important; transform:none !important; transition:none !important }
+  .nav.is-open .nav-inner nav{ animation:none }
+  .card:hover, .tile:hover{ transform:none }
+}
+
+/* At 320px "Where the name came from" filled its button to the pixel — no
+   clipping, but no margin for a font fallback either. */
+@media(max-width:370px){
+  .hero .btn{ padding-left:16px; padding-right:16px; font-size:.92rem }
+}
