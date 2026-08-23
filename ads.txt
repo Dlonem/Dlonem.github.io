@@ -1,1 +1,3 @@
+# Authorised digital sellers for dlonem.com (AdSense).
+# The apps use a separate AdMob publisher ID — see app-ads.txt.
 google.com, pub-5299635657419886, DIRECT, f08c47fec0942fa0
