@@ -1,1 +1,8 @@
-google.com, pub-7891627679003844, DIRECT, f08c47fec0942fa0
+# Authorised digital sellers for the Dlonem LLC mobile apps (AdMob).
+# Spec: https://iabtechlab.com/ads-txt/
+#
+# This file must stay at the ROOT of the developer website listed on each
+# app's Play Store entry — https://dlonem.com/app-ads.txt — or AdMob's
+# crawler will not find it. It is separate from ads.txt, which covers ads
+# served on this website rather than inside the apps.
+google.com, pub-5299635657419886, DIRECT, f08c47fec0942fa0

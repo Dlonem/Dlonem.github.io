@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=8"><link rel="icon" href="/assets/logo.png">
+<title>Download The Long Night &amp; Azor Ahai without Steam — manual install guide</title>
+<meta name="description" content="Download AGOT: The Long Night & Azor Ahai for Crusader Kings III without the Steam Workshop, and install it by hand. Full step-by-step guide for GOG, Epic and Game Pass copies, including the .mod file and load order.">
+<meta name="theme-color" content="#0B1119">
+<link rel="canonical" href="https://dlonem.com/mods/the-long-night/download">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dlonem">
+<meta property="og:url" content="https://dlonem.com/mods/the-long-night/download">
+<meta property="og:title" content="Download The Long Night &amp; Azor Ahai without Steam">
+<meta property="og:description" content="Manual install for CK3 copies that aren't on Steam — download, folder, .mod file, load order, and what to do when it doesn't show up.">
+<meta property="og:image" content="https://dlonem.com/assets/img/og-long-night.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@officialdlonem">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+ {"@type":"ListItem","position":1,"name":"Home","item":"https://dlonem.com/"},
+ {"@type":"ListItem","position":2,"name":"Mods","item":"https://dlonem.com/mods"},
+ {"@type":"ListItem","position":3,"name":"The Long Night & Azor Ahai","item":"https://dlonem.com/mods/the-long-night"},
+ {"@type":"ListItem","position":4,"name":"Download","item":"https://dlonem.com/mods/the-long-night/download"}]},
+{"@type":"HowTo","name":"Install AGOT: The Long Night & Azor Ahai without Steam",
+ "description":"Manual installation of a Crusader Kings III mod for copies of the game that are not on Steam.",
+ "totalTime":"PT5M",
+ "step":[
+  {"@type":"HowToStep","name":"Download and unzip","text":"Download the mod archive from GitHub and unzip it. You should end up with two items side by side: a folder named the-long-night-azor-ahai containing common, events, gfx, localization and a descriptor.mod file, and a separate the-long-night-azor-ahai.mod text file."},
+  {"@type":"HowToStep","name":"Move both into the mod directory","text":"Move the mod folder and the .mod file together into your Crusader Kings III mod directory, which on Windows is Documents/Paradox Interactive/Crusader Kings III/mod. The .mod file sits beside the folder, not inside it."},
+  {"@type":"HowToStep","name":"Check the .mod file","text":"The launcher reads the separate the-long-night-azor-ahai.mod file rather than the descriptor.mod inside the folder. It ships with the download; if it is missing or the folder was renamed, recreate it with the mod metadata and a path line pointing at the folder."},
+  {"@type":"HowToStep","name":"Enable it in the launcher","text":"Open the Paradox launcher, add the mod to a playset, and place it below A Game of Thrones and its submods in the load order."}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Can I play The Long Night mod without Steam?",
+  "acceptedAnswer":{"@type":"Answer","text":"Yes. The mod is plain files and works on any copy of Crusader Kings III, including GOG, Epic and Game Pass. You download the archive and move both the mod folder and the small .mod file that ships with it into your CK3 mod directory. You still need A Game of Thrones installed, which also has a manual download."}},
+ {"@type":"Question","name":"Why does my manually installed mod not appear in the launcher?",
+  "acceptedAnswer":{"@type":"Answer","text":"Almost always the path line in the .mod file. It must use forward slashes rather than backslashes, and it must point at the folder you actually created. A wrong path produces the descriptor file error in the launcher."}},
+ {"@type":"Question","name":"Do manually installed mods update automatically?",
+  "acceptedAnswer":{"@type":"Answer","text":"No. A manual install is a snapshot. When a new version is released you delete the old mod folder, unzip the new one in its place and update the version number in your .mod file."}}]}
+]}</script>
+<style>
+.tln{--accent:#4C9FD4;--accent-soft:#A9D8F5;--accent-deep:#0B1119;--accent-ink:#175A85;
+     --ember:#D9A441;--ember-ink:#8A6516}
+.tln .hero{background:linear-gradient(150deg,#070C13 0%,#0B1119 30%,#17324B 62%,#3E6A8C 88%,#7FA8C4 100%)}
+.tln .hero .eyebrow{color:var(--accent-soft)}
+.tln main section .eyebrow{color:var(--accent-ink)}
+.tln .btn-solid{background:linear-gradient(90deg,#2E7FB4,#8FCBEC);color:#061019;
+  box-shadow:0 6px 18px rgba(76,159,212,.30)}
+.tln .stat b{color:var(--accent-ink)}
+.tln main a:not(.btn):not(.store){color:var(--accent-ink)}
+.tln .nav nav a.active{background:linear-gradient(90deg,#2E7FB4,#8FCBEC);color:#061019}
+.tln .hero.compact{padding:44px 0 50px}
+.tln .hero h1{font-size:clamp(1.55rem,4vw,2.4rem)}
+.tln .hero .lede{max-width:640px;margin-left:auto;margin-right:auto}
+
+.crumbs{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.08em;
+  color:var(--ink-soft);margin-bottom:26px}
+.crumbs a{color:var(--accent-ink);text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+
+/* steam-first callout — the honest recommendation goes above the download */
+.first{max-width:820px;margin:0 auto;background:#EAF4FB;border:1px solid #B9D8EC;
+  border-left:5px solid #2E7FB4;border-radius:12px;padding:20px 24px}
+.first h3{margin:0 0 8px;color:#14567F;font-size:1.05rem}
+.first p{color:#33556B;font-size:.95rem;margin-bottom:10px}
+.first p:last-child{margin-bottom:0}
+
+.warn{max-width:820px;margin:0 auto;background:#FFF6E9;border:1px solid #E6C68B;
+  border-left:5px solid #C9821F;border-radius:12px;padding:20px 24px}
+.warn h3{margin:0 0 8px;color:#8A5307;font-size:1.05rem}
+.warn p{color:#5C4526;font-size:.95rem;margin-bottom:8px}
+.warn p:last-child{margin-bottom:0}
+.warn strong{color:#7A3D06}
+
+/* numbered install steps */
+.steps{max-width:820px;margin:0 auto;counter-reset:s;list-style:none;padding:0}
+.steps > li{counter-increment:s;position:relative;padding:0 0 0 58px;margin-bottom:26px}
+.steps > li::before{content:counter(s);position:absolute;left:0;top:0;
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  font-family:'Unbounded',sans-serif;font-size:1rem;
+  background:linear-gradient(140deg,#2E7FB4,#8FCBEC);color:#061019}
+.steps h3{font-size:1.05rem;margin-bottom:6px}
+.steps p{color:var(--ink-soft);font-size:.94rem;margin-bottom:10px}
+.steps ul{margin:8px 0 10px;padding-left:20px}
+.steps li li{color:var(--ink-soft);font-size:.92rem;margin-bottom:5px}
+
+/* file paths and the .mod snippet */
+.path{display:block;font-family:'Space Mono',monospace;font-size:.82rem;
+  background:#0F1B27;color:#CFE4F2;border-radius:9px;padding:11px 14px;margin:7px 0;
+  overflow-x:auto;white-space:nowrap}
+.path b{color:var(--ember);font-weight:400}
+.codewrap{position:relative;margin:12px 0}
+.codewrap pre{margin:0;background:#0B1119;color:#DCE9F5;border:1px solid #24405A;
+  border-radius:12px;padding:18px 20px;overflow-x:auto;
+  font-family:'Space Mono',monospace;font-size:.82rem;line-height:1.7}
+.codewrap .copy{position:absolute;top:10px;right:10px;cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.08em;
+  background:rgba(255,255,255,.1);color:#A9D8F5;border:1px solid rgba(169,216,245,.3);
+  border-radius:999px;padding:6px 12px}
+.codewrap .copy:hover{background:rgba(169,216,245,.2)}
+.codewrap .copy[data-done]{color:var(--ember);border-color:var(--ember)}
+
+.twocol{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  max-width:900px;margin:0 auto}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.panel h3{margin-bottom:10px}
+.panel ul{margin:0;padding-left:20px}
+.panel li{color:var(--ink-soft);font-size:.92rem;margin-bottom:7px}
+.panel.yes{border-left:4px solid var(--accent)}
+
+/* the full Windows path in troubleshooting is one long unbreakable token — it
+   pushed the page 39px wide on a 390px screen */
+.panel code{overflow-wrap:anywhere;word-break:break-word}
+.panel li{overflow-wrap:anywhere}
+
+.faq{max-width:760px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{cursor:pointer;font-weight:600;font-family:'Sora',sans-serif}
+.faq summary::marker{color:var(--accent)}
+.faq p{color:var(--ink-soft);font-size:.93rem;margin-top:8px}
+.srcnote{max-width:760px;margin:24px auto 0;font-size:.82rem;color:var(--ink-soft)}
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5299635657419886" crossorigin="anonymous"></script>
+</head>
+<body class="tln" data-page="mods">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="nav-inner">
+<a class="brand" href="/"><img src="/assets/logo.png" alt="" onerror="this.remove()" width="256" height="256"><span>Dlonem</span></a>
+<nav aria-label="Main">
+<a href="/" data-p="home">Home</a>
+<a href="/apps" data-p="apps">Apps</a>
+<a href="/mods" data-p="mods">Mods</a>
+<a href="/community" data-p="comm">Community</a>
+<a href="/legacy" data-p="legacy">Legacy</a>
+<a href="/games" data-p="games">Games</a>
+<a class="join" href="https://discord.gg/StACe9hVtT">Join the Den</a>
+</nav>
+</div></header>
+<main id="main">
+
+<div class="hero compact">
+<span class="spark" style="top:24%;left:12%"></span>
+<span class="spark s2" style="top:62%;left:84%"></span>
+<div class="wrap">
+<span class="eyebrow">Manual install</span>
+<h1>Download without Steam</h1>
+<p class="lede">The mod is plain files, so it runs on any copy of Crusader Kings III — GOG, Epic, Game Pass, wherever you bought it. It takes about five minutes by hand, and this page walks the whole thing.</p>
+</div>
+</div>
+
+<section class="tight">
+<div class="wrap">
+<p class="crumbs"><a href="/">Home</a> › <a href="/mods">Mods</a> › <a href="/mods/the-long-night">The Long Night</a> › Download</p>
+<div class="first">
+<h3>If your CK3 is on Steam, use the Workshop instead</h3>
+<p>It's one click, it updates itself the moment I push a fix, and it handles the load order for you. Nothing on this page is better — it exists for people who can't use the Workshop at all.</p>
+<p><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3780269495"><strong>Subscribe on the Steam Workshop →</strong></a></p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap section-head">
+<span class="eyebrow">Step zero</span>
+<h2>Get the files</h2>
+<p>The mod is open source. The repository is the download — there's no mirror, no shortener and no waiting.</p>
+</div>
+<div class="wrap" style="text-align:center">
+<div class="btn-row" style="justify-content:center">
+<!-- ── GitHub repo URL appears here and in the FAQ below. Change both if it moves. ── -->
+<a class="btn btn-solid" href="https://github.com/Dlonem/CK3TheLongNightAzorAhai/releases">Download from GitHub</a>
+<a class="btn" href="https://github.com/Dlonem/CK3TheLongNightAzorAhai">Browse the source</a>
+</div>
+<p class="srcnote" style="text-align:center">Grab the newest release archive. If there isn't a release yet, use the green <strong>Code</strong> button on the repository and choose <strong>Download ZIP</strong> — just note the folder inside will be named after the branch, and you'll want to rename it as described in step 2.</p>
+</div>
+</section>
+
+<section class="tight">
+<div class="wrap section-head">
+<span class="eyebrow">Five minutes</span>
+<h2>Installing it by hand</h2>
+</div>
+<div class="wrap">
+<ol class="steps">
+
+<li>
+<h3>Unzip it</h3>
+<p>You should end up with two things side by side: a folder called <code>the-long-night-azor-ahai</code> — containing <code>common</code>, <code>events</code>, <code>gfx</code>, <code>localization</code> and a file called <code>descriptor.mod</code> — and a small text file called <code>the-long-night-azor-ahai.mod</code>. You need <strong>both</strong>.</p>
+<p>If everything sits one level deeper inside a wrapper folder, use the inner one. If you took the <strong>Code → Download ZIP</strong> route rather than a release, the wrapper is named after the branch, and the <code>README.md</code> next to it can be ignored.</p>
+</li>
+
+<li>
+<h3>Move both into your CK3 mod directory</h3>
+<p>The folder and the <code>.mod</code> file go here together — the <code>.mod</code> file sits <strong>next to</strong> the folder, never inside it:</p>
+<span class="path"><b>Windows</b> &nbsp; Documents\Paradox Interactive\Crusader Kings III\mod\</span>
+<span class="path"><b>macOS</b> &nbsp;&nbsp;&nbsp; ~/Documents/Paradox Interactive/Crusader Kings III/mod/</span>
+<span class="path"><b>Linux</b> &nbsp;&nbsp;&nbsp; ~/.local/share/Paradox Interactive/Crusader Kings III/mod/</span>
+<p>If there's no <code>mod</code> folder there yet, launch CK3 once and close it, or just create the folder yourself.</p>
+</li>
+
+<li>
+<h3>Check the .mod file</h3>
+<p>This is the step everyone misses, so it now ships with the download — but it's worth understanding. The launcher doesn't read the <code>descriptor.mod</code> inside the folder. It reads the <em>separate</em> <code>the-long-night-azor-ahai.mod</code> file sitting in the <code>mod</code> directory next to your folder.</p>
+<p>If it went missing, or you renamed the folder and need to repoint it, make a plain text file called <code>the-long-night-azor-ahai.mod</code> and paste this in:</p>
+<div class="codewrap">
+<button class="copy" type="button" data-copy="mod-descriptor">copy</button>
+<pre id="mod-descriptor">version="1.0.13"
+tags={
+	"Events"
+	"Warfare"
+	"Historical"
+	"Religion"
+	"Culture"
+	"Gameplay"
+}
+name="AGOT: The Long Night &amp; Azor Ahai"
+picture="thumbnail.png"
+supported_version="1.19.0.6"
+path="mod/the-long-night-azor-ahai"</pre>
+</div>
+<p>Make sure your text editor saves it as <code>.mod</code> and not <code>.mod.txt</code> — on Windows you may need to turn on file extensions to see the difference.</p>
+</li>
+
+<li>
+<h3>Enable it and set the load order</h3>
+<p>Open the Paradox launcher, go to <strong>All installed mods</strong>, and the mod should be listed. Add it to a playset, then order it like this:</p>
+<ul>
+<li><strong>A Game of Thrones</strong> — required, and also needs a manual install if you're not on Steam</li>
+<li>AGOT submods — AGOT+, Valyrian Steel, Submod Core, Nobility…</li>
+<li><strong>AGOT: The Long Night &amp; Azor Ahai</strong></li>
+<li><em>Optional:</em> Supernatural</li>
+<li><em>If you run Supernatural:</em> the Compatibility Patch — always last</li>
+</ul>
+</li>
+
+</ol>
+</div>
+</section>
+
+<section>
+<div class="wrap section-head">
+<span class="eyebrow">Before you start a game</span>
+<h2>The one rule</h2>
+</div>
+<div class="wrap">
+<div class="warn">
+<h3>Disable every other Long Night mod</h3>
+<p><strong>AGOT: The Long Night</strong> and <strong>The Long Night+</strong> must be <strong>unchecked in your playset</strong> — not sorted below this one, <strong>disabled</strong>. This mod is a fork of both and ships files at the same paths, so either one loaded anywhere overrides it with older code and brings back the see-through dragon bug.</p>
+<p>If you installed those manually too, the surest fix is to delete their folders and their <code>.mod</code> files outright.</p>
+</div>
+</div>
+</section>
+
+<section class="tight">
+<div class="wrap section-head">
+<span class="eyebrow">When it goes wrong</span>
+<h2>Troubleshooting</h2>
+</div>
+<div class="wrap twocol">
+<div class="panel yes">
+<h3>"Descriptor file error"</h3>
+<ul>
+<li>The <code>path=</code> line is wrong. It's the cause almost every time.</li>
+<li>Use <strong>forward slashes</strong>, never backslashes — even on Windows.</li>
+<li>The path must match your folder name exactly, including case.</li>
+<li>If the relative path won't take, use the full one instead: <code>path="C:/Users/YourName/Documents/Paradox Interactive/Crusader Kings III/mod/the-long-night-azor-ahai"</code></li>
+</ul>
+</div>
+<div class="panel">
+<h3>It doesn't appear at all</h3>
+<ul>
+<li>Check the file is <code>.mod</code>, not <code>.mod.txt</code>.</li>
+<li>Check it's in the <code>mod</code> folder itself, not inside the mod's own folder.</li>
+<li>Restart the launcher fully — it scans on start.</li>
+<li>Confirm the folder actually contains <code>common</code> and <code>events</code>, not another folder that contains them.</li>
+</ul>
+</div>
+</div>
+<div class="wrap" style="max-width:820px;margin-top:18px">
+<p class="srcnote" style="margin-top:0">Still stuck? The <a href="https://discord.gg/PTJzPQbqG7">Long Night Discord</a> is the fastest place to get it sorted — manual-install questions get answered there daily.</p>
+</div>
+</section>
+
+<section>
+<div class="wrap section-head">
+<span class="eyebrow">Common questions</span>
+<h2>Manual install FAQ</h2>
+</div>
+<div class="wrap faq">
+<details><summary>Do I still need A Game of Thrones?</summary>
+<p>Yes, always. This is a submod — it adds the Long Night endgame to AGOT rather than replacing it. If you're not on Steam you'll need to install AGOT manually as well, the same way, and load it above this mod.</p></details>
+<details><summary>Will it update itself?</summary>
+<p>No. A manual install is a snapshot of one version. When I push an update you'll want to delete the old mod folder, unzip the new one in its place, and change the <code>version=</code> line in your <code>.mod</code> file to match. Watching the repository or joining the <a href="https://discord.gg/PTJzPQbqG7">Discord</a> is the easiest way to know when that happens.</p></details>
+<details><summary>Is this the same build as the Workshop version?</summary>
+<p>Yes — same files, same version. The Workshop just delivers them for you and keeps them current.</p></details>
+<details><summary>Can I use it with an existing save?</summary>
+<p>Yes, it's mid-save safe to add and to update. The one caveat is that CK3 bakes game rules in when a save is created, so an existing campaign keeps whatever rules it started with.</p></details>
+<details><summary>Where's the source?</summary>
+<p>The <a href="https://github.com/Dlonem/CK3TheLongNightAzorAhai">repository is public</a> — you can read every file, open an issue, or fork it. It's built on the work of others and it seemed only right to pass that along the same way.</p></details>
+<details><summary>Does the mod work on Mac and Linux?</summary>
+<p>It's script and assets rather than compiled code, so yes. Only the folder location differs, and both paths are in step 2.</p></details>
+</div>
+<div class="wrap srcnote">
+<p><strong>Standing on other people's work.</strong> This mod is a fork built on <strong>Freeholder</strong>'s original Long Night, <strong>Tehaen</strong>'s 1.19 update, and <strong>Wepo94</strong>'s The Long Night+ — and on the AGOT team's total conversion underneath all of it. If you enjoy this, that's where it started.</p>
+</div>
+</section>
+
+<section class="tight">
+<div class="wrap section-head">
+<span class="eyebrow">While you're here</span>
+<h2>What the mod actually does</h2>
+<p>If you landed here for the download and haven't seen it, <a href="/mods/the-long-night">the full breakdown is worth a look</a> — the wights with their own realms, the playable Night's Watch, the Azor Ahai prophecy, and a riddle at the bottom for anyone who reads to the end.</p>
+</div>
+</section>
+
+</main>
+<footer><div class="foot-inner">
+<div><h4>Dlonem</h4><a href="/apps">Apps</a><a href="/mods">Mods for CK3</a><a href="/legacy">Legacy</a><a href="/games">Recommended games</a></div>
+<div><h4>Community</h4><a href="https://discord.gg/StACe9hVtT">Dlonem's Den (Discord)</a><a href="https://discord.gg/hvZGMeJhB7">The Game Center (Discord)</a><a href="https://discord.gg/PTJzPQbqG7">The Long Night (Discord)</a><a href="https://discord.gg/Efvd2B97xx">Supernatural (Discord)</a></div>
+<div><h4>Elsewhere</h4><a href="https://www.youtube.com/c/Dlonem">YouTube</a><a href="https://x.com/officialdlonem">X / Twitter</a><a href="https://www.facebook.com/Dlonem/">Facebook</a><a href="https://steamcommunity.com/id/Dlonem">Steam</a></div>
+<div><h4>Studio</h4><a href="/privacy">Privacy policy</a><a href="/support">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
+</div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word.</div></footer>
+<script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});
+document.querySelectorAll('.codewrap .copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var el=document.getElementById(b.dataset.copy); if(!el||!navigator.clipboard)return;
+    navigator.clipboard.writeText(el.innerText).then(function(){
+      b.textContent='copied'; b.dataset.done='1';
+      setTimeout(function(){b.textContent='copy'; b.removeAttribute('data-done')},1600);
+    });
+  });
+});</script>
+<script src="/js/site.js?v=1" defer></script>
+</body>
+</html>
