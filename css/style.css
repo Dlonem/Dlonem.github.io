@@ -630,3 +630,39 @@ footer a:focus-visible{ outline-color:#8FE3F2 }
 @media(max-width:370px){
   .hero .btn{ padding-left:16px; padding-right:16px; font-size:.92rem }
 }
+
+/* ── Buttons: every action in a row gets a bubble ─────────────────────────
+   A .btn carrying no variant class had border:0 and no background, so beside
+   a solid sibling it read as a plain link rather than a button. These rules
+   give it a pill in both contexts — ink outline on a light section,
+   translucent white on a hero — and .is-quiet adds a third tier so a row of
+   three still ranks primary → secondary → tertiary instead of going flat.
+
+   Vertical padding drops 13px → 11px wherever a 2px border is added, so every
+   button in a row keeps exactly the same height as the solid one. */
+section .btn:not(.btn-solid):not(.btn-ghost):not(.btn-dark):not(.btn-rose):not(.soon){
+  border:2px solid rgba(35,28,79,.22);
+  background:#fff;
+  color:var(--ink);
+  padding-top:11px;padding-bottom:11px;
+}
+section .btn:not(.btn-solid):not(.btn-ghost):not(.btn-dark):not(.btn-rose):not(.soon):hover{
+  border-color:rgba(35,28,79,.45);
+}
+
+/* Ghost buttons gain a faint fill, so on a hero gradient they read as a
+   bubble rather than an outline floating in space. */
+.btn-ghost{ background:rgba(255,255,255,.08) }
+.btn-ghost:hover{ background:rgba(255,255,255,.16) }
+
+/* Third tier, for hero rows carrying three actions. */
+.btn-ghost.is-quiet{
+  border-color:rgba(255,255,255,.30);
+  color:rgba(255,255,255,.85);
+  background:rgba(255,255,255,.04);
+}
+.btn-ghost.is-quiet:hover{
+  border-color:rgba(255,255,255,.62);
+  color:#fff;
+  background:rgba(255,255,255,.12);
+}

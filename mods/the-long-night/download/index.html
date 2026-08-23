@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=8"><link rel="icon" href="/assets/logo.png">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=9"><link rel="icon" href="/assets/logo.png">
 <title>Download The Long Night &amp; Azor Ahai without Steam — manual install guide</title>
 <meta name="description" content="Download AGOT: The Long Night & Azor Ahai for Crusader Kings III without the Steam Workshop, and install it by hand. Full step-by-step guide for GOG, Epic and Game Pass copies, including the .mod file and load order.">
 <meta name="theme-color" content="#0B1119">
@@ -26,7 +26,7 @@
  "description":"Manual installation of a Crusader Kings III mod for copies of the game that are not on Steam.",
  "totalTime":"PT5M",
  "step":[
-  {"@type":"HowToStep","name":"Download and unzip","text":"Download the mod archive from GitHub and unzip it. You should end up with two items side by side: a folder named the-long-night-azor-ahai containing common, events, gfx, localization and a descriptor.mod file, and a separate the-long-night-azor-ahai.mod text file."},
+  {"@type":"HowToStep","name":"Download and unzip","text":"Download Source code (zip) from the newest GitHub release and unzip it. It holds one folder named after the version; open that folder. Inside are the two items you need side by side: a folder named the-long-night-azor-ahai containing common, events, gfx, localization and a descriptor.mod file, and a separate the-long-night-azor-ahai.mod text file. The README and CHANGELOG files alongside them are documentation only."},
   {"@type":"HowToStep","name":"Move both into the mod directory","text":"Move the mod folder and the .mod file together into your Crusader Kings III mod directory, which on Windows is Documents/Paradox Interactive/Crusader Kings III/mod. The .mod file sits beside the folder, not inside it."},
   {"@type":"HowToStep","name":"Check the .mod file","text":"The launcher reads the separate the-long-night-azor-ahai.mod file rather than the descriptor.mod inside the folder. It ships with the download; if it is missing or the folder was renamed, recreate it with the mod metadata and a path line pointing at the folder."},
   {"@type":"HowToStep","name":"Enable it in the launcher","text":"Open the Paradox launcher, add the mod to a playset, and place it below A Game of Thrones and its submods in the load order."}]},
@@ -171,7 +171,7 @@
 <a class="btn btn-solid" href="https://github.com/Dlonem/CK3TheLongNightAzorAhai/releases">Download from GitHub</a>
 <a class="btn" href="https://github.com/Dlonem/CK3TheLongNightAzorAhai">Browse the source</a>
 </div>
-<p class="srcnote" style="text-align:center">Grab the newest release archive. If there isn't a release yet, use the green <strong>Code</strong> button on the repository and choose <strong>Download ZIP</strong> — just note the folder inside will be named after the branch, and you'll want to rename it as described in step 2.</p>
+<p class="srcnote" style="text-align:center">On the newest release, take <strong>Source code (zip)</strong> under Assets — the mod and the <code>.mod</code> file the launcher needs are both inside it. The <code>.tar.gz</code> is the same files in a wrapper Windows can't open on its own, so stick with the zip.</p>
 </div>
 </section>
 
@@ -185,8 +185,13 @@
 
 <li>
 <h3>Unzip it</h3>
-<p>You should end up with two things side by side: a folder called <code>the-long-night-azor-ahai</code> — containing <code>common</code>, <code>events</code>, <code>gfx</code>, <code>localization</code> and a file called <code>descriptor.mod</code> — and a small text file called <code>the-long-night-azor-ahai.mod</code>. You need <strong>both</strong>.</p>
-<p>If everything sits one level deeper inside a wrapper folder, use the inner one. If you took the <strong>Code → Download ZIP</strong> route rather than a release, the wrapper is named after the branch, and the <code>README.md</code> next to it can be ignored.</p>
+<p>The archive holds one folder named after the version — something like <code>CK3TheLongNightAzorAhai-1.0.13</code>. <strong>Open it.</strong> That outer folder is just packaging and is not what goes into your game.</p>
+<p>Inside are the two things you actually need, sitting side by side:</p>
+<ul>
+<li><code>the-long-night-azor-ahai</code> — the mod folder, containing <code>common</code>, <code>events</code>, <code>gfx</code>, <code>localization</code> and <code>descriptor.mod</code></li>
+<li><code>the-long-night-azor-ahai.mod</code> — a small text file the launcher reads</li>
+</ul>
+<p>You need <strong>both</strong>. There's a <code>README.md</code> and a <code>CHANGELOG.md</code> in there as well — documentation only, leave them where they are.</p>
 </li>
 
 <li>
