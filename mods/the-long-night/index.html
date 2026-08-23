@@ -9,7 +9,7 @@
 <meta property="og:site_name" content="Dlonem">
 <meta property="og:url" content="https://dlonem.com/mods/the-long-night">
 <meta property="og:title" content="AGOT: The Long Night &amp; Azor Ahai — a Crusader Kings III mod">
-<meta property="og:description" content="The dead get back up wearing their own faces. The Wall comes down on camera. Azor Ahai is a mechanic, not a title.">
+<meta property="og:description" content="Wights keep their own faces, titles and realms. The Wall comes down on camera. Azor Ahai is a live scoring system every character in the world is measured against.">
 <meta property="og:image" content="https://dlonem.com/assets/img/og-long-night.png">
 <meta property="og:image:secure_url" content="https://dlonem.com/assets/img/og-long-night.png">
 <meta property="og:image:type" content="image/png">
@@ -19,7 +19,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@officialdlonem">
 <meta name="twitter:title" content="AGOT: The Long Night &amp; Azor Ahai">
-<meta name="twitter:description" content="The dead get back up wearing their own faces. The Wall comes down on camera. Azor Ahai is a mechanic, not a title.">
+<meta name="twitter:description" content="Wights keep their own faces, titles and realms. The Wall comes down on camera. Azor Ahai is a live scoring system every character in the world is measured against.">
 <meta name="twitter:image" content="https://dlonem.com/assets/img/og-long-night.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -49,7 +49,7 @@
 ]}</script>
 <style>
 /* ---- The Long Night theme: cold white and Azor Ahai gold on deep navy ---- */
-.tln{--accent:#4C9FD4;--accent-soft:#A9D8F5;--accent-deep:#0B1119;--accent-ink:#175A85;
+.tln{--col:980px;--accent:#4C9FD4;--accent-soft:#A9D8F5;--accent-deep:#0B1119;--accent-ink:#175A85;
      --ember:#D9A441;--ember-ink:#8A6516}
 .tln .hero{background:linear-gradient(150deg,#070C13 0%,#0B1119 30%,#17324B 62%,#3E6A8C 88%,#7FA8C4 100%)}
 .tln .hero .eyebrow{color:var(--accent-soft)}
@@ -76,13 +76,13 @@
 
 /* ---- screenshots: dimensions are on every <img> so none of these shift the
    page while they load, and every file is WebP at display size ---- */
-.shot{margin:28px auto 0;max-width:940px}
+.shot{margin:28px auto 0;max-width:var(--col)}
 .shot img{width:100%;height:auto;border-radius:12px;
   border:1px solid rgba(76,159,212,.3);box-shadow:0 14px 38px rgba(6,16,25,.26);
   background:#0B1119;display:block}
 .shot figcaption{margin-top:9px;font-size:.85rem;color:var(--ink-soft);text-align:center}
 .shot.narrow{max-width:560px}
-.shot-row{display:grid;gap:14px;max-width:1000px;margin:28px auto 0;
+.shot-row{display:grid;gap:14px;max-width:var(--col);margin:28px auto 0;
   grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
 .shot-row figure{margin:0}
 .shot-row img{width:100%;height:auto;border-radius:11px;
@@ -103,7 +103,7 @@
 .warn p:last-child{margin-bottom:0}
 .warn strong{color:#7A3D06}
 
-.days{max-width:800px;margin:0 auto;display:grid;gap:12px}
+.days{max-width:var(--col);margin:0 auto;display:grid;gap:12px}
 .day{display:grid;grid-template-columns:158px 1fr;gap:16px;align-items:start;
   background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 18px}
 .day b{font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.05em;
@@ -116,7 +116,7 @@
 @media(max-width:600px){.day{grid-template-columns:1fr;gap:4px}}
 
 .twocol{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  max-width:900px;margin:0 auto}
+  max-width:var(--col);margin:0 auto;align-items:start}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
 .panel h3{margin-bottom:10px}
 .panel ul{margin:0;padding-left:20px}
@@ -126,7 +126,7 @@
 .panel.gold h3{color:var(--ember-ink)}
 
 .feats{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  max-width:960px;margin:0 auto}
+  max-width:var(--col);margin:0 auto;align-items:start}
 .feat{background:var(--card);border:1px solid var(--line);border-radius:12px;
   padding:18px 20px;border-top:3px solid var(--accent)}
 .feat.ember{border-top-color:var(--ember)}
@@ -272,18 +272,18 @@
 
 <section class="tight">
 <div class="wrap section-head">
-<span class="eyebrow">A century of warning</span>
-<h2>You can watch it coming</h2>
-<p>The Long Night is a full four-phase struggle. The world pushes the dark closer on its own — dead dragons, lost rangings, a hollowed-out Watch, an Other seen and believed.</p>
+<span class="eyebrow">The struggle</span>
+<h2>The invasion is a four-phase struggle</h2>
+<p>Each phase changes what your counties produce and how close the dead are. Dead dragons, lost rangings and a hollowed-out Watch all move the tracker — so preparing is a strategy you can actually plan, not a guess.</p>
 </div>
 <div class="wrap">
 <div class="days">
-<div class="day"><b>THE LONG SUMMER</b><p>Decades of quiet, and everything you fail to do with them. There is a visible counter. Most players ignore it exactly once.</p></div>
-<div class="day peak"><b>WINTER IS COMING</b><p>The rangings stop coming back. A warning of unknown length — and it can get shorter.</p></div>
-<div class="day dark"><b>THE LONG NIGHT</b><p>The invasion proper. What you did with the warning — dragonglass in the cellars, men and grain sent north, a realm that armed instead of arguing — is the whole difference between surviving this and being surprised by it.</p></div>
-<div class="day dawn"><b>THE DAWN</b><p>What is left, and what it cost.</p></div>
+<div class="day"><b>THE LONG SUMMER</b><p>Peace, a <b>+5% county modifier</b>, and a counter you can see from day one. This is the window you get to spend.</p></div>
+<div class="day peak"><b>WINTER IS COMING</b><p><b>−5% county modifier.</b> Length is unknown, and your own losses shorten it.</p></div>
+<div class="day dark"><b>THE LONG NIGHT</b><p>The invasion, at a <b>−10% county modifier</b>. Dragonglass in the cellars and men sent north is the whole difference between surviving it and being surprised by it.</p></div>
+<div class="day dawn"><b>THE DAWN</b><p>A ruined North to rebuild, and one crown-level choice that outlasts the war.</p></div>
 </div>
-<figure class="shot"><img src="/assets/img/tln/phase-struggle.webp" alt="The Long Night struggle screen in Crusader Kings III showing the Long Summer, Winter Is Coming and Long Night phases with their catalysts" loading="lazy" decoding="async" width="1400" height="772"><figcaption>The same screen across three phases. Every catalyst is something the world can do to itself.</figcaption></figure>
+<figure class="shot"><img src="/assets/img/tln/phase-struggle.webp" alt="The Long Night struggle screen in Crusader Kings III showing the Long Summer, Winter Is Coming and Long Night phases with their catalysts" loading="lazy" decoding="async" width="1400" height="772"><figcaption>The same tracker in the Long Summer, Winter Is Coming and the Long Night. The catalyst list underneath is what moved it.</figcaption></figure>
 <p class="srcnote" style="text-align:center;margin-top:18px">A quiet century still ends on schedule. A bad one ends early.</p>
 </div>
 </section>
@@ -291,12 +291,12 @@
 <section>
 <div class="wrap section-head">
 <span class="eyebrow">The prophecy</span>
-<h2>Azor Ahai is a mechanic, not a title</h2>
-<p>Not a ruler-designer trait you tick at the start. Something the world works out about you, and sometimes gets wrong.</p>
+<h2>Azor Ahai has a whole system behind it</h2>
+<p>Not a trait you tick in the ruler designer. Every character in the world is measured against the prophecy continuously, their standing moves as marks are earned and lost, and the AI is competing for it too.</p>
 </div>
 <div class="wrap twocol">
 <div class="panel gold">
-<h3>Eight deeds mark you</h3>
+<h3>Eight marks — and you never need all eight</h3>
 <ul>
 <li>Dragon dreams, and greensight</li>
 <li>Born in salt and smoke, or beneath a bleeding star</li>
@@ -313,7 +313,8 @@
 <li>Deeds need <strong>validating</strong> by a red priest, a witch or a greenseer — an unwitnessed miracle counts for nothing</li>
 <li>Three deeds make you <strong>Favored of R'hllor</strong>; six make you <strong>Chosen</strong></li>
 <li><strong>Lightbringer</strong> can be forged, at the price every version of the tale agrees on</li>
-<li>Kill the Night King and you are <strong>Azor Ahai Reborn</strong>, named or not</li>
+<li>Claimants carry <strong>the Prince That Was Promised</strong> as a nickname</li>
+<li>Kill the Night King and you are <strong>Azor Ahai Reborn</strong> — marks or no marks</li>
 <li>The AI plays all of it — rival claimants meet, and sometimes ally</li>
 </ul>
 </div>
@@ -327,7 +328,8 @@
 <section class="tight">
 <div class="wrap section-head">
 <span class="eyebrow">After</span>
-<h2>The North is scoured</h2>
+<h2>The North is left in ruins</h2>
+<p>Surviving the invasion starts a second game: an emptied North, and decisions about it that stick for the rest of the campaign.</p>
 </div>
 <div class="wrap feats">
 <div class="feat">
