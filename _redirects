@@ -1,3 +1,10 @@
+# ⚠ NOT ACTIVE. This site is served by GitHub Pages (185.199.x.x), which
+# has no server-side redirect support — _redirects is a Cloudflare Pages /
+# Netlify convention. Every rule below is currently handled instead by a
+# small HTML stub at the old path (meta refresh + rel=canonical).
+# If this site ever moves behind Cloudflare, this file starts working and
+# the stubs can be deleted in favour of real 301s.
+
 # Old flat .html URLs -> clean paths. Keeps Play Console privacy links,
 # any indexed pages and previously shared links alive.
 /index.html / 301

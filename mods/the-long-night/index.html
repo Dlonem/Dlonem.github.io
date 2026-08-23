@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=9"><link rel="icon" href="/assets/logo.png">
-<title>AGOT: The Long Night &amp; Azor Ahai — a Crusader Kings III mod</title>
-<meta name="description" content="The Long Night as a full endgame for A Game of Thrones: wights with their own realms, a playable Night's Watch, a scripted Wall collapse, and Azor Ahai built as a working prophecy instead of a ruler-designer trait.">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=10"><script>document.documentElement.className+=" js"</script><link rel="icon" href="/assets/logo.png">
+<title>AGOT: The Long Night &amp; Azor Ahai — a CK3 mod</title>
+<meta name="description" content="A Crusader Kings III (CK3) submod for A Game of Thrones. The Long Night as a full endgame: wights with their own realms, a playable Night's Watch, a scripted Wall collapse, and Azor Ahai built as a working prophecy instead of a ruler-designer trait.">
 <meta name="theme-color" content="#0B1119">
 <link rel="canonical" href="https://dlonem.com/mods/the-long-night">
 <meta property="og:type" content="website">
@@ -73,6 +73,22 @@
 .tag-row span{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;
   color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.3);
   border-radius:999px;padding:5px 12px}
+
+/* ---- screenshots: dimensions are on every <img> so none of these shift the
+   page while they load, and every file is WebP at display size ---- */
+.shot{margin:28px auto 0;max-width:940px}
+.shot img{width:100%;height:auto;border-radius:12px;
+  border:1px solid rgba(76,159,212,.3);box-shadow:0 14px 38px rgba(6,16,25,.26);
+  background:#0B1119;display:block}
+.shot figcaption{margin-top:9px;font-size:.85rem;color:var(--ink-soft);text-align:center}
+.shot.narrow{max-width:560px}
+.shot-row{display:grid;gap:14px;max-width:1000px;margin:28px auto 0;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.shot-row figure{margin:0}
+.shot-row img{width:100%;height:auto;border-radius:11px;
+  border:1px solid rgba(76,159,212,.3);box-shadow:0 10px 26px rgba(6,16,25,.24);
+  background:#0B1119;display:block}
+.shot-row figcaption{margin-top:7px;font-size:.8rem;color:var(--ink-soft);text-align:center}
 
 .crumbs{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.08em;
   color:var(--ink-soft);margin-bottom:26px}
@@ -180,7 +196,7 @@
 <span class="spark s3" style="top:32%;left:70%"></span>
 <div class="wrap">
 <img class="tln-icon" src="/assets/icons/long-night.png" alt="The Long Night &amp; Azor Ahai mod icon" onerror="this.remove()" width="512" height="512">
-<span class="eyebrow">A Crusader Kings III mod</span>
+<span class="eyebrow">A CK3 mod for A Game of Thrones</span>
 <h1>The Long Night &amp; Azor Ahai</h1>
 <p class="quote">"There is only one war that matters. The Great War. And it is here."</p>
 <p class="lede">Eight seasons promised us the Long Night. We got one dark episode and a knife. The best version of that story is still sitting there unwritten — and a game where you play a lord in Westeros is a very good place to write it.</p>
@@ -225,6 +241,7 @@
 <h2>The dead get back up</h2>
 <p>Not a doom counter and a stack of skeletons. An invasion that has characters, politics and a body count you recognise.</p>
 </div>
+<div class="wrap"><div class="shot-row"><figure class=""><img src="/assets/img/tln/wight.webp" alt="A wight in Crusader Kings III — a risen lord keeping his own face, titles and vassals under the Night King" loading="lazy" decoding="async" width="826" height="587"><figcaption>A risen lord — same face, same title, new liege.</figcaption></figure><figure class=""><img src="/assets/img/tln/white-walker.webp" alt="An Other in Crusader Kings III, ruling as a character within the Long Night realm" loading="lazy" decoding="async" width="839" height="593"><figcaption>An Other. Not a troop type — a character.</figcaption></figure><figure class=""><img src="/assets/img/tln/night-king.webp" alt="The Night King character view in Crusader Kings III, ruler of The Others with the Ever Winter faith" loading="lazy" decoding="async" width="835" height="587"><figcaption>The Night King himself, with 288K men behind him.</figcaption></figure></div></div>
 <div class="wrap feats">
 <div class="feat">
 <h3>Wights are characters, not troops</h3>
@@ -266,7 +283,8 @@
 <div class="day dark"><b>THE LONG NIGHT</b><p>The invasion proper. What you did with the warning — dragonglass in the cellars, men and grain sent north, a realm that armed instead of arguing — is the whole difference between surviving this and being surprised by it.</p></div>
 <div class="day dawn"><b>THE DAWN</b><p>What is left, and what it cost.</p></div>
 </div>
-<p class="srcnote" style="text-align:center">A quiet century still ends on schedule. A bad one ends early.</p>
+<figure class="shot"><img src="/assets/img/tln/phase-struggle.webp" alt="The Long Night struggle screen in Crusader Kings III showing the Long Summer, Winter Is Coming and Long Night phases with their catalysts" loading="lazy" decoding="async" width="1400" height="772"><figcaption>The same screen across three phases. Every catalyst is something the world can do to itself.</figcaption></figure>
+<p class="srcnote" style="text-align:center;margin-top:18px">A quiet century still ends on schedule. A bad one ends early.</p>
 </div>
 </section>
 
@@ -301,7 +319,8 @@
 </div>
 </div>
 <div class="wrap" style="max-width:820px;margin-top:22px">
-<p style="text-align:center;color:var(--ink-soft);font-size:.95rem">Whether the one they named was ever the prince is decided behind the curtain, and the world only finds out at the end. There are four ways that can land.</p>
+<figure class="shot narrow"><img src="/assets/img/tln/lightbringer.webp" alt="The Lightbringer artifact in Crusader Kings III — the red sword of heroes, forged three times" loading="lazy" decoding="async" width="684" height="755"><figcaption>Lightbringer, once it is finally out of the third quench.</figcaption></figure>
+<p style="text-align:center;color:var(--ink-soft);font-size:.95rem;margin-top:22px">Whether the one they named was ever the prince is decided behind the curtain, and the world only finds out at the end. There are four ways that can land.</p>
 </div>
 </section>
 
@@ -324,6 +343,7 @@
 <p>Sell colonisation rights to the Free Cities — then watch your northern vassals remember that you did.</p>
 </div>
 </div>
+<div class="wrap"><figure class="shot"><img src="/assets/img/tln/the-dawn.webp" alt="The Men Who Were There event in Crusader Kings III — the end-of-war card naming every character who stood at the final battle" loading="lazy" decoding="async" width="1397" height="755"><figcaption>When it ends, the game writes down who was actually standing there — and gets it right before the singers get it wrong.</figcaption></figure></div>
 </section>
 
 <section>
@@ -447,8 +467,14 @@ not one more, and not one less.
 <section class="tight">
 <div class="wrap section-head">
 <span class="eyebrow">Screenshots</span>
-<h2>Coming shortly</h2>
-<p>A gallery and a video walkthrough are in the works. Until then, the <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3780269495">Workshop page</a> carries the current shots, and the <a href="https://www.youtube.com/c/Dlonem">YouTube channel</a> is where the video will land.</p>
+<h2>What it actually looks like</h2>
+<p>All in-game, all from a live campaign. A full video walkthrough is in the works and will land on the <a href="https://www.youtube.com/c/Dlonem">YouTube channel</a>.</p>
+</div>
+<div class="wrap">
+<figure class="shot"><img src="/assets/img/tln/winteriscoming.webp" alt="The Winter Is Coming phase card in Crusader Kings III, announcing the turn of the age" loading="lazy" decoding="async" width="1400" height="698"><figcaption>Winter Is Coming — the warning nobody takes seriously the first time.</figcaption></figure>
+<figure class="shot"><img src="/assets/img/tln/decisions.webp" alt="Take the Black and Forge Lightbringer decision windows in Crusader Kings III, showing their costs and effects" loading="lazy" decoding="async" width="1400" height="1137"><figcaption>Two of the decisions: laying down your titles for the Wall, and lighting the forge.</figcaption></figure>
+<figure class="shot"><img src="/assets/img/tln/killing-night-king.webp" alt="The moment the Night King falls in Crusader Kings III, ending the Long Night" loading="lazy" decoding="async" width="1399" height="750"><figcaption>The blow that ends it. Ends the Long Night outright — nothing else can.</figcaption></figure>
+<figure class="shot"><img src="/assets/img/tln/longnightitle.webp" alt="The Long Night title card in Crusader Kings III as the invasion begins" loading="lazy" decoding="async" width="1400" height="799"><figcaption>And the card that means the quiet century is over.</figcaption></figure>
 </div>
 </section>
 
@@ -460,6 +486,6 @@ not one more, and not one less.
 <div><h4>Studio</h4><a href="/privacy">Privacy policy</a><a href="/support">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
 </div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word.</div></footer>
 <script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});</script>
-<script src="/js/site.js?v=1" defer></script>
+<script src="/js/site.js?v=2" defer></script>
 </body>
 </html>

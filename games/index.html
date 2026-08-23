@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=9"><link rel="icon" href="/assets/logo.png">
-<title>Recommended games — Dlonem</title>
-<meta name="description" content="The games Dlonem actually plays — the heavy rotation, the recommendations, and the honest backlog — with links to grab them at a discount.">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=10"><script>document.documentElement.className+=" js"</script><link rel="icon" href="/assets/logo.png">
+<title>Recommended games — and how to buy keys safely | Dlonem</title>
+<meta name="description" content="The games I actually play, plus a plain guide to buying keys on a marketplace without getting burned — region locks, key types, seller ratings, and when to just buy it on Steam instead.">
 <meta name="theme-color" content="#1A0F42">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dlonem">
@@ -12,6 +12,54 @@
 <meta property="og:image" content="https://dlonem.com/assets/img/og-card.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://dlonem.com/games">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+ {"@type":"ListItem","position":1,"name":"Home","item":"https://dlonem.com/"},
+ {"@type":"ListItem","position":2,"name":"Games","item":"https://dlonem.com/games"}]},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"Is buying game keys from a marketplace safe?",
+  "acceptedAnswer":{"@type":"Answer","text":"It can be, but a marketplace is not a store. G2A does not sell keys itself \u2014 third-party sellers do, and the marketplace sits in the middle. That means seller reputation, region locks and key type are all on you to check before you pay. For a brand-new release or a small indie game, buying direct from Steam or the developer is usually the better call."}},
+ {"@type":"Question","name":"What is a region-locked game key?",
+  "acceptedAnswer":{"@type":"Answer","text":"A key that will only activate on an account registered in a particular country or region. Listings state the region, and a cheap key is often cheap because it is locked to a region you are not in. A region-locked key you cannot activate is worth nothing, so check the region before you buy rather than after."}},
+ {"@type":"Question","name":"Does a cheap key always activate on Steam?",
+  "acceptedAnswer":{"@type":"Answer","text":"No. The same game can be sold as a Steam key, a Steam gift, an EA App key, a Ubisoft Connect key or a GOG key, and they land in different launchers. Star Wars Battlefront II is a good example \u2014 the marketplace keys are usually EA App, so if you want it in your Steam library you should wait for a Steam sale instead."}},
+ {"@type":"Question","name":"Should I buy a game account instead of a key?",
+  "acceptedAnswer":{"@type":"Answer","text":"No. An account listing gives you someone else's login with the game on it. It never becomes yours, it cannot be moved into your own library, and a password reset ends your access. Buy keys only. The one exception is a bulk library of thousands of titles, which is a different purchase entirely."}},
+ {"@type":"Question","name":"What is a Steam gift and should I buy one?",
+  "acceptedAnswer":{"@type":"Answer","text":"A Steam gift is a copy sent to you through Steam itself rather than a code you redeem yourself. It works and is a reasonable option when no key exists for the game you want, but it adds a friend request and a waiting period to the purchase, so a straightforward key is usually preferable."}},
+ {"@type":"Question","name":"Should I ever just buy the game at full price?",
+  "acceptedAnswer":{"@type":"Answer","text":"Yes. For games from small studios, buying direct means the developer actually gets paid \u2014 a resold key does not send them the same money as a first-hand sale. For games where a regular Steam sale gets you within a few dollars, the sale is simpler and comes with Steam's own refund window."}}]}
+]}</script>
+<style>
+/* ---- buyer guidance: the part of this page that is not a shop ---- */
+.guide{max-width:900px;margin:0 auto;display:grid;gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(380px,1fr))}
+.gcard{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:20px 22px;border-top:3px solid var(--indigo)}
+.gcard h3{margin-bottom:8px;font-size:1rem}
+.gcard p{color:var(--ink-soft);font-size:.93rem;margin:0}
+.gcard.warnish{border-top-color:#C9821F}
+.gcard.good{border-top-color:#25AFC4}
+/* an odd number of cards leaves the last one stranded in one column */
+@media(min-width:820px){.gcard:last-child:nth-child(odd){grid-column:1/-1}}
+.pullquote{max-width:820px;margin:28px auto 0;padding:18px 22px;border-radius:12px;
+  background:#FFF6E9;border:1px solid #E6C68B;border-left:5px solid #C9821F}
+.pullquote p{color:#5C4526;font-size:.95rem;margin:0}
+.pullquote strong{color:#7A3D06}
+/* a short practical note under a game, for what the store page will not tell you */
+.gnote{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);
+  font-size:.86rem;color:var(--ink-soft)}
+.gnote b{color:var(--ink)}
+.faq-list{max-width:820px;margin:0 auto}
+.faq-list details{background:var(--card);border:1px solid var(--line);border-radius:11px;
+  padding:14px 18px;margin-bottom:10px}
+.faq-list summary{cursor:pointer;font-weight:600;font-size:.96rem;list-style:none}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";float:right;color:var(--indigo);font-weight:700}
+.faq-list details[open] summary::after{content:"\2013"}
+.faq-list p{color:var(--ink-soft);font-size:.93rem;margin:10px 0 0}
+</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5299635657419886" crossorigin="anonymous"></script>
 </head>
 <body data-page="games">
@@ -46,20 +94,57 @@
 
 <a class="video-callout" href="https://www.youtube.com/c/Dlonem">
 <span class="vc-thumb"><img src="/assets/img/g2a-video.jpg" alt="Dlonem's video about buying on G2A"></span>
-<span class="vc-body"><b>New to G2A?</b> It's a key marketplace, and buying smart there is a skill. I've made videos on how to do it safely — watch before you shop if it's your first time.</span>
+<span class="vc-body"><b>New to G2A?</b> It's a key marketplace, and buying smart there is a skill. I walked through the whole thing on camera — <b>how to buy cheap games safely</b>, and separately <b>what buying and activating a Steam gift actually looks like</b>. Worth ten minutes before your first order.</span>
 </a>
 
-<div class="section-head" style="margin-top:44px"><span class="eyebrow">Tier one</span><h2>In heavy rotation</h2><p>What's actually getting played right now — game nights, solo grinds, and the forever games.</p></div>
+<p class="srcnote" style="text-align:center;margin-top:14px">
+Watch: <a href="https://youtu.be/qhtiS7sZcNU">How to buy cheap games safely on G2A</a>
+&nbsp;·&nbsp; <a href="https://youtu.be/-HiPGbR-Ezk">Buying and activating a Steam gift</a>
+</p>
+<div class="section-head" style="margin-top:56px"><span class="eyebrow">Read this first</span><h2>Buying keys without getting burned</h2><p>The cheap price is real. So are the four ways it goes wrong. None of this is complicated, but all of it is on you rather than the store.</p></div>
+
+<div class="guide">
+<div class="gcard">
+<h3>A marketplace is not a shop</h3>
+<p>G2A doesn't sell keys. Third-party sellers do, and the marketplace sits in the middle taking a cut. That's the whole thing in one sentence, and every other point below follows from it — you're buying from a stranger with a rating, not from a storefront holding stock.</p>
+</div>
+<div class="gcard warnish">
+<h3>Check the region before you pay</h3>
+<p>A key can be locked to accounts registered in a particular country. Very often the reason a key is unusually cheap <em>is</em> the region lock. Listings say which region they're for. A key you can't activate where you live is worth exactly nothing, and finding out afterwards is the most common way people get stung.</p>
+</div>
+<div class="gcard warnish">
+<h3>"Key" doesn't mean Steam</h3>
+<p>The same game turns up as a Steam key, a Steam gift, an EA App key, a Ubisoft Connect key or a GOG key — and they land in different launchers. Battlefront II below is the clearest example: the marketplace stock is usually EA App, so if you want it sitting in your Steam library, you want a Steam sale instead.</p>
+</div>
+<div class="gcard warnish">
+<h3>Buy the key, not the account</h3>
+<p>Some listings sell you an <em>account</em> with the game on it rather than a key for your own. Don't. The game lives on someone else's login forever, you can't move it to your library, and you're one password reset away from owning nothing. The only time it makes any sense is a bulk library with thousands of titles on it, and that isn't what you're here for. If the listing doesn't clearly say <strong>key</strong>, close it.</p>
+</div>
+<div class="gcard good">
+<h3>Seller rating is the actual product</h3>
+<p>Sort by rating and sales volume, not by price alone. The few dollars between the cheapest listing and a seller with thousands of clean sales is the cheapest insurance you will ever buy. If the only thing a listing has going for it is the number, close the tab.</p>
+</div>
+</div>
+
+<div class="pullquote">
+<p><strong>And the part most affiliate pages leave out:</strong> a resold key doesn't pay a developer the way a first-hand sale does. For a small studio — Manor Lords is one person's studio, Bellwright is a small team — buy it direct and let them have the money. Marketplaces make sense for big-publisher back catalogue, deep discounts on games that have already made their money, and picking up something you'd otherwise never have bought at all. That's the honest line, and it's where I actually use them.</p>
+</div>
+
+<div class="pullquote" style="background:#EAF4FB;border-color:#B9D8EC;border-left-color:#2E7FB4">
+<p style="color:#33556B"><strong style="color:#14567F">When to skip all of this:</strong> brand-new releases (marketplace pricing isn't better yet, and the risk is highest), anything under about ten dollars (the savings don't cover the hassle), and any game where a regular Steam sale gets you within a few dollars — Steam's own refund window is worth more than the difference.</p>
+</div>
+
+<div class="section-head" style="margin-top:64px"><span class="eyebrow">Tier one</span><h2>In heavy rotation</h2><p>What's actually getting played right now — game nights, solo grinds, and the forever games.</p></div>
 <div class="cards">
 
 <article class="card has-media">
 <div class="card-media"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1158310/header.jpg" alt="Crusader Kings III key art" loading="lazy" onerror="this.remove()"></div>
 <span class="badge">Grand strategy</span>
 <h3>Crusader Kings III</h3>
-<p>The game I've modded for years and played for over a quarter of my Steam time. Dynasty drama, scheming, and — with a certain mod installed — vampires.</p>
+<p>The game I've modded for years and played for over a quarter of my Steam time. <p class="gnote"><b>Worth knowing:</b> read the listing title properly on this one. Sometimes you're buying the base game alone; sometimes it's bundled with a DLC like <em>Roads to Power</em>, and the price barely moves. You're already saving ten or twenty dollars — spending two more minutes on the description is the best-paid reading you'll do all week. And mods close a lot of the DLC gap for free: I make two of them, <a href="/mods/supernatural">Supernatural</a> and <a href="/mods/the-long-night">The Long Night &amp; Azor Ahai</a>.</p></p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">~$13 on G2A</span><span class="was">$49.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 <article class="card has-media">
 <div class="card-media"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/3164500/header.jpg" alt="Schedule I key art" loading="lazy" onerror="this.remove()"></div>
@@ -68,7 +153,7 @@
 <p>Yes, the guy who ships a THC tracker also runs a fictional empire on the side. It's called balance. Absurd, addictive, and even better in co-op.</p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">~$5 on G2A</span><span class="was">$19.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 <article class="card has-media">
 <div class="card-media"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3041230/58031ef98f88d5602171eb018d9306c7383a6e6a/capsule_616x353.jpg" alt="Windrose key art" loading="lazy" onerror="this.remove()" width="616" height="353"></div>
@@ -77,7 +162,7 @@
 <p>The pirate game I've been waiting for — sail a procedural open world, build, plunder, repeat. Scratches the Black Flag itch, and it's even better with a crew.</p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">Keys run under retail</span><span class="was">$29.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 <article class="card has-media">
 <div class="card-media"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2569760/header.jpg" alt="The Mound: Omen of Cthulhu key art" loading="lazy" onerror="this.remove()"></div>
@@ -86,7 +171,7 @@
 <p>The big recent one. Descend into cosmic horror with friends and succumb to madness in good company. Best played with the lights off and the mics on.</p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">~$13 on G2A</span><span class="was">$23.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 <article class="card has-media">
 <div class="card-media"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1237950/header.jpg" alt="Star Wars Battlefront II key art" loading="lazy" onerror="this.remove()"></div>
@@ -104,7 +189,7 @@
 <p>What game nights are made of. Managed democracy doesn't spread itself — grab three friends and deliver it personally. A regular in my videos.</p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">~$20 on G2A</span><span class="was">$39.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 </div>
 
@@ -115,20 +200,20 @@
 <div class="card-media"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1142710/header.jpg" alt="Total War: Warhammer III key art" loading="lazy" onerror="this.remove()"></div>
 <span class="badge">Strategy trilogy</span>
 <h3>Total War: Warhammer I–III</h3>
-<p>Never pay full price for the trilogy — each entry routinely drops under $15, so all three together can cost less than one at retail. The definitive fantasy strategy sandbox.</p>
+<p>Never pay full price for the trilogy — each entry routinely drops under $15, so all three together can cost less than one at retail. The definitive fantasy strategy sandbox.</p><p class="gnote"><b>Worth knowing:</b> owning I and II folds their races and maps into <em>Warhammer III</em>’s Immortal Empires campaign. So the trilogy isn’t three games you play in turn — it’s one very large game you unlock in pieces. Buy III last.</p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">~$9 each on key sites</span><span class="was">$59.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 
 <article class="card has-media">
 <div class="card-media"><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/header.jpg" alt="Baldur's Gate 3 key art" loading="lazy" onerror="this.remove()"></div>
 <span class="badge">RPG</span>
 <h3>Baldur's Gate 3</h3>
-<p>The RPG of a generation — a hundred-plus hours of choices that actually matter. If it's not in your library yet, fix that.</p>
+<p>The RPG of a generation — a hundred-plus hours of choices that actually matter. If it's not in your library yet, fix that.</p><p class="gnote"><b>Worth knowing:</b> mod support is built into the game itself rather than bolted on, so you do not need a third-party manager to start tinkering. It also almost never discounts hard — this is one where a marketplace key genuinely beats waiting.</p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">Routinely under retail</span><span class="was">$59.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 
 <article class="card has-media">
@@ -138,7 +223,7 @@
 <p>Build villages, train a people's army, and liberate the realm one town at a time. A survival-strategy hybrid I kept coming back to well past bedtime.</p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">~$7 on G2A</span><span class="was">$29.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 
 <article class="card has-media">
@@ -148,7 +233,7 @@
 <p>Survivors-style wizard chaos built for playing with friends. Snagged mine for about ten bucks — usually only a couple dollars off retail, but retail is cheap anyway.</p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">~$10 on G2A</span><span class="was">$12.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 
 <article class="card has-media">
@@ -158,7 +243,7 @@
 <p>Grabbed it at a good discount, sank a stretch into laying out the perfect medieval village, and it's patiently waiting for my return. It'll get me back — they always do.</p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">~$20 on G2A</span><span class="was">$39.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 
 </div>
@@ -173,10 +258,36 @@
 <p>Grabbed it on G2A at a serious discount off retail and it's been sitting in the hoard ever since, radiating cozy potential. One rainy weekend, it's happening.</p>
 <div class="spacer"></div>
 <div class="price-row"><span class="price">~$22 on G2A</span><span class="was">$39.99 retail</span></div>
-<a class="btn btn-solid" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
+<a class="btn btn-solid" rel="sponsored noopener" href="https://www.g2a.com/n/dlonem">Find it on G2A</a>
 </article>
 
 </div>
+<div class="section-head" style="margin-top:64px"><span class="eyebrow">Common questions</span><h2>Before you spend anything</h2></div>
+<div class="faq-list">
+
+<details><summary>Is buying game keys from a marketplace safe?</summary>
+<p>It can be, but a marketplace is not a store. G2A doesn't sell keys itself — third-party sellers do, and the marketplace sits in the middle. Seller reputation, region lock and key type are all things you check, not things the platform guarantees for you. For a brand-new release or a small indie game, buying direct from Steam or the developer is usually the better call.</p></details>
+
+<details><summary>What is a region-locked key?</summary>
+<p>A key that will only activate on an account registered in a particular country or region. Listings state the region, and very often a key is cheap precisely <em>because</em> it's locked somewhere you aren't. Check it before you pay — a key you can't activate is worth nothing, and this is the single most common way people lose money here.</p></details>
+
+<details><summary>Will a cheap key always end up in my Steam library?</summary>
+<p>No. The same game can be sold as a Steam key, a Steam gift, an EA App key, a Ubisoft Connect key or a GOG key, and they land in different launchers. Star Wars Battlefront II above is the clean example — the marketplace stock is usually EA App, so I point at a Steam sale for that one instead of taking the commission.</p></details>
+
+<details><summary>Should I buy an account instead of a key?</summary>
+<p>No. An account listing hands you someone else's login with the game sitting on it — it never becomes yours, it can't move to your library, and a password reset ends it. Keys only. The single exception is a bulk library of thousands of games, which is a different hobby entirely. <a href="https://youtu.be/qhtiS7sZcNU">I go through this on camera</a> along with the rest of the checks.</p></details>
+
+<details><summary>What about Steam gifts rather than keys?</summary>
+<p>A Steam gift is a copy sent to you through Steam itself rather than a code you redeem. It works, and it's a real option when no key exists for the game you want — it's just not my first choice, because it adds a friend request and a waiting step to what should be a thirty-second transaction. <a href="https://youtu.be/-HiPGbR-Ezk">I recorded a full gift purchase start to finish</a> so you can see exactly what it looks like before you commit to one.</p></details>
+
+<details><summary>Should I ever just pay full price?</summary>
+<p>Yes, and I'd rather say so than pretend otherwise. For games from small studios, buying direct means the developer actually gets paid — a resold key doesn't send them what a first-hand sale does. And where a normal Steam sale gets you within a few dollars, take the sale: Steam's own refund window is worth more than the difference.</p></details>
+
+<details><summary>Why is there an affiliate link on here at all?</summary>
+<p>Because I buy games this way anyway and the commission costs you nothing. It funds the apps, the mods and the hosting for this site, all of which are free. The moment a link would send you somewhere worse than Steam, I say so on the card instead — there are a couple of those above.</p></details>
+
+</div>
+
 <p class="price-note">Prices are marketplace snapshots from July 2026 — they move daily. Retail prices are the publishers' list prices. G2A links only appear where a Steam key or Steam gift is sold.</p>
 </div>
 </section>
@@ -188,6 +299,6 @@
 <div><h4>Studio</h4><a href="/privacy">Privacy policy</a><a href="/support">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
 </div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word. Game artwork &copy; their respective publishers.</div></footer>
 <script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});</script>
-<script src="/js/site.js?v=1" defer></script>
+<script src="/js/site.js?v=2" defer></script>
 </body>
 </html>

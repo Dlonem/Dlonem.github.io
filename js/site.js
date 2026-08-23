@@ -4,7 +4,12 @@
 (function () {
   'use strict';
   var root = document.documentElement;
+  /* '.js' is already set inline in <head> so the header never paints in its
+     no-JS shape (that repaint was a 0.127 layout shift). '.js-ready' is set
+     HERE, and only here, so the reveal animations can never hide content
+     unless this file actually ran. */
   root.classList.add('js');
+  root.classList.add('js-ready');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------------- mobile menu ---------------- */
