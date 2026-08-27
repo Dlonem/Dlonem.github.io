@@ -35,6 +35,12 @@
  "description":"A submod for A Game of Thrones in Crusader Kings III. The Long Night as a full endgame: an undead invasion where the wights are named characters, a Night's Watch you can actually play, and the Azor Ahai prophecy built as a working mechanic.",
  "isBasedOn":"A Game of Thrones (CK3 total conversion)",
  "author":{"@type":"Organization","name":"Dlonem LLC","url":"https://dlonem.com/"}},
+{"@type":"VideoObject","name":"The Long Night & Azor Ahai — Full CK3 AGOT Mod Showcase",
+ "description":"A full walkthrough of AGOT: The Long Night & Azor Ahai, a Crusader Kings III submod for A Game of Thrones: the undead invasion, the playable Night's Watch, the four-phase struggle and the Azor Ahai prophecy system.",
+ "thumbnailUrl":["https://i.ytimg.com/vi/xZ5OWsno58s/maxresdefault.jpg"],
+ "embedUrl":"https://www.youtube.com/embed/xZ5OWsno58s",
+ "contentUrl":"https://www.youtube.com/watch?v=xZ5OWsno58s",
+ "publisher":{"@type":"Organization","name":"Dlonem LLC","url":"https://dlonem.com/"}},
 {"@type":"FAQPage","mainEntity":[
  {"@type":"Question","name":"Do I need to disable other Long Night mods?",
   "acceptedAnswer":{"@type":"Answer","text":"Yes, and this is the one rule that matters. AGOT: The Long Night and The Long Night+ must be unchecked in your playset — disabled, not merely sorted below. This mod is a fork of both and ships files at the same paths, so either one loaded anywhere in your list overrides it with older code."}},
@@ -165,6 +171,27 @@
 .secret .inner em{color:#8FA6BC}
 .secret .inner strong{color:#EAF2FA}
 
+/* ---- showcase video: a thumbnail that becomes a player on click, so the
+   page never pays for YouTube's iframe unless somebody actually wants it.
+   With JS off it stays an ordinary link to the video. ---- */
+.ytwrap{max-width:var(--col);margin:0 auto}
+.ytframe{display:block;position:relative;aspect-ratio:16/9;border-radius:14px;
+  overflow:hidden;border:1px solid rgba(76,159,212,.35);background:#0B1119;
+  box-shadow:0 16px 40px rgba(6,16,25,.30);text-decoration:none}
+.ytframe img{width:100%;height:100%;object-fit:cover;display:block}
+.ytframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ytframe::after{content:"";position:absolute;inset:0;background:rgba(7,12,19,.28);
+  transition:background .18s ease}
+.ytframe:hover::after{background:rgba(7,12,19,.10)}
+.ytplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
+  width:82px;height:58px;border-radius:15px;background:rgba(11,17,25,.82);
+  border:1px solid rgba(169,216,245,.5);display:grid;place-items:center;
+  transition:background .18s ease,transform .18s ease}
+.ytplay::before{content:"";border-style:solid;border-width:11px 0 11px 19px;
+  border-color:transparent transparent transparent #DCE9F5;margin-left:4px}
+.ytframe:hover .ytplay{background:linear-gradient(90deg,#2E7FB4,#8FCBEC);transform:translate(-50%,-50%) scale(1.06)}
+.ytframe:hover .ytplay::before{border-left-color:#061019}
+.ytcap{text-align:center;font-size:.85rem;color:var(--ink-soft);margin-top:12px}
 .faq{max-width:760px;margin:0 auto}
 .faq details{border-bottom:1px solid var(--line);padding:14px 0}
 .faq summary{cursor:pointer;font-weight:600;font-family:'Sora',sans-serif}
@@ -213,11 +240,27 @@
 <div class="wrap">
 <p class="crumbs"><a href="/">Home</a> › <a href="/mods">Mods</a> › The Long Night &amp; Azor Ahai</p>
 <div class="stats">
-<div class="stat"><b>5,600+</b><span>current subscribers</span></div>
-<div class="stat"><b>13,300+</b><span>unique visitors</span></div>
-<div class="stat"><b>329</b><span>favorites</span></div>
+<div class="stat"><b>7,200+</b><span>current subscribers</span></div>
+<div class="stat"><b>18,900+</b><span>unique visitors</span></div>
+<div class="stat"><b>522</b><span>favorites</span></div>
 <div class="stat"><b>4</b><span>phases, across a century</span></div>
 </div>
+</div>
+</section>
+
+<section class="tight">
+<div class="wrap section-head">
+<span class="eyebrow">The showcase</span>
+<h2>Watch it play out first</h2>
+<p>The whole mod in one video — the invasion, the Watch, the prophecy, and what the map looks like when it's over.</p>
+</div>
+<div class="wrap ytwrap">
+<a class="ytframe" href="https://www.youtube.com/watch?v=xZ5OWsno58s" data-yt="xZ5OWsno58s"
+   aria-label="Play the video: The Long Night &amp; Azor Ahai — Full CK3 AGOT Mod Showcase">
+<img src="https://i.ytimg.com/vi/xZ5OWsno58s/maxresdefault.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/xZ5OWsno58s/hqdefault.jpg'">
+<span class="ytplay" aria-hidden="true"></span>
+</a>
+<p class="ytcap">The Long Night &amp; Azor Ahai — Full CK3 AGOT Mod Showcase. Plays here, or <a href="https://www.youtube.com/watch?v=xZ5OWsno58s">watch it on YouTube</a>.</p>
 </div>
 </section>
 
@@ -470,7 +513,7 @@ not one more, and not one less.
 <div class="wrap section-head">
 <span class="eyebrow">Screenshots</span>
 <h2>What it actually looks like</h2>
-<p>All in-game, all from a live campaign. A full video walkthrough is in the works and will land on the <a href="https://www.youtube.com/c/Dlonem">YouTube channel</a>.</p>
+<p>All in-game, all from a live campaign. There's a <a href="#main">full video showcase further up the page</a> as well, and more on the <a href="https://www.youtube.com/c/Dlonem">YouTube channel</a>.</p>
 </div>
 <div class="wrap">
 <figure class="shot"><img src="/assets/img/tln/winteriscoming.webp" alt="The Winter Is Coming phase card in Crusader Kings III, announcing the turn of the age" loading="lazy" decoding="async" width="1400" height="698"><figcaption>Winter Is Coming — the warning nobody takes seriously the first time.</figcaption></figure>
@@ -487,7 +530,22 @@ not one more, and not one less.
 <div><h4>Elsewhere</h4><a href="https://www.youtube.com/c/Dlonem">YouTube</a><a href="https://x.com/officialdlonem">X / Twitter</a><a href="https://www.facebook.com/Dlonem/">Facebook</a><a href="https://steamcommunity.com/id/Dlonem">Steam</a></div>
 <div><h4>Studio</h4><a href="/privacy">Privacy policy</a><a href="/support">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
 </div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word.</div></footer>
-<script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});</script>
+<script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});
+/* click-to-load player. Until this runs the thumbnail is just a link to YouTube,
+   so nothing is hidden and no third-party iframe loads on page view. */
+document.querySelectorAll('.ytframe[data-yt]').forEach(function(f){
+  f.addEventListener('click',function(e){
+    e.preventDefault();
+    var id=f.dataset.yt;
+    var i=document.createElement('iframe');
+    i.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
+    i.title='The Long Night & Azor Ahai — Full CK3 AGOT Mod Showcase';
+    i.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    i.setAttribute('allowfullscreen','');
+    f.textContent=''; f.appendChild(i); f.removeAttribute('href'); f.classList.add('is-playing');
+  });
+});</script>
+<style>.ytframe.is-playing::after{display:none}</style>
 <script src="/js/site.js?v=2" defer></script>
 </body>
 </html>

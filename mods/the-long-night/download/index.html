@@ -26,15 +26,15 @@
  "description":"Manual installation of a Crusader Kings III mod for copies of the game that are not on Steam.",
  "totalTime":"PT5M",
  "step":[
-  {"@type":"HowToStep","name":"Download and unzip","text":"Download Source code (zip) from the newest GitHub release and unzip it. It holds one folder named after the version; open that folder. Inside are the two items you need side by side: a folder named the-long-night-azor-ahai containing common, events, gfx, localization and a descriptor.mod file, and a separate the-long-night-azor-ahai.mod text file. The README and CHANGELOG files alongside them are documentation only."},
+  {"@type":"HowToStep","name":"Download and unzip","text":"Download the repository zip from GitHub and unzip it. It holds one folder named after the branch; open that folder. Inside are the two items you need side by side: a folder named the-long-night-azor-ahai containing common, events, gfx, localization and a descriptor.mod file, and a separate the-long-night-azor-ahai.mod text file. The README and CHANGELOG files alongside them are documentation only."},
   {"@type":"HowToStep","name":"Move both into the mod directory","text":"Move the mod folder and the .mod file together into your Crusader Kings III mod directory, which on Windows is Documents/Paradox Interactive/Crusader Kings III/mod. The .mod file sits beside the folder, not inside it."},
-  {"@type":"HowToStep","name":"Check the .mod file","text":"The launcher reads the separate the-long-night-azor-ahai.mod file rather than the descriptor.mod inside the folder. It ships with the download; if it is missing or the folder was renamed, recreate it with the mod metadata and a path line pointing at the folder."},
+  {"@type":"HowToStep","name":"Replace the .mod file","text":"The the-long-night-azor-ahai.mod file that ships in the download carries an absolute path from the machine it was built on, so it will not work on yours. Open it in a text editor and replace its entire contents with the version given on this page, which uses a relative path and no remote file id."},
   {"@type":"HowToStep","name":"Enable it in the launcher","text":"Open the Paradox launcher, add the mod to a playset, and place it below A Game of Thrones and its submods in the load order."}]},
 {"@type":"FAQPage","mainEntity":[
  {"@type":"Question","name":"Can I play The Long Night mod without Steam?",
   "acceptedAnswer":{"@type":"Answer","text":"Yes. The mod is plain files and works on any copy of Crusader Kings III, including GOG, Epic and Game Pass. You download the archive and move both the mod folder and the small .mod file that ships with it into your CK3 mod directory. You still need A Game of Thrones installed, which also has a manual download."}},
  {"@type":"Question","name":"Why does my manually installed mod not appear in the launcher?",
-  "acceptedAnswer":{"@type":"Answer","text":"Almost always the path line in the .mod file. It must use forward slashes rather than backslashes, and it must point at the folder you actually created. A wrong path produces the descriptor file error in the launcher."}},
+  "acceptedAnswer":{"@type":"Answer","text":"Almost always the path line in the .mod file. The file that ships in the download points at the folder on the machine the mod was built on, so it has to be replaced. Use forward slashes rather than backslashes, and make sure it points at the folder you actually created. A wrong path produces the descriptor file error in the launcher."}},
  {"@type":"Question","name":"Do manually installed mods update automatically?",
   "acceptedAnswer":{"@type":"Answer","text":"No. A manual install is a snapshot. When a new version is released you delete the old mod folder, unzip the new one in its place and update the version number in your .mod file."}}]}
 ]}</script>
@@ -83,6 +83,13 @@
 .steps p{color:var(--ink-soft);font-size:.94rem;margin-bottom:10px}
 .steps ul{margin:8px 0 10px;padding-left:20px}
 .steps li li{color:var(--ink-soft);font-size:.92rem;margin-bottom:5px}
+/* the step that is not optional */
+.steps > li.must::before{background:linear-gradient(140deg,#8A5307,#D9A441);color:#2B1B06}
+.steps > li.must h3{color:#8A5307}
+.dlmeta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.dlmeta span{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;
+  color:var(--ink-soft);border:1px solid var(--line);background:var(--card);
+  border-radius:999px;padding:5px 12px}
 
 /* file paths and the .mod snippet */
 .path{display:block;font-family:'Space Mono',monospace;font-size:.82rem;
@@ -167,11 +174,15 @@
 </div>
 <div class="wrap" style="text-align:center">
 <div class="btn-row" style="justify-content:center">
-<!-- ── GitHub repo URL appears here and in the FAQ below. Change both if it moves. ── -->
-<a class="btn btn-solid" href="https://github.com/Dlonem/CK3TheLongNightAzorAhai/releases">Download from GitHub</a>
+<!-- ── GitHub repo URL appears here and in the FAQ below. Change both if it moves. ──
+     NOTE: this points at the main-branch zip because the repo has no published
+     GitHub Releases yet. Once a Release exists with the built archive attached,
+     swap this href for .../releases and restore the "Source code (zip)" wording. -->
+<a class="btn btn-solid" href="https://github.com/Dlonem/CK3TheLongNightAzorAhai/archive/refs/heads/main.zip">Download the latest (zip)</a>
 <a class="btn" href="https://github.com/Dlonem/CK3TheLongNightAzorAhai">Browse the source</a>
 </div>
-<p class="srcnote" style="text-align:center">On the newest release, take <strong>Source code (zip)</strong> under Assets — the mod and the <code>.mod</code> file the launcher needs are both inside it. The <code>.tar.gz</code> is the same files in a wrapper Windows can't open on its own, so stick with the zip.</p>
+<div class="dlmeta"><span>latest v1.0.15</span><span>CK3 1.19.0.6</span><span>requires A Game of Thrones</span><span>mid-save safe</span></div>
+<p class="srcnote" style="text-align:center">That button hands you <code>CK3TheLongNightAzorAhai-main.zip</code> straight from the repository — the mod and the <code>.mod</code> file the launcher needs are both inside it. It's always whatever is current, so there's no version to pick.</p>
 </div>
 </section>
 
@@ -185,7 +196,7 @@
 
 <li>
 <h3>Unzip it</h3>
-<p>The archive holds one folder named after the version — something like <code>CK3TheLongNightAzorAhai-1.0.13</code>. <strong>Open it.</strong> That outer folder is just packaging and is not what goes into your game.</p>
+<p>The archive holds one folder named <code>CK3TheLongNightAzorAhai-main</code>. <strong>Open it.</strong> That outer folder is just packaging and is not what goes into your game.</p>
 <p>Inside are the two things you actually need, sitting side by side:</p>
 <ul>
 <li><code>the-long-night-azor-ahai</code> — the mod folder, containing <code>common</code>, <code>events</code>, <code>gfx</code>, <code>localization</code> and <code>descriptor.mod</code></li>
@@ -203,13 +214,14 @@
 <p>If there's no <code>mod</code> folder there yet, launch CK3 once and close it, or just create the folder yourself.</p>
 </li>
 
-<li>
-<h3>Check the .mod file</h3>
-<p>This is the step everyone misses, so it now ships with the download — but it's worth understanding. The launcher doesn't read the <code>descriptor.mod</code> inside the folder. It reads the <em>separate</em> <code>the-long-night-azor-ahai.mod</code> file sitting in the <code>mod</code> directory next to your folder.</p>
-<p>If it went missing, or you renamed the folder and need to repoint it, make a plain text file called <code>the-long-night-azor-ahai.mod</code> and paste this in:</p>
+<li class="must">
+<h3>Replace the .mod file — don't skip this one</h3>
+<p>This is the step that decides whether any of the rest works, and it is <strong>not optional</strong>. The launcher doesn't read the <code>descriptor.mod</code> inside the folder — it reads the <em>separate</em> <code>the-long-night-azor-ahai.mod</code> file sitting in the <code>mod</code> directory next to it. And the copy that ships in the download was written on my computer, so it still carries the folder path from my computer. On your machine that path doesn't exist, the launcher reports a descriptor error, and the mod never shows up.</p>
+<p>Open <code>the-long-night-azor-ahai.mod</code> in any plain text editor — Notepad is fine — select everything, delete it, and paste this in its place:</p>
 <div class="codewrap">
 <button class="copy" type="button" data-copy="mod-descriptor">copy</button>
-<pre id="mod-descriptor">version="1.0.13"
+<pre id="mod-descriptor">version="1.0.15"
+picture="thumbnail.png"
 tags={
 	"Events"
 	"Warfare"
@@ -223,6 +235,7 @@ picture="thumbnail.png"
 supported_version="1.19.0.6"
 path="mod/the-long-night-azor-ahai"</pre>
 </div>
+<p>Two things differ from the file you downloaded, and both matter. <code>path=</code> is <strong>relative</strong> — it just says "the <code>the-long-night-azor-ahai</code> folder inside <code>mod</code>", which is true on every machine. And there's no <code>remote_file_id</code> line: that line tells the launcher "this is a Steam Workshop item", which is exactly what your copy isn't, and leaving it in is a good way to watch the launcher ignore your folder or quietly replace it.</p>
 <p>Make sure your text editor saves it as <code>.mod</code> and not <code>.mod.txt</code> — on Windows you may need to turn on file extensions to see the difference.</p>
 </li>
 
@@ -276,6 +289,7 @@ path="mod/the-long-night-azor-ahai"</pre>
 <ul>
 <li>Check the file is <code>.mod</code>, not <code>.mod.txt</code>.</li>
 <li>Check it's in the <code>mod</code> folder itself, not inside the mod's own folder.</li>
+<li>Check you removed the <code>remote_file_id</code> line — with it left in, the launcher may look for a Workshop copy instead of yours.</li>
 <li>Restart the launcher fully — it scans on start.</li>
 <li>Confirm the folder actually contains <code>common</code> and <code>events</code>, not another folder that contains them.</li>
 </ul>
@@ -297,7 +311,9 @@ path="mod/the-long-night-azor-ahai"</pre>
 <details><summary>Will it update itself?</summary>
 <p>No. A manual install is a snapshot of one version. When I push an update you'll want to delete the old mod folder, unzip the new one in its place, and change the <code>version=</code> line in your <code>.mod</code> file to match. Watching the repository or joining the <a href="https://discord.gg/PTJzPQbqG7">Discord</a> is the easiest way to know when that happens.</p></details>
 <details><summary>Is this the same build as the Workshop version?</summary>
-<p>Yes — same files, same version. The Workshop just delivers them for you and keeps them current.</p></details>
+<p>It's the same source the Workshop build is cut from, and the repository is where updates land first. The one thing worth doing is checking the version number in the Paradox launcher against the version on the <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3780269495">Workshop page</a> — that matters in multiplayer, where everyone has to be on the same version or the game refuses to start.</p></details>
+<details><summary>Why is there no Releases page?</summary>
+<p>Tagged releases aren't set up on this repository yet, so the download button hands you the current state of <code>main</code> instead. That's the same files, just without a version tag on the archive — the version number lives in the <code>.mod</code> file and shows up in the launcher.</p></details>
 <details><summary>Can I use it with an existing save?</summary>
 <p>Yes, it's mid-save safe to add and to update. The one caveat is that CK3 bakes game rules in when a save is created, so an existing campaign keeps whatever rules it started with.</p></details>
 <details><summary>Where's the source?</summary>
@@ -315,6 +331,7 @@ path="mod/the-long-night-azor-ahai"</pre>
 <span class="eyebrow">While you're here</span>
 <h2>What the mod actually does</h2>
 <p>If you landed here for the download and haven't seen it, <a href="/mods/the-long-night">the full breakdown is worth a look</a> — the wights with their own realms, the playable Night's Watch, the Azor Ahai prophecy, and a riddle at the bottom for anyone who reads to the end.</p>
+<p style="margin-top:12px">Running <a href="/mods/supernatural">Supernatural</a> too? It has <a href="/mods/supernatural/download">its own manual install guide</a> now, and the compatibility patch still goes last.</p>
 </div>
 </section>
 
