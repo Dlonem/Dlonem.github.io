@@ -156,7 +156,7 @@ h3{font-size:1.05rem;font-weight:600}
 }
 .moon-mark::after{
   content:"";position:absolute;inset:0;border-radius:50%;
-  background:var(--violet);transform:translateX(26%) scale(.92);
+  background:var(--moon-cut,var(--violet));transform:translateX(26%) scale(.92);
 }
 
 /* ---------- buttons ---------- */
@@ -546,10 +546,14 @@ details summary::marker{transition:none}
 /* ---- eyebrow contrast -------------------------------------------------- */
 /* --cyan (#25AFC4) reads at 2.41:1 on the light page background — it fails
    WCAG AA for 12px text and looks washed out. Light sections get a darker
-   teal; heroes keep the bright one, which has plenty of contrast on dark. */
+   teal. Heroes were given the bright --cyan on the assumption that a dark
+   hero has contrast to spare, but the hero is a GRADIENT: --cyan lands at
+   only 2.75:1 against its indigo end (#2A4FB8), under the 3:1 an uppercase
+   label needs. #8FE7F2 — the value the first hero rule already used — gives
+   5.12:1 there. Each sky can override --hero-accent to suit its own colours. */
 :root{ --cyan-ink:#0B7285; }
 .eyebrow{ color:var(--cyan-ink); }
-.hero .eyebrow{ color:var(--cyan); }
+.hero .eyebrow{ color:var(--hero-accent,#8FE7F2); }
 
 /* ---- mobile menu ------------------------------------------------------- */
 /* Below 780px the seven nav links wrapped to two rows and made the header
@@ -670,3 +674,29 @@ section .btn:not(.btn-solid):not(.btn-ghost):not(.btn-dark):not(.btn-rose):not(.
   color:#fff;
   background:rgba(255,255,255,.12);
 }
+
+
+/* ==========================================================================
+   SKY OF THE DAY
+   /js/sky.js stamps one sky-* class on <html> before first paint and the
+   hero gradient changes with it. Each sky only re-points --grad-hero and
+   --hero-accent; none of them set `background` directly. That matters twice:
+   pages painting their own hero (.spn-hero) keep winning on specificity, and
+   a visitor with JS off gets Deep Field, the :root default, with no flash.
+   Midtones are tuned so hero copy clears WCAG AA on every sky.
+   Add a sky here and in the SKIES array in js/sky.js — nothing else.
+   ========================================================================== */
+html.sky-longnight { --grad-hero:linear-gradient(115deg,#070B18 0%,#12233F 38%,#25506B 72%,#7FC7DC 100%);
+                     --hero-accent:#BFE9F5; --moon-cut:#12233F }
+html.sky-ember     { --grad-hero:linear-gradient(115deg,#1A0F42 0%,#45132F 40%,#8E3226 76%,#D4862A 100%);
+                     --hero-accent:#F2C879; --moon-cut:#45132F }
+html.sky-aurora    { --grad-hero:linear-gradient(115deg,#0D0B2B 0%,#1E2B63 34%,#176B60 70%,#4FCE97 100%);
+                     --hero-accent:#8FF2C8; --moon-cut:#1E2B63 }
+html.sky-firstlight{ --grad-hero:linear-gradient(115deg,#241046 0%,#521A58 36%,#A83A70 70%,#DE9B54 100%);
+                     --hero-accent:#FFD9A3; --moon-cut:#521A58 }
+html.sky-moonrise  { --grad-hero:linear-gradient(115deg,#150C33 0%,#2E1A6B 40%,#4E3F96 74%,#A79ADB 100%);
+                     --hero-accent:#D8CFFF; --moon-cut:#2E1A6B }
+/* Deep Field needs no rule — it is the :root default. */
+
+/* Supernatural paints its own crimson hero, so it keeps the house accent. */
+.spn-hero{ --hero-accent:#8FE7F2 }
