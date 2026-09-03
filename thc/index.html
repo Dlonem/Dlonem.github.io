@@ -11,7 +11,7 @@
 <meta property="og:site_name" content="Dlonem">
 <meta property="og:url" content="https://dlonem.com/thc/">
 <meta property="og:title" content="THC Break Buddy — reset your tolerance, day by day">
-<meta property="og:description" content="A free tolerance break tracker. Day counter, what to expect each day, everything stored privately on your device. On Google Play now, iOS coming soon.">
+<meta property="og:description" content="A free tolerance break tracker. Day counter, what to expect each day, everything stored privately on your device. Free on Google Play and the App Store.">
 <meta property="og:image" content="https://dlonem.com/assets/img/og-thc.png">
 <meta property="og:image:secure_url" content="https://dlonem.com/assets/img/og-thc.png">
 <meta property="og:image:type" content="image/png">
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@officialdlonem">
 <meta name="twitter:title" content="THC Break Buddy — reset your tolerance, day by day">
-<meta name="twitter:description" content="A free tolerance break tracker. Day counter, what to expect each day, everything stored privately on your device. On Google Play now, iOS coming soon.">
+<meta name="twitter:description" content="A free tolerance break tracker. Day counter, what to expect each day, everything stored privately on your device. Free on Google Play and the App Store.">
 <meta name="twitter:image" content="https://dlonem.com/assets/img/og-thc.png">
 <meta name="theme-color" content="#0d3a2a">
 <style>
@@ -54,8 +54,9 @@ border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:1px}
    store — so destinations can change (iOS launch, new stores) without reprinting anything. */
 (function(){
   var PLAY = "https://play.google.com/store/apps/details?id=com.dlonem.thcbreakbuddy";
-  var IOS  = "";          /* <-- paste the App Store URL here when iOS goes live */
-  var WEB  = "/apps";
+  var IOS  = "https://apps.apple.com/app/thc-break-buddy/id6795227377";
+  var IOS_PT = "";        /* App Store Connect > App Analytics > Campaigns > provider token; enables ct= tracking */
+  var WEB  = "/apps/";
 
   /* ?s=  tags where the visitor came from, so Play Console shows which channel earned installs.
      dlonem.com/thc?s=card  |  ?s=reddit  |  ?s=youtube  |  ?s=discord            */
@@ -70,14 +71,17 @@ border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:1px}
     target = PLAY + "&referrer=" + ref;
     label  = "Get it on Google Play";
   } else if (isIOS) {
-    if (IOS) { target = IOS; label = "Download on the App Store"; }
+    if (IOS) {
+      target = IOS_PT ? IOS + "?pt=" + IOS_PT + "&ct=" + encodeURIComponent(src) + "&mt=8" : IOS;
+      label = "Download on the App Store";
+    }
     else {
       document.getElementById("msg").textContent =
-        "The iPhone version lands August 2026. Here's everything else in the meantime.";
+        "The iPhone version is on its way. Here's everything else in the meantime.";
       var pb = document.getElementById("primary");
       pb.textContent = "See all Dlonem apps"; pb.href = WEB;
       var alt = document.querySelector("a.alt");
-      if (alt) { alt.textContent = "Read the privacy promise"; alt.href = "/privacy"; }
+      if (alt) { alt.textContent = "Read the privacy promise"; alt.href = "/privacy/"; }
       return;
     }
   } else {

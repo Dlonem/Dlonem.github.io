@@ -55,7 +55,7 @@ border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:1px}
 (function(){
   var PLAY = "https://play.google.com/store/apps/details?id=com.dlonem.tinydragonhoard";
   var IOS  = "";          /* <-- paste the App Store URL here when iOS goes live */
-  var WEB  = "/apps";
+  var WEB  = "/apps/";
 
   /* ?s=  tags where the visitor came from, so Play Console shows which channel earned installs.
      dlonem.com/dragon?s=card  |  ?s=reddit  |  ?s=youtube  |  ?s=discord            */
@@ -73,11 +73,11 @@ border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:1px}
     if (IOS) { target = IOS; label = "Download on the App Store"; }
     else {
       document.getElementById("msg").textContent =
-        "The iPhone version lands August 2026. Here's everything else in the meantime.";
+        "The iPhone version is on its way. Here's everything else in the meantime.";
       var pb = document.getElementById("primary");
       pb.textContent = "See all Dlonem apps"; pb.href = WEB;
       var alt = document.querySelector("a.alt");
-      if (alt) { alt.textContent = "Read the privacy promise"; alt.href = "/privacy"; }
+      if (alt) { alt.textContent = "Read the privacy promise"; alt.href = "/privacy/"; }
       return;
     }
   } else {

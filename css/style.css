@@ -242,8 +242,8 @@ section.tight{padding:44px 0}
   flex:1;min-width:130px;text-align:center;text-decoration:none;font-size:.85rem;font-weight:600;
   padding:10px 12px;border-radius:10px;border:0;
 }
-.store.play{background:var(--midnight);color:#fff}
-.store.play:hover{background:var(--violet)}
+.store.play,.store.apple{background:var(--midnight);color:#fff}
+.store.play:hover,.store.apple:hover{background:var(--violet)}
 .store.ios{border:2px dashed var(--line);color:var(--ink-soft);padding:8px 10px}
 .badge{
   display:inline-block;font-family:'Space Mono',monospace;font-size:.7rem;
