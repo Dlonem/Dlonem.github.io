@@ -396,6 +396,11 @@ body.spn .eyebrow{color:#C42B3D}
 .prose h2{margin:40px 0 12px}
 .prose h3{margin:28px 0 8px;font-family:'Sora',sans-serif;font-weight:700;font-size:1rem}
 .prose p,.prose li{color:var(--ink-soft)}
+/* the global *{margin:0} reset means bare <p> has NO spacing — every other
+   page nests prose in a card or .section-head. .prose needs its own rhythm. */
+.prose p{margin:0 0 18px}
+.prose p:last-child{margin-bottom:0}
+.prose>h2:not(:first-child){margin-top:8px}
 .prose ul{margin:8px 0 8px 22px}
 .meta{font-family:'Space Mono',monospace;font-size:.8rem;color:var(--ink-soft)}
 
@@ -700,3 +705,11 @@ html.sky-moonrise  { --grad-hero:linear-gradient(115deg,#150C33 0%,#2E1A6B 40%,#
 
 /* Supernatural paints its own crimson hero, so it keeps the house accent. */
 .spn-hero{ --hero-accent:#8FE7F2 }
+
+/* wide-desktop nav — widens the bar and bumps the link size on big screens.
+   .wrap (content) stays at --wrap so line length is unaffected. */
+@media (min-width:1500px){
+  .nav-inner{max-width:1340px;padding-top:14px;padding-bottom:14px}
+  .nav nav a{font-size:1.05rem}
+  .brand span{font-size:1.32rem}
+}
