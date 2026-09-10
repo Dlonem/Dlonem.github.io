@@ -88,7 +88,7 @@
 <div class="stat"><b>4</b><span>apps on Google Play &mdash; one now on the App Store</span></div>
 <div class="stat"><b>21,000+</b><span>CK3 mod subscribers</span></div>
 <div class="stat"><b>7,700+</b><span>YouTube subscribers</span></div>
-<div class="stat"><b>422K</b><span>views on my most-watched video</span></div>
+<div class="stat"><b>421K</b><span>views on my most-watched video</span></div>
 <div class="stat"><b>425</b><span>videos published</span></div>
 <div class="stat"><b>2016</b><span>first community founded</span></div>
 </div>
@@ -105,7 +105,10 @@
 
 <section class="tight">
 <div class="wrap">
-<div class="section-head"><span class="eyebrow">From the channel</span><h2>Pick something to watch</h2><p>Two hundred and forty videos and counting &mdash; mod showcases, survival games, and the odd tutorial that quietly went and got half a million views. The lineup reshuffles every day.</p></div>
+<div class="section-head"><span class="eyebrow">From the channel</span><h2>Pick something to watch</h2><p>Four hundred and twenty-five videos and counting &mdash; mod showcases, survival games, and the odd tutorial that quietly went and got four hundred thousand views. The lineup reshuffles every day.</p></div>
+<div class="vidrail-wrap">
+<button class="vr-btn vr-prev" type="button" aria-label="Previous videos" aria-controls="vidrail">&#8249;</button>
+<button class="vr-btn vr-next" type="button" aria-label="More videos" aria-controls="vidrail">&#8250;</button>
 <div class="vidrail" id="vidrail">
 <a class="vcard" href="https://youtu.be/xZ5OWsno58s" rel="noopener"><span class="vcard-thumb"><img src="https://i.ytimg.com/vi/xZ5OWsno58s/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" onerror="this.closest('.vcard-thumb').remove()"></span><span class="vcard-body"><span class="vcard-tag">CK3 mod</span><span class="vcard-title">The Long Night &amp; Azor Ahai &mdash; Full CK3 AGOT Mod Showcase</span></span></a>
 <a class="vcard" href="https://youtu.be/h7JdUGzyMIM" rel="noopener"><span class="vcard-thumb"><img src="https://i.ytimg.com/vi/h7JdUGzyMIM/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" onerror="this.closest('.vcard-thumb').remove()"></span><span class="vcard-body"><span class="vcard-tag">Tutorial</span><span class="vcard-title">How To Flip Your Camera Horizontal FAST in OBS Studio in 39 Seconds</span></span></a>
@@ -123,14 +126,26 @@
 <a class="vcard" href="https://youtu.be/rGvGRsZsPwk" rel="noopener"><span class="vcard-thumb"><img src="https://i.ytimg.com/vi/rGvGRsZsPwk/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" onerror="this.closest('.vcard-thumb').remove()"></span><span class="vcard-body"><span class="vcard-tag">Let&rsquo;s play</span><span class="vcard-title">Let&rsquo;s Play Star Wars Genesis And Find A Lightsaber!! (Starfield)</span></span></a>
 <a class="vcard" href="https://youtu.be/D_cyxqTO6Mg" rel="noopener"><span class="vcard-thumb"><img src="https://i.ytimg.com/vi/D_cyxqTO6Mg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360" onerror="this.closest('.vcard-thumb').remove()"></span><span class="vcard-body"><span class="vcard-tag">Bellwright</span><span class="vcard-title">What It&rsquo;s Like Liberating A Village In Bellwright</span></span></a>
 </div>
+</div>
 <p class="srcnote" style="text-align:center;margin-top:14px"><a href="https://www.youtube.com/@OfficialDlonem">Everything else on YouTube &rarr;</a></p>
 </div>
 </section>
 <style>
+.vidrail-wrap{position:relative}
 .vidrail{display:flex;gap:14px;overflow-x:auto;padding:4px 4px 14px;
-  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-.vidrail::-webkit-scrollbar{height:8px}
-.vidrail::-webkit-scrollbar-thumb{background:#C9CFF2;border-radius:99px}
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;scrollbar-width:none}
+.vidrail::-webkit-scrollbar{display:none}
+.vr-btn{display:none;position:absolute;top:calc(50% - 34px);transform:translateY(-50%);z-index:3;
+  width:44px;height:44px;border:0;border-radius:50%;cursor:pointer;
+  background:rgba(14,8,36,.78);color:#fff;font-size:1.6rem;line-height:1;
+  place-items:center;box-shadow:0 4px 14px rgba(14,8,36,.35);transition:opacity .2s,background .2s}
+html.js .vr-btn{display:grid}
+.vr-btn:hover{background:rgba(14,8,36,.95)}
+.vr-prev{left:-6px}
+.vr-next{right:-6px}
+.vr-btn[disabled]{opacity:0;pointer-events:none}
+@media (max-width:620px){.vr-prev{left:2px}.vr-next{right:2px}}
 .vcard{flex:0 0 min(78%,320px);scroll-snap-align:start;display:flex;flex-direction:column;
   border:1px solid #EBD9DF;border-radius:12px;overflow:hidden;background:#0E0824;
   text-decoration:none;transition:transform .2s ease}
@@ -155,6 +170,20 @@
   var now = new Date(), jan1 = new Date(now.getFullYear(), 0, 1);
   var pick = Math.floor((now - jan1) / 86400000) % n;
   cards.forEach(function(c, i){ c.style.order = (i - pick + n) % n; });
+
+  /* arrows — scroll one card at a time, and fade out at either end */
+  var prev = document.querySelector('.vr-prev'), next = document.querySelector('.vr-next');
+  if (!prev || !next) return;
+  function step(){ var c = rail.firstElementChild; return c ? c.getBoundingClientRect().width + 14 : 300; }
+  function sync(){
+    prev.disabled = rail.scrollLeft <= 2;
+    next.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2;
+  }
+  prev.addEventListener('click', function(){ rail.scrollBy({left:-step(), behavior:'smooth'}); });
+  next.addEventListener('click', function(){ rail.scrollBy({left: step(), behavior:'smooth'}); });
+  rail.addEventListener('scroll', sync, {passive:true});
+  window.addEventListener('resize', sync);
+  sync();
 })();
 </script>
 
