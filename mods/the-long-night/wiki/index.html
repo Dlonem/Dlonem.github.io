@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=13"><script>document.documentElement.className+=" js"</script><script src="/js/sky.js?v=1"></script><link rel="icon" href="/assets/logo.png">
+<title>The Long Night &amp; Azor Ahai Wiki — every mechanic on one page | Dlonem</title>
+<meta name="description" content="The complete reference for AGOT: The Long Night & Azor Ahai, a Crusader Kings III mod: how the invasion runs, how to come back from the dead, the Night's Watch, the Last Hour against the Night King, every game rule, every decision, every trait — with the numbers, on one page.">
+<meta name="theme-color" content="#0B1119">
+<link rel="canonical" href="https://dlonem.com/mods/the-long-night/wiki/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dlonem">
+<meta property="og:url" content="https://dlonem.com/mods/the-long-night/wiki/">
+<meta property="og:title" content="The Long Night &amp; Azor Ahai Wiki">
+<meta property="og:description" content="Every mechanic in the mod on one page: the invasion, resurrection, the Night's Watch, the Last Hour, the prophecy, every rule, decision and trait, with the numbers.">
+<meta property="og:image" content="https://dlonem.com/assets/img/og-long-night.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@officialdlonem">
+<meta name="twitter:title" content="The Long Night &amp; Azor Ahai Wiki">
+<meta name="twitter:description" content="Every mechanic in the mod on one page, with the numbers.">
+<meta name="twitter:image" content="https://dlonem.com/assets/img/og-long-night.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+ {"@type":"ListItem","position":1,"name":"Home","item":"https://dlonem.com/"},
+ {"@type":"ListItem","position":2,"name":"Mods","item":"https://dlonem.com/mods/"},
+ {"@type":"ListItem","position":3,"name":"The Long Night & Azor Ahai","item":"https://dlonem.com/mods/the-long-night/"},
+ {"@type":"ListItem","position":4,"name":"Wiki","item":"https://dlonem.com/mods/the-long-night/wiki/"}]},
+{"@type":"TechArticle","headline":"The Long Night & Azor Ahai Wiki",
+ "url":"https://dlonem.com/mods/the-long-night/wiki/",
+ "about":{"@type":"CreativeWork","name":"AGOT: The Long Night & Azor Ahai","url":"https://dlonem.com/mods/the-long-night/","version":"1.1.1"},
+ "datePublished":"2026-09-11","dateModified":"2026-09-11","inLanguage":"en",
+ "author":{"@type":"Organization","name":"Dlonem LLC","url":"https://dlonem.com/"},
+ "publisher":{"@type":"Organization","name":"Dlonem LLC","url":"https://dlonem.com/"},
+ "description":"The complete reference for the Crusader Kings III mod AGOT: The Long Night & Azor Ahai — the invasion, resurrection, the Night's Watch, the Last Hour, the prophecy, every game rule, decision and trait."},
+{"@type":"FAQPage","mainEntity":[
+ {"@type":"Question","name":"How do you get resurrected in The Long Night mod?",
+  "acceptedAnswer":{"@type":"Answer","text":"You need a red priest before you die. Get one into your court (the Send for a Red Priest decision, 150 gold, or appoint an R'hllor courtier as court chaplain), then take the Ask for the Lord's Blessing decision, which is free. If you then fall in a battle as a knight or a commander, you get a card, the priest decides two days later, and if he pays you get a Get up button. Each priest can do this once in his life, you cannot be returned again within three years, and the Last Hour melee against the Night King is not covered — losing that means being taken. A red priest as your court chaplain also gives a second chance at a natural death, without the blessing, if your faith can heal through the flames and the fire has a reason to want you back."}},
+ {"@type":"Question","name":"How do you kill the Night King?",
+  "acceptedAnswer":{"@type":"Answer","text":"Beat the dead once so the War for the Dawn can be declared, win a battle he is standing in, and take The Field Afterwards. Only dragonglass, Valyrian steel, Lightbringer or dragonfire destroy him; anything else casts him down and the dark crowns another. Form the line and fight the Last Hour melee with companions rather than alone."}},
+ {"@type":"Question","name":"Why has the Night King stopped attacking?",
+  "acceptedAnswer":{"@type":"Answer","text":"The invasion moves in stages — beyond the Wall, then the Wall, then the North — and each stage waits for the region to be finished before it opens the next. A stage that cannot finish times out on its own: eight years beyond the Wall, four at the Wall, twenty in the North. While he is fighting a war, including a rebellion, he does not start another."}},
+ {"@type":"Question","name":"Do I need to disable other Long Night mods?",
+  "acceptedAnswer":{"@type":"Answer","text":"Yes. AGOT: The Long Night and The Long Night+ must be unchecked in the playset, not just sorted below this mod. It ships files at the same paths, so either one loaded anywhere overrides it."}}]}
+]}</script>
+<style>
+.tln{--col:980px;--accent:#4C9FD4;--accent-soft:#A9D8F5;--accent-deep:#0B1119;--accent-ink:#175A85;--ember:#D9A441;--ember-ink:#8A6516}
+.tln .hero{background:linear-gradient(150deg,#070C13 0%,#0B1119 30%,#17324B 62%,#3E6A8C 88%,#7FA8C4 100%)}
+.tln .hero .eyebrow{color:var(--accent-soft)}
+.tln .btn-solid{background:linear-gradient(90deg,#2E7FB4,#8FCBEC);color:#061019;box-shadow:0 6px 18px rgba(76,159,212,.30)}
+.tln main a:not(.btn):not(.store){color:var(--accent-ink)}
+.tln .nav nav a.active{background:linear-gradient(90deg,#2E7FB4,#8FCBEC);color:#061019}
+.tln .hero.compact{padding:44px 0 50px}
+.tln .hero h1{font-size:clamp(1.5rem,4vw,2.3rem)}
+.tln .hero .lede{max-width:680px;margin-left:auto;margin-right:auto}
+.tag-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.tag-row span{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 12px}
+.crumbs{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.08em;color:var(--ink-soft);margin:26px 0}
+.crumbs a{color:var(--accent-ink);text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+
+/* ---- wiki layout: contents rail + article ---- */
+.wiki{max-width:1200px;margin:0 auto;padding:0 20px 40px;display:grid;grid-template-columns:252px minmax(0,1fr);gap:44px;align-items:start}
+.toc{position:sticky;top:72px;max-height:calc(100vh - 84px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 14px 10px;scrollbar-width:thin}
+.toc summary{list-style:none;cursor:pointer;font-family:'Unbounded',sans-serif;font-size:.9rem;display:flex;justify-content:space-between;align-items:center}
+.toc summary::-webkit-details-marker{display:none}
+.toc summary::after{content:"";font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent-ink)}
+.toc .find{width:100%;margin:10px 0 8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:.86rem;background:var(--moon);color:var(--ink)}
+.toc .find:focus{outline:2px solid rgba(76,159,212,.5);border-color:var(--accent)}
+.toc ol{list-style:none;padding:0;margin:0}
+.toc li{margin:0}
+.toc a{display:block;text-decoration:none;color:var(--ink);font-size:.86rem;padding:5px 8px;border-radius:7px;line-height:1.35}
+.toc a:hover{background:rgba(76,159,212,.12)}
+.toc a.on{background:rgba(76,159,212,.16);color:var(--accent-ink);font-weight:600}
+.toc ol ol{margin:0 0 4px 12px;border-left:1px solid var(--line)}
+.toc ol ol a{font-size:.8rem;color:var(--ink-soft);padding:3px 8px}
+.toc li.hide{display:none}
+.toc .none{font-size:.8rem;color:var(--ink-soft);padding:6px 8px;display:none}
+.toc .none.show{display:block}
+@media(max-width:900px){
+  .wiki{grid-template-columns:1fr;gap:20px}
+  .toc{position:static;max-height:none}
+  .toc summary::after{content:"open"}
+  .toc[open] summary::after{content:"close"}
+}
+@media(min-width:901px){.toc summary{pointer-events:none}}
+
+.art{min-width:0}
+.art section{padding:0 0 44px;scroll-margin-top:80px}
+.art h2{font-size:clamp(1.3rem,3vw,1.75rem);margin:0 0 6px;padding-top:8px;border-top:2px solid var(--line);padding-top:20px;position:relative}
+.art h3{font-size:1.02rem;margin:26px 0 8px;scroll-margin-top:80px;position:relative}
+.art h2 .eyebrow{display:block;margin-bottom:8px}
+.art h2 a.anc,.art h3 a.anc{text-decoration:none;color:var(--accent);font-family:'Space Mono',monospace;font-size:.8rem;margin-left:8px;opacity:0;font-weight:400}
+.art h2:hover a.anc,.art h3:hover a.anc,.art a.anc:focus{opacity:1}
+.art p{margin:0 0 12px;color:var(--ink)}
+.art p.lead{font-size:1.04rem;color:var(--ink-soft);margin-bottom:16px}
+.art ul,.art ol{margin:0 0 14px 22px}
+.art li{margin-bottom:6px;color:var(--ink)}
+.art li strong,.art p strong{color:var(--ink)}
+.art em{color:var(--ink-soft)}
+.art code,.art .k{font-family:'Space Mono',monospace;font-size:.82em;background:rgba(76,159,212,.10);padding:1px 5px;border-radius:5px;color:var(--accent-ink)}
+.art hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+
+/* answer boxes for the questions that come up in Discord */
+.ans{background:linear-gradient(160deg,#0B1119,#16283A);color:#DCE9F5;border:1px solid #2A4560;border-radius:12px;padding:18px 20px;margin:14px 0 20px}
+.ans b.q{display:block;font-family:'Unbounded',sans-serif;font-size:.92rem;color:#fff;margin-bottom:8px}
+.art .ans p,.ans p{color:#C7D7E6;margin-bottom:8px;font-size:.95rem}
+.ans p:last-child{margin-bottom:0}
+.art .ans strong,.ans strong{color:#F2E4C0}
+.ans a{color:var(--accent-soft)!important}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:14px 18px;margin:14px 0 18px;font-size:.94rem;color:var(--ink-soft)}
+.note.gold{border-left-color:var(--ember)}
+.warn{background:#FFF6E9;border:1px solid #E6C68B;border-left:5px solid #C9821F;border-radius:12px;padding:18px 22px;margin:14px 0 18px}
+.warn h3{margin:0 0 8px;color:#8A5307;font-size:1.02rem}
+.art .warn p,.warn p{color:#5C4526;font-size:.95rem;margin-bottom:8px}
+.warn p:last-child{margin-bottom:0}
+.art .warn strong,.warn strong{color:#7A3D06}
+
+/* infobox */
+.infobox{float:right;width:300px;margin:0 0 18px 26px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.86rem}
+.infobox img{width:84px;height:84px;border-radius:12px;margin:0 auto 8px;box-shadow:0 8px 22px rgba(0,0,0,.25)}
+.infobox b.t{display:block;text-align:center;font-family:'Unbounded',sans-serif;font-size:.9rem;margin-bottom:10px}
+.infobox table{width:100%;border-collapse:collapse}
+.infobox th{text-align:left;font-weight:600;color:var(--ink-soft);padding:5px 6px 5px 0;vertical-align:top;width:38%;font-size:.8rem}
+.infobox td{padding:5px 0;vertical-align:top;border-top:1px solid var(--line)}
+.infobox tr:first-child td{border-top:0}
+@media(max-width:700px){.infobox{float:none;width:100%;margin:0 0 18px}}
+
+/* tables */
+.tbl{overflow-x:auto;margin:10px 0 18px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.tbl table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:640px}
+.tbl th{text-align:left;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);background:rgba(76,159,212,.08);padding:9px 12px;border-bottom:1px solid var(--line)}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{font-weight:600;white-space:nowrap}
+.tbl.wrapfirst td:first-child{white-space:normal}
+.tbl .d{color:var(--ember-ink);font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.05em}
+.tbl small{color:var(--ink-soft)}
+
+/* the hidden door */
+.secret{background:linear-gradient(160deg,#0B1119,#16283A);border:1px solid #2A4560;border-radius:14px;overflow:hidden;margin:14px 0}
+.secret > summary{cursor:pointer;list-style:none;padding:20px 24px;color:#DCE9F5;font-family:'Unbounded',sans-serif;font-size:.95rem;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.secret > summary::-webkit-details-marker{display:none}
+.secret > summary::after{content:"reveal";font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--ember);border:1px solid rgba(217,164,65,.5);border-radius:999px;padding:5px 12px;flex:none}
+.secret[open] > summary::after{content:"hide"}
+.secret .inner{padding:0 24px 24px;color:#B9CCDD;font-size:.95rem}
+.art .secret .inner p,.secret .inner p{color:#B9CCDD;margin-bottom:12px}
+.secret .riddle{border-left:3px solid var(--ember);padding:4px 0 4px 18px;margin:18px 0;font-family:'Space Mono',monospace;font-size:.88rem;line-height:1.85;color:#E4D3B0}
+.secret .inner em{color:#8FA6BC}
+.art .secret .inner strong,.secret .inner strong{color:#EAF2FA}
+
+.faq details{border-bottom:1px solid var(--line);padding:12px 0}
+.faq summary{cursor:pointer;font-weight:600;font-family:'Sora',sans-serif}
+.faq summary::marker{color:var(--accent)}
+.faq p{color:var(--ink-soft);font-size:.93rem;margin-top:8px}
+.srcnote{font-size:.82rem;color:var(--ink-soft)}
+.totop{position:fixed;right:18px;bottom:18px;z-index:40;background:rgba(11,17,25,.85);color:#DCE9F5;border:1px solid rgba(169,216,245,.4);border-radius:999px;padding:9px 14px;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-decoration:none;opacity:0;pointer-events:none;transition:opacity .2s}
+.totop.show{opacity:1;pointer-events:auto}
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5299635657419886" crossorigin="anonymous"></script>
+</head>
+<body class="tln" data-page="mods">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="nav-inner">
+<a class="brand" href="/"><img src="/assets/logo.png" alt="" onerror="this.remove()" width="256" height="256"><span>Dlonem</span></a>
+<nav aria-label="Main">
+<a href="/" data-p="home">Home</a>
+<a href="/apps/" data-p="apps">Apps</a>
+<a href="/mods/" data-p="mods">Mods</a>
+<a href="/community/" data-p="comm">Community</a>
+<a href="/legacy/" data-p="legacy">Legacy</a>
+<a href="/games/" data-p="games">Games</a>
+<a class="join" href="https://discord.gg/StACe9hVtT">Join the Den</a>
+</nav>
+</div></header>
+<main id="main">
+
+<div class="hero compact">
+<span class="spark" style="top:22%;left:12%"></span>
+<span class="spark s2" style="top:62%;left:84%"></span>
+<span class="spark s3" style="top:32%;left:70%"></span>
+<div class="wrap">
+<span class="eyebrow">The wiki</span>
+<h1>The Long Night &amp; Azor Ahai, the whole mod on one page</h1>
+<p class="lede">Every mechanic in the mod, with the numbers, read straight from the files it ships. If someone in the Discord asks how something works, the answer is on this page and every section has a link you can paste.</p>
+<div class="btn-row">
+<a class="btn btn-solid" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3780269495">Subscribe on Steam Workshop</a>
+<a class="btn btn-ghost" href="/mods/the-long-night/">Mod page</a>
+<a class="btn btn-ghost is-quiet" href="https://discord.gg/PTJzPQbqG7">Ask in the Discord</a>
+</div>
+<div class="tag-row"><span>Version 1.1.1</span><span>Requires A Game of Thrones</span><span>CK3 1.19.0.6</span><span>Mid-save safe</span><span>Updated 11 Sep 2026</span></div>
+</div>
+</div>
+
+<div class="wiki">
+<details class="toc" id="toc" open>
+<summary>Contents</summary>
+<input class="find" id="find" type="search" placeholder="Find a section…" aria-label="Find a section">
+<ol id="toclist">
+<li><a href="#quick">Quick answers</a></li>
+<li><a href="#about">What the mod is</a></li>
+<li><a href="#rule">Before you play: one rule</a></li>
+<li><a href="#setup">Install and load order</a></li>
+<li><a href="#timeline">How a campaign runs</a>
+ <ol><li><a href="#phases">The four phases</a></li><li><a href="#catalysts">What moves the tracker</a></li><li><a href="#clock">The Winter Is Coming clock</a></li></ol></li>
+<li><a href="#invasion">The Night King and his host</a>
+ <ol><li><a href="#nightking">The Night King</a></li><li><a href="#host">How big his host is</a></li><li><a href="#strength">What the strength rule does</a></li><li><a href="#ladder">Where the dead go next</a></li><li><a href="#wars">How his wars work</a></li></ol></li>
+<li><a href="#wall">The Wall falls</a></li>
+<li><a href="#wights">Wights, Others and dragons</a>
+ <ol><li><a href="#raising">Who gets raised</a></li><li><a href="#dragons">Undead dragons</a></li><li><a href="#spear">The spear</a></li><li><a href="#ward">The Wall is a ward</a></li></ol></li>
+<li><a href="#travel">Travelling through dead land</a></li>
+<li><a href="#watch">The Night's Watch</a>
+ <ol><li><a href="#black">Taking the black</a></li><li><a href="#companies">The eight ranging companies</a></li><li><a href="#castles">The Wall's castles</a></li><li><a href="#lordcommander">The Lord Commander</a></li><li><a href="#aid">Helping the Watch from the south</a></li><li><a href="#guards">What a sworn brother cannot do</a></li></ol></li>
+<li><a href="#preparation">Preparing: dragonglass and red priests</a></li>
+<li><a href="#resurrection">Coming back from the dead</a>
+ <ol><li><a href="#res-before">What you must do beforehand</a></li><li><a href="#res-battle">Falling in battle</a></li><li><a href="#res-natural">A natural death</a></li><li><a href="#res-cost">What it costs</a></li><li><a href="#res-limits">What it does not cover</a></li></ol></li>
+<li><a href="#ending">How the Long Night ends</a>
+ <ol><li><a href="#reach">Reaching him</a></li><li><a href="#field">The Field Afterwards</a></li><li><a href="#lasthour">The Last Hour melee</a></li><li><a href="#bane">Only a bane destroys him</a></li><li><a href="#reveal">The reveal</a></li><li><a href="#defeat">The Long Defeat</a></li></ol></li>
+<li><a href="#walker">A Walker on the snowfield</a></li>
+<li><a href="#prophecy">Azor Ahai and the prophecy</a>
+ <ol><li><a href="#marks">The nine marks</a></li><li><a href="#naming">Being named</a></li><li><a href="#lightbringer">Lightbringer</a></li><li><a href="#red">Taking the red</a></li><li><a href="#coin">Was it ever true?</a></li></ol></li>
+<li><a href="#after">After the Dawn</a></li>
+<li><a href="#rules">Game rules</a></li>
+<li><a href="#decisions">Every decision</a></li>
+<li><a href="#traits">Traits and artifacts</a></li>
+<li><a href="#record">The record</a></li>
+<li><a href="#compat">Compatibility and what it overrides</a></li>
+<li><a href="#door">The hidden door</a></li>
+<li><a href="#faq">Common questions</a></li>
+<li><a href="#changes">Version history</a></li>
+<li><a href="#credits">Credits</a></li>
+</ol>
+<p class="none" id="nonefound">Nothing matches.</p>
+</details>
+
+<article class="art">
+<p class="crumbs"><a href="/">Home</a> › <a href="/mods/">Mods</a> › <a href="/mods/the-long-night/">The Long Night &amp; Azor Ahai</a> › Wiki</p>
+
+<!-- QUICK ANSWERS -->
+<section id="quick">
+<h2 style="border-top:0;padding-top:0"><span class="eyebrow">Start here</span>Quick answers<a class="anc" href="#quick" aria-label="Link to this section">#</a></h2>
+<p class="lead">The questions that come up most, answered in a paragraph. Each one links to the full section.</p>
+
+<div class="ans"><b class="q">How do I get resurrected? Do I have to do anything beforehand?</b>
+<p>Yes, and the order matters. <strong>Get a red priest into your court before you die</strong>, then take the free decision <strong>Ask for the Lord's Blessing</strong>. From then on, if you fall in a <em>battle</em> as a knight or commander, you get a card, your priest decides two days later, and if he pays you get a <strong>Get up</strong> button. Each priest can do it once in his life. There is a second road that needs no blessing: a red priest sitting as your <strong>court chaplain</strong> gives you a second chance at a natural death, if your faith can heal through the flames and the fire has a reason to want you. Neither road covers losing the Last Hour melee to the Night King; that ends in being taken. <a href="#resurrection">Full section.</a></p></div>
+
+<div class="ans"><b class="q">How do I kill the Night King?</b>
+<p>Beat the dead in the field once so the <strong>War for the Dawn</strong> can be declared (independent rulers only), win a battle he is standing in, and take <strong>The Field Afterwards</strong>. Only <strong>dragonglass, Valyrian steel, Lightbringer or dragonfire</strong> destroy him; anything else casts him down and another Other is crowned. Form the line and fight the Last Hour with companions; lose it and he keeps you. <a href="#ending">Full section.</a></p></div>
+
+<div class="ans"><b class="q">Why has the Night King stalled after taking a region?</b>
+<p>The invasion moves in stages: beyond the Wall, then the Wall, then the North, then everywhere. Each stage waits for its region to be finished, and a region held by someone he cannot reach as a top liege keeps the gate shut until the stage times out on its own (eight years beyond the Wall, four at the Wall, twenty in the North). He also never opens a new war while he is fighting one, and until 1.1.1 that included revolts by his own peasants. <a href="#ladder">Full section.</a></p></div>
+
+<div class="ans"><b class="q">Do I have to disable the other Long Night mods?</b>
+<p>Yes. <strong>AGOT: The Long Night</strong> and <strong>The Long Night+</strong> must be unchecked, not sorted below. This mod ships files at the same paths, so either of them anywhere in the playset overrides it with older code. <a href="#rule">Full section.</a></p></div>
+
+<div class="ans"><b class="q">What counts as a mark, and how many do I need?</b>
+<p>Nine marks exist. Five are decided at birth (dragon dreams, greensight, born in salt and smoke, born beneath a bleeding star, hidden blood), four are earned (equipped Valyrian steel, a dragon, surviving the dead, coming back from death). Two make you Favored and four make you Chosen under the default rule, and someone qualified has to say it: a red priest, a witch, or a greenseer. <a href="#prophecy">Full section.</a></p></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<h2><span class="eyebrow">The mod</span>What the mod is<a class="anc" href="#about" aria-label="Link to this section">#</a></h2>
+<aside class="infobox">
+<img src="/assets/icons/long-night.png" alt="The Long Night &amp; Azor Ahai mod icon" onerror="this.remove()" width="512" height="512">
+<b class="t">AGOT: The Long Night &amp; Azor Ahai</b>
+<table>
+<tr><th>Developer</th><td><a href="/">Dlonem</a> (Dlonem LLC)</td></tr>
+<tr><th>Game</th><td>Crusader Kings III 1.19.0.6, with <em>A Game of Thrones</em></td></tr>
+<tr><th>First release</th><td>8 August 2026</td></tr>
+<tr><th>Current version</th><td>1.1.1</td></tr>
+<tr><th>Steam Workshop</th><td><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3780269495">3780269495</a></td></tr>
+<tr><th>Manual install</th><td><a href="/mods/the-long-night/download/">Download without Steam</a></td></tr>
+<tr><th>Source</th><td><a href="https://github.com/Dlonem/CK3TheLongNightAzorAhai">GitHub</a></td></tr>
+<tr><th>Discord</th><td><a href="https://discord.gg/PTJzPQbqG7">discord.gg/PTJzPQbqG7</a></td></tr>
+<tr><th>Languages</th><td>English complete; Russian for most of the mod</td></tr>
+<tr><th>Lineage</th><td>Fork of <em>The Long Night+</em> (Wepo94), itself from <em>The Long Night (Resurrected)</em> (Tehaen), a port of <em>AGOT: The Long Night</em> (Freeholder)</td></tr>
+</table>
+</aside>
+<p><strong>AGOT: The Long Night &amp; Azor Ahai</strong> is a submod for <em>A Game of Thrones</em>, the Crusader Kings III total conversion. It builds the Long Night into a complete endgame: an undead invasion whose wights are named characters, a Night's Watch you can play from inside, the Wall coming down on camera, a melee against the Night King that you fight with the people who were actually there, and the Azor Ahai prophecy as a working mechanic that every character in the world is measured against.</p>
+<p>The invasion is a four-phase struggle you can watch coming for decades. When it arrives the Night King is a character with a court, a culture, a faith and a realm, and every lord he beats gets back up wearing his own face. Dragons that die over his ground come back on his side. The Wall falls at Castle Black. His host grows with what he takes, from twenty thousand beyond the Wall to two hundred thousand once the North is his. The living can take the black and mean it, send men and grain or their dungeons north, mine dragonglass, bring a red priest into the hall, forge Lightbringer at the price the tale demands, and, when the dead have been beaten once in the field, declare the War for the Dawn and go to him.</p>
+<p>This page is the reference and is kept current with the files. The <a href="/mods/the-long-night/">mod page</a> has the screenshots and the video; the <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3780269495">Workshop page</a> is the short version; the <a href="https://github.com/Dlonem/CK3TheLongNightAzorAhai/wiki">GitHub wiki</a> carries the full changelog.</p>
+</section>
+
+<!-- RULE -->
+<section id="rule">
+<h2><span class="eyebrow">Read this part</span>Before you play: one rule<a class="anc" href="#rule" aria-label="Link to this section">#</a></h2>
+<div class="warn">
+<h3>Disable every other Long Night mod</h3>
+<p><strong>AGOT: The Long Night</strong> and <strong>The Long Night+</strong> must be <strong>unchecked in your playset</strong>, not sorted below this one. This mod grew out of both and ships files at the same paths, so either of them loaded <em>anywhere</em> in your list overrides it with older code and brings back the see-through dragon bug. You can unsubscribe from them; this mod replaces both.</p>
+</div>
+<p>This is the single most common cause of "something is broken". If a mechanic on this page does not match what you see in game, check the playset first.</p>
+</section>
+
+<!-- SETUP -->
+<section id="setup">
+<h2><span class="eyebrow">Setup</span>Install and load order<a class="anc" href="#setup" aria-label="Link to this section">#</a></h2>
+<p>Steam players subscribe on the Workshop and the launcher does the rest. Copies from GOG, Epic or Game Pass use the <a href="/mods/the-long-night/download/">manual install guide</a>, which covers the folder, the <code>.mod</code> file and what to do when the mod does not show up.</p>
+<ol>
+<li><strong>A Game of Thrones</strong>, required.</li>
+<li>AGOT submods: AGOT+, Valyrian Steel, Submod Core, Nobility of Westeros, model packs.</li>
+<li><strong>AGOT: The Long Night &amp; Azor Ahai</strong>, this mod.</li>
+<li><em>Optional:</em> <a href="/mods/supernatural/">Supernatural</a>.</li>
+<li><em>If you run Supernatural:</em> <strong>AGOT: Supernatural &amp; The Long Night Compatibility Patch</strong>, always last.</li>
+</ol>
+<p>The mod is safe to add to a running save and safe to update. On a loaded save the struggle is created within the first in-game year, wights already in the save are re-processed, and the Beric and Lady Stoneheart backfills run. Game rules are baked in when a save is created, so an existing campaign keeps whatever rules it started with. Multiplayer works when everyone has the same version.</p>
+<div class="warn"><h3>One note for dragon-mod users</h3><p>Dead dragons' looks are stored in your save against the exact list of portrait genes your mods add. Adding or removing <em>any</em> gene-adding mod mid-save, this one included, can scramble dragons that are already dead. Living ones are safe. Pick your dragon mods at campaign start and keep them.</p></div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+<h2><span class="eyebrow">The struggle</span>How a campaign runs<a class="anc" href="#timeline" aria-label="Link to this section">#</a></h2>
+<p class="lead">The Long Night is a CK3 struggle called <strong>The Long Night</strong>, with four phases. Every game starts in the Long Summer. The North, the free folk, the Watch and the R'hllor faiths are involved from the start; the Faith of the Seven and the southern realms are interlopers until the dark reaches them, or until they take the red.</p>
+
+<h3 id="phases">The four phases<a class="anc" href="#phases" aria-label="Link">#</a></h3>
+<div class="tbl"><table>
+<tr><th>Phase</th><th>What it is</th><th>What it does</th></tr>
+<tr><td>The Long Summer</td><td>Peace, and a counter you can see from day one. Most games stay here for the better part of a century.</td><td>All counties +5% development growth and supply limit. Involved realms: AI war cooldown ×0.25, raids slower, +5 same-culture / −5 different-culture opinion, −0.2 monthly piety.</td></tr>
+<tr><td>Winter Is Coming</td><td>The rangings stop coming back. A warning of unknown length, which your own losses shorten.</td><td>All counties −5% development growth and supply. Involved: +15% levy reinforcement, +10% garrison, +2 advantage, −20% supply, +10 different-culture opinion, +0.5 piety, +15% same-faith reinforcement, −0.1 monthly control. Interlopers: AI war chance +2, −10% supply.</td></tr>
+<tr><td>The Long Night</td><td>The invasion. It ends only when the Night King is destroyed, not on a timer.</td><td>All counties −10% development growth and supply, −10 county opinion. Involved: +5 advantage, +25% enemy hard casualties, +25% levy reinforcement, +25% knight effectiveness, mercenaries −25%, +15 different-culture opinion, +1 piety. Interlopers: −15% income, AI war chance −2, +15% reinforcement, mercenaries −15%.</td></tr>
+<tr><td>The Dawn</td><td>Five years of what is left. Under <em>Once</em> the struggle ends here; under <em>The Cycle</em> it flows back to the Long Summer.</td><td>All counties +15% development growth, +10% supply, buildings −25% cost and −25% time. Involved: +20 different-culture opinion, +0.5 piety, AI war chance −3.</td></tr>
+</table></div>
+
+<h3 id="catalysts">What moves the tracker<a class="anc" href="#catalysts" aria-label="Link">#</a></h3>
+<p>The Long Summer needs 100 points. Most of them come from a yearly drip that keeps the world on the schedule the <em>Moment</em> rule rolled: on the default rule the summer target is 60, 85, 110 or 145 years (weights 10/30/35/25), and the drip ticks between zero and five times a year depending on how far behind that target the ledger is. Catalysts pull the dark forward, but only so far: once the ledger is 15% ahead of schedule they stop counting until the years catch up. Under the <em>Manual</em> rule nothing ever accrues, and that is the rule working.</p>
+<div class="tbl"><table>
+<tr><th>Catalyst</th><th>Points</th><th>Cooldown</th><th>What fires it</th></tr>
+<tr><td>Another year, and the south forgets</td><td>1 per tick</td><td>none</td><td>The schedule keeper. Zero to five ticks a year; five a year under <em>Immediately</em>. A newly born dragon absorbs a tick before it lands.</td></tr>
+<tr><td>A lesser house ends</td><td>1</td><td>2 years</td><td>A count or better dies as the last of a minor house.</td></tr>
+<tr><td>A warning was laughed at</td><td>2</td><td>3 years</td><td>Dismissing the warning cards, an AI disbelieving a sighting, a dark-ritual sacrifice.</td></tr>
+<tr><td>The Watch dwindles</td><td>3</td><td>5 years</td><td>The Night's Watch falls below 60% of its recorded peak strength (40% for a Watch refounded after a previous Long Night); re-arms at 85%. Also deaths off the Wall and brothers killed by wildlings.</td></tr>
+<tr><td>A ranging did not return</td><td>4</td><td>4 years</td><td>A ranging lost (the card fires at 18% a year for eligible players; the AI loses one silently at 10%), a snowstorm death in the far north, a Lord Commander's lost Great Ranging, AGOT's beyond-the-Wall struggle in its hostility phase.</td></tr>
+<tr><td>A great house ended</td><td>5</td><td>3 years</td><td>The last member of a great house dies.</td></tr>
+<tr><td>A dragon died</td><td>8</td><td>3 years</td><td>Any dragon dies.</td></tr>
+<tr><td>An Other was seen, and believed</td><td>15</td><td>6 years</td><td>Believing <em>The Man Who Came Back</em> (40% a year for players in Winter Is Coming), or a sacrifice to the Others.</td></tr>
+<tr><td>Dragons return to the world</td><td>counter</td><td>3 years</td><td>Not a catalyst since 1.0.9. Each new dragon banks 4 points of drip credit in the Long Summer (bank cap 12, lifetime cap 40), or gives 4 years back to the Winter Is Coming clock.</td></tr>
+<tr><td>The Night King is slain</td><td>1000</td><td>1 year</td><td>A Night King destroyed by a bane in one of the mod's confrontation scenes; under the War for the Dawn resolution, only once that war is won. This is what ends the Long Night phase.</td></tr>
+</table></div>
+<p>The introduction card <em>What They Say in Your Hall</em> arrives at 35 ledger points or 30 summer years, whichever comes first. Under the <em>Historical</em> rule from a 255 AC start or later there is no summer left, and the game opens already in Winter Is Coming with the clock set to run out around 300 AC.</p>
+
+<h3 id="clock">The Winter Is Coming clock<a class="anc" href="#clock" aria-label="Link">#</a></h3>
+<p>When Winter Is Coming begins, the real length is rolled once: 12, 20, 28, 36 or 45 years (weights 15/25/30/20/10). Nothing in the interface shows the remaining time. The world can bite into it, never more than once every four years, never below five years remaining, and never below 60% of the original roll: a believed sighting takes four years (five when the AI believes one), a sacrifice to the Others six, a dead dragon three, a lost ranging or a snowstorm death two, choosing <em>There is still summer in the south</em> on the warning card two, and a Lord Commander's lost Great Ranging one. A new dragon gives four years back, up to the original roll. Every player gets <em>Winter is Here</em> on entering the phase, written for their own station: sworn brother, free folk, northman, dragonrider, red priest, lord, or nobody at all.</p>
+<p>When the clock runs out the invasion opens with one of five cards, chosen at random and with no effect on what follows: <em>The Winds of Winter</em>, <em>A Dead Man in the Capital</em>, <em>A Ranging Returned</em>, <em>The Horror Beyond the Wall</em>, or <em>The True Enemy Revealed</em>.</p>
+</section>
+
+<!-- INVASION -->
+<section id="invasion">
+<h2><span class="eyebrow">The dead</span>The Night King and his host<a class="anc" href="#invasion" aria-label="Link to this section">#</a></h2>
+
+<h3 id="nightking">The Night King<a class="anc" href="#nightking" aria-label="Link">#</a></h3>
+<p>He is created at the Frigid Rise on the day the invasion opens: six to eight thousand years old, martial 25, intrigue 100, learning 65, prowess 30, carrying the traits Other and Great Other, and the nickname <em>the Night King</em>. His culture is the <strong>Others</strong> (frostborn in the files), his faith the Cold Gods, his house the Others, his realm <strong>The Land of Always Winter</strong>, renamed <strong>The Long Night</strong> once he holds thirty counties. He takes the hegemony and fifteen counties beyond the Wall on day one, is made independent, and receives the Crown of the Others and the Crystal Sword. He leads his host in person. Every Night King who follows inherits the same kit, so killing one with ordinary steel does not leave the dead weaker.</p>
+<p>His culture cannot be reasoned with: the dead learn nothing (their innovations are Bronze Age and never advance), keep no mercenaries, buy nothing, and have every county opinion at +400 so nothing of theirs ever revolts. The Night King's court is sixty-two elite Others, and every ten days it is re-sacrificed: frostborn courtiers are made Others, everyone else and every prisoner dies. Since 1.1.1 the Others, the Night King and wights cannot run hostile or personal schemes at all.</p>
+
+<h3 id="host">How big his host is<a class="anc" href="#host" aria-label="Link">#</a></h3>
+<p>Two forces. The elite host is fixed: ten thousand of <strong>The Dead</strong> (damage 38, toughness 75, siege tier 4) plus trebuchets, needing no supply. The <strong>Risen Dead</strong> horde (damage 3, toughness 25, counters peasant militia, costs him nothing to keep) is a milestone top-up, refilled every thirty days up to four regiments at a time:</p>
+<div class="tbl"><table>
+<tr><th>Milestone</th><th>Standard target</th><th>Weak ×0.75</th><th>Strong ×1.25</th><th>Insane ×1.5</th></tr>
+<tr><td>The invasion opens</td><td>20,000</td><td>15,000</td><td>25,000</td><td>30,000</td></tr>
+<tr><td>Everything beyond the Wall is his</td><td>50,000</td><td>37,500</td><td>62,500</td><td>75,000</td></tr>
+<tr><td>Castle Black has fallen</td><td>100,000</td><td>75,000</td><td>125,000</td><td>150,000</td></tr>
+<tr><td>The North is done</td><td>200,000</td><td>150,000</td><td>250,000</td><td>300,000</td></tr>
+<tr><td>140 counties or more</td><td>250,000</td><td>187,500</td><td>312,500</td><td>375,000</td></tr>
+</table></div>
+<p>The hard cap is 500,000, the population of King's Landing. Both units fight better in winter.</p>
+
+<h3 id="strength">What the strength rule does<a class="anc" href="#strength" aria-label="Link">#</a></h3>
+<div class="tbl"><table>
+<tr><th>Setting</th><th>Night King modifier</th><th>Re-arm after losing a war</th><th>Pause between wars (after the Wall)</th><th>Extra duchies per won war</th><th>Walkers beside him at the Last Hour</th></tr>
+<tr><td>Weak</td><td>Levy size +3, advantage +10</td><td>1, 2 or 3 years</td><td>2 to 6 months</td><td>none</td><td>1</td></tr>
+<tr><td>Standard <span class="d">default</span></td><td>Levy +6, advantage +15, toughness +10%</td><td>1, 2 or 3 years</td><td>2 to 6 months</td><td>+1 in the Long Night</td><td>2</td></tr>
+<tr><td>Strong</td><td>Levy +10, advantage +20, toughness +20%, damage +15%</td><td>6, 12 or 18 months</td><td>1 to 3 months</td><td>+1 in Winter Is Coming, +2 in the Long Night</td><td>3</td></tr>
+<tr><td>Insane</td><td>Levy +14, advantage +20, toughness +35%, damage +30%, knights +25%</td><td>6, 12 or 18 months</td><td>1 to 3 months</td><td>+2 in both</td><td>3</td></tr>
+</table></div>
+<p>On top of the tier every Night King carries <strong>The Cold Command</strong>: +12 advantage, +20% damage and toughness, +50% knight effectiveness, six knights, +100 dread. His commanders carry <strong>The Dead Do Not Tire</strong>, which halves siege morale loss and shortens siege phases by a quarter. Under <em>The Cycle</em> later waves stack more on top (see <a href="#after">After the Dawn</a>).</p>
+
+<h3 id="ladder">Where the dead go next<a class="anc" href="#ladder" aria-label="Link">#</a></h3>
+<p>Every thirty days the invasion looks for a neighbouring independent ruler to attack. Small neighbours (AI, under four counties, below empire tier) are absorbed by fealty rather than war, even while he is busy; anyone bigger, or any player, gets a war. The invasion does not start a new war while it is fighting one, and it takes a pause between wars (the table above).</p>
+<p>Targets follow a ladder of stage gates, each with a clock that fails open so a gate can never stall the invasion for good:</p>
+<ol>
+<li><strong>Beyond the Wall first.</strong> While the Wall stands and anything beyond it is still held by the living, only holders of land beyond the Wall qualify. Eight-year window.</li>
+<li><strong>Then the Wall.</strong> While Castle Black stands, only a ruler seated at or holding land on the Wall. Four-year window, refilled by four years each time the Watch beats the dead from a Wall seat. The Wall is the climax, enforced.</li>
+<li><strong>Then the North.</strong> Once Castle Black has fallen, only holders of land in the North, until the North is done. Twenty-year window.</li>
+<li><strong>Then everywhere.</strong></li>
+</ol>
+<p>Inside the North the front marches rather than jumps: a target outside the North is illegal while any living northern March still borders the dead, and Winterfell's crown is illegal while any other northern March stands. Every great house's seat is a <strong>Last Bastion</strong> during Winter Is Coming and the Long Night (+3 fort level, +50% garrison, +8 defender advantage), and the target picker walks around bastions until the seat's own duchy is half in dead hands; a crown's seat is admitted only once the dead hold two kingdom titles or ten counties in that empire.</p>
+<div class="note">A region held by someone the Night King cannot reach as a top liege, such as a northern county whose lord answers to a southern king, keeps that stage's gate armed until its window lapses. That is the mechanism behind "he took the North and stopped". It resolves itself; the twenty-year window is the ceiling, not the usual wait.</div>
+
+<h3 id="wars">How his wars work<a class="anc" href="#wars" aria-label="Link">#</a></h3>
+<p>The casus belli is <strong>Seize All Occupied Lands</strong>, and the war is called <strong>The Long Night</strong>. The <em>War Tier</em> rule picks the size of the bite: <strong>March</strong> (the default) takes one kingdom-tier March at a time, or a duchy from a smaller victim; <strong>Duchy</strong> always takes one duchy; <strong>Empire</strong> sweeps whole realms. Occupation counts for war score with the defender's capital weighted; since 1.1.0b a war counts its goal as held once the dead occupy six tenths of it, and the score climbs on its own from there so held ground plus a won field closes a war inside a season.</p>
+<p>When he wins, the war goal transfers in full and any other occupied county transfers only if it connects to land the dead already hold; the rest is given back, and allies' land is never taken. On Standard and above extra bordering duchies come with the goal (table above), never a bastion. When he loses, the invasion pauses for the re-arm period, he pays reparations, and the world remembers: <strong>the War for the Dawn can only be declared once the dead have lost a war</strong>, or once the Night King has been cast down in the field.</p>
+<p>The dead have no friends. No alliance survives with one of them on either side, no living knight, councillor, court official or commander serves them, any dead ruler with a living liege is made independent, the dead never declare war on the dead, and every county that comes into dead hands is set to full control on the day it arrives (1.1.1), so his own peasants never rise against him.</p>
+</section>
+
+<!-- WALL -->
+<section id="wall">
+<h2><span class="eyebrow">The climax</span>The Wall falls<a class="anc" href="#wall" aria-label="Link to this section">#</a></h2>
+<p>The Wall comes down when the dead take Castle Black: the Watch is at war with the Night King and he holds the county, or Castle Black is already in dead hands. Every player gets the cinematic <em>The Wall Has Fallen</em>, and the middle section of the Wall breaks on the map. A fifth of every black brother flees south; sworn brothers who held castles keep them, and the rest are pooled at Winterfell, Karhold and the Last Hearth. Castle Black takes <strong>The Wall Is Broken</strong> (−15 county opinion, −20% development growth, −15% supply).</p>
+<p>Thirty days later comes <em>The Age of Heroes Is Ended</em>, opening in your own station: sworn brother, free folk, blood of the dragon, northman, red priest, lord, or nobody. It writes the memory <em>alive when the Wall fell</em>. Thirty days after that Castle Black is ruined, the North stage of the invasion opens, and the horde's next milestone unlocks.</p>
+<p>The moment the dead hold any county on the Wall, the ward is gone: living dragons can fight beyond the Wall without the penalty, and the +60 the spear gets against a dragon forced over an intact Wall is removed. If the living retake the Wall, the ward returns. Under <em>The Cycle</em>, the Wall is raised again in the next Long Summer.</p>
+<p>Once the Long Night arrives, <em>Black Cloaks at Your Gates</em> can reach dukes and up across the Seven Kingdoms (never Dorne, the Reach or the Stormlands): real survivors from the Wall first, one stranger if the list is empty. Take them in and up to three join you, followed by <em>What the Watch Left You</em>, which can put <strong>Black Cloaks on the Walls</strong> on your realm for twenty years (+5% garrison, +5% reinforcement, +2 advantage).</p>
+</section>
+
+<!-- WIGHTS -->
+<section id="wights">
+<h2><span class="eyebrow">The dead get back up</span>Wights, Others and dragons<a class="anc" href="#wights" aria-label="Link to this section">#</a></h2>
+
+<h3 id="raising">Who gets raised<a class="anc" href="#raising" aria-label="Link">#</a></h3>
+<p>Dying is not the trigger; <strong>being taken into the dead's realm is</strong>. Anyone who gains a title from one of the dead, any vassal they gain, every courtier of an Other, and every living person in the Night King's service is converted, along with their court. Before it happens a landless noble may flee (a base 15% chance, more if craven, less if brave), and a landed lord may flee south as a refugee of the Dawn (base 10%), which is also the <em>Flee South</em> decision offered to any lord the dark is coming for.</p>
+<p>A wight keeps his face, his titles and his realm, now under the <strong>Risen Thrall</strong> government, which is unplayable by design: a player who is raised hands off to an heir. The trait <strong>Wight</strong> makes him tireless (health +50, immortal, incapacitated, cannot marry or have children, no inheritance), hated (−150 general opinion) and dreaded (+25). Every alliance, friendship, love and marriage he had is severed, and his spouse gets <em>Death Did Us Part</em>. Close family, friends and lovers who are players get <em>A Face I Know</em> when someone they knew rises. A wight is never promoted to an Other.</p>
+<p>The Night King's own kill is different. Lose the Last Hour to him and you are raised as an <strong>Other</strong>, not a wight, with the Other trait, the house of the Others and the flag that puts you on his side of the line the next time a champion reaches him. A landed champion stays landed in the dead's host.</p>
+<p>When the Night King is destroyed, every wight and every risen dragon dies where it stands, every living member of the house of the Others is gone save one (see <a href="#after">the Cycle</a>), and the land the dead held is scoured.</p>
+
+<h3 id="dragons">Undead dragons<a class="anc" href="#dragons" aria-label="Link">#</a></h3>
+<p>Under the default rule, <strong>They Raise Their Kills</strong>, the Others are given nothing. A dragon that dies during the Long Night with the dead involved, killed by one of them or dying over ground they hold, is recorded, and every three years, if the Night King has no dragon, one recorded dragon is raised: same name, same face, same size, the colour of ice, immortal, carrying the trait <strong>Risen</strong> and the nickname <em>the Undead</em>. Further dragons go to his lieutenants. A dragon that dies fighting another dragon over ground the dead can claim is not killed but <strong>taken in place</strong>, and its rider gets <em>The Wrong Colour</em>. An undead dragon that dies stays dead. <strong>One Simply Appears</strong> hands him a dragon while dragons exist anywhere; <strong>Off</strong> means never.</p>
+
+<h3 id="spear">The spear<a class="anc" href="#spear" aria-label="Link">#</a></h3>
+<p>In any Long Night battle where the Night King commands or fights, if the dead have no dragon and the spear is not on cooldown, one rider on the field is drawn at random and he throws. The three-year cooldown arms on the throw, hit or miss.</p>
+<div class="tbl"><table>
+<tr><th>Dragon size</th><th>Hit chance</th></tr>
+<tr><td>Under 30 (a hatchling)</td><td>40%</td></tr>
+<tr><td>30 to 69</td><td>36%</td></tr>
+<tr><td>70 to 99</td><td>32%</td></tr>
+<tr><td>100 to 139</td><td>27%</td></tr>
+<tr><td>140 to 179</td><td>23%</td></tr>
+<tr><td>180 to 229</td><td>18%</td></tr>
+<tr><td>230 to 299</td><td>13%</td></tr>
+<tr><td>300 to 399</td><td>8%</td></tr>
+<tr><td>400 and up (Balerion's size)</td><td>5%</td></tr>
+</table></div>
+<p>Add 12 beyond the Wall, and add 60 more if the rider forced the dragon over an intact Wall; the floor is 5%. On a hit the dragon is taken, and the rider rolls to live at 60/40 base, better with prowess, physique, a dragonrider's skill and a champion's traits, worse for age and bad health. Survivors are wounded, gain 200 prestige, and later get <em>The Empty Sky</em>.</p>
+
+<h3 id="ward">The Wall is a ward<a class="anc" href="#ward" aria-label="Link">#</a></h3>
+<p>During Winter Is Coming and the Long Night a rider whose dragon approaches the Wall gets <em>[Dragon] Will Not Cross</em>, once. You can take her up again (+50 prestige, the dragon likes you less), stand down and let her stay behind, write to the Citadel, or <strong>ask it of her anyway</strong>, which counts the dragon as present for the bane and the Field Afterwards, at the price of that +60 on the spear while the Wall stands. The AI is likelier to force it the less it knows: never with learning of 14 or more, never if craven, often if arrogant. Once the Wall is breached the ward is gone and dragons fly where they like. A camp with a dragon in it cannot be moved beyond an intact Wall unless the rider has already forced it once.</p>
+</section>
+
+<!-- TRAVEL -->
+<section id="travel">
+<h2><span class="eyebrow">The road</span>Travelling through dead land<a class="anc" href="#travel" aria-label="Link to this section">#</a></h2>
+<p>From the day the invasion opens until the Dawn, the travel planner shows the danger before you commit a route: <strong>The Dead Hold This Land</strong> (+60) on every county the dead hold, <strong>The Dead Are One County Away</strong> (+25) on every living county bordering them, and <strong>Past the Wall</strong> (+40) on living land beyond the Wall. On a dead road each travel step has an 8% chance of an encounter, doubled in the Long Night, with a six-month cooldown and thirty lost days either way.</p>
+<p><em>The Road Is Not Empty</em> is wights: ride through them (a prowess test, 55% clean), form a line and get a fire going (80% they burn, 20% they burn and so does one of yours), or leave the wagons and ride. <em>One of Them</em> is a White Walker, and it only appears in the Long Night beyond the Wall or on dead ground: meet it (a very hard prowess test, 45% it comes apart, 55% it lets you live, which is worse), let someone be the slowest, or ride and do not look back. Surviving an Other on the road with dragonglass or Valyrian steel is what earns the prophecy mark for walking among the dead.</p>
+</section>
+
+<!-- WATCH -->
+<section id="watch">
+<h2><span class="eyebrow">The black</span>The Night's Watch<a class="anc" href="#watch" aria-label="Link to this section">#</a></h2>
+<p class="lead">The Watch's realm is renamed <strong>The Night's Watch</strong>. Nineteen castles on the Wall, eight ranging companies with camps on the map, a Lord Commander with decisions nobody else gets, and a set of rules that keep the Watch out of southern politics whether it likes it or not.</p>
+
+<h3 id="black">Taking the black<a class="anc" href="#black" aria-label="Link">#</a></h3>
+<p>The decision is <strong>Take the Black</strong>. It is open to any adult man standing in the Seven Kingdoms who is not free folk, not a maester or septon, not already a sworn brother and not one of the dead, while a Lord Commander exists and a ranging company is free (vacant, or held by an AI captain he can stand down). You need somewhere for the realm to go: an heir, a liege, or nothing to give up. There is no prestige requirement. Women are refused at the gate.</p>
+<p>What it costs is the oath: every title you hold passes to your primary heir, or to your liege if you have none, with no claim kept; your marriage, betrothal, claims, debts, Iron Bank shares and Kingsguard place end at the Wall; any dragon that answers to you is unbonded; any adventurer company you led is disbanded. Your successor remembers it (+40 opinion for sixty years), your family and former vassals think better of you for it, and your close family moves to the heir's court. What you get is a ranging company of your own, sworn to the Lord Commander, and you play on as the brother.</p>
+
+<h3 id="companies">The eight ranging companies<a class="anc" href="#companies" aria-label="Link">#</a></h3>
+<p>The companies are <strong>The Long Ranging, The Deep Ranging, The Cold Ranging, The Silent Ranging, The Black Ranging, The Winter Ranging, The Far Ranging</strong> and <strong>The Last Ranging</strong>. Each is a landless title under the Wall with a real camp on the map, a captain titled <strong>Ranger-Captain</strong>, and its own government, <strong>Ranging Company</strong>: army upkeep −60%, men-at-arms upkeep −70%, +2 martial and +2 prowess per prestige level, +0.5 monthly dread, and no holy orders. The camp is the ranger camp AGOT gives the First Ranger, opened to all eight companies, and it can only be pitched on the Wall or beyond it, never with raised armies. From game start each company has a historical northman captain, and a new captain every generation, all the way to 8320.</p>
+<p>A captain can <strong>March the Ranging</strong> to Craster's Keep, Whitetree or Hardhome and <strong>Return to the Wall</strong>; the camp travels, provisions are topped up at the Wall, and the arrival is quiet by design. Once a year, if the Lord Commander's court holds ten or more brothers who could be posted, each company with fewer than six ranging brothers gets one, weighted toward rangers, the brave and the strong. Captains compete for <strong>First Ranger</strong>: when the holder dies, an AI captain is chosen (martial and prowess of 12 or more, the ranger lifestyle and bravery all count) and moves to that seat; player captains are not drafted into it. Under the default rule the Watch fills companies one through five itself and holds three open for players; <em>Leave Them for Players</em> leaves a dead captain's seat waiting; <em>All Eight Ride</em> keeps every company manned.</p>
+<p>When a captain dies, the company passes to a qualifying brother of the Lord Commander's court, or a ranger is created for it, or the Lord Commander holds it himself. A ranger who has been sworn long enough (a hundred points of the Night's Watch trait; a recruit does not get given a castle) can <strong>Ask for a Castle</strong> and trade the company for a keepership.</p>
+
+<h3 id="castles">The Wall's castles<a class="anc" href="#castles" aria-label="Link">#</a></h3>
+<p>Castle Black is the Lord Commander's own seat. The other eighteen castles are keeperships held from him: Deep Lake, Icemark, Greyguard, Stonedoor, Hoarfrost Hill, Queensgate, Oakenshield, Woodswatch-by-the-Pool, Sable Hall, Rimegate, Westwatch-by-the-Bridge, Sentinel Stand, Long Barrow, The Torches, Greenguard, and the three county seats, the Nightfort, the Shadow Tower and Eastwatch-by-the-Sea, which are granted last because each carries several baronies with it. A sworn brother without a post can <strong>Man an Empty Castle</strong> if he is worth one (500 prestige, or landed, or a knight, or a company of 200 men). When nothing is free, <strong>Ask for a Command</strong> has the Lord Commander relieve an AI keeper who is incapable, past seventy, or never swore his vows; a player's castle is never taken, and every other brother thinks a little less of you for it. A landed brother is playable, his officers are the Master-at-Arms, the Steward of the Keep, the Master Builder and the Recruiter, and he can <strong>Restore a Ruined Castle</strong> for 400 gold, once every five years, turning a ruin into a castle again.</p>
+<p>Life on the Wall has its own cards: <em>Mole's Town</em>, <em>The Fist of the First Men</em> (a hundred gold for a store of dragonglass, if you have none), and <em>The Deserter</em>. <strong>Petition the Realm</strong> asks the North to remember the Wall every three years: 120 gold and 25 prestige as a base, more in the cold, more if you took the black yourself, more if the realm has been feeding the Watch, and every northern ruler likes you a little less for asking.</p>
+
+<h3 id="lordcommander">The Lord Commander<a class="anc" href="#lordcommander" aria-label="Link">#</a></h3>
+<p>Election is AGOT's, and a player Lord Commander who dies passes play to a landed brother of his family, then any landed brother. Two decisions are his alone.</p>
+<p><strong>Call the Great Ranging</strong> (Winter Is Coming or the Long Night, 100 prestige, one at a time, a year between) sends two hundred brothers north. Send them for word and the odds are 40% <em>Word From the North</em> (the warning that unlocks dragonglass, plus prestige and learning), 35% <em>The Ranging Is Lost</em> (four catalyst points, the dark a year closer), 25% <em>They Came Back Quiet</em> (a courtier dead of cold, the dark a year closer, but the word arrives). Lead it yourself for 150 prestige and the odds become 55/30/15.</p>
+<p><strong>Send a Brother Recruiting</strong> rides a sworn brother of your court south. Every duke or greater in the Seven Kingdoms with three or more prisoners receives <em>A Black Brother at the Gate</em> in the months ahead and chooses: every unlanded man in the cells takes the black (the lord gains 100 piety and the Watch's gratitude), coin for the Wall, or nothing, which the Watch remembers.</p>
+
+<h3 id="aid">Helping the Watch from the south<a class="anc" href="#aid" aria-label="Link">#</a></h3>
+<p><strong>Send Men and Grain to the Wall</strong> is open to landed rulers who are northmen, kings, or who have heard the warning, once every five years: a cart of grain (100 gold; +25 Lord Commander opinion, +50 piety, +25 prestige), a season's stores (500; +50, +120, +60), or empty the vaults (1,500; +75, +250, +120). The gold goes straight to the Lord Commander, the realm's ledger goes up by one, two or three, and the Watch's petitions pay out more once the ledger reaches three and again at eight. Emptying the vaults is remembered if you later take the black yourself.</p>
+<p><strong>Send the Prisoners to the Wall</strong> empties your cells in one order. Every prisoner who can take the black goes, as a sworn brother and not as an offer he can refuse, and the decision names a reason for each one who cannot: women, children, free folk, the dead, independent rulers, house heads, the last of a house, and, under the default rule, anyone above county rank. The <em>Tier Ceiling</em> rule can lift that last one so a king can end his days a sworn brother. You gain 100 piety and the Lord Commander's gratitude.</p>
+
+<h3 id="guards">What a sworn brother cannot do<a class="anc" href="#guards" aria-label="Link">#</a></h3>
+<p>A sworn brother who inherits land outside the Wall renounces it (<em>The Watch Takes No Part</em>): the title goes to its de jure liege, or the next lawful hand, never to another brother or one of the dead. Since 1.1.1 this includes the Lord Commander, whose exemption was the bug that left the Watch holding a random county in the North. A sworn brother can only be regent for another sworn brother. Nobody declares independence from the Lord Commander. Ranging captains move camp the way the First Ranger does, and the Watch's own castles, companies and the First Ranger's title are never touched by the guard.</p>
+</section>
+
+<!-- PREPARATION -->
+<section id="preparation">
+<h2><span class="eyebrow">The window you get to spend</span>Preparing: dragonglass and red priests<a class="anc" href="#preparation" aria-label="Link to this section">#</a></h2>
+<p><strong>Mine the Dragonglass</strong> appears in Winter Is Coming or the Long Night for any ruler, landless included, who has a reason to know: he heard the warning, looked north, is a sworn brother, has greensight, or the Long Night is simply here. It costs 200 gold plus 200 for each tier above count (a quarter off if you studied the glass, never less than 150) and gives thirty years of <strong>Dragonglass Stores</strong>, which counts as a bane at the Last Hour and opens the dragonglass option in the melee. Six sites of dragonglass lore, Castle Black and the Fist of the First Men among them, can be visited on a journey.</p>
+<p><strong>Send for a Red Priest</strong> (150 gold) is for a landed adult who is an interloper in the struggle or a follower of R'hllor without a priest, and who has a reason to believe: the faith, Valyrian blood, the warning, greensight, or being Stannis or the lord of Dragonstone. A priest arrives in four to thirteen months with <em>The Priest at the Gate</em>. Stannis gets Melisandre if she is free; a Baratheon lord of Dragonstone gets her three times in four; everyone else has a one-in-ten chance of Melisandre or Thoros of Myr, weighted by prophecy deeds, and otherwise a Myrish priest is created for you. At the gate you can take the red (<em>Then your god is my god</em>, which makes an interloper involved in the Long Night and costs 200 piety and 100 prestige), keep your steel and keep the priest, or burn him. A red priest, once he is your court chaplain, is what names you, blesses you, and brings you back.</p>
+</section>
+
+<!-- RESURRECTION -->
+<section id="resurrection">
+<h2><span class="eyebrow">The last kiss</span>Coming back from the dead<a class="anc" href="#resurrection" aria-label="Link to this section">#</a></h2>
+<p class="lead">A red priest can spend himself on one person, once, ever. There are two roads back and both need the priest in place before you die.</p>
+
+<h3 id="res-before">What you must do beforehand<a class="anc" href="#res-before" aria-label="Link">#</a></h3>
+<ol>
+<li><strong>Have a red priest.</strong> He needs the Red Priest trait, to be an available adult, to have at least a first level of devotion or a learning of 10, and to have never given the last kiss. Get one with <em>Send for a Red Priest</em>, or appoint any R'hllor courtier as court chaplain and AGOT gives him the trait.</li>
+<li><strong>Take Ask for the Lord's Blessing.</strong> It is free, has no cooldown and no faith requirement. It is shown whenever a priest who can bless you is within reach: your court chaplain, a ranging company's camp priest, or any courtier or guest. You cannot take it while imprisoned or while another priest's words already stand over you. The priest can also offer it to you himself (<em>Offer the Lord's Blessing</em>); refusing him costs him piety. Either way <em>The Words Are Said</em>.</li>
+<li><strong>Keep him alive and unspent.</strong> If your priest dies, the bond is released and you can ask another. If he spends his one kiss on someone else, he is spent forever and you are free to ask again. Ask again after any change of priest.</li>
+<li><strong>Give the fire a reason.</strong> The priest's answer is not automatic (see below). Being Favored or Chosen, having even one prophecy mark, or fighting in Winter Is Coming or the Long Night makes him far likelier to pay; being his friend makes refusal rare.</li>
+</ol>
+
+<h3 id="res-battle">Falling in battle<a class="anc" href="#res-battle" aria-label="Link">#</a></h3>
+<p>With the blessing on you, the day you fall in a battle as a knight or a commander you are wounded instead of killed and carry <em>Fell in the Dark</em> (health −1.5, prowess −4). The next day you get <strong>You Do Not Get Up</strong>. Two days later your priest, wherever he is, gets <strong>Send For Me, Whatever Is Left</strong>: he pays (<em>Take it out of me, then. Not him.</em>) or refuses (<em>Not this one. R'hllor forgive me, not this one.</em>). His odds to pay are 70 against 30 to refuse as a base; being worth the fire adds 50 to paying and, if you are not, 60 to refusing; friendship adds 40 to paying and cuts refusal to a fifth. If he pays, a day later you get <strong>The Fire Gave You Back</strong>, and the <strong>Get up</strong> button is the resurrection. If he refuses, <strong>The Fire Kept What It Had</strong> arrives and its only option kills you. You have to survive the three days in between; if your wounds take you first he cannot pay.</p>
+<p>Whether your death lands in this pool at all is a weighted draw against the game's own battle deaths: base 40 as a knight and 8 as a commander, halved outside the cold, half again more in the Long Night and for a champion of R'hllor.</p>
+
+<h3 id="res-natural">A natural death<a class="anc" href="#res-natural" aria-label="Link">#</a></h3>
+<p>This road needs no blessing. If you die of age, illness or wounds outside battle, you get a second chance when all of these hold: your faith has the doctrine that lets it heal through the flames, a qualifying red priest sits as your court chaplain (or camp priest), you are under 65 and not infirm, and the fire wants you, meaning you are Favored, Chosen or Azor Ahai Reborn, hold at least one prophecy mark, or are taking part in the struggle during Winter Is Coming or the Long Night. Then <strong>The Last Kiss</strong> fires the next day. This route costs 150 piety as well.</p>
+
+<h3 id="res-cost">What it costs<a class="anc" href="#res-cost" aria-label="Link">#</a></h3>
+<p>You come back carrying <strong>Returned by R'hllor</strong>: +6 martial, +12 prowess, +3 stewardship, +1.5 health, twenty years of life expectancy, −30% stress gain, +25 same-faith opinion, +1 monthly piety, a lower chance of dying in combat, and −35% fertility. Every return adds 25 to the trait's track and takes something with it: the first leaves you scarred, the second takes an eye (or disfigures you), the third takes a leg, a face or a hand, and every one after that maims. At 50 the trait reads <em>Twice-Returned</em>, at 75 <em>Thrice-Returned</em>, at 100 <em>Kept by the Fire</em>; each rung adds dread and takes health and fertility, and the last two turn the world against you. About a third of the returned also get <em>Fire in the Blood</em> later, +3 prowess at the price of compassion. Coming back is itself a prophecy mark, so it can push you up a rung with the priest standing over you.</p>
+<p>The priest does not die. He takes <strong>Gave the Last Kiss</strong> for the rest of his life (−0.75 health, −0.25 fertility, +1 piety, +20 same-faith opinion), gains 300 piety, and is spent. Beric Dondarrion begins the game three times returned; Lady Stoneheart once.</p>
+
+<h3 id="res-limits">What it does not cover<a class="anc" href="#res-limits" aria-label="Link">#</a></h3>
+<ul>
+<li><strong>The Last Hour melee.</strong> Losing to the Night King there is not a death the fire can argue with; you are taken and raised as an Other. Losing the single-combat road (<em>End it</em> on the Field Afterwards) wounds you and can kill the man beside you, but does not kill you.</li>
+<li><strong>Duels, executions and scripted deaths</strong> never enter the second-chance pool.</li>
+<li><strong>Three years</strong> between returns, on either road.</li>
+<li>No priest, no return. There is no other way back in this mod.</li>
+</ul>
+<p>The AI uses all of this too. AI priests offer the blessing and AI lords ask for it within a world budget of five blessings a year, ten during the Long Night; a player asking his own priest is never refused by the budget and never spends it.</p>
+</section>
+
+<!-- ENDING -->
+<section id="ending">
+<h2><span class="eyebrow">How it ends</span>How the Long Night ends<a class="anc" href="#ending" aria-label="Link to this section">#</a></h2>
+<p class="lead">Since 1.1.0 the Night King is fought, not rolled.</p>
+
+<h3 id="reach">Reaching him<a class="anc" href="#reach" aria-label="Link">#</a></h3>
+<p>The <strong>War for the Dawn</strong> can only be declared once the dead have lost a war or the Night King has been cast down in the field, and only by an <strong>independent ruler</strong> holding a county or more, with a thousand men and a dynasty of some standing; vassals march to their liege's war, and anyone can join one already running. The Iron Throne declares it if it is held, and everyone else joins. It has no white peace, and losing it costs 500 prestige and gives him five years' respite. The decision reads: <em>The War for the Dawn cannot be declared while the Others savor a recent victory.</em></p>
+<p>Three roads lead to a scene. Win a battle he is standing in, as commander or knight, and the winning commander gets <strong>The Field Afterwards</strong> two days later. Win the War for the Dawn on score and the worthiest attacker, or the worthiest knight among them, gets <strong>The Last Hour</strong> with him on the field. Imprison him and his captor, or the worthiest of the captor's knights and courtiers, gets the same card with him in chains. Worthiness is the prophecy's arithmetic plus prowess, minus wounds, and a man carrying a bane outranks everyone who is not.</p>
+
+<h3 id="field">The Field Afterwards<a class="anc" href="#field" aria-label="Link">#</a></h3>
+<p>The card reads differently depending on what you brought: Lightbringer, Dawn, a dragon overhead, Valyrian steel, dragonglass, a dragon the dead took from you, nothing at all. The choices:</p>
+<ul>
+<li><strong>End it.</strong> A single duel against him. Shown greyed if you carry nothing that can hurt him. Winning is a roll weighted by what you carry (Lightbringer +60, Dawn +55, Valyrian steel +35, dragonglass +20), what you are (Chosen +30, Azor Ahai Reborn +25, Favored +15, Returned +10, brave +10), what you have survived, and what is wrong with you (wounds and maiming count against, and carrying only dragonglass makes falling short likelier). Win and he is destroyed; fall short and the knight beside you takes the blow.</li>
+<li><strong>We do not go to him alone. Form the line.</strong> Drafts your companions and opens the Last Hour melee (players only).</li>
+<li><strong>I have already seen how this goes.</strong> The greenseer's option, for a champion with greensight or dragon dreams who also carries a bane: better odds than the blind duel, not a win.</li>
+<li><strong>Go out there anyway. Somebody has to be first.</strong> For a man carrying nothing that can hurt him. He will not kill the Night King today; he walks out, the best knight beside him may die for it, and he is remembered as <em>the Undaunted</em>.</li>
+<li><strong>Sound the retreat. Not today, and not with this.</strong> Live to try again, at 200 prestige.</li>
+</ul>
+
+<h3 id="lasthour">The Last Hour melee<a class="anc" href="#lasthour" aria-label="Link">#</a></h3>
+<p>A Trial-of-Seven melee in the snow, on the ground the battle was fought on. <strong>Your line</strong> is six at most, drafted in three passes from everyone at your location, your knights and your commanders: first the man the story already chose and your kin, friends and lovers; then everyone carrying steel that works; then the rest by relevance (prowess, a bane, a champion's trait, sworn brothers, knights, the brave) with never more than two of your own house. <strong>His line</strong> is him, the Walkers beside him (one on Weak, two on Standard, three on Strong and Insane), and any champion he has taken before, who leads it. Anyone alive, adult and not incapable can stand; nobody needs to be a knight, a lord or a believer. No dragon may join either line.</p>
+<div class="tbl"><table>
+<tr><th>What decides it</th><th>Effect</th></tr>
+<tr><td>The Cold Between</td><td>Every living fighter loses prowess the moment it opens, banded by what he has: −4 under 10, −7 from 10 to 17, −11 from 18 to 25, −15 from 26 to 33, −19 at 34 and up. Skill counts for about half against a thing that has not been a man in eight thousand years.</td></tr>
+<tr><td>Lightbringer</td><td>+20 prowess, the strongest blade in the fight, and its own option on the approach.</td></tr>
+<tr><td>Valyrian steel</td><td>+14 prowess and its own option.</td></tr>
+<tr><td>Dragonglass</td><td>+8 prowess and its own option. Harder, not impossible.</td></tr>
+<tr><td>Castle steel</td><td>Nothing. It shatters, and the record remembers that it did.</td></tr>
+<tr><td>Named by the fire</td><td>Chosen and Azor Ahai Reborn +6; Favored and Returned +3. Their own option too.</td></tr>
+<tr><td>You went first</td><td>Taking any bane option on the approach card adds +4 prowess and +2 advantage.</td></tr>
+<tr><td>Yielding</td><td>Never. A White Walker does not accept a yield from the living.</td></tr>
+</table></div>
+<p>Worked example from the files: a swordsman of 30 prowess with castle steel fights at 15 against the Night King's 30; with Valyrian steel at 29; with Lightbringer at 35. Companions can be killed and can run.</p>
+<p><strong>Win</strong>, and it is <em>The Dawn</em>: he dies at your hand, the fallen Walkers are counted, everyone still standing gets the memory and 2,000 prestige. <strong>Lose</strong>, and it is <em>What the Cold Keeps</em>: every surviving companion is killed and you are raised as an Other before the card even opens. You play on as your heir, and a later champion may find you leading his line.</p>
+
+<h3 id="bane">Only a bane destroys him<a class="anc" href="#bane" aria-label="Link">#</a></h3>
+<p>Four things: <strong>dragonglass</strong> (mined stores, an armed knight, or having studied the glass), <strong>Valyrian steel</strong> (a sword, equipped), <strong>Lightbringer</strong> (forged or consecrated), or <strong>dragonfire</strong> (a living dragon of yours over the field, which beyond an intact Wall means one you forced across). A won melee with ordinary steel, a won war on score with nothing in hand, or a stray battle death casts him down: the crown passes to the holder of his hegemony, his heir, or any living Other, the new Night King inherits every bonus, and the Long Night goes on. Casting him down does still count as beating the dead, so it opens the War for the Dawn. Under the <em>War for the Dawn</em> resolution rule even a bane is not enough until that war is won.</p>
+<p>When a bane lands, <strong>whoever landed it is Azor Ahai Reborn</strong>, marks or no marks, named or not. If a dragon did it, its rider takes the deed. An unnamed nobody can end the Long Night and prove every red priest in the world wrong.</p>
+
+<h3 id="reveal">The reveal<a class="anc" href="#reveal" aria-label="Link">#</a></h3>
+<p>Six to ten days after the kill, every player gets <em>The Dawn</em>, and the text is the only place the hidden coin is ever read. If the prophecy was true and the slayer was named: it was prophecy, and it was always going to be. If it was false and he was named: the faith will remember this as the night it was proved right, and it was not. If it was true and nobody named him: the flames never lied, and nobody ever learned to read them. If it was false and nobody named him: he was just a man, and that will have to be enough. If a wild dragon did it and no one can be named: it ended, which is the only part anyone can prove. The trait, the modifier and the nickname do not depend on the coin.</p>
+<p>The slayer is called <em>the Dawnbringer</em> if he forged Lightbringer and killed with it, <em>the Prince That Was Promised</em> if he was named or has the blood of the dragon, and <em>the Dawn</em> otherwise, with 10,000 dynasty prestige, 2,000 prestige and 1,000 piety. A month later <em>The Men Who Were There</em> names the three who stood in the front rank, from the melee's real line: each is knighted if he was not already, gains 5,000 dynasty prestige and the memory. If you went alone, the record says so. At four months <em>The Reckoning</em> asks whether you write it down.</p>
+
+<h3 id="defeat">The Long Defeat<a class="anc" href="#defeat" aria-label="Link">#</a></h3>
+<p>If a hundred years pass in the Long Night with the Night King alive and holding sixty counties or more, the dark has won. Every player gets <em>The Long Defeat</em>, he takes <strong>The Dark Won</strong>, and the struggle ends. After any won battle against the dead, <em>Someone You Knew</em> can show you a face on the other side.</p>
+</section>
+
+<!-- WALKER -->
+<section id="walker">
+<h2><span class="eyebrow">Before the Long Night</span>A Walker on the snowfield<a class="anc" href="#walker" aria-label="Link to this section">#</a></h2>
+<p>During Winter Is Coming, before the dead have taken a single county, a player who is a sworn brother, or standing at the Wall or beyond it, or whose capital is in the North, has a 15% chance each pulse (with four years between) of <em>Something on the Ridge</em> (a sighting, seven times in ten) or <em>The Snow Stands Up</em> (three in ten): one White Walker of prowess 16 against you and a party of one to five, real men first and created rangers to fill.</p>
+<p>Win, and <em>It Came Apart</em>: 500 prestige, the memory <em>slew one of the Others</em>, and at three kills the modifier <strong>Slayer of White Walkers</strong> (+10 dread, +0.3 monthly prestige). Lose, and it is 40% <em>You Do Not Stop Running</em> (your companions die, you are wounded), 45% <em>The Cold Closes</em> (everyone dies, you are taken by the dead), 15% <em>It Lets One Live</em>, the Sam Tarly outcome: the weakest real companion is spared and everyone else, you included, is not.</p>
+</section>
+
+<!-- PROPHECY -->
+<section id="prophecy">
+<h2><span class="eyebrow">The prophecy</span>Azor Ahai and the prophecy<a class="anc" href="#prophecy" aria-label="Link to this section">#</a></h2>
+<p class="lead">Nobody is born Azor Ahai. You accumulate marks, someone qualified says the name out loud, and then you have to go and do it. Every character in the world is measured the same way, continuously, and the AI competes for the naming as hard as you do.</p>
+
+<h3 id="marks">The nine marks<a class="anc" href="#marks" aria-label="Link">#</a></h3>
+<div class="tbl wrapfirst"><table>
+<tr><th>Mark</th><th>How it is decided</th><th>When</th></tr>
+<tr><td>Dragon dreams</td><td>AGOT marks children with it at birth. The mod reads it.</td><td>Birth</td></tr>
+<tr><td>Greensight</td><td>Likewise, and a greenseer can name himself.</td><td>Birth</td></tr>
+<tr><td>Born amid salt and smoke</td><td>Born in a coastal county, while living dragons exist in the world or in a province winter reaches. Common in Aegon's century, rare after the dragons die.</td><td>Birth</td></tr>
+<tr><td>Born beneath a bleeding star</td><td>Born during Winter Is Coming or the Long Night.</td><td>Birth</td></tr>
+<tr><td>Hidden blood</td><td>A bastard of Valyrian descent, not a known dragonseed, whose father held a duchy or better.</td><td>Birth</td></tr>
+<tr><td>Valyrian steel</td><td>A Valyrian sword <strong>equipped</strong>, not in the vault. Lightbringer counts.</td><td>Checked live</td></tr>
+<tr><td>Woke dragons out of stone</td><td>A dragon bonded to you.</td><td>Checked live</td></tr>
+<tr><td>Walked out of a fight with the dead</td><td>Survive <em>Something Came Out of the Trees</em> yourself, or have your red priest meet them with fire.</td><td>Earned</td></tr>
+<tr><td>Died and came back</td><td>Carry Returned by R'hllor.</td><td>Earned</td></tr>
+</table></div>
+<p><strong>Read the Signs</strong> costs nothing, once a year, and lists the marks on your life. Lose the sword or the dragon and the mark goes with it; a Favored man who drops below the line gets <em>A Faltering Flame</em> and either admits it or keeps the name anyway, at the cost of piety and the temple's patience.</p>
+
+<h3 id="naming">Being named<a class="anc" href="#naming" aria-label="Link">#</a></h3>
+<p>Marks alone do nothing. A <strong>red priest</strong> (your court chaplain with the trait or the faith; a camp priest for the landless), a <strong>witch</strong> or a <strong>greenseer</strong> among your courtiers and guests, or <strong>your own greensight</strong> has to say it. Two marks make you <strong>Favored</strong> (<em>A Sword Drawn From Fire</em>: martial +6, prowess +12, stewardship +3, health +2.5, +25 same-faith opinion, +1 piety a month) and four make you <strong>Chosen</strong> (<em>The Prince That Was Promised</em>: martial +10, prowess +20, stewardship +6, health +5, +40 same-faith opinion, +2.25 piety a month), each with a twenty-year opinion modifier among the faithful. Under <em>The Flames Are Loud</em> it is one and three; under <em>The Citadel's Reading</em> three and six; <em>Nobody Is Ever Named</em> switches the ladder off. You can accept, accept quietly, or refuse for twenty-five years. Many can be Favored at once, and rival Chosen meet: <em>An Envoy From the Other One</em> can end in friendship and an alliance, a snub, or a challenge.</p>
+<p>You do not have to be a king; a hedge knight can be named over the head of the man who feeds him. Beneath the naming runs a quieter scoring of <em>destiny</em>: canon and semi-canon characters, Lightbringer, Valyrian steel, the blood of the dragon, dragon dreams and greensight, and a certain kind of hard man in the Long Night all raise it, while contentment, arrogance, cynicism and cowardice lower it. It decides which priests bless whom, and who gets the Last Hour when several could.</p>
+
+<h3 id="lightbringer">Lightbringer<a class="anc" href="#lightbringer" aria-label="Link">#</a></h3>
+<p>Two roads, one sword; completing either closes the other for the whole world.</p>
+<p><strong>Forge Lightbringer</strong> is open to any champion of R'hllor (Favored, Chosen, Azor Ahai Reborn or Returned) in Winter Is Coming or the Long Night, with a hall of his own and a red priest or a court smith at hand, for 300 gold plus 200 per tier above count. The first forging (<em>Thirty Days and Thirty Nights</em>) fails in the water, as the tale says. The second (<em>Fifty Days and Fifty Nights</em>) fails in the heart of a lion, a shadowcat or a warhorse. The third (<em>A Hundred Days</em>) asks: your spouse or someone who loves you dies on the anvil for the full sword (+30 dread, 300 piety, 200 prestige, your close family will never forgive it); a zealous volunteer of your faith gives a lesser sword; a man who has already died once can put it through his own chest for the full sword and a hole that never heals; or you put the hammer down and keep the forge for another day.</p>
+<p><strong>Consecrate the Blade</strong> (150 gold) stamps a Valyrian sword you already carry as Lightbringer at the same price, or, if the sword is Dawn and its bearer was born beneath the bleeding star, at no life at all. The blade keeps its own name and history.</p>
+<div class="tbl"><table>
+<tr><th>Lightbringer</th><th>Effects</th></tr>
+<tr><td>Full</td><td>+12 prowess, +3 advantage, +2 piety a month, +20 same-faith and +10 general opinion, +10 dread, +10% dynasty prestige, +15% martial experience</td></tr>
+<tr><td>Lesser</td><td>+7 prowess, +2 advantage, +1 piety a month, +12 same-faith and +5 general opinion, +10% martial experience</td></tr>
+<tr><td>Consecrated blade</td><td>Its own stats, plus +2 prowess, +1 advantage, +1.5 piety a month, +15 same-faith and +5 general opinion, +8 dread</td></tr>
+</table></div>
+<p>Whoever carries it bears a bane at the Last Hour, gets the strongest bonus in the melee, and, if he forged it and kills with it, is called <em>the Dawnbringer</em>.</p>
+
+<h3 id="red">Taking the red<a class="anc" href="#red" aria-label="Link">#</a></h3>
+<p>A lord of another faith with a red priest in his hall, or who has been named, or who has heard the warning, has a one-in-five chance once in his life of <em>A Colder Kind of Doubt</em>, which leads to <em>The Nightfire</em> and <em>Take the Red</em>. Converting costs 200 piety and 100 prestige and twenty years of your vassals and clergy thinking less of you. The other door is at the priest's arrival: <em>Then your god is my god</em>, which also swears you to the Dawn.</p>
+
+<h3 id="coin">Was it ever true?<a class="anc" href="#coin" aria-label="Link">#</a></h3>
+<p>Under the default rule a coin is flipped at game start and hidden forever; the other two rules fix it. It is read exactly once, at the reveal, and it changes nothing but what the world believes it saw. You can do everything right, be named by every priest in Westeros, and find out you were never him.</p>
+</section>
+
+<!-- AFTER -->
+<section id="after">
+<h2><span class="eyebrow">After</span>After the Dawn<a class="anc" href="#after" aria-label="Link to this section">#</a></h2>
+<p>When the Night King is destroyed, the land the dead held is <strong>scoured</strong>: the seat of a kingdom becomes a renowned great ruin, the seat of a duchy a sizeable ruin, everything else wilderness. Only counties the mod scoured are ever touched; Harrenhal and the old ruins are left alone. Twenty, thirty or forty-five years later each scoured ruin that nobody has reclaimed becomes wilderness too, so AGOT's own settlement decision can take it. Every player gets <em>A Dream of Spring</em>.</p>
+<p><strong>The Question of the North</strong> goes to the Iron Throne, or an independent King in the North, or the greatest independent crown left standing, within six months: <em>The Watch shall rise again</em> refounds the Night's Watch under a new Lord Commander with the Wall's castles and 500 gold (or reinforces it, if it held), and the free folk are never welcomed south; <em>Let the free folk come south</em> renames the Wall's kingdom <strong>the Giftlands</strong> and settles it clan by clan, up to two clans a year, as vassals of the crown, and the Watch never rises again. The choice is permanent, even under the Cycle.</p>
+<p>Lords who fled south as refugees of the Dawn can <strong>Return North</strong>: a settler caravan with 1,000 provisions and 150 gold, staged up the Kingsroad through King's Landing, the Inn at the Crossroads and Moat Cailin, to their lost seat if it is empty or the nearest empty land. Rebuilding the ancestral seat is worth 200 prestige and <strong>Restored the Ancestral Seat</strong> for life. A refugee with a dragon can instead <strong>Return With Fire</strong> and settle the question of who holds his hall; there are four ways that goes and only one of them is quiet. The crown can <strong>Sell Colonization Rights to Essos</strong>, 150 gold a coastal county to a Braavosi, Pentoshi, Myrish, Tyroshi, Lyseni or Volantene lord, once every eighteen months, and every northern vassal remembers it for ten years.</p>
+<p>With <em>Iron Throne Reformation</em> on, every independent ruler in the Seven Kingdoms is asked <em>The Future of the Seven Kingdoms</em>: swear fealty to the Iron Throne, or remain independent.</p>
+<p>Under <strong>The Cycle</strong>, the Dawn lasts five years and flows back into the Long Summer with the ledger wiped, the Wall raised again and Castle Black repaired, a new summer target rolled, and one thing kept: a Night's Queen survives the cleanup to seed the next wave. Waves two and three carry <strong>The Dead Remember</strong> (+2 levy size, +3 advantage, +10% toughness), four and five <strong>Centuries of Winter</strong> (+4, +6, +20% toughness, +10% damage, four knights), six and up <strong>The Last Long Night</strong> (+7, +10, +35% toughness, +25% damage, eight knights, +25% knight effectiveness). Everyone who stood in the front rank at the last Dawn, and Azor Ahai Reborn, carries <strong>Saw the First Dawn</strong> when the next night opens, and gets <em>You Have Seen This Before</em>.</p>
+</section>
+
+<!-- RULES -->
+<section id="rules">
+<h2><span class="eyebrow">Your apocalypse, your rules</span>Game rules<a class="anc" href="#rules" aria-label="Link to this section">#</a></h2>
+<p>Thirteen rules, all under the AGOT heading, all baked in when a save is created. Defaults are marked.</p>
+<div class="tbl wrapfirst"><table>
+<tr><th>Rule</th><th>Options</th></tr>
+<tr><td>The Long Night Chance</td><td><span class="d">default</span> Certain (guaranteed) · Near-Certain (75%) · Even Odds (50%) · Remote Odds (25%) · No Chance. One roll at the start; a "no" world never accrues summer points.</td></tr>
+<tr><td>The Long Night Moment</td><td><span class="d">default</span> A Random Summer (never sooner than 25 years, usually 90 to 130, sometimes far later) · Immediately · In Fifty Years · In One-Hundred Years · In One Hundred-Fifty Years · Full Random (30 years to over two centuries, no cap) · Historical (around 300 AC; a 255 AC start opens in Winter Is Coming) · Manual (only the <em>Trigger the Long Night</em> decision starts it; the tracker stays empty by design).</td></tr>
+<tr><td>The Long Night Strength</td><td>Weak · <span class="d">default</span> Standard · Strong · Insane. See <a href="#strength">the strength table</a>.</td></tr>
+<tr><td>The Long Night Resolution</td><td><span class="d">default</span> Death (the Long Night ends the moment the Night King is destroyed) · War for the Dawn (killing him is not enough; another Other takes the crown until the war is won).</td></tr>
+<tr><td>The Long Night War Tier</td><td>Duchy (slow grind) · <span class="d">default</span> March (recommended; Winterfell only once the North has gone quiet) · Empire (rapid onslaught).</td></tr>
+<tr><td>The Long Night Ice Dragon</td><td><span class="d">default</span> They Raise Their Kills · One Simply Appears · Off.</td></tr>
+<tr><td>The Long Night Iron Throne Reformation</td><td><span class="d">default</span> On (kingdom-tier rulers are offered fealty to the Iron Throne after the Dawn) · Off.</td></tr>
+<tr><td>The Long Night Recurrence</td><td><span class="d">default</span> Once · The Cycle (every ninety to a hundred and thirty years, heavier each time).</td></tr>
+<tr><td>Send the Prisoners Tier Ceiling</td><td><span class="d">default</span> Counts and Below · Any Rank (the King of the Iron Throne can end his days a sworn brother).</td></tr>
+<tr><td>Azor Ahai — Was There Ever a Prince?</td><td><span class="d">default</span> Let the Flames Decide (a hidden coin) · There Is a Prince · There Is No Prince.</td></tr>
+<tr><td>Azor Ahai — Naming Claimants</td><td><span class="d">default</span> As the Books Have It (two and four marks) · The Flames Are Loud (one and three) · The Citadel's Reading (three and six) · Nobody Is Ever Named.</td></tr>
+<tr><td>Azor Ahai — Who May Be Named</td><td><span class="d">default</span> Anyone at All · Players Only · One at a Time (at most one living Chosen; the seat reopens when they stop breathing).</td></tr>
+<tr><td>The Ranging Companies</td><td><span class="d">default</span> The Watch Recruits (never more than five; three companies held for players) · Leave Them for Players · All Eight Ride.</td></tr>
+</table></div>
+</section>
+
+<!-- DECISIONS -->
+<section id="decisions">
+<h2><span class="eyebrow">Reference</span>Every decision<a class="anc" href="#decisions" aria-label="Link to this section">#</a></h2>
+<p>Thirty-three decisions, grouped. Five of them change their title to <em>Send a Raven: …</em> while you are commanding an army, so you can take them from the field.</p>
+<div class="tbl wrapfirst"><table>
+<tr><th>Decision</th><th>Who sees it</th><th>Cost and limits</th><th>What it does</th></tr>
+<tr><td colspan="4"><strong>Preparation and the prophecy</strong></td></tr>
+<tr><td>Mine the Dragonglass</td><td>Any ruler, landless included, in Winter Is Coming or the Long Night who has a reason to know</td><td>200 gold +200 per tier above count; never less than 150</td><td>Thirty years of Dragonglass Stores: a bane, and the dragonglass option at the Last Hour</td></tr>
+<tr><td>Send for a Red Priest</td><td>Landed adults with a reason to believe, once</td><td>150 gold; 4 to 13 months</td><td>A red priest arrives; Stannis and Dragonstone may get Melisandre</td></tr>
+<tr><td>Ask for the Lord's Blessing</td><td>Any adult with a priest who can bless within reach</td><td>Free; not while imprisoned or already blessed</td><td>The priest's words over you; see <a href="#resurrection">resurrection</a></td></tr>
+<tr><td>Read the Signs</td><td>Anyone with at least one mark, while naming is on</td><td>Free; once a year</td><td>Lists the marks on your life</td></tr>
+<tr><td>Forge Lightbringer</td><td>Champions of R'hllor in the cold, with a forge</td><td>300 gold +200 per tier; three forgings</td><td>The red sword, at the price in the tale</td></tr>
+<tr><td>Consecrate the Blade</td><td>Champions carrying an equipped Valyrian sword, with a priest</td><td>150 gold; the same price, or Dawn under the star</td><td>Your own blade becomes Lightbringer</td></tr>
+<tr><td colspan="4"><strong>The Night's Watch</strong></td></tr>
+<tr><td>Take the Black</td><td>Adult men in the Seven Kingdoms while a company is free</td><td>Every title, marriage, claim, debt and dragon</td><td>A ranging company of your own</td></tr>
+<tr><td>Man an Empty Castle</td><td>Sworn brothers without a post</td><td>Worth a castle: 500 prestige, landed, a knight, or 200 men</td><td>One of the eighteen keeperships</td></tr>
+<tr><td>Ask for a Command</td><td>Sworn brothers and captains when no castle is free</td><td>Worth a castle</td><td>An incapable, elderly or unsworn AI keeper is relieved for you</td></tr>
+<tr><td>Ask for a Castle</td><td>Ranging captains sworn in full</td><td>A free or relievable castle</td><td>Trade the company for a keepership</td></tr>
+<tr><td>Restore a Ruined Castle</td><td>Landed sworn brothers holding a ruin</td><td>400 gold; once every five years</td><td>A ruin becomes a castle; +150 prestige</td></tr>
+<tr><td>March the Ranging</td><td>Ranging captains</td><td>7 days between</td><td>Camp to Craster's Keep, Whitetree or Hardhome</td></tr>
+<tr><td>Return to the Wall</td><td>Captains with the camp beyond the Wall</td><td>—</td><td>Camp home to Castle Black</td></tr>
+<tr><td>Petition the Realm</td><td>Landed brothers and captains</td><td>Once every three years</td><td>120 gold and 25 prestige and up; the North likes you less</td></tr>
+<tr><td>Call the Great Ranging</td><td>The Lord Commander, in the cold</td><td>100 prestige; one out at a time</td><td>Word from the north, or a lost ranging, or a quiet one</td></tr>
+<tr><td>Send a Brother Recruiting</td><td>The Lord Commander</td><td>Once a year to once every four</td><td>Every great lord with a full dungeon is asked</td></tr>
+<tr><td colspan="4"><strong>Helping the Watch</strong></td></tr>
+<tr><td>Send Men and Grain to the Wall</td><td>Landed northmen, kings, and anyone who heard the warning</td><td>100, 500 or 1,500 gold; once every five years</td><td>Gold to the Lord Commander, piety and prestige to you, and a ledger the Watch keeps</td></tr>
+<tr><td>Send the Prisoners to the Wall</td><td>Any player holding prisoners, seated in the Seven Kingdoms</td><td>—</td><td>Every prisoner who can take the black does; +100 piety</td></tr>
+<tr><td colspan="4"><strong>The war and the aftermath</strong></td></tr>
+<tr><td>Call the War for the Dawn</td><td>Independent rulers once the dead have lost a war</td><td>1,000 men, a dynasty of standing, not of the Cold Gods</td><td>Declares or joins the War for the Dawn</td></tr>
+<tr><td>Trigger the Long Night</td><td>Under the Manual rule (or debug)</td><td>—</td><td>The invasion begins now</td></tr>
+<tr><td>Flee South</td><td>A landed lord the dark is coming for, not the Iron Throne</td><td>Your lands</td><td>A landless refugee of the Dawn, alive to fight another day</td></tr>
+<tr><td>Return North</td><td>Refugees of the Dawn after the Long Night</td><td>Once every six months</td><td>A settler caravan up the Kingsroad to your lost seat</td></tr>
+<tr><td>Return With Fire</td><td>Refugees with a dragon whose hall stands in another's hands</td><td>—</td><td>Fly home and settle it</td></tr>
+<tr><td>Sell Colonization Rights to Essos</td><td>The aftermath crown</td><td>Once every eighteen months</td><td>150 gold for a coastal county; the North remembers</td></tr>
+<tr><td>Restore the Night's Watch</td><td>AGOT's decision; hidden once the Question of the North has been posed</td><td>500 gold, 250 prestige</td><td>AGOT's refounding, before a Long Night has happened</td></tr>
+</table></div>
+<p>Three more never appear on their own: <em>The Long Night Ends</em> exists because a struggle needs an ending decision and is always hidden; the old <em>Restore the Night's Watch</em> from The Long Night+ is retired in favour of the Question of the North; and there are four behind <a href="#door">the hidden door</a>.</p>
+</section>
+
+<!-- TRAITS -->
+<section id="traits">
+<h2><span class="eyebrow">Reference</span>Traits and artifacts<a class="anc" href="#traits" aria-label="Link to this section">#</a></h2>
+<div class="tbl wrapfirst"><table>
+<tr><th>Trait</th><th>Who</th><th>Effects</th></tr>
+<tr><td>Other</td><td>The White Walkers</td><td>+18 prowess, +50 health, immortal, +50 dread, +2 levy size, twelve knights, no schemes, cannot marry or have children, −200 general opinion, +1000 among their own; a crime under faiths that shun witchcraft</td></tr>
+<tr><td>Great Other</td><td>The Night King</td><td>+30 prowess, +100 dread, +25 monthly income, +50% supply, +50 county opinion, +7 domain, immortal, leads armies</td></tr>
+<tr><td>Wight</td><td>The raised dead</td><td>−5 prowess, +50 health, immortal, incapacitated, +25 dread, −150 general opinion, cannot marry, have children or inherit</td></tr>
+<tr><td>Favored</td><td>Two marks and a namer</td><td>+6 martial, +12 prowess, +3 stewardship, +2.5 health, +20 years, −30% stress, +25 same-faith opinion, +1 piety a month, lower chance of dying in combat</td></tr>
+<tr><td>Chosen</td><td>Four marks and a namer; replaces Favored</td><td>+10 martial, +20 prowess, +6 stewardship, +5 health, +30 years, +40 same-faith opinion, +2.25 piety a month</td></tr>
+<tr><td>Azor Ahai Reborn</td><td>Whoever destroys the Night King</td><td>+12 martial, +24 prowess, +8 stewardship, +5 health, +30 years, +50 same-faith and +20 general opinion, +3 piety a month, +15 dread, enemy schemes −30</td></tr>
+<tr><td>Returned by R'hllor</td><td>Brought back by the fire</td><td>+6 martial, +12 prowess, +3 stewardship, +1.5 health, −35% fertility, +1 piety a month; a track that climbs with every return and takes more each time (<a href="#res-cost">see above</a>)</td></tr>
+<tr><td>Risen</td><td>Undead dragons</td><td>Immortal, +20 dread, −20 general opinion</td></tr>
+</table></div>
+<p>The Night King carries the <strong>Crystal Sword</strong> (Blade of the Long Night: +9 prowess, +5 prestige a month, −50 opinion) and the <strong>Crown of the Others</strong>, a crown of ice forged in the Land of Always Winter. <strong>Lightbringer</strong> is above. Character modifiers worth knowing: <strong>Dragonglass Stores</strong> (thirty years), <strong>Faced the Dead</strong> (ten years of dread and prestige for surviving the wandering dead), <strong>Slayer of White Walkers</strong>, <strong>Fled South</strong>, <strong>Black Cloaks on the Walls</strong>, <strong>Saw the First Dawn</strong>, <strong>The Watch Knows</strong> (the Lord Commander after a ranging returns with proof), and the wight government's title ladder: Risen Thrall, Wight Lord, Cold Lord, Winter King, Winter Emperor.</p>
+</section>
+
+<!-- RECORD -->
+<section id="record">
+<h2><span class="eyebrow">Memories</span>The record<a class="anc" href="#record" aria-label="Link to this section">#</a></h2>
+<p>The character page remembers: <em>took the black</em>, <em>alive when the Wall fell</em>, <em>studied the dragonglass</em>, <em>slew one of the Others</em>, <em>spared by one of the Others</em>, <em>stood against the Night King</em>, <em>saved by</em> the kin or friend who took the blow, <em>steel failed against the Other</em>, <em>taken by the Night King</em>, <em>taken by the Night King's spear</em>, <em>rose again as a wight</em>, <em>brought back by the fire</em> and <em>gave the last kiss</em>, <em>forged Lightbringer</em> and <em>paid the price of Lightbringer</em>, <em>ended the Long Night</em>, <em>stood at the dawn</em>, <em>lived to see the dawn</em>, and <em>saw the dark win</em>. Death reasons include <em>fell in the last hour of the Long Night</em>, <em>was claimed by the cold at last</em>, and <em>taken by the dead</em>. A Walker or Night King who loses a duel shatters into ice.</p>
+</section>
+
+<!-- COMPAT -->
+<section id="compat">
+<h2><span class="eyebrow">Full disclosure</span>Compatibility and what it overrides<a class="anc" href="#compat" aria-label="Link to this section">#</a></h2>
+<p>Compatible with AGOT+, Valyrian Steel, Submod Core, Nobility of Westeros, Essos Expanded, Legacy of Valyria, AGOT Additional Models and Special Buildings, Seasons of Ice and Fire, and anything else that names its own rulers. Supernatural needs the compatibility patch, last in the list. Essos Expanded and Legacy of Valyria are untested and unsupported; keep them above this mod. Legacy of Valyria ships its own versions of three rules this mod overrides, including the one that is the whole entry point to resurrection, so this mod must load after it.</p>
+<p>Every override is one AGOT or vanilla definition, copied in full, with one documented change, re-checked against the current AGOT build every release:</p>
+<ul>
+<li><strong>Six scripted rules:</strong> alliances (nothing living keeps an alliance with the dead), who may be played (a raised player hands off to an heir; a landed sworn brother is playable), the second chance at death (the last kiss), who may be a guest (not the Others), who may be regent (a sworn brother only for a sworn brother), who may move a camp (ranging captains, and no dragon beyond an intact Wall).</li>
+<li><strong>Eight scripted triggers:</strong> knights, court positions, councillors and commanders (the living do not serve the dead; the Night King leads his own host), capture (he is imprisoned rather than slain in a siege), regency for personal reasons, who may become a landless adventurer (never the dead), and the check thirteen AGOT casus belli share (the dead do not declare war on the dead).</li>
+<li><strong>Three scripted effects:</strong> how rulers are titled (wights, captains and the wilderness get their names; every other mod's titles pass straight through), what happens when a dragon dies in a dragon duel (the dead may claim it), and the melee's scene.</li>
+<li><strong>One decision, one casus belli, three files:</strong> Restore the Night's Watch (hidden once the Question has been asked), the independence war (nobody secedes from the Watch), the ranger-camp domicile (opened to eight companies), the peasant faction (never against a wight), and the portrait animations (five wight poses).</li>
+</ul>
+<p>Languages: English is complete; the Russian translation covers most of the mod, with the newest events (the Last Hour, the encounter, the spear, consecration, travel danger and a few others) still in English. Large playsets are worth one look at <code>logs/database_conflicts.log</code>.</p>
+</section>
+
+<!-- DOOR -->
+<section id="door">
+<h2><span class="eyebrow">For the ones who read this far</span>The hidden door<a class="anc" href="#door" aria-label="Link to this section">#</a></h2>
+<p>There is a door in this mod. It has no handle on the outside, it opens for one kind of lord, it is checked exactly once, at the moment your character first draws breath, and nobody has ever stumbled into it by accident. Four decisions sit behind it. They do not appear greyed out with their requirements listed; if you are not the one it is waiting for, they do not exist.</p>
+<details class="secret">
+<summary>The riddle of the household ledger</summary>
+<div class="inner">
+<p>Everything you need is below. Nothing below is a lie.</p>
+<div class="riddle">
+Found your own house, and answer to no one above you.<br>
+Take the sin the septons put in the flesh,<br>
+and the virtue they put in the work. <em>Both.</em><br>
+They sit oddly together. That is rather the point.<br>
+Then set your sword-arm at <strong>three fives</strong>,<br>
+not one more, and not one less.
+</div>
+<p>Do all of it in the ruler designer, before the first snow. The door is checked once and never again, so a build that drifts into shape later will find nothing waiting.</p>
+<p><em>What's behind it: a household to put in order, a house to write down, a physician worth the name, and a ship that came back from somewhere ships do not come back from. That last one is not small.</em></p>
+</div>
+</details>
+<p class="srcnote">No console, no save editing, no downloads. Just a character sheet built a particular way.</p>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+<h2><span class="eyebrow">Common questions</span>Common questions<a class="anc" href="#faq" aria-label="Link to this section">#</a></h2>
+<div class="faq">
+<details><summary>My priest refused to bring me back. Why?</summary><p>He rolls. The base is 70 to pay against 30 to refuse; if you are not worth the fire (no champion trait, no mark, not fighting in the cold) refusal gets +60, and if you are his friend refusal is cut to a fifth. Make him your friend, earn a mark, and ask again with a fresh priest next time. If the card said there was only ever one of it to give, your priest had already spent his kiss on someone else.</p></details>
+<details><summary>I have a red priest but the blessing decision does not show.</summary><p>Check that he is an adult, available (not travelling, not imprisoned), has a first level of devotion or a learning of 10, and has never given the last kiss. Then check that nobody else's blessing already stands over you; the decision tells you if it does.</p></details>
+<details><summary>I died and nothing happened.</summary><p>Only battle deaths as a knight or commander, and natural deaths with a red priest as your chaplain, can be argued with. Duels, executions, the Last Hour melee and scripted deaths never can. Battle deaths are also a weighted draw against the game's own, so the blessing raises your odds rather than guaranteeing the card.</p></details>
+<details><summary>The Night King took the North and stopped.</summary><p>The North stage waits for the North to be finished, and a northern county held by a vassal of a southern king is not something he can target. The stage times out after twenty years and he moves on. He also never opens a new war while fighting one; before 1.1.1 his own peasant revolts counted, which is fixed.</p></details>
+<details><summary>Can I be Lord Commander?</summary><p>Election is AGOT's and the mod does not change who is eligible. A sworn brother holding a castle is playable, and a player Lord Commander who dies passes play to a landed brother of his family.</p></details>
+<details><summary>Can a woman take the black?</summary><p>No. The Watch is brothers only, at the gate and in the dungeons order.</p></details>
+<details><summary>Does killing him with ordinary steel do anything?</summary><p>It casts him down: another Other is crowned with the same bonuses and the Long Night goes on. It does count as beating the dead, so it opens the War for the Dawn, and you are remembered as the Undaunted.</p></details>
+<details><summary>Can I change the rules on an existing save?</summary><p>No. CK3 bakes game rules in when a save is created. Timing, strength, the prophecy coin and the rest need a fresh campaign.</p></details>
+<details><summary>Where do I report a bug?</summary><p>The <a href="https://discord.gg/PTJzPQbqG7">Long Night Discord</a> is fastest; <a href="https://github.com/Dlonem/CK3TheLongNightAzorAhai/issues">GitHub issues</a> work too. Include your CK3 version, your full load order, and whether you are on the Workshop copy or a manual install.</p></details>
+</div>
+</section>
+
+<!-- CHANGES -->
+<section id="changes">
+<h2><span class="eyebrow">History</span>Version history<a class="anc" href="#changes" aria-label="Link to this section">#</a></h2>
+<div class="tbl wrapfirst"><table>
+<tr><th>Version</th><th>What it did</th></tr>
+<tr><td>1.1.1</td><td>The Watch keeps no land: a sworn brother, the Lord Commander included, renounces anything he inherits outside the Wall. The dead answer to nobody living. Stannis gets Melisandre and Dragonstone usually does. The Others cannot scheme. Every county the dead take is set to full control, so their own peasants never rise, and their land recovers control after a siege instead of never. The Crown of the Others no longer refuses its own king. A load error on the house of the Others fixed.</td></tr>
+<tr><td>1.1.0b</td><td>Keeping pace with AGOT's 0.5.2 hotfix: an invasion war counts its goal as held once the dead occupy six tenths of it; the named dragons look the way AGOT now paints them; no camp with a dragon in it crosses an intact Wall.</td></tr>
+<tr><td>1.1.0a — One Host</td><td>The dead stop fighting the dead and keeping allies among the living; the Trial of Seven's roll call; the spear card's portraits; twelve fixes from a full playthrough log.</td></tr>
+<tr><td>1.1.0 — The Last Hour</td><td>The melee against the Night King; being raised as an Other; White Walkers in Winter Is Coming; memories; dragons over the Wall; a host that grows with his conquest; a field kill no longer ends the Long Night.</td></tr>
+<tr><td>1.0.16a — The Wanderer</td><td>The Night King keeps his land and pays his men; Send the Dungeons to the Wall; a limit on resurrections.</td></tr>
+<tr><td>1.0.16 — The Dead That Frighten You</td><td>The Others' culture; the strength rule rebuilt on advantage, damage and toughness; the Last Hour becomes a duel; the War for the Dawn gated on the dead losing a war.</td></tr>
+<tr><td>1.0.15 — The Repair Release</td><td>Killing him wins the war; Azor Ahai Reborn to the right man; only a bane destroys him; the Beric track; the Night King's face.</td></tr>
+<tr><td>1.0.15a</td><td>"Missing Title Loc" fixed for every other submod's rulers.</td></tr>
+<tr><td>1.0.14</td><td>The Lord's Blessing works for players; AGOT 5.0 and 5.1; the North falls in order.</td></tr>
+<tr><td>1.0.13</td><td>AGOT 0.5.1 compatibility; the mod stops shipping AGOT's rules file.</td></tr>
+<tr><td>1.0.12</td><td>Lightbringer consecration; the Night King's spear; travel danger; the Great Ranging reworked.</td></tr>
+<tr><td>1.0.11a</td><td>The three cards that mark the turn of the age know who you are; the priest who names you has a face.</td></tr>
+<tr><td>1.0.4 to 1.0.11</td><td>The struggle, the ranging companies, the Wall's castles, Send Men and Grain, the aftermath, the Russian translation.</td></tr>
+</table></div>
+<p>The complete notes for every release, with reporter credits, are on the <a href="https://steamcommunity.com/sharedfiles/filedetails/changelog/3780269495">Workshop change-notes page</a> and in the <a href="https://github.com/Dlonem/CK3TheLongNightAzorAhai/wiki">GitHub wiki</a>.</p>
+</section>
+
+<!-- CREDITS -->
+<section id="credits">
+<h2><span class="eyebrow">Lineage</span>Credits<a class="anc" href="#credits" aria-label="Link to this section">#</a></h2>
+<p>This is a fork, and it stands on three people's work: <strong>Freeholder</strong>, who wrote the original <em>AGOT: The Long Night</em>; <strong>Tehaen</strong>, who brought it forward to 1.19 as <em>The Long Night (Resurrected)</em>; and <strong>Wepo94</strong>, whose <em>The Long Night+</em> added the wights, the Wall's collapse and the aftermath; and on the AGOT team's total conversion underneath all of it. The Night King's face was built by a player of the mod. Nearly every fix since August 2026 started as a report in the <a href="https://discord.gg/PTJzPQbqG7">Discord</a> or the Workshop comments, and reporters are credited by name in every changelog.</p>
+<p>If the AGOT team ever ships their own Long Night, this mod will come down and point at it. If they would rather lift anything from here into the base mod, it is theirs, no strings. Dlonem also maintains <a href="/mods/supernatural/">Supernatural</a>. Everything else is at <a href="/">dlonem.com</a>.</p>
+</section>
+
+</article>
+</div>
+<a class="totop" id="totop" href="#main" aria-label="Back to top">top</a>
+</main>
+<footer><div class="foot-inner">
+<div><h4>Dlonem</h4><a href="/apps/">Apps</a><a href="/mods/">Mods for CK3</a><a href="/legacy/">Legacy</a><a href="/games/">Recommended games</a></div>
+<div><h4>Community</h4><a href="/tgc/">The Game Center</a><a href="https://discord.gg/StACe9hVtT">Dlonem's Den (Discord)</a><a href="https://discord.gg/hvZGMeJhB7">The Game Center (Discord)</a><a href="https://discord.gg/PTJzPQbqG7">The Long Night (Discord)</a><a href="https://discord.gg/Efvd2B97xx">Supernatural (Discord)</a></div>
+<div><h4>Elsewhere</h4><a href="https://www.youtube.com/c/Dlonem">YouTube</a><a href="https://www.twitch.tv/officialdlonem">Twitch</a><a href="https://www.tiktok.com/@officialdlonem">TikTok</a><a href="https://x.com/officialdlonem">X / Twitter</a><a href="https://www.facebook.com/Dlonem/">Facebook</a><a href="https://steamcommunity.com/id/Dlonem">Steam</a></div>
+<div><h4>Studio</h4><a href="/about/">About</a><a href="/privacy/">Privacy policy</a><a href="/support/">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
+</div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word.</div></footer>
+<script>
+document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});
+(function(){
+  var toc=document.getElementById('toc');
+  var mq=window.matchMedia('(max-width:900px)');
+  function fit(){ if(mq.matches){ toc.removeAttribute('open'); } else { toc.setAttribute('open',''); } }
+  fit(); mq.addEventListener ? mq.addEventListener('change',fit) : mq.addListener(fit);
+  /* close the contents after picking a section on a phone */
+  toc.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ if(mq.matches) toc.removeAttribute('open'); }); });
+  /* find a section */
+  var find=document.getElementById('find'), items=toc.querySelectorAll('#toclist > li'), none=document.getElementById('nonefound');
+  find.addEventListener('input',function(){
+    var q=find.value.trim().toLowerCase(), shown=0;
+    items.forEach(function(li){
+      var subs=li.querySelectorAll('ol li'), top=li.querySelector(':scope > a'), anyChild=false;
+      subs.forEach(function(s){ var ok=!q||s.textContent.toLowerCase().indexOf(q)>-1; s.classList.toggle('hide',!ok); if(ok) anyChild=true; });
+      var ok=!q||top.textContent.toLowerCase().indexOf(q)>-1||anyChild;
+      li.classList.toggle('hide',!ok); if(ok) shown++;
+    });
+    none.classList.toggle('show',shown===0);
+  });
+  /* highlight the section in view */
+  var links={}; toc.querySelectorAll('a[href^="#"]').forEach(function(a){ links[a.getAttribute('href').slice(1)]=a; });
+  var heads=document.querySelectorAll('.art section[id], .art h3[id]');
+  if('IntersectionObserver' in window){
+    var cur=null;
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ var id=e.target.id; if(links[id]){ if(cur) cur.classList.remove('on'); cur=links[id]; cur.classList.add('on'); } } });
+    },{rootMargin:'-20% 0px -70% 0px'});
+    heads.forEach(function(h){ io.observe(h); });
+  }
+  /* back to top */
+  var top=document.getElementById('totop');
+  window.addEventListener('scroll',function(){ top.classList.toggle('show',window.scrollY>900); },{passive:true});
+})();
+</script>
+<script src="/js/site.js?v=2" defer></script>
+</body>
+</html>
