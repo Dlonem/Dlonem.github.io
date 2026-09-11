@@ -183,6 +183,7 @@ section.tight{padding:44px 0}
 
 /* ---------- hub tiles (homepage) ---------- */
 .tiles{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+@media (min-width:980px){.tiles{grid-template-columns:repeat(5,1fr)}}
 .tile{
   position:relative;display:block;text-decoration:none;color:#fff;
   border-radius:var(--radius);padding:26px 22px;min-height:150px;
