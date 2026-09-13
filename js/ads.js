@@ -32,10 +32,15 @@
        it belongs at the END of a long read, never in the middle. */
     multiplex: '4600640813',
 
-    /* In-article — NOT CREATED YET. This is the highest-earning format on the
-       wiki and the mod pages because it renders as part of the text flow.
-       Create it in AdSense and paste the number here. */
-    article:   '',
+    /* In-article — created 2026-09-13. The highest-earning format on the wiki
+       and the mod pages because it renders as part of the text flow.
+       ⚠ This id was read from the AdSense edit URL
+         .../myads/edit-inarticle/8647309999/generate-ad-code
+       not from the code box, which was cut off in the screenshot. The URL id
+       and data-ad-slot matched exactly on both units confirmed before it
+       (display 1173987963, multiplex 4600640813), so this is almost certainly
+       right — but if in-article units never fill, check this number first. */
+    article:   '8647309999',
 
     /* In-feed — NOT CREATED YET. Matches the card grids on /apps/, /mods/ and
        /games/. Needs BOTH the slot number and the layout key. */
@@ -74,6 +79,10 @@
     ins.setAttribute('data-ad-client', CLIENT);
     ins.setAttribute('data-ad-slot', slot);
     ins.setAttribute('data-ad-format', spec.fmt);
+    /* Google's own in-article snippet sets text-align:center on the <ins>
+       itself, not just the wrapper. Matching their markup exactly removes one
+       variable if a unit ever misbehaves. */
+    if (spec.layout === 'in-article') ins.style.textAlign = 'center';
     if (spec.full)   ins.setAttribute('data-full-width-responsive', 'true');
     if (spec.layout) ins.setAttribute('data-ad-layout', spec.layout);
     if (spec.key)    ins.setAttribute('data-ad-layout-key', SLOTS.feedKey);

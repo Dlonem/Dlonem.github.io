@@ -38,7 +38,7 @@
       if (sLoaded) return;                 // already in flight
       sLoaded = true;
       var s = document.createElement('script');
-      s.src = '/js/search.js?v=1';
+      s.src = '/js/search.js?v=2';
       s.onerror = function () { sLoaded = false; };
       document.head.appendChild(s);        // search.js opens itself once parsed
     };
@@ -93,7 +93,7 @@
      Only pages that declare a .adslot pay for this request. */
   if (document.querySelector('.adslot')) {
     var a = document.createElement('script');
-    a.src = '/js/ads.js?v=1';
+    a.src = '/js/ads.js?v=2';
     a.defer = true;
     document.head.appendChild(a);
   }
