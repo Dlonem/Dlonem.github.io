@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=14"><script>document.documentElement.className+=" js"</script><script src="/js/sky.js?v=1"></script><link rel="icon" href="/assets/logo.png">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=18"><script>document.documentElement.className+=" js"</script><script src="/js/sky.js?v=1"></script><link rel="icon" href="/assets/logo.png">
 <title>Supernatural — a CK3 (Crusader Kings III) mod by Dlonem</title>
-<meta name="description" content="Supernatural (SPN) adds vampires, werewolves, hybrids, witches, demons and hunters to Crusader Kings III: six lifestyles, ten perk trees, supernatural regiments, artifacts, twenty-one game rules, and a hunt where the monsters are real characters.">
+<meta name="description" content="Supernatural (SPN) adds vampires, werewolves, hybrids, witches, demons and hunters to Crusader Kings III: six lifestyles, ten perk trees, supernatural regiments, artifacts, twenty-two game rules, and a hunt where the monsters are real characters.">
 <meta name="theme-color" content="#1A0F42">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dlonem">
@@ -21,6 +21,24 @@
 <meta name="twitter:image" content="https://dlonem.com/assets/img/og-card.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://dlonem.com/mods/supernatural/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+ {"@type":"ListItem","position":1,"name":"Home","item":"https://dlonem.com/"},
+ {"@type":"ListItem","position":2,"name":"Mods","item":"https://dlonem.com/mods/"},
+ {"@type":"ListItem","position":3,"name":"Supernatural","item":"https://dlonem.com/mods/supernatural/"}]},
+{"@type":"CreativeWork","name":"Supernatural",
+ "alternateName":["SPN","CK3 Supernatural mod","Supernatural mod for Crusader Kings III"],
+ "url":"https://dlonem.com/mods/supernatural/",
+ "sameAs":["https://steamcommunity.com/sharedfiles/filedetails/?id=2856525601","https://github.com/Dlonem/CK3SupernaturalMod","https://dlonem.com/mods/supernatural/wiki/"],
+ "genre":"Video game modification",
+ "version":"2.35",
+ "isAccessibleForFree":true,
+ "keywords":"Crusader Kings 3 mod, CK3 vampire mod, CK3 werewolf mod, CK3 witch mod, monster hunter, Supernatural",
+ "inLanguage":["en","es","ru"],
+ "description":"A Crusader Kings III mod adding vampires, werewolves, hybrids, witches, demons and the hunters who go after them: six lifestyles, ten perk trees, supernatural regiments, artifacts, twenty-two game rules, and a hunt where every monster is a character who left a trail.",
+ "author":{"@type":"Organization","name":"Dlonem LLC","url":"https://dlonem.com/"}}
+]}</script>
 <style>
 .crumbs{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.08em;
   color:var(--ink-soft);margin-bottom:22px}
@@ -47,6 +65,7 @@
 <a class="brand" href="/"><img src="/assets/logo.png" alt="" onerror="this.remove()" width="256" height="256"><span>Dlonem</span></a>
 <nav aria-label="Main">
 <a href="/" data-p="home">Home</a>
+<a href="/news/" data-p="news">News</a>
 <a href="/apps/" data-p="apps">Apps</a>
 <a href="/mods/" data-p="mods">Mods</a>
 <a href="/community/" data-p="comm">Community</a>
@@ -67,14 +86,16 @@
 <p class="lede">Vampires, werewolves, hybrids, witches, demons and the hunters who go after them, in the base game. Every creature is a character with a name and a court, every feeding leaves a trail, and every hunt is aimed at somebody who did something. Play the hunter, or rule as something far older.</p>
 <div class="btn-row">
 <a class="btn btn-solid" style="background:linear-gradient(90deg,#C42B3D,#7A1B34)" href="https://steamcommunity.com/sharedfiles/filedetails/?id=2856525601">Subscribe on Steam Workshop</a>
-<a class="btn btn-ghost" href="/mods/supernatural/download/">Download without Steam</a>
+<a class="btn btn-ghost" href="/mods/supernatural/wiki/">Read the wiki</a>
+<a class="btn btn-ghost is-quiet" href="/mods/supernatural/download/">Download without Steam</a>
 <a class="btn btn-ghost is-quiet" href="https://discord.gg/Efvd2B97xx">Join the Discord</a>
 </div>
 <div class="tag-row"><span>Version 2.35</span><span>Works with base CK3</span><span>CK3 1.19.0.6</span><span>No other mods required</span><span>Free, forever</span></div>
 </div>
 </div>
 
-<section class="tight">
+<div class="adslot adslot-top" data-ad="display"></div>
+<section class="tight" id="straight-from-the-workshop">
 <div class="wrap">
 <p class="crumbs"><a href="/">Home</a> › <a href="/mods/">Mods</a> › Supernatural</p>
 <div class="stats spn-stats">
@@ -86,7 +107,7 @@
 </div>
 </section>
 
-<section class="tight">
+<section class="tight" id="your-arcane-your-rules">
 <div class="wrap">
 <div class="section-head"><span class="eyebrow">See it in game</span><h2>Straight from the Workshop</h2></div>
 <div class="shots" data-interval="7000">
@@ -103,7 +124,8 @@
 </div>
 </section>
 
-<section>
+<div class="adslot" data-ad="article"></div>
+<section id="what-the-mod-adds">
 <div class="wrap">
 <div class="section-head"><span class="eyebrow">Core features</span><h2>What the mod adds</h2></div>
 <div class="feature-list">
@@ -117,7 +139,7 @@
 </div>
 </section>
 
-<section class="tight">
+<section class="tight" id="credits">
 <div class="wrap section-head">
 <span class="eyebrow">Customize your journey</span>
 <h2>Your arcane, your rules</h2>
@@ -125,7 +147,7 @@
 </div>
 </section>
 
-<section>
+<section id="getting-the-mod">
 <div class="wrap section-head">
 <span class="eyebrow">Two ways in</span>
 <h2>Getting the mod</h2>
@@ -162,9 +184,10 @@
 <p style="margin-top:10px;font-size:.85rem">Supernatural is a free, non-commercial fan mod for Crusader Kings III. It isn't affiliated with or endorsed by Paradox Interactive. Screenshots are served from the mod's Steam Workshop page.</p>
 </div>
 </section>
+<div class="adslot" data-ad="multiplex"></div>
 </main>
 <footer><div class="foot-inner">
-<div><h4>Dlonem</h4><a href="/apps/">Apps</a><a href="/mods/">Mods for CK3</a><a href="/mods/the-long-night/wiki/">Long Night wiki</a><a href="/legacy/">Legacy</a><a href="/games/">Recommended games</a></div>
+<div><h4>Dlonem</h4><a href="/apps/">Apps</a><a href="/mods/">Mods for CK3</a><a href="/news/">News &amp; patch notes</a><a href="/mods/the-long-night/wiki/">Long Night wiki</a><a href="/mods/supernatural/wiki/">Supernatural wiki</a><a href="/ck3-mod-help/">When CK3 mods break</a><a href="/legacy/">Legacy</a><a href="/games/">Recommended games</a></div>
 <div><h4>Community</h4><a href="/tgc/">The Game Center</a><a href="https://discord.gg/StACe9hVtT">Dlonem's Den (Discord)</a><a href="https://discord.gg/hvZGMeJhB7">The Game Center (Discord)</a><a href="https://discord.gg/PTJzPQbqG7">The Long Night (Discord)</a><a href="https://discord.gg/Efvd2B97xx">Supernatural (Discord)</a></div>
 <div><h4>Elsewhere</h4><a href="https://www.youtube.com/c/Dlonem">YouTube</a><a href="https://www.twitch.tv/officialdlonem">Twitch</a><a href="https://www.tiktok.com/@officialdlonem">TikTok</a><a href="https://x.com/officialdlonem">X / Twitter</a><a href="https://www.facebook.com/Dlonem/">Facebook</a><a href="https://steamcommunity.com/id/Dlonem">Steam</a></div>
 <div><h4>Studio</h4><a href="/about/">About</a><a href="/privacy/">Privacy policy</a><a href="/support/">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
@@ -172,6 +195,6 @@
 <script>window.addEventListener('load',()=>{document.querySelectorAll('.shots').forEach(g=>{if(!g.querySelector('img')){const s=g.closest('section');if(s)s.style.display='none'}})});</script>
 <script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});</script>
 <script src="/js/carousel.js" defer></script>
-<script src="/js/site.js?v=2" defer></script>
+<script src="/js/site.js?v=3" defer></script>
 </body>
 </html>

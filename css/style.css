@@ -714,3 +714,224 @@ html.sky-moonrise  { --grad-hero:linear-gradient(115deg,#150C33 0%,#2E1A6B 40%,#
   .nav nav a{font-size:1.05rem}
   .brand span{font-size:1.32rem}
 }
+
+/* ==========================================================================
+   SITE SEARCH  (js/site.js builds the button, js/search.js builds the dialog)
+   The button lives in the nav next to the links; on a phone it sits beside the
+   Menu toggle so search is always one tap, never buried in the drawer.
+   ========================================================================== */
+.nav-search{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  margin-left:auto; width:40px; height:40px; padding:0;
+  background:rgba(255,255,255,.10); color:#fff;
+  border:1px solid rgba(255,255,255,.26); border-radius:11px;
+  cursor:pointer; flex:none;
+  transition:background .18s ease, border-color .18s ease;
+}
+.nav-search:hover{ background:rgba(255,255,255,.20); border-color:rgba(255,255,255,.44) }
+.nav-search svg{
+  width:18px; height:18px; flex:none;
+  fill:none; stroke:currentColor; stroke-width:2.1;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+.nav-search-t{ display:none; font:600 .88rem/1 'Sora',sans-serif }
+/* The base rules put margin-left:auto on whichever of these comes first; once
+   the search button exists it owns the gap and the others sit tight to it. */
+.nav-inner .nav-search ~ nav{ margin-left:0 }
+.nav-inner .nav-search ~ .nav-toggle{ margin-left:0 }
+
+@media (min-width:1500px){
+  .nav-search{ width:auto; height:42px; padding:0 14px }
+  .nav-search-t{ display:inline }
+}
+@media (max-width:780px){
+  .nav-search{ width:44px; height:44px }   /* full touch target */
+}
+
+/* ---- the dialog -------------------------------------------------------- */
+html.ds-open{ overflow:hidden }
+.ds{ position:fixed; inset:0; z-index:200 }
+.ds[hidden]{ display:none }
+.ds-back{
+  position:absolute; inset:0; background:rgba(12,7,32,.62);
+  backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
+}
+.ds-panel{
+  position:relative; margin:7vh auto 0; max-width:660px; width:calc(100% - 32px);
+  background:var(--card); color:var(--ink);
+  border-radius:16px; box-shadow:0 30px 80px rgba(10,6,32,.45);
+  display:flex; flex-direction:column; max-height:82vh; overflow:hidden;
+  animation:dsIn .18s ease both;
+}
+@keyframes dsIn{ from{opacity:0; transform:translateY(-10px)} to{opacity:1; transform:none} }
+.ds-bar{
+  display:flex; align-items:center; gap:10px;
+  padding:14px 14px; border-bottom:1px solid var(--line); flex:none;
+}
+.ds-ico{
+  width:20px; height:20px; flex:none; fill:none; stroke:var(--ink-soft);
+  stroke-width:2.1; stroke-linecap:round;
+}
+.ds-input{
+  flex:1 1 auto; min-width:0; border:0; outline:0; background:transparent;
+  font:400 1.05rem/1.4 'Sora',sans-serif; color:var(--ink);
+  padding:6px 0; -webkit-appearance:none;
+}
+.ds-input::placeholder{ color:#7B7799 }
+.ds-input::-webkit-search-cancel-button{ display:none }
+.ds-x{
+  flex:none; border:1px solid var(--line); background:#F4F6FF; color:var(--ink-soft);
+  border-radius:8px; padding:5px 9px; cursor:pointer;
+  font:600 .72rem/1 'Space Mono',monospace; letter-spacing:.04em;
+}
+.ds-x:hover{ background:#E8ECFF; color:var(--ink) }
+.ds-list{ list-style:none; margin:0; padding:6px; overflow-y:auto; flex:1 1 auto }
+.ds-list[hidden]{ display:none }
+.ds-list a{
+  display:block; text-decoration:none; color:inherit;
+  padding:11px 12px; border-radius:10px;
+}
+.ds-list li.on a, .ds-list a:hover, .ds-list a:focus-visible{ background:#EEF2FF }
+.ds-kind{
+  display:block; font:400 .66rem/1 'Space Mono',monospace;
+  text-transform:uppercase; letter-spacing:.16em; color:var(--cyan-ink);
+  margin-bottom:5px;
+}
+.ds-title{ display:block; font-weight:600; color:var(--ink); line-height:1.35 }
+.ds-in{ display:block; font-size:.78rem; color:var(--ink-soft); margin-top:1px }
+.ds-snip{ display:block; font-size:.86rem; color:var(--ink-soft); line-height:1.5; margin-top:4px }
+.ds-snip mark{ background:#FFE9A8; color:#3A2E00; border-radius:3px; padding:0 1px }
+.ds-none{ padding:22px 14px; color:var(--ink-soft); font-size:.92rem; text-align:center }
+.ds-hint{
+  flex:none; padding:9px 16px; border-top:1px solid var(--line);
+  font-size:.76rem; color:var(--ink-soft); background:#FAFBFF;
+}
+.ds-status{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0) }
+
+@media (max-width:640px){
+  .ds-panel{
+    margin:0; width:100%; max-width:none; height:100%; max-height:none;
+    border-radius:0; animation:none;
+  }
+  .ds-bar{ padding:12px }
+  .ds-input{ font-size:16px }      /* anything under 16px makes iOS zoom in */
+  .ds-hint{ display:none }
+}
+@media (prefers-reduced-motion:reduce){ .ds-panel{ animation:none } }
+
+/* ==========================================================================
+   AD SLOTS  (js/ads.js fills these; the markup in the page is just a marker)
+   Rules that matter:
+   - a slot that is never filled must take up NO space, so the page reads the
+     same with ads blocked, unsold, or not yet approved;
+   - the label has to be visible and legible, not a grey whisper, because
+     "clearly labelled" is an AdSense requirement and a reader courtesy.
+   ========================================================================== */
+.adslot{
+  /* No margin until an ad actually lands. A slot that never fills — blocked,
+     unsold, or the account not approved yet — must cost the page zero pixels,
+     margins included. It still has to stay IN the layout rather than being
+     display:none, because a responsive unit measures its container's width to
+     decide what to request; a hidden container measures zero and never fills. */
+  display:block; max-width:var(--wrap); margin:0 auto; padding:0 20px;
+  text-align:center; min-height:0; clear:both;
+}
+.adslot.is-filled{ margin:30px auto }
+.adslot:empty{ display:none }                 /* no id configured yet */
+.adslot.is-empty{ display:none }              /* AdSense returned unfilled */
+.adslot-label{
+  /* Hidden until the ad is really there. Otherwise a blocked slot leaves the
+     word "Advertisement" floating over nothing, which looks broken and is
+     worse than showing no label at all. */
+  display:none; margin:0 0 6px;
+  font:400 .62rem/1 'Space Mono',monospace;
+  text-transform:uppercase; letter-spacing:.2em;
+  color:#6F6B8C;
+}
+.adslot.is-filled .adslot-label{ display:block }
+.adslot .adsbygoogle{ display:block; margin:0 auto }
+/* A slot nested inside an already-padded container (.wrap, the wiki's .art,
+   a .prose block) must not add a second gutter or it renders visibly inset
+   from the text it sits between. */
+.wrap .adslot, .art .adslot, .prose .adslot{
+  padding-left:0; padding-right:0; max-width:none;
+}
+/* A unit directly under the hero sits closer than one between sections. */
+.adslot.adslot-top{ margin-top:22px; margin-bottom:4px }
+@media (max-width:640px){
+  .adslot{ margin:24px auto }
+}
+@media print{ .adslot{ display:none } }
+
+/* Every content section is now addressable (tools/add_section_ids.py), so a
+   link to one must not land with the heading hidden behind the sticky header.
+   The wiki already did this for its own sections; this covers the rest. */
+main section[id]{ scroll-margin-top:84px }
+@media (max-width:780px){ main section[id]{ scroll-margin-top:72px } }
+
+/* Long unbreakable strings — file paths, ids — used to push the whole page
+   sideways on a phone. /ck3-mods/ measured 415px wide in a 390px viewport
+   because of one Steam workshop path. */
+code{
+  font-family:'Space Mono',monospace; font-size:.88em;
+  overflow-wrap:anywhere; word-break:break-word;
+}
+.prose code{
+  background:#F2F4FF; border:1px solid var(--line); border-radius:5px;
+  padding:1px 5px; color:#2E2A5C;
+}
+
+/* ==========================================================================
+   NEWS FEED  (/news/ and its year archives — built by tools/build_news.py)
+   The list is a timeline, not a card grid: one column, scannable, with the
+   product icon as the only image. Icons are 40px and lazy — see the note at
+   the top of build_news.py about why images, not text, decide page weight.
+   ========================================================================== */
+.nw-years{
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  margin:26px auto 4px; justify-content:center;
+}
+.nw-yr{
+  display:inline-flex; align-items:center; min-height:36px; padding:6px 14px;
+  border-radius:999px; border:1px solid var(--line); background:var(--card);
+  color:var(--ink-soft); text-decoration:none;
+  font:600 .86rem/1 'Sora',sans-serif;
+}
+.nw-yr:hover{ border-color:var(--indigo); color:var(--indigo) }
+.nw-yr.is-on{ background:var(--grad-brand); color:#fff; border-color:transparent }
+
+.nwlist{ list-style:none; margin:0 auto; padding:0; max-width:760px }
+.nw{
+  display:flex; gap:16px; align-items:flex-start;
+  padding:18px 0; border-top:1px solid var(--line);
+}
+.nw:first-child{ border-top:0; padding-top:4px }
+.nw-ico{
+  width:40px; height:40px; flex:none; border-radius:10px;
+  object-fit:cover; background:#E9EDFF;
+}
+.nw-b{ min-width:0; flex:1 1 auto }
+.nw-meta{
+  font:400 .78rem/1.5 'Sora',sans-serif; color:var(--ink-soft);
+  margin:0 0 3px; display:flex; flex-wrap:wrap; gap:6px; align-items:baseline;
+}
+.nw-meta a{ color:var(--cyan-ink); text-decoration:none; font-weight:600 }
+.nw-meta a:hover{ text-decoration:underline }
+.nw-ver{
+  font:400 .72rem/1 'Space Mono',monospace; color:#3B3768;
+  background:#EDF0FF; border:1px solid var(--line);
+  border-radius:5px; padding:3px 6px;
+}
+.nw h3{ font-size:1.02rem; margin:0 0 5px; color:var(--ink); line-height:1.35 }
+.nw p:not(.nw-meta){ margin:0; color:var(--ink-soft); font-size:.93rem; line-height:1.6 }
+
+@media (max-width:520px){
+  .nw{ gap:12px; padding:16px 0 }
+  .nw-ico{ width:32px; height:32px }
+  .nw h3{ font-size:.98rem }
+}
+
+/* "complete notes" source line under the news year pills */
+.nw-src{ text-align:center; margin:10px auto 0 }
+.nw-src p{ font-size:.82rem; color:var(--ink-soft); margin:0 }
+.nw-src a{ color:var(--cyan-ink); font-weight:600 }

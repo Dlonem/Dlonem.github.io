@@ -17,6 +17,46 @@
   var list = header && header.querySelector('.nav-inner nav');
   if (header && list) {
     if (!list.id) list.id = 'site-menu';
+
+    /* ---------------- site search ----------------
+       Built here rather than in every page's markup, for the same reason the
+       menu button is: one file to change instead of twenty, and no chance of
+       the nav drifting apart between pages. search.js and the index are only
+       fetched when someone actually searches. */
+    var sBtn = document.createElement('button');
+    sBtn.className = 'nav-search';
+    sBtn.type = 'button';
+    sBtn.setAttribute('aria-label', 'Search this site');
+    sBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+      '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>' +
+      '<span class="nav-search-t">Search</span>';
+    list.parentNode.insertBefore(sBtn, list);
+
+    var sLoaded = false;
+    var openSearch = function () {
+      if (window.DlonemSearch) { window.DlonemSearch.open(); return; }
+      if (sLoaded) return;                 // already in flight
+      sLoaded = true;
+      var s = document.createElement('script');
+      s.src = '/js/search.js?v=1';
+      s.onerror = function () { sLoaded = false; };
+      document.head.appendChild(s);        // search.js opens itself once parsed
+    };
+    sBtn.addEventListener('click', openSearch);
+
+    /* "/" and ctrl/cmd-K are what people already press on a docs site. */
+    document.addEventListener('keydown', function (e) {
+      var t = e.target, tag = t && t.tagName;
+      var typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' ||
+                   (t && t.isContentEditable);
+      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault(); openSearch(); return;
+      }
+      if (e.key === '/' && !typing && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault(); openSearch();
+      }
+    });
+
     var btn = document.createElement('button');
     btn.className = 'nav-toggle';
     btn.type = 'button';
@@ -47,6 +87,15 @@
     addEventListener('resize', function () {
       if (innerWidth > 780) open(false);
     });
+  }
+
+  /* ---------------- ad placements ----------------
+     Only pages that declare a .adslot pay for this request. */
+  if (document.querySelector('.adslot')) {
+    var a = document.createElement('script');
+    a.src = '/js/ads.js?v=1';
+    a.defer = true;
+    document.head.appendChild(a);
   }
 
   /* ---------------- scroll reveal ---------------- */
