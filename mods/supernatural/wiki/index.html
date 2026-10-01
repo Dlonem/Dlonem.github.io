@@ -2,7 +2,7 @@
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=19"><script>document.documentElement.className+=" js"</script><script src="/js/sky.js?v=1"></script><link rel="icon" href="/assets/logo.png">
 <title>Supernatural Wiki — every mechanic on one page | Dlonem</title>
-<meta name="description" content="The complete reference for Supernatural, a Crusader Kings III mod: how to become a vampire, how feeding drains a county, the werewolf bite, hybrids, witches, demons, and the 2.35 hunt — how a trail is left, how a hunter finds you, and what you can do about it. Every game rule, every decision, with the numbers, on one page.">
+<meta name="description" content="The complete reference for Supernatural, a Crusader Kings III mod, updated for CK3 1.20: how to become a vampire, how feeding and killing mark a county, the werewolf bite, hybrids, witches, demons, and the 2.35 hunt — how a trail is left, how a hunter finds you, and what you can do about it. Every game rule, every decision, with the numbers, on one page.">
 <meta name="theme-color" content="#1A0F42">
 <link rel="canonical" href="https://dlonem.com/mods/supernatural/wiki/">
 <meta property="og:type" content="article">
@@ -27,8 +27,8 @@
  {"@type":"ListItem","position":4,"name":"Wiki","item":"https://dlonem.com/mods/supernatural/wiki/"}]},
 {"@type":"TechArticle","headline":"Supernatural Wiki",
  "url":"https://dlonem.com/mods/supernatural/wiki/",
- "about":{"@type":"CreativeWork","name":"Supernatural","url":"https://dlonem.com/mods/supernatural/","version":"2.35a"},
- "datePublished":"2026-09-13","dateModified":"2026-09-27","inLanguage":"en",
+ "about":{"@type":"CreativeWork","name":"Supernatural","url":"https://dlonem.com/mods/supernatural/","version":"2.36"},
+ "datePublished":"2026-09-13","dateModified":"2026-10-01","inLanguage":"en",
  "author":{"@type":"Organization","name":"Dlonem LLC","url":"https://dlonem.com/"},
  "publisher":{"@type":"Organization","name":"Dlonem LLC","url":"https://dlonem.com/"},
  "description":"The complete reference for the Crusader Kings III mod Supernatural — vampires, werewolves, hybrids, witches, demons, hunters, the hunt, every game rule and every decision."},
@@ -36,7 +36,7 @@
  {"@type":"Question","name":"How do you become a vampire in the Supernatural mod?",
   "acceptedAnswer":{"@type":"Answer","text":"Five ways. Ask a vampire you know for it, which gives you their blood rather than the trait, and the change finishes on its own within a year. Be offered it by a vampire who has already given you blood. Carry that blood into a battle and fall in it, which wakes you three days later with a month to decide. Be born to a supernatural parent. Or take the trait in the ruler designer. The random embrace events are a sixth road and they only ever fire at a player character, about three per cent of years."}},
  {"@type":"Question","name":"Why did my county lose control when I fed?",
-  "acceptedAnswer":{"@type":"Answer","text":"Feeding leaves a mark on the county it happened in. A drained body costs the county five county control; a feed the victim survives costs one. The marks are what a hunter reads. Two incidents within a year, or one unlucky first roll, open a Trail called Something Stalks Here, and at three incidents the county's lord is told."}},
+  "acceptedAnswer":{"@type":"Answer","text":"A body leaves a mark on the county it was found in, and so does a feed somebody talks about. A drained body costs the county five county control. A feed the victim survives costs nothing on its own; if a witness got away, a compulsion failed, or about one time in ten a victim remembers, it counts as a prowl and costs one. The marks are what a hunter reads. Two incidents within a year, or one unlucky first roll, open a Trail called Something Stalks Here, and at three incidents the county's lord is told."}},
  {"@type":"Question","name":"How do I cure a werewolf?",
   "acceptedAnswer":{"@type":"Answer","text":"The Abandon Lycanthropy decision removes the trait, the Known Werewolf trait, True Werewolf and all eight lycanthropy perks. It only appears if the Embrace Decisions game rule is switched on, and that rule is off by default. There is no cure for the Infected Wound before it resolves: once clawed you wait one to three years for the change, the reprieve or the death."}},
  {"@type":"Question","name":"How does a hunter find me?",
@@ -170,7 +170,7 @@
 <a href="/community/" data-p="comm">Community</a>
 <a href="/legacy/" data-p="legacy">Legacy</a>
 <a href="/games/" data-p="games">Games</a>
-<a class="join" href="https://discord.gg/StACe9hVtT">Join the Den</a>
+<a class="join" href="https://discord.gg/Efvd2B97xx">Join the mod Discord</a>
 </nav>
 </div></header>
 <main id="main">
@@ -188,7 +188,7 @@
 <a class="btn btn-ghost" href="/mods/supernatural/">Mod page</a>
 <a class="btn btn-ghost is-quiet" href="https://discord.gg/Efvd2B97xx">Ask in the Discord</a>
 </div>
-<div class="tag-row"><span>Version 2.35a</span><span>Works with base CK3</span><span>CK3 1.19.0.6</span><span>No other mods required</span><span>Updated 27 Sep 2026</span></div>
+<div class="tag-row"><span>Version 2.36</span><span>Works with base CK3</span><span>CK3 1.20</span><span>No other mods required</span><span>Updated 1 Oct 2026</span></div>
 </div>
 </div>
 
@@ -203,7 +203,7 @@
 <li><a href="#setup">Install and load order</a>
  <ol><li><a href="#loadorder">Load order with AGOT</a></li></ol></li>
 <li><a href="#vampires">Vampires</a>
- <ol><li><a href="#becoming-vampire">Becoming one</a></li><li><a href="#vampire-ranks">Ranks and power</a></li><li><a href="#feeding">Feeding</a></li><li><a href="#sire">Sire and progeny</a></li><li><a href="#compulsion">Compulsion</a></li><li><a href="#exposure">Secrets and exposure</a></li><li><a href="#originals">The Originals</a></li></ol></li>
+ <ol><li><a href="#becoming-vampire">Becoming one</a></li><li><a href="#vampire-ranks">Ranks and power</a></li><li><a href="#feeding">Feeding</a></li><li><a href="#sire">Sire and progeny</a></li><li><a href="#compulsion">Compulsion</a></li><li><a href="#exposure">Secrets and exposure</a></li><li><a href="#fulfillment">Your rite and fulfillment</a></li><li><a href="#originals">The Originals</a></li></ol></li>
 <li><a href="#werewolves">Werewolves</a>
  <ol><li><a href="#the-bite">The bite and the wound</a></li><li><a href="#werewolf-ranks">Ranks</a></li><li><a href="#shifting">Shifting</a></li><li><a href="#pack">Kin and the pack</a></li><li><a href="#werewolf-cure">The cure</a></li></ol></li>
 <li><a href="#hybrids">Hybrids</a></li>
@@ -225,7 +225,7 @@
  <ol><li><a href="#loadorder-compat">Load order with AGOT</a></li><li><a href="#overrides">What it replaces</a></li><li><a href="#midsave">Mid-save</a></li><li><a href="#multiplayer">Multiplayer</a></li></ol></li>
 <li><a href="#languages">Languages</a></li>
 <li><a href="#changes">Version history</a>
- <ol><li><a href="#v235a">2.35a — The witch you let live</a></li><li><a href="#v235">2.35 — The Hunt</a></li><li><a href="#earlier">Earlier</a></li></ol></li>
+ <ol><li><a href="#v236">2.36 — Crusader Kings III 1.20</a></li><li><a href="#v235a">2.35a — The witch you let live</a></li><li><a href="#v235">2.35 — The Hunt</a></li><li><a href="#earlier">Earlier</a></li></ol></li>
 <li><a href="#credits">Credits</a></li>
 </ol>
 <p class="none" id="nonefound">Nothing matches.</p>
@@ -234,6 +234,7 @@
 <article class="art">
 <p class="crumbs"><a href="/">Home</a> › <a href="/mods/">Mods</a> › <a href="/mods/supernatural/">Supernatural</a> › Wiki</p>
 <p class="jumpto">Jump to: <a href="#quick">Quick answers</a> · <a href="#faq">Common questions</a> · <a href="#hunt">The hunt</a> · <a href="#compat">Compatibility</a></p>
+<div class="note"><strong>A living page.</strong> It changes with the mod and is checked against every release. This edition covers <strong>2.36</strong>, the update for Crusader Kings III 1.20, as of 1 October 2026. <a href="#changes">What changed in each version.</a></div>
 
 <div class="adslot adslot-top" data-ad="display"></div>
 <section id="quick">
@@ -244,7 +245,7 @@
 <p>There are five roads and they all end at the same place. <strong>Ask a vampire you know</strong> for it: that hands you their blood rather than the trait, and the change finishes on its own somewhere in the next year. <strong>Be offered it</strong> by a vampire whose blood is already in you. <strong>Carry that blood into a battle and fall</strong>, which is the route added in 2.33: you wake three days later and have about a month to feed, ask for help, or refuse twice and die of it. <strong>Be born to a supernatural parent.</strong> Or take the trait in the <strong>ruler designer</strong>. There is a sixth road, the random embrace events, and it only ever fires at a player character, roughly three per cent of years. <a href="#becoming-vampire">Full section.</a></p></div>
 
 <div class="ans"><b class="q">Why did my county lose control after I fed?</b>
-<p>Because feeding leaves a mark on the county it happened in, and that is the whole hunting layer in one sentence. A <strong>drained body costs the county 5 county control</strong>; a feed the victim lives through costs <strong>1</strong>. A werewolf kill costs 2 control and a point of prosperity, a demon 4 and a point, a witch 2 and a point. The first incident on clean ground is usually only a whisper. A second one inside a year, or an unlucky first roll (<strong>30 per cent</strong> for a body, <strong>12 per cent</strong> for a prowl), opens a real <strong>Trail</strong>, and at the third incident the county's lord is told about it. <a href="#trails">Full section.</a></p></div>
+<p>Because a body leaves a mark on the county it was found in, and so does a feed somebody talks about. That is the whole hunting layer in one sentence. A <strong>drained body costs the county 5 county control</strong>. A feed the victim lives through costs nothing on its own: only if <strong>somebody talks</strong> (a witness who got away, a compulsion that did not take, or about one clean feed in ten) does it count, as a prowl that costs <strong>1</strong>. A werewolf kill costs 2 control and a point of prosperity, a demon 4 and a point, a witch 2 and a point. The first incident on clean ground is usually only a whisper. A second one inside a year, or an unlucky first roll (<strong>30 per cent</strong> for a body, <strong>12 per cent</strong> for a prowl), opens a real <strong>Trail</strong>, and at the third incident the county's lord is told about it. <a href="#trails">Full section.</a></p></div>
 
 <div class="ans"><b class="q">How do I turn someone into a werewolf, and can it be cured?</b>
 <p>A werewolf claws you and you get the <strong>Infected Wound</strong>, which is not lycanthropy yet. It festers for <strong>one to three years</strong> while events push an Infection track up and down, and then breaks one of six ways: two clean turnings, a rough one, two reprieves where you stay human, and death. Offering the gift starts the wound at a low infection; <strong>forcing</strong> it starts at 40, deep in the sickness, and is much likelier to kill. Curing is a decision, <strong>Abandon Lycanthropy</strong>, which takes the trait, the perks and True Werewolf with it — but that decision lives behind the <strong>Embrace Decisions</strong> game rule, which ships <em>off</em>. Nothing cures the wound itself before it resolves. <a href="#the-bite">Full section.</a></p></div>
@@ -268,6 +269,12 @@
 <p class="lead">Shorter answers to the things people ask in the comments. The sections below have the detail.</p>
 
 <div class="faq">
+<details><summary>Does it work on Crusader Kings III 1.20?</summary>
+<p>Yes, from 2.36. CK3 1.20 rebuilt religion around rites, and on 1.20 version 2.35a crashed as a new game loaded in. 2.36 fixes that and moves the creature doctrines onto rites. If you play with A Game of Thrones, AGOT has not been updated for 1.20 yet; the compatibility patch follows AGOT's update. Until then, play on CK3 1.19 with <a href="https://github.com/Dlonem/CK3SupernaturalMod/releases/tag/v2.35a">v2.35a</a>, the last version built for 1.19.</p></details>
+
+<details><summary>Will my faith punish me for being a vampire?</summary>
+<p>Only once it knows. Since 2.36 your rite weighs your feeding, killing and turning others through Spiritual Fulfillment, but a creature behind a secret is not charged. Once you are known, a rite that outlaws your kind condemns those acts; one that reveres your kind blesses them whether you are known or not. The zealous feel it more, and a cynic is never charged. <a href="#fulfillment">Full section.</a></p></details>
+
 <details><summary>Do I need A Game of Thrones, or any other mod?</summary>
 <p>No. Supernatural runs on the base game on its own and requires nothing else. It works alongside A Game of Thrones through a separate compatibility patch, which you load last.</p></details>
 
@@ -324,9 +331,9 @@
 <b class="t">Supernatural</b>
 <table>
 <tr><th>Developer</th><td>Dlonem</td></tr>
-<tr><th>Game</th><td>Crusader Kings III 1.19.0.6</td></tr>
+<tr><th>Game</th><td>Crusader Kings III 1.20</td></tr>
 <tr><th>First release</th><td>2022</td></tr>
-<tr><th>Current version</th><td>2.35a, fixes for 2.35 "The Hunt"</td></tr>
+<tr><th>Current version</th><td>2.36, updated for CK3 1.20</td></tr>
 <tr><th>Requires</th><td>Base game only</td></tr>
 <tr><th>Workshop</th><td><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2856525601">2856525601</a></td></tr>
 <tr><th>Without Steam</th><td><a href="/mods/supernatural/download/">Manual install</a></td></tr>
@@ -339,7 +346,7 @@
 
 <p>Supernatural puts vampires, werewolves, hybrids, witches, demons and the hunters who go after them into Crusader Kings III as characters rather than as scenery. A vampire is a lord with a court and a title. A werewolf is somebody's son. The hunter who arrives at your gate was trained by a man whose name is in his trait tooltip.</p>
 
-<p>The design rule the mod keeps coming back to is that <strong>power is visible</strong>. Feeding is not free: it takes something out of the county it happened in, and what it takes is the thing a hunter can read months later. Compelling a town does not vanish; three compulsions in five years and the county starts to notice that nobody remembers that week. Killing somebody leaves a body, and the morning after you choose what the body looks like. That chain, from an act to a mark to a lord's letter to a man at your door, is what 2.35 built, and it is the spine of the whole mod now.</p>
+<p>The design rule the mod keeps coming back to is that <strong>power is visible</strong>. Killing is not free: a body takes something out of the county it was found in, and so does a feed somebody talks about, and what it takes is the thing a hunter can read months later. Compelling a town does not vanish; three compulsions in five years and the county starts to notice that nobody remembers that week. Killing somebody leaves a body, and the morning after you choose what the body looks like. That chain, from an act to a mark to a lord's letter to a man at your door, is what 2.35 built, and it is the spine of the whole mod now.</p>
 
 <p>Underneath that there are six lifestyles with ten perk trees between them, a trait for each kind of creature with its own power track and its own tier names, ten men-at-arms regiments, twenty-two game rules, and a large body of witchcraft content carried forward from another mod. The pieces are covered in order below; if you only want one part of it, the contents rail on the left will take you there and every heading has a link you can paste into a chat.</p>
 
@@ -350,7 +357,7 @@
 <section id="setup">
 <h2><span class="eyebrow">Before you play</span>Install and load order<a class="anc" href="#setup" aria-label="Link to this section">#</a></h2>
 
-<p>On Steam, subscribe and enable it. Nothing else is required, and no other mod is required with it.</p>
+<p>On Steam, subscribe and enable it. Nothing else is required, and no other mod is required with it. Since 2.36 it is built for Crusader Kings III 1.20.</p>
 
 <p>Without Steam, take the archive from the <a href="https://github.com/Dlonem/CK3SupernaturalMod/releases">releases page</a>. If you took the <em>Source code (zip)</em>, open the <code>CK3SupernaturalMod-&lt;version&gt;/</code> folder first and take the two items out of it. You need <strong>both</strong> <code>supernatural_mod.mod</code> and the <code>supernatural_mod</code> folder, dropped side by side into the CK3 mod folder, so that you end up with <code>mod\supernatural_mod.mod</code> and <code>mod\supernatural_mod\</code>. The full walkthrough with paths for all three operating systems is on the <a href="/mods/supernatural/download/">download page</a>.</p>
 
@@ -467,14 +474,14 @@
 <thead><tr><th>The kill</th><th>Track XP</th><th>What it costs the county</th></tr></thead>
 <tbody>
 <tr><td>Drain them completely</td><td>15 to 22</td><td>A body. −5 county control, and a mark on the trail.</td></tr>
-<tr><td>Take just enough</td><td>10</td><td>−1 control. They live, carrying Bloodloss for three years.</td></tr>
-<tr><td>Take a small taste</td><td>2 to 6</td><td>−1 control, and 10 to 20 piety.</td></tr>
+<tr><td>Take just enough</td><td>10</td><td>They live, carrying Bloodloss for three years. No mark unless somebody talks, about one time in ten.</td></tr>
+<tr><td>Take a small taste</td><td>2 to 6</td><td>10 to 20 piety. No mark unless somebody talks.</td></tr>
 <tr><td>Use the escape route</td><td>5</td><td><strong>Nothing at all.</strong> Needs the hidden passage found earlier in the run.</td></tr>
-<tr><td>Feed and loot</td><td>4 to 8</td><td>−1 control, plus the gold from the spoils option you paid for.</td></tr>
+<tr><td>Feed and loot</td><td>4 to 8</td><td>The gold from the spoils option you paid for. No mark unless somebody talks.</td></tr>
 </tbody>
 </table></div>
 
-<p>The three botched answers are to silence the witness, which is a second roll and can leave you with two bodies instead of one; to flee, which is a seven-in-ten chance the secret gets out; or to compel them to forget, which is a roll that starts at 45 and is a great deal better with the Compulsion perk.</p>
+<p>The three botched answers are to silence the witness, which is a second roll and can leave you with two bodies instead of one; to flee, which is a seven-in-ten chance the secret gets out and always a mark, because they are telling people; or to compel them to forget, which is a roll that starts at 45 and is a great deal better with the Compulsion perk. If the compulsion fails, they remember, and that is a mark too.</p>
 
 <details class="numbers"><summary>The numbers: the success chance, term by term</summary><div class="inner">
 <p>The bar starts at <strong>50</strong> and is clamped between 5 and 95. Everything below is added to it, and the breakdown is visible in the tooltip during the activity.</p>
@@ -554,13 +561,30 @@
 
 <h3 id="exposure">Secrets and exposure<a class="anc" href="#exposure" aria-label="Link to this section">#</a></h3>
 
-<p>What happens when you turn depends on what your faith thinks of you. If your faith, or any liege above you, shuns or criminalises vampirism, you get a hidden <strong>secret</strong>, and the people who made you are told about it so your own spymaster stops rediscovering it forever. If nobody around you cares, you get nothing at all, and you go on being a vampire that the game has no public record of.</p>
+<p>What happens when you turn depends on what your rite thinks of you. If your rite, or a liege's above you, shuns or criminalises vampirism, you get a hidden <strong>secret</strong>, and the people who made you are told about it so your own spymaster stops rediscovering it forever. If nobody around you cares, you get nothing at all, and you go on being a vampire that the game has no public record of.</p>
 
-<p>The open <strong>Known Vampire</strong> trait is the other state: +20 opinion from other vampires, −15 from everyone else, and <strong>+15 baseline dread</strong>. It is what the faith doctrines hang their crime and intolerance penalties on. Being known costs you at the table too: −15 on every feeding success roll, and an AI vampire in that position is far less willing to host one at all.</p>
+<p>The open <strong>Known Vampire</strong> trait is the other state: +20 opinion from other vampires, −15 from everyone else, and <strong>+15 baseline dread</strong>. It is what the rite doctrines hang their crime and intolerance penalties on. Being known costs you at the table too: −15 on every feeding success roll, and an AI vampire in that position is far less willing to host one at all.</p>
 
-<p>Faiths take one of four positions on each kind of creature, set as a doctrine: <strong>Criminal</strong>, <strong>Shunned</strong>, <strong>Accepted</strong> or <strong>Virtuous</strong>. Criminal is −30 opinion and a legal reason to imprison or execute. Virtuous makes Known Vampire a virtue of the faith and costs a tenet-sized pile of piety to adopt.</p>
+<p>Each rite takes one of four positions on each kind of creature, set as a doctrine: <strong>Criminal</strong>, <strong>Shunned</strong>, <strong>Accepted</strong> or <strong>Virtuous</strong>. Since CK3 1.20 these sit on the rite rather than the faith, so two rites of one faith can disagree, and a new rite gets them too. Criminal is −30 opinion, a legal reason to imprison or execute, and since 2.36 a known creature is a sin of that rite as well, which costs it another 20 with the faithful. Virtuous makes Known Vampire a virtue of the rite and costs a great deal of piety to adopt.</p>
 
 <p>There is a slow fuse as well. A supernatural who has been immortal more than eighty-five years and is over a hundred and twenty-five rolls three per cent a pulse that somebody finally works out why the lord has not aged.</p>
+
+<h3 id="fulfillment">Your rite and fulfillment<a class="anc" href="#fulfillment" aria-label="Link to this section">#</a></h3>
+
+<p>Crusader Kings III 1.20 added <strong>Spiritual Fulfillment</strong>, a measure of how well a character's life fits their faith. Since 2.36 a creature's own rite weighs three of the things it does: a feed the victim lives through, a kill by fang or claw, and turning someone into your own kind. This applies to vampires, werewolves and hybrids alike, each judged by the rite's doctrine for its own kind.</p>
+
+<div class="tbl wrapfirst"><table>
+<thead><tr><th>Your rite holds your kind</th><th>What the act does</th></tr></thead>
+<tbody>
+<tr><td>Virtuous</td><td>Raises fulfillment: 3 for a feed, 5 for a kill, 10 for a turning. Known or not.</td></tr>
+<tr><td>Criminal</td><td>Lowers it by the same amounts, <strong>but only once you are known</strong> for what you are. A creature behind a secret lives as a member of its faith in good standing and is not charged.</td></tr>
+<tr><td>Shunned or Accepted</td><td>Nothing.</td></tr>
+</tbody>
+</table></div>
+
+<p>How hard it lands depends on how much you care. Vanilla's own multipliers apply, so a zealous character feels a loss twice over, and a cynic is never charged at all. A known creature whose rite outlaws its kind also cares less about that rite: −25 per cent on every fulfillment gain and loss, −10 per cent if the rite only shuns it. A toast tells you why each time it happens.</p>
+
+<p>Hunters are weighed the other way round. Putting a creature down is righteous where its kind is outlawed and sacrilege where it is revered, 3 either way, whether or not the creature was known: a slaying is the creature unmasked. And since 1.20, choices in the mod's events count through your personality as vanilla's do, so an option that goes against a virtue of your faith costs a little fulfillment, creature or not.</p>
 
 <h3 id="originals">The Originals<a class="anc" href="#originals" aria-label="Link to this section">#</a></h3>
 
@@ -763,7 +787,7 @@
 
 <p>There is also a female-line version of Source called Yaga's Blood, which passes from mother to daughter at a 90 per cent chance, and a Grand Master of the Coven trait with an Authority track.</p>
 
-<p><strong>Becoming one.</strong> The route is a scheme, <em>Convert to Witchcraft</em>, run on a target who does not already have the trait. It is secret, it takes a while, and its success chance is built mostly out of the target's zeal. A zealous target is −50 before anything else, and a faith that accepts witchcraft flips the whole zeal term in your favour. Attraction helps, up to +30. Being a coven house is worth +20. Mystics, revelers, herbalists, seducers and the excommunicated are all easier marks.</p>
+<p><strong>Becoming one.</strong> The route is a scheme, <em>Convert to Witchcraft</em>, run on a target who does not already have the trait. It is secret, it takes a while, and its success chance is built mostly out of the target's zeal. A zealous target is −50 before anything else, and a rite that accepts witchcraft flips the whole zeal term in your favour. Attraction helps, up to +30. Being a coven house is worth +20. Mystics, revelers, herbalists, seducers and the excommunicated are all easier marks.</p>
 
 <p>Witches do not inherit the trait. What inherits is Source, Yaga's Blood and possession. And the mod ships <strong>no historical witches at all</strong>. The one character in the magic history file is a demon who dies in 809, before the earliest bookmark. Every witch you meet in a campaign was made at runtime.</p>
 
@@ -848,7 +872,7 @@
 <thead><tr><th>Trait</th><th>What it is</th></tr></thead>
 <tbody>
 <tr><td><strong>Demonic Heritage</strong></td><td>A dormant marker on a demon's child. +1 intrigue and nothing else: no immortality, no dread, no opinion penalty, and it is not a crime under any faith. It means this person may become a demon later.</td></tr>
-<tr><td><strong>Minor Demon</strong></td><td>The real thing. Immortal, +10 health, +3 intrigue, +3 prowess, <strong>+10 baseline dread</strong> and <strong>−20 general opinion</strong>. It is what unlocks the demon lifestyle. Under a faith that shuns or criminalises witchcraft it carries a −30 crime modifier and legal grounds to imprison, execute or banish.</td></tr>
+<tr><td><strong>Minor Demon</strong></td><td>The real thing. Immortal, +10 health, +3 intrigue, +3 prowess, <strong>+10 baseline dread</strong> and <strong>−20 general opinion</strong>. It is what unlocks the demon lifestyle. Under a rite that shuns or criminalises witchcraft it carries a −30 crime modifier and legal grounds to imprison, execute or banish.</td></tr>
 <tr><td><strong>Greater Demon</strong></td><td>Renames itself by its Hell Powers track, becoming <strong>Prince of Hell</strong> or <strong>Demon Princess</strong> at a full track. It is what the demon tree's capstone grants, and taking it removes Minor Demon.</td></tr>
 </tbody>
 </table></div>
@@ -947,7 +971,7 @@
 <p>A demon does not feed, it ruins, so the county pays for it twice. A witch is the quietest of the four. The county loses faith in its lord faster than it loses people.</p>
 </div></details>
 
-<p><strong>What counts as an incident.</strong> Feeding, killing on a feed, a werewolf's border run, a demon escaping a botched binding, a witch's plague spell, the corruption scheme, a body you chose to leave as your own, and a body you pinned on someone else. Roughly two dozen places in the game write a mark.</p>
+<p><strong>What counts as an incident.</strong> Killing on a feed, a feed somebody talks about (a witness who got away, a compulsion that did not take, or about one clean feed in ten), a werewolf's border run, a demon escaping a botched binding, a witch's plague spell, the corruption scheme, a body you chose to leave as your own, and a body you pinned on someone else. Roughly two dozen places in the game write a mark. Since 2.36 a feed nobody talks about leaves no mark at all, and the first warning that a county remembers you reads differently when what it remembers is talk rather than a body.</p>
 
 <p><strong>What does not.</strong> A death in a tournament. A death in war, or with either party in an army. Killing a prisoner. And any death inside a hunt. A body that turns up inside a supernatural hunt is the hunt's business. Hunters never leave marks, because a hunter is not a creature. Since 2.35a the killer also has to be in the same province as the victim, so a murder scheme carried out from somewhere else no longer counts as a creature's kill. A murder in your own hall still does.</p>
 
@@ -1150,7 +1174,7 @@
 
 <p>There is no inheritance and no random roll on the trait itself: a hunter is always made. Four doors: the ruler designer, the background distribution roll at game start, training, and a handful of story events.</p>
 
-<p>Two of those story events are how word of a witch or a monster reaches a court. <em>Witch Spotted</em> opens in a market, and only for a ruler whose faith does not accept witchcraft; <em>Monster Sighting</em> opens in a tavern. Burn the witch at the end of the first, or kill the creature at the end of the second, and a character who was not a hunter becomes one. A hunter gets one or the other in up to one year in five. Everyone else gets them in fewer than one year in fifty. That split came in 2.35a: 2.35 briefly gave the whole map the hunters' rate, and the world filled with new hunters and werewolves.</p>
+<p>Two of those story events are how word of a witch or a monster reaches a court. <em>Witch Spotted</em> opens in a market, and only for a ruler whose rite does not accept witchcraft; <em>Monster Sighting</em> opens in a tavern. Burn the witch at the end of the first, or kill the creature at the end of the second, and a character who was not a hunter becomes one. A hunter gets one or the other in up to one year in five. Everyone else gets them in fewer than one year in fifty. That split came in 2.35a: 2.35 briefly gave the whole map the hunters' rate, and the world filled with new hunters and werewolves.</p>
 
 <h3 id="training">Training one<a class="anc" href="#training" aria-label="Link to this section">#</a></h3>
 
@@ -1347,29 +1371,29 @@
 
 <p>Two things do not carry over. <strong>Game rules are chosen when a save is created</strong>, so a campaign started without Supernatural has no values for its twenty-two rules. And the mod adds portrait and accessory genes, which is the usual CK3 hazard around adding or removing a mod mid-save.</p>
 
-<p><strong>Removing it from a save is not supported</strong> and there is no uninstall path. Most of what strands is mod-created and disappears with the mod. The exception worth knowing: the mod writes three doctrines onto <em>every pagan faith</em> in the save at game start, and those are vanilla faith objects that persist. Nothing takes them off again.</p>
+<p><strong>Removing it from a save is not supported</strong> and there is no uninstall path. Most of what strands is mod-created and disappears with the mod. The exception worth knowing: the mod sets its four creature doctrines on <em>every rite</em> in the save, at game start, whenever a rite is created and once a year, and those are vanilla rite objects that persist. Nothing takes them off again.</p>
 
 <h3 id="multiplayer">Multiplayer<a class="anc" href="#multiplayer" aria-label="Link to this section">#</a></h3>
 
 <p>Every player needs the same mods at the same positions. The mod honours CK3's own multiplayer murder-scheme protections in its own scheme, and carries no other multiplayer-specific code.</p>
 
-<p>The game version it is built against is <strong>1.19.0.6</strong>.</p>
+<p>Version 2.36 is built against <strong>Crusader Kings III 1.20</strong> and was checked on 1.20.0.3. Version 2.35a and earlier were built for 1.19.</p>
 </section>
 
 <!-- LANGUAGES -->
 <section id="languages">
 <h2><span class="eyebrow">Translation</span>Languages<a class="anc" href="#languages" aria-label="Link to this section">#</a></h2>
 
-<p class="lead">Eight language folders ship, and only one of them is maintained.</p>
+<p class="lead">Eight language folders ship. English is maintained, and two others carry real translations that are behind it.</p>
 
 <div class="tbl"><table>
 <thead><tr><th>Language</th><th>State</th></tr></thead>
 <tbody>
-<tr><td>English</td><td>Complete and maintained. 56 files.</td></tr>
-<tr><td>Spanish</td><td>Real translation, contributed by Luke0704, and behind the current English text.</td></tr>
-<tr><td>Russian</td><td>Real translation, and behind the current English text.</td></tr>
-<tr><td>French, German, Korean, Polish</td><td>English text under a translated header. All four are byte-for-byte identical to each other on every file.</td></tr>
-<tr><td>Simplified Chinese</td><td>The same English text again, and every file is exactly six bytes larger than the French one, which is the length of its header line.</td></tr>
+<tr><td>English</td><td>Complete and maintained. 58 files.</td></tr>
+<tr><td>Spanish</td><td>Real translation, contributed by Luke0704, and behind the current English text. Since 2.36 everything newer is there in English.</td></tr>
+<tr><td>Russian</td><td>Real translation, and behind the current English text. The hunt (2.35) and 2.36 are not translated yet.</td></tr>
+<tr><td>French, German, Korean, Polish</td><td>English text under a translated header, with every key present since 2.36.</td></tr>
+<tr><td>Simplified Chinese</td><td>The same English text again, with every key present since 2.36.</td></tr>
 </tbody>
 </table></div>
 
@@ -1381,6 +1405,12 @@
 <h2><span class="eyebrow">History</span>Version history<a class="anc" href="#changes" aria-label="Link to this section">#</a></h2>
 
 <p class="lead">The mod shows its own changelog once per save, at game start or on the next 1 January after an update. This is what it says, condensed.</p>
+
+<h3 id="v236">2.36 — Crusader Kings III 1.20<a class="anc" href="#v236" aria-label="Link to this section">#</a></h3>
+
+<p>Updated for CK3 1.20, which rebuilt religion around rites. On 1.20, 2.35a crashed as a new game loaded in; 2.36 fixes that. The vampirism, lycanthropy, hybrid and hunter doctrines belong to rites now, so every rite of a faith has them and new rites get them too, and crimes, shunning and the witch war follow the rite. Known vampires, werewolves, hybrids and hunters are sins under a rite that outlaws their kind and virtues under one that reveres it, the way 1.20 treats witches. Your own rite judges your feeding, killing and turning others through Spiritual Fulfillment, but only condemns them once you are known; the zealous feel it more and a cynic is never charged. A feed only leaves a trail when somebody talks. The Seekers camp purpose works again, and Scholar is Erudite in 1.20 and keeps the magic bonus.</p>
+
+<p><strong>Fixes:</strong> the first warning that a county remembers you no longer mentions a body when there wasn't one; feeding events no longer flood the error log; the Mikaelsons no longer log hundreds of portrait errors at load; French, German, Spanish, Korean, Polish and Chinese players see English rather than raw keys for everything since the hunt. If you play with A Game of Thrones, AGOT has not been updated for 1.20 yet, and the compatibility patch follows AGOT's update.</p>
 
 <h3 id="v235a">2.35a — The witch you let live<a class="anc" href="#v235a" aria-label="Link to this section">#</a></h3>
 
@@ -1417,7 +1447,7 @@
 
 <p>The version notes thank twelve people by name for bug reports: CleverPolarBear, Lord Zymeth, Noa3, ТоЬЬыэЯ, Omni, Angel DeStaar, Explode_Toad, manic_Mage, AZTRAGOS, valdijan72, Dr. Baphomet and Plato in the Cave.</p>
 
-<p class="srcnote">This page was written from the mod's own files at version 2.35 and checked again against 2.35a. Where a number here disagrees with something written elsewhere, the files are what it was checked against. There is a sibling page for <a href="/mods/the-long-night/wiki/">The Long Night</a>.</p>
+<p class="srcnote">This page was written from the mod's own files at version 2.35, checked again against 2.35a, and updated for 2.36 on 1 October 2026. Where a number here disagrees with something written elsewhere, the files are what it was checked against. There is a sibling page for <a href="/mods/the-long-night/wiki/">The Long Night</a>.</p>
 
 <p class="srcnote">Supernatural is a free, non-commercial fan mod for Crusader Kings III. It is not affiliated with or endorsed by Paradox Interactive.</p>
 </section>
@@ -1428,7 +1458,7 @@
 </main>
 <footer><div class="foot-inner">
 <div><h4>Dlonem</h4><a href="/apps/">Apps</a><a href="/apps/#guides">Break guides</a><a href="/mods/">Mods for CK3</a><a href="/news/">News &amp; patch notes</a><a href="/mods/the-long-night/wiki/">Long Night wiki</a><a href="/mods/supernatural/wiki/">Supernatural wiki</a><a href="/ck3-mod-help/">When CK3 mods break</a><a href="/legacy/">Legacy</a><a href="/games/">Recommended games</a></div>
-<div><h4>Community</h4><a href="/tgc/">The Game Center</a><a href="https://discord.gg/StACe9hVtT">Dlonem's Den (Discord)</a><a href="https://discord.gg/hvZGMeJhB7">The Game Center (Discord)</a><a href="https://discord.gg/PTJzPQbqG7">The Long Night (Discord)</a><a href="https://discord.gg/Efvd2B97xx">Supernatural (Discord)</a></div>
+<div><h4>Community</h4><a href="/tgc/">The Game Center</a><a href="/community/the-grey-company/">The Grey Company</a><a href="https://discord.gg/StACe9hVtT">Dlonem's Den (Discord)</a><a href="https://discord.gg/hvZGMeJhB7">The Game Center (Discord)</a><a href="https://discord.gg/PTJzPQbqG7">The Long Night (Discord)</a><a href="https://discord.gg/Efvd2B97xx">Supernatural (Discord)</a></div>
 <div><h4>Elsewhere</h4><a href="https://www.youtube.com/c/Dlonem">YouTube</a><a href="https://www.twitch.tv/officialdlonem">Twitch</a><a href="https://www.tiktok.com/@officialdlonem">TikTok</a><a href="https://x.com/officialdlonem">X / Twitter</a><a href="https://www.facebook.com/Dlonem/">Facebook</a><a href="https://steamcommunity.com/id/Dlonem">Steam</a></div>
 <div><h4>Studio</h4><a href="/about/">About</a><a href="/privacy/">Privacy policy</a><a href="/support/">Support</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
 </div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word.</div></footer>
