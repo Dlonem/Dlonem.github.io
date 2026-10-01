@@ -7,6 +7,24 @@
   'use strict';
 
   var INDEX_URL = '/search-index.json?v=1';
+
+  /* Shown before anything is typed: the pages people actually arrive for,
+     taken from Search Console (top pages by clicks, Oct 2026). */
+  var POPULAR = [
+    { k: 'Wiki', t: 'The Long Night & Azor Ahai wiki', u: '/mods/the-long-night/wiki/' },
+    { k: 'Mod', t: 'The Long Night & Azor Ahai', u: '/mods/the-long-night/' },
+    { k: 'Wiki', t: 'Supernatural wiki', u: '/mods/supernatural/wiki/' },
+    { k: 'Guide', t: 'CK3 mods not working?', u: '/ck3-mod-help/' },
+    { k: 'Community', t: 'The Grey Company, a WoW Forever guild', u: '/community/the-grey-company/' },
+    { k: 'App', t: 'THC Break Buddy', u: '/apps/thc-break-buddy/' }
+  ];
+
+  /* A few searches deserve a better answer than "nothing matched". */
+  var EGGS = [
+    { re: /only ?fans?/, k: 'Members only', t: 'Dlonem: exclusive content',
+      x: 'The good stuff. Subscribers only. You were warned.',
+      u: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' }
+  ];
   var docs = null, loading = null, dlg = null, input = null, list = null,
       status = null, results = [], active = -1, lastFocus = null, tId = 0;
 
@@ -101,17 +119,38 @@
   }
 
   /* ---------- render ---------- */
+  function option(i, d, snip) {
+    return '<li role="option" id="ds-o' + i + '" aria-selected="false">' +
+      '<a href="' + esc(d.u) + '" tabindex="-1">' +
+        '<span class="ds-kind">' + esc(d.k || '') + '</span>' +
+        '<span class="ds-title">' + esc(d.s || d.t) + '</span>' +
+        (d.s ? '<span class="ds-in">in ' + esc(d.t) + '</span>' : '') +
+        (snip ? '<span class="ds-snip">' + snip + '</span>' : '') +
+      '</a></li>';
+  }
+
   function render(q) {
     var terms = q.toLowerCase().split(/\s+/).filter(function (t) { return t.length > 1; });
-    results = terms.length ? query(q) : [];
     active = -1;
+    list.hidden = false;
     if (!terms.length) {
-      list.innerHTML = '';
+      results = POPULAR.map(function (d) { return { d: d }; });
+      list.innerHTML = '<li class="ds-head" role="presentation">Popular</li>' +
+        POPULAR.map(function (d, i) { return option(i, d, ''); }).join('');
       status.textContent = '';
-      list.hidden = true;
       return;
     }
-    list.hidden = false;
+    var lq = q.toLowerCase().replace(/\s+/g, ' ').trim();
+    for (var e = 0; e < EGGS.length; e++) {
+      if (EGGS[e].re.test(lq)) {
+        results = [{ d: EGGS[e] }];
+        list.innerHTML = option(0, EGGS[e], esc(EGGS[e].x));
+        status.textContent = '1 result';
+        return;
+      }
+    }
+    if (!docs) { list.innerHTML = ''; status.textContent = 'Loading\u2026'; return; }
+    results = query(q);
     if (!results.length) {
       list.innerHTML = '<li class="ds-none">Nothing matched “' + esc(q) +
         '”. Try a single word — “dragonglass”, “load order”, “caffeine”.</li>';
@@ -119,14 +158,7 @@
       return;
     }
     list.innerHTML = results.map(function (r, i) {
-      var d = r.d;
-      return '<li role="option" id="ds-o' + i + '" aria-selected="false">' +
-        '<a href="' + esc(d.u) + '" tabindex="-1">' +
-          '<span class="ds-kind">' + esc(d.k || '') + '</span>' +
-          '<span class="ds-title">' + esc(d.s || d.t) + '</span>' +
-          (d.s ? '<span class="ds-in">in ' + esc(d.t) + '</span>' : '') +
-          '<span class="ds-snip">' + snippet(d, terms) + '</span>' +
-        '</a></li>';
+      return option(i, r.d, snippet(r.d, terms));
     }).join('');
     status.textContent = results.length + (results.length === 1 ? ' result' : ' results');
   }
@@ -181,7 +213,7 @@
     input.addEventListener('input', function () {
       clearTimeout(tId);
       var v = input.value;
-      tId = setTimeout(function () { if (docs) render(v); }, 90);
+      tId = setTimeout(function () { render(v); }, 90);
     });
     input.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
@@ -201,6 +233,7 @@
     input.focus();
     input.select();
     status.textContent = '';
+    render(input.value);                    // popular pages show at once
     load().then(function () {
       if (input.value) render(input.value);
     }).catch(function () {

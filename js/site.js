@@ -11,6 +11,9 @@
   root.classList.add('js');
   root.classList.add('js-ready');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* below this width the nav is the Menu drawer; must match the
+     max-width:1040px queries in style.css */
+  var BP = 1040;
 
   /* ---------------- mobile menu ---------------- */
   var header = document.querySelector('.nav');
@@ -38,7 +41,7 @@
       if (sLoaded) return;                 // already in flight
       sLoaded = true;
       var s = document.createElement('script');
-      s.src = '/js/search.js?v=2';
+      s.src = '/js/search.js?v=3';
       s.onerror = function () { sLoaded = false; };
       document.head.appendChild(s);        // search.js opens itself once parsed
     };
@@ -85,8 +88,167 @@
     });
     // reopening at desktop width must not leave the menu stuck
     addEventListener('resize', function () {
-      if (innerWidth > 780) open(false);
+      if (innerWidth > BP) open(false);
     });
+
+    /* ---------------- menus ----------------
+       Apps, Mods and Community each open a short menu, so someone who knows
+       where they are going gets there in one move. The word itself still links
+       to the hub page. The small arrow beside it opens the menu; on a desktop
+       with a mouse, resting the pointer on the item opens it too. In the phone
+       drawer the arrow expands the same list in place.
+
+       Built here from this ONE list, like the search button, so the 30-odd
+       navs can never drift apart. Edit a menu here and nowhere else. Icons are
+       only fetched the first time a menu opens. */
+    var I = '/assets/icons/news/';
+    /* store chips: tagged the same way as the /thc/ smart links, so Play
+       Console shows installs that came from this menu as source "menu" */
+    var PLAY = function (id) {
+      return 'https://play.google.com/store/apps/details?id=com.dlonem.' + id + '&referrer=' +
+        encodeURIComponent('utm_source=menu&utm_medium=smartlink&utm_campaign=dlonem');
+    };
+    var APPSTORE_THC = 'https://apps.apple.com/app/thc-break-buddy/id6795227377';
+    var MENUS = {
+      apps: { items: [
+        { t: 'THC Break Buddy', d: 'Tolerance break tracker', u: '/apps/thc-break-buddy/', i: I + 'thc.png',
+          x: [['Android', PLAY('thcbreakbuddy'), 'Get it on Google Play'], ['iOS', APPSTORE_THC, 'Get it on the App Store']] },
+        { t: 'Caffeine Break Buddy', d: 'Caffeine tracker and timeline', u: '/apps/caffeine-break-buddy/', i: I + 'caffeine.png',
+          x: [['Android', PLAY('caffeinebreakbuddy'), 'Get it on Google Play']] },
+        { t: 'Nicotine Break Buddy', d: 'Quit cigarettes, vapes and pouches', u: '/apps/nicotine-break-buddy/', i: I + 'nicotine.png',
+          x: [['Android', PLAY('nicotinebreakbuddy'), 'Get it on Google Play']] },
+        { t: 'Tiny Dragon Hoard', d: 'A cozy fantasy flight game', u: '/apps/tiny-dragon-hoard/', i: I + 'dragon.png',
+          x: [['Android', PLAY('tinydragonhoard'), 'Get it on Google Play']] }
+      ] },
+      mods: { items: [
+        { t: 'The Long Night & Azor Ahai', d: 'Submod for A Game of Thrones', u: '/mods/the-long-night/', i: I + 'long-night.png',
+          x: [['Wiki', '/mods/the-long-night/wiki/'], ['Download', '/mods/the-long-night/download/']] },
+        { t: 'Supernatural', d: 'Vampires, werewolves, witches', u: '/mods/supernatural/', i: I + 'spn.png',
+          x: [['Wiki', '/mods/supernatural/wiki/'], ['Download', '/mods/supernatural/download/']] },
+        { t: 'Compatibility Patch', d: 'Run both together with AGOT', u: '/mods/#the-compatibility-patch', i: I + 'patch.png' }
+      ], foot: ['Mods not working? Start here', '/ck3-mod-help/'] },
+      comm: { items: [
+        { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png' },
+        { t: 'The Game Center', d: 'A gaming Discord since 2016', u: '/tgc/', i: I + 'tgc.png' },
+        { t: "Dlonem's Den", d: 'The YouTube channel’s server', u: '/community/#dlonems-den', i: I + 'den.png' },
+        { t: 'The Long Night', d: 'Discord for the mod', u: '/community/#the-long-night-server', i: I + 'long-night.png' },
+        { t: 'Supernatural', d: 'Discord for the mod', u: '/community/#supernatural-server', i: I + 'spn.png' }
+      ] }
+    };
+    var hoverOK = window.matchMedia ? matchMedia('(hover: hover) and (pointer: fine)') : { matches: false };
+    var wide = function () { return innerWidth > BP; };
+    var menus = [];
+    var esc = function (s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+      });
+    };
+    var closeAll = function (except) {
+      menus.forEach(function (m) { if (m !== except) m.set(false); });
+    };
+
+    [].slice.call(list.querySelectorAll('a[data-p]')).forEach(function (a) {
+      var key = a.getAttribute('data-p'), cfg = MENUS[key];
+      if (!cfg) return;
+      var item = document.createElement('div');
+      item.className = 'nav-item';
+      a.parentNode.insertBefore(item, a);
+      item.appendChild(a);
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'nav-caret';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', 'nm-' + key);
+      btn.setAttribute('aria-label', a.textContent.replace(/\s+/g, ' ').trim() + ' menu');
+      btn.innerHTML = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
+      item.appendChild(btn);
+
+      var here = location.pathname;
+      var html = '<ul>' + cfg.items.map(function (it) {
+        var cur = it.u.indexOf('#') < 0 && it.u === here ? ' aria-current="page"' : '';
+        var x = it.x ? '<span class="nm-x">' + it.x.map(function (s) {
+          var ext = /^https?:/.test(s[1]);
+          return '<a href="' + esc(s[1]) + '"' + (s[1] === here ? ' aria-current="page"' : '') +
+            (ext ? ' rel="noopener" class="nm-store" aria-label="' + esc(it.t + ': ' + s[2]) + '"' : '') +
+            '>' + esc(s[0]) + '</a>';
+        }).join('') + '</span>' : '';
+        return '<li><a class="nm-link" href="' + esc(it.u) + '"' + cur + '>' +
+          '<img alt="" width="34" height="34" decoding="async" data-src="' + esc(it.i) + '">' +
+          '<span class="nm-t">' + esc(it.t) + '</span><span class="nm-d">' + esc(it.d) + '</span></a>' + x + '</li>';
+      }).join('') + '</ul>' +
+        (cfg.foot ? '<a class="nm-foot" href="' + esc(cfg.foot[1]) + '">' + esc(cfg.foot[0]) + ' &rarr;</a>' : '');
+      var panel = document.createElement('div');
+      panel.className = 'nav-menu';
+      panel.id = 'nm-' + key;
+      panel.hidden = true;
+      panel.innerHTML = html;
+      item.appendChild(panel);
+
+      var m = { byHover: false };
+      var place = function () {
+        panel.style.removeProperty('--nm-shift');
+        if (!wide()) return;
+        var r = panel.getBoundingClientRect(), vw = document.documentElement.clientWidth;
+        if (r.right > vw - 12) panel.style.setProperty('--nm-shift', (vw - 12 - r.right) + 'px');
+        else if (r.left < 12) panel.style.setProperty('--nm-shift', (12 - r.left) + 'px');
+      };
+      m.set = function (on) {
+        if (on === !panel.hidden) return;
+        if (on) {
+          [].slice.call(panel.querySelectorAll('img[data-src]')).forEach(function (img) {
+            img.src = img.getAttribute('data-src');
+            img.removeAttribute('data-src');
+          });
+          closeAll(m);
+          panel.hidden = false;
+          item.classList.add('is-open');
+          place();
+        } else {
+          panel.hidden = true;
+          item.classList.remove('is-open');
+          m.byHover = false;
+        }
+        btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+      };
+      menus.push(m);
+
+      btn.addEventListener('click', function () {
+        // a click on an arrow the pointer already opened keeps it open
+        if (!panel.hidden && m.byHover) { m.byHover = false; return; }
+        m.set(panel.hidden);
+      });
+      var tOpen = 0, tShut = 0;
+      item.addEventListener('mouseenter', function () {
+        if (!hoverOK.matches || !wide()) return;
+        clearTimeout(tShut);
+        if (panel.hidden) tOpen = setTimeout(function () { m.set(true); m.byHover = true; }, 110);
+      });
+      item.addEventListener('mouseleave', function () {
+        if (!hoverOK.matches || !wide()) return;
+        clearTimeout(tOpen);
+        tShut = setTimeout(function () { m.set(false); }, 260);
+      });
+      item.addEventListener('focusout', function (e) {
+        if (wide() && e.relatedTarget && !item.contains(e.relatedTarget)) m.set(false);
+      });
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !panel.hidden) { e.stopPropagation(); m.set(false); btn.focus(); }
+        else if (e.key === 'ArrowDown' && e.target === btn) {
+          e.preventDefault(); m.set(true);
+          var first = panel.querySelector('a'); if (first) first.focus();
+        }
+      });
+    });
+    if (menus.length) {
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest || !e.target.closest('.nav-item')) closeAll();
+      });
+      var wasWide = wide();
+      addEventListener('resize', function () {
+        if (wide() !== wasWide) { wasWide = wide(); closeAll(); }
+      });
+    }
   }
 
   /* ---------------- ad placements ----------------

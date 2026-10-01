@@ -585,7 +585,7 @@ details summary::marker{transition:none}
 .nav-toggle[aria-expanded="true"] .bars i:nth-child(2){ opacity:0 }
 .nav-toggle[aria-expanded="true"] .bars i:nth-child(3){ transform:translateY(-4.5px) rotate(-45deg) }
 
-@media(max-width:780px){
+@media(max-width:1040px){
   /* site.js builds the .nav-toggle button and inserts it at runtime, so until
      that happens the header renders 14px shorter and everything below it jumps
      when it lands. Reserving the button's own min-height here makes the header
@@ -748,7 +748,7 @@ html.sky-moonrise  { --grad-hero:linear-gradient(115deg,#150C33 0%,#2E1A6B 40%,#
   .nav-search{ width:auto; height:42px; padding:0 14px }
   .nav-search-t{ display:inline }
 }
-@media (max-width:780px){
+@media (max-width:1040px){
   .nav-search{ width:44px; height:44px }   /* full touch target */
 }
 
@@ -871,7 +871,7 @@ html.ds-open{ overflow:hidden }
    link to one must not land with the heading hidden behind the sticky header.
    The wiki already did this for its own sections; this covers the rest. */
 main section[id]{ scroll-margin-top:84px }
-@media (max-width:780px){ main section[id]{ scroll-margin-top:72px } }
+@media (max-width:1040px){ main section[id]{ scroll-margin-top:72px } }
 
 /* Long unbreakable strings — file paths, ids — used to push the whole page
    sideways on a phone. /ck3-mods/ measured 415px wide in a 390px viewport
@@ -945,3 +945,94 @@ code{
 .prose table.facts th,.prose table.facts td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(26,15,66,.12);vertical-align:top;color:var(--ink-soft)}
 .prose table.facts th{font-family:'Sora',sans-serif;white-space:nowrap;font-weight:700;color:var(--ink);border-bottom:2px solid rgba(26,15,66,.22)}
 .prose .byline{font-family:'Space Mono',monospace;font-size:.8rem;color:var(--ink-soft);margin-bottom:22px}
+
+/* ==========================================================================
+   NAV MENUS  (js/site.js builds them from one list; added 2026-10-01)
+   Apps, Mods and Community each get a small arrow. The word is still a link to
+   the hub page; the arrow opens a short menu, and on a desktop with a mouse,
+   resting the pointer on the item opens it too. In the phone drawer the arrow
+   expands the same list in place.
+   ========================================================================== */
+.nav-item{ position:relative; display:flex; align-items:center }
+.nav nav .nav-item > a{ padding-right:5px }
+.nav-caret{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:22px; height:32px; margin-left:-3px; padding:0;
+  border:0; border-radius:8px; background:transparent; color:#CFD6FF; cursor:pointer;
+}
+.nav-caret svg{ width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round; transition:transform .18s ease }
+.nav-caret:hover, .nav-item.is-open .nav-caret{ color:#fff; background:rgba(42,79,184,.45) }
+.nav-item.is-open .nav-caret svg{ transform:rotate(180deg) }
+
+.nav-menu{
+  position:absolute; top:calc(100% + 12px); left:50%;
+  transform:translateX(calc(-50% + var(--nm-shift, 0px)));
+  width:310px; padding:8px; text-align:left;
+  background:#fff; border:1px solid #E4E7F5; border-radius:16px;
+  box-shadow:0 22px 50px rgba(14,8,36,.30);
+  z-index:60; animation:nmdrop .16s ease both;
+}
+.nav-menu[hidden]{ display:none }
+/* an invisible bridge over the gap, so moving the pointer from the word down
+   into the menu never counts as leaving it */
+.nav-menu::before{ content:""; position:absolute; left:0; right:0; top:-14px; height:14px }
+@keyframes nmdrop{ from{ opacity:0; margin-top:-6px } to{ opacity:1; margin-top:0 } }
+.nav-menu ul{ list-style:none; margin:0; padding:0 }
+.nav .nav-menu a.nm-link{
+  display:grid; grid-template-columns:34px 1fr; column-gap:12px; align-items:center;
+  min-height:0; padding:8px 10px; border-radius:10px;
+  color:#1A0F42; background:none; font-size:.9rem; font-weight:600; line-height:1.25;
+  text-decoration:none;
+}
+.nav .nav-menu a.nm-link:hover, .nav .nav-menu a.nm-link:focus-visible{ background:#F0F2FF; color:#1A0F42 }
+.nav .nav-menu a.nm-link[aria-current="page"]{ background:#EEF0FF }
+.nm-link img{ grid-row:span 2; width:34px; height:34px; border-radius:9px; object-fit:cover; background:#E9ECF8 }
+.nm-t{ display:block }
+.nm-d{ display:block; margin-top:2px; font-size:.75rem; font-weight:400; color:#5B6080 }
+.nav .nav-menu .nm-x{ display:flex; gap:6px; padding:0 10px 8px 56px; margin-top:-3px }
+.nav .nav-menu .nm-x a{
+  min-height:0; padding:3px 10px; border-radius:999px;
+  font-size:.72rem; font-weight:600; line-height:1.5;
+  background:#EEF0FF; color:#3B3F9A; text-decoration:none;
+}
+.nav .nav-menu .nm-x a:hover, .nav .nav-menu .nm-x a:focus-visible{ background:#DFE3FF; color:#1A0F42 }
+.nav .nav-menu a.nm-foot{
+  display:block; min-height:0; margin:4px 4px 0; padding:10px 8px 4px;
+  border-top:1px solid #ECEEF7; border-radius:0;
+  font-size:.8rem; font-weight:600; color:#3B3F9A; background:none; text-decoration:none;
+}
+.nav .nav-menu a.nm-foot:hover{ color:#1A0F42; text-decoration:underline }
+@media (min-width:1500px){ .nav-menu{ width:330px } }
+@media (prefers-reduced-motion:reduce){ .nav-menu{ animation:none } .nav-caret svg{ transition:none } }
+
+/* a card reached from a menu (/community/#dlonems-den) shows which one */
+.card.server[id]{ scroll-margin-top:96px }
+.card.server:target{ box-shadow:0 0 0 3px #8FE3F2, 0 12px 28px rgba(26,15,66,.12) }
+
+@media (max-width:1040px){
+  /* menus inside the drawer: the arrow is a full-size target on the right,
+     the list opens in place underneath, on the drawer's own dark background */
+  .nav .nav-inner nav .nav-item{ flex-wrap:wrap }
+  .nav .nav-inner nav .nav-item > a{ flex:1 1 auto; padding-right:14px }
+  .nav-caret{ width:48px; height:44px; margin-left:4px; border-radius:10px; background:rgba(255,255,255,.06) }
+  .nav-caret svg{ width:14px; height:14px }
+  .nav-menu{
+    position:static; transform:none; flex-basis:100%; width:auto;
+    margin:4px 0 8px; padding:6px; border:0; border-radius:12px;
+    background:rgba(255,255,255,.06); box-shadow:none; animation:none;
+  }
+  .nav-menu::before{ display:none }
+  .nav .nav-menu a.nm-link{ color:#fff; padding:9px 10px }
+  .nav .nav-menu a.nm-link:hover, .nav .nav-menu a.nm-link:focus-visible,
+  .nav .nav-menu a.nm-link[aria-current="page"]{ background:rgba(255,255,255,.10); color:#fff }
+  .nm-d{ color:#B9C1E8 }
+  .nav .nav-menu .nm-x a{ background:rgba(255,255,255,.12); color:#E3E8FF }
+  .nav .nav-menu .nm-x a:hover{ background:rgba(255,255,255,.20); color:#fff }
+  .nav .nav-menu a.nm-foot{ color:#9FE6F2; border-top-color:rgba(255,255,255,.12) }
+}
+
+/* search: the "Popular" heading shown before anything is typed */
+.ds-list .ds-head{ padding:12px 14px 4px; font:600 .7rem/1 'Space Mono',monospace;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft) }
+.patch[id]{ scroll-margin-top:96px }
