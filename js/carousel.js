@@ -81,9 +81,13 @@
        images. Dots therefore mark SCROLL POSITIONS, not images — the same thing
        Netflix/Amazon rails do. Counting them per image would leave dots that can
        never activate. */
+    /* measured from the strip's CURRENT slides, so a page that adds or
+       reorders slides after load (the Grey Company Shorts reel) stays right */
     function step() {
-      var a = slides[0].getBoundingClientRect();
-      var b = slides[1].getBoundingClientRect();
+      var now = strip.querySelectorAll('.shot');
+      if (now.length < 2) return 1;
+      var a = now[0].getBoundingClientRect();
+      var b = now[1].getBoundingClientRect();
       return Math.round(b.left - a.left) || Math.round(a.width) || 1;
     }
 
@@ -184,6 +188,7 @@
 
     /* ---- click to enlarge ---- */
     slides.forEach(function (s) {
+      if (s.tagName === 'A') return;   /* a slide that is a link opens its link */
       s.classList.add('is-zoomable');
       s.addEventListener('click', function () {
         var img = s.querySelector('img');

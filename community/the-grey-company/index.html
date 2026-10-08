@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="Alliance, Normal ruleset, NA servers, leveling and social. WoW Forever launches 4 November; the Discord is open now.">
 <meta name="twitter:image" content="https://dlonem.com/assets/img/og-grey-company.jpg">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dlonem.com/"}, {"@type": "ListItem", "position": 2, "name": "Community", "item": "https://dlonem.com/community/"}, {"@type": "ListItem", "position": 3, "name": "The Grey Company", "item": "https://dlonem.com/community/the-grey-company/"}]}, {"@type": "WebPage", "@id": "https://dlonem.com/community/the-grey-company/", "url": "https://dlonem.com/community/the-grey-company/", "name": "The Grey Company", "description": "The Grey Company is an Alliance leveling and social guild for World of Warcraft: Forever, on NA servers and the Normal ruleset. Join the Discord before launch.", "inLanguage": "en", "dateModified": "2026-10-01", "isPartOf": {"@type": "WebSite", "url": "https://dlonem.com/", "name": "Dlonem"}, "about": {"@type": "Organization", "name": "The Grey Company", "description": "An Alliance leveling and social guild for World of Warcraft: Forever, on NA servers and the Normal ruleset.", "foundingDate": "2026-09", "url": "https://dlonem.com/community/the-grey-company/", "logo": "https://dlonem.com/assets/img/grey-company.jpg", "founder": {"@type": "Person", "name": "Dlonem", "url": "https://dlonem.com/about/"}}}]}</script>
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dlonem.com/"}, {"@type": "ListItem", "position": 2, "name": "Community", "item": "https://dlonem.com/community/"}, {"@type": "ListItem", "position": 3, "name": "The Grey Company", "item": "https://dlonem.com/community/the-grey-company/"}]}, {"@type": "WebPage", "@id": "https://dlonem.com/community/the-grey-company/", "url": "https://dlonem.com/community/the-grey-company/", "name": "The Grey Company", "description": "The Grey Company is an Alliance leveling and social guild for World of Warcraft: Forever, on NA servers and the Normal ruleset. Join the Discord before launch.", "inLanguage": "en", "dateModified": "2026-10-08", "isPartOf": {"@type": "WebSite", "url": "https://dlonem.com/", "name": "Dlonem"}, "about": {"@type": "Organization", "name": "The Grey Company", "description": "An Alliance leveling and social guild for World of Warcraft: Forever, on NA servers and the Normal ruleset.", "foundingDate": "2026-09", "url": "https://dlonem.com/community/the-grey-company/", "logo": "https://dlonem.com/assets/img/grey-company.jpg", "founder": {"@type": "Person", "name": "Dlonem", "url": "https://dlonem.com/about/"}}}]}</script>
 <link rel="canonical" href="https://dlonem.com/community/the-grey-company/">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5299635657419886" crossorigin="anonymous"></script>
 <style>
@@ -39,6 +39,11 @@
 .gc .stat b{color:#1E3E86}
 .gc-mark{width:132px;height:132px;border-radius:50%;display:block;margin:0 auto 18px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
 .gc-short{margin-top:18px;font-size:.92rem;color:#D6DDF5}
+.gc-count{margin-top:14px;font-size:.92rem;color:#D6DDF5}
+.gc-count b{color:#fff}
+.gc-count i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#43B581;margin:0 6px 1px 0;vertical-align:middle;box-shadow:0 0 0 3px rgba(67,181,129,.22)}
+.gc-cta .gc-count{color:var(--ink-soft)}
+.gc-cta .gc-count b{color:var(--ink)}
 .gc-short b{font-family:'Space Mono',monospace;font-weight:400;color:#F2D788;white-space:nowrap}
 .gc-facts .stat b{font-size:1.3rem}
 .gc-feed{list-style:none;margin:0 auto;max-width:760px;padding:0;border:1px solid #DCE3F5;border-radius:14px;background:#F7F9FF;overflow:hidden}
@@ -55,14 +60,18 @@
 .gc .faq p{color:var(--ink-soft);font-size:.93rem;margin-top:8px}
 .gc-cta{text-align:center;margin-top:22px}
 .gc-intro{text-align:center;color:var(--ink-soft);margin:0 auto 18px;max-width:640px}
-.gc-reel{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
-.gc-reel a{display:block;text-decoration:none}
+/* Shorts reel: the site's .shots strip (js/carousel.js adds arrows, dots and auto-advance).
+   Five across on desktop, a peek of the next one on smaller screens. */
+.shots--reel{grid-auto-columns:calc((100% - 56px)/5);gap:14px;padding:6px 2px 12px}
+.shots--reel .shot{display:block;aspect-ratio:auto;border:0;border-radius:0;background:none;overflow:visible;scroll-snap-align:start;text-decoration:none}
+.shots--reel .shot:hover img{transform:none}
+@media (max-width:1040px){.shots--reel{grid-auto-columns:calc((100% - 42px)/3.4)}}
 .gc-st{position:relative;display:block;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#0B1636;box-shadow:0 8px 22px rgba(14,8,36,.18);transition:transform .2s ease}
-.gc-reel a:hover .gc-st{transform:translateY(-3px)}
+.shots--reel .shot:hover .gc-st{transform:translateY(-3px)}
 .gc-st img{width:100%;height:100%;object-fit:cover;display:block}
 .gc-st::after{content:"";position:absolute;right:10px;bottom:10px;width:30px;height:30px;border-radius:50%;background:rgba(10,18,48,.74) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 2.5l5.5 3.5L4 9.5z' fill='white'/%3E%3C/svg%3E") center/12px no-repeat}
 .gc-sc{display:block;margin-top:8px;font-size:.82rem;font-weight:600;line-height:1.35}
-@media (max-width:700px){.gc-reel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:2px 2px 10px;scrollbar-width:none}.gc-reel::-webkit-scrollbar{display:none}.gc-reel a{flex:0 0 44%;scroll-snap-align:start}}
+@media (max-width:700px){.shots--reel{grid-auto-columns:44%;gap:12px}}
 @media (prefers-reduced-motion:reduce){.gc-st{transition:none}}
 .gc-cta .srcnote{margin-top:12px}
 .gc-sources{font-size:.85rem}
@@ -97,6 +106,7 @@
 <a class="btn btn-solid" href="https://discord.gg/UcJmm4XQVZ">Join the Grey Company Discord</a>
 <a class="btn btn-ghost" href="#wow-forever">What WoW Forever is</a>
 </div>
+<p class="gc-count" data-gc-count hidden></p>
 <p class="gc-short">Telling someone in game? Type <b>dlonem.com/grey</b></p>
 </div>
 </div>
@@ -208,13 +218,24 @@
 <section class="tight" id="on-the-channel">
 <div class="wrap">
 <div class="section-head"><span class="eyebrow">Meanwhile, on YouTube</span><h2>WoW Forever, in short</h2></div>
-<p class="gc-intro">How the wait for launch is going. More on <a href="https://www.youtube.com/@OfficialDlonem/shorts">the channel</a>.</p>
-<div class="gc-reel">
-<a href="https://www.youtube.com/shorts/U9-HQ3j_eHY" rel="noopener"><span class="gc-st"><img src="https://i.ytimg.com/vi/U9-HQ3j_eHY/hqdefault.jpg" srcset="https://i.ytimg.com/vi/U9-HQ3j_eHY/hqdefault.jpg 480w, https://i.ytimg.com/vi/U9-HQ3j_eHY/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">POV: Questing in WoW Forever</span></a>
-<a href="https://www.youtube.com/shorts/Xf0G642LXFY" rel="noopener"><span class="gc-st"><img src="https://i.ytimg.com/vi/Xf0G642LXFY/hqdefault.jpg" srcset="https://i.ytimg.com/vi/Xf0G642LXFY/hqdefault.jpg 480w, https://i.ytimg.com/vi/Xf0G642LXFY/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Every WoW veteran in the starting zone on November 4th</span></a>
-<a href="https://www.youtube.com/shorts/HWGVLw87CPY" rel="noopener"><span class="gc-st"><img src="https://i.ytimg.com/vi/HWGVLw87CPY/hqdefault.jpg" srcset="https://i.ytimg.com/vi/HWGVLw87CPY/hqdefault.jpg 480w, https://i.ytimg.com/vi/HWGVLw87CPY/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Every WoW player&#39;s November plans</span></a>
-<a href="https://www.youtube.com/shorts/TORzYIOb4TI" rel="noopener"><span class="gc-st"><img src="https://i.ytimg.com/vi/TORzYIOb4TI/hqdefault.jpg" srcset="https://i.ytimg.com/vi/TORzYIOb4TI/hqdefault.jpg 480w, https://i.ytimg.com/vi/TORzYIOb4TI/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Rallying the boys for WoW Forever (6th time&#39;s the charm)</span></a>
-<a href="https://www.youtube.com/shorts/XQTfPLhmq0E" rel="noopener"><span class="gc-st"><img src="https://i.ytimg.com/vi/XQTfPLhmq0E/hqdefault.jpg" srcset="https://i.ytimg.com/vi/XQTfPLhmq0E/hqdefault.jpg 480w, https://i.ytimg.com/vi/XQTfPLhmq0E/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">My Steam backlog watching me reinstall WoW again</span></a>
+<p class="gc-intro">How the wait for launch is going, newest first. New ones show up here on their own; the rest are on <a href="https://www.youtube.com/@OfficialDlonem/shorts">the channel</a>.</p>
+<div class="shots shots--reel" id="gc-shorts" data-interval="6000" data-shorts="https://feed.dlonem.com/shorts">
+<a class="shot" href="https://www.youtube.com/shorts/Z5kaa-DVEmY" rel="noopener" data-id="Z5kaa-DVEmY"><span class="gc-st"><img src="https://i.ytimg.com/vi/Z5kaa-DVEmY/hqdefault.jpg" srcset="https://i.ytimg.com/vi/Z5kaa-DVEmY/hqdefault.jpg 480w, https://i.ytimg.com/vi/Z5kaa-DVEmY/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Healers Watching the Warlock Life Tap Again</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/qEB233banF4" rel="noopener" data-id="qEB233banF4"><span class="gc-st"><img src="https://i.ytimg.com/vi/qEB233banF4/hqdefault.jpg" srcset="https://i.ytimg.com/vi/qEB233banF4/hqdefault.jpg 480w, https://i.ytimg.com/vi/qEB233banF4/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Tanks Watching the Hunter Pet Pull Again</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/w2lNIB022_g" rel="noopener" data-id="w2lNIB022_g"><span class="gc-st"><img src="https://i.ytimg.com/vi/w2lNIB022_g/hqdefault.jpg" srcset="https://i.ytimg.com/vi/w2lNIB022_g/hqdefault.jpg 480w, https://i.ytimg.com/vi/w2lNIB022_g/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">No Wonder It&#39;s Taking Me So Long to Level</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/uoZqnOStW-0" rel="noopener" data-id="uoZqnOStW-0"><span class="gc-st"><img src="https://i.ytimg.com/vi/uoZqnOStW-0/hqdefault.jpg" srcset="https://i.ytimg.com/vi/uoZqnOStW-0/hqdefault.jpg 480w, https://i.ytimg.com/vi/uoZqnOStW-0/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Streamers Explaining Where the Gold Came From</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/K4yHr8IC7Hs" rel="noopener" data-id="K4yHr8IC7Hs"><span class="gc-st"><img src="https://i.ytimg.com/vi/K4yHr8IC7Hs/hqdefault.jpg" srcset="https://i.ytimg.com/vi/K4yHr8IC7Hs/hqdefault.jpg 480w, https://i.ytimg.com/vi/K4yHr8IC7Hs/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Tank and Healer Deciding Which DPS to Kick</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/TPt1TZKpkL0" rel="noopener" data-id="TPt1TZKpkL0"><span class="gc-st"><img src="https://i.ytimg.com/vi/TPt1TZKpkL0/hqdefault.jpg" srcset="https://i.ytimg.com/vi/TPt1TZKpkL0/hqdefault.jpg 480w, https://i.ytimg.com/vi/TPt1TZKpkL0/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">The Tank Going to Find the Hunter</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/qCx19Cmd5fo" rel="noopener" data-id="qCx19Cmd5fo"><span class="gc-st"><img src="https://i.ytimg.com/vi/qCx19Cmd5fo/hqdefault.jpg" srcset="https://i.ytimg.com/vi/qCx19Cmd5fo/hqdefault.jpg 480w, https://i.ytimg.com/vi/qCx19Cmd5fo/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Blizzard Trying to Throw In Retail for Free</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/2bFBHaQKo5Q" rel="noopener" data-id="2bFBHaQKo5Q"><span class="gc-st"><img src="https://i.ytimg.com/vi/2bFBHaQKo5Q/hqdefault.jpg" srcset="https://i.ytimg.com/vi/2bFBHaQKo5Q/hqdefault.jpg 480w, https://i.ytimg.com/vi/2bFBHaQKo5Q/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Undead Paladins Looking for Whoever Reported the Bubble</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/jw1aaVdFH3w" rel="noopener" data-id="jw1aaVdFH3w"><span class="gc-st"><img src="https://i.ytimg.com/vi/jw1aaVdFH3w/hqdefault.jpg" srcset="https://i.ytimg.com/vi/jw1aaVdFH3w/hqdefault.jpg 480w, https://i.ytimg.com/vi/jw1aaVdFH3w/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Undead Paladins Reading the Cannibalize Patch Note</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/uk4igXb8Hog" rel="noopener" data-id="uk4igXb8Hog"><span class="gc-st"><img src="https://i.ytimg.com/vi/uk4igXb8Hog/hqdefault.jpg" srcset="https://i.ytimg.com/vi/uk4igXb8Hog/hqdefault.jpg 480w, https://i.ytimg.com/vi/uk4igXb8Hog/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Undead Paladins After Waiting Since 2004</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/XkZtyMcLlw0" rel="noopener" data-id="XkZtyMcLlw0"><span class="gc-st"><img src="https://i.ytimg.com/vi/XkZtyMcLlw0/hqdefault.jpg" srcset="https://i.ytimg.com/vi/XkZtyMcLlw0/hqdefault.jpg 480w, https://i.ytimg.com/vi/XkZtyMcLlw0/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Alliance Players Seeing Orgrimmar for the First Time</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/U9-HQ3j_eHY" rel="noopener" data-id="U9-HQ3j_eHY"><span class="gc-st"><img src="https://i.ytimg.com/vi/U9-HQ3j_eHY/hqdefault.jpg" srcset="https://i.ytimg.com/vi/U9-HQ3j_eHY/hqdefault.jpg 480w, https://i.ytimg.com/vi/U9-HQ3j_eHY/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">POV: Questing in WoW Forever</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/Xf0G642LXFY" rel="noopener" data-id="Xf0G642LXFY"><span class="gc-st"><img src="https://i.ytimg.com/vi/Xf0G642LXFY/hqdefault.jpg" srcset="https://i.ytimg.com/vi/Xf0G642LXFY/hqdefault.jpg 480w, https://i.ytimg.com/vi/Xf0G642LXFY/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Every WoW veteran in the starting zone on November 4th</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/HWGVLw87CPY" rel="noopener" data-id="HWGVLw87CPY"><span class="gc-st"><img src="https://i.ytimg.com/vi/HWGVLw87CPY/hqdefault.jpg" srcset="https://i.ytimg.com/vi/HWGVLw87CPY/hqdefault.jpg 480w, https://i.ytimg.com/vi/HWGVLw87CPY/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Every WoW player&#39;s November plans</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/TORzYIOb4TI" rel="noopener" data-id="TORzYIOb4TI"><span class="gc-st"><img src="https://i.ytimg.com/vi/TORzYIOb4TI/hqdefault.jpg" srcset="https://i.ytimg.com/vi/TORzYIOb4TI/hqdefault.jpg 480w, https://i.ytimg.com/vi/TORzYIOb4TI/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Rallying the boys for WoW Forever (6th time&#39;s the charm)</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/XQTfPLhmq0E" rel="noopener" data-id="XQTfPLhmq0E"><span class="gc-st"><img src="https://i.ytimg.com/vi/XQTfPLhmq0E/hqdefault.jpg" srcset="https://i.ytimg.com/vi/XQTfPLhmq0E/hqdefault.jpg 480w, https://i.ytimg.com/vi/XQTfPLhmq0E/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">My Steam backlog watching me reinstall WoW again</span></a>
 </div>
 </div>
 </section>
@@ -239,6 +260,7 @@
 </div>
 <div class="gc-cta">
 <a class="btn btn-solid" href="https://discord.gg/UcJmm4XQVZ">Join the Grey Company Discord</a>
+<p class="gc-count" data-gc-count hidden></p>
 <p class="srcnote">Or open the invite directly: <a href="https://discord.gg/UcJmm4XQVZ">discord.gg/UcJmm4XQVZ</a></p>
 </div>
 </div>
@@ -330,6 +352,118 @@
 })();
 </script>
 <script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});</script>
+<script>
+/* WoW Forever Shorts. The reel is written into the page and works on its own.
+   feed.dlonem.com/shorts (the same Cloudflare Worker as the headlines) reads
+   the channel's public upload list, so a Short posted after the last site
+   update still shows up, newest first. Only 11-character video ids are
+   accepted, every caption is set with textContent, and the reel never gets
+   shorter: a Short the Worker no longer lists stays where it was. */
+(function () {
+  var reel = document.getElementById('gc-shorts');
+  if (!reel || !window.fetch) return;
+  var url = reel.getAttribute('data-shorts');
+  if (!url) return;
+  var ID = /^[A-Za-z0-9_-]{11}$/;
+  var ctl = ('AbortController' in window) ? new AbortController() : null;
+  var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 5000);
+
+  function card(id, title) {
+    var a = document.createElement('a');
+    a.className = 'shot';
+    a.href = 'https://www.youtube.com/shorts/' + id;
+    a.rel = 'noopener';
+    a.setAttribute('data-id', id);
+    var st = document.createElement('span');
+    st.className = 'gc-st';
+    var img = document.createElement('img');
+    img.alt = '';
+    img.width = 480;
+    img.height = 360;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.onerror = function () { img.remove(); };
+    img.sizes = '(max-width:700px) 380px, 470px';
+    img.srcset = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg 480w, https://i.ytimg.com/vi/' + id + '/hq720.jpg 1280w';
+    img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+    st.appendChild(img);
+    var sc = document.createElement('span');
+    sc.className = 'gc-sc';
+    sc.textContent = title;
+    a.appendChild(st);
+    a.appendChild(sc);
+    return a;
+  }
+
+  fetch(url, { signal: ctl ? ctl.signal : undefined, credentials: 'omit' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      clearTimeout(timer);
+      if (!d || !d.items || !d.items.length) return;
+      var have = {}, order = [];
+      [].forEach.call(reel.querySelectorAll('a.shot[data-id]'), function (a) {
+        have[a.getAttribute('data-id')] = a;
+      });
+      d.items.forEach(function (it) {
+        if (!it || typeof it.id !== 'string' || !ID.test(it.id) || order.indexOf(it.id) !== -1) return;
+        if (!have[it.id]) {
+          var t = String(it.title || '').replace(/\s*#[A-Za-z0-9_]+/g, '').trim().slice(0, 140);
+          have[it.id] = card(it.id, t || 'WoW Forever Short');
+        }
+        order.push(it.id);
+      });
+      if (!order.length) return;
+      [].forEach.call(reel.querySelectorAll('a.shot[data-id]'), function (a) {
+        var id = a.getAttribute('data-id');
+        if (order.indexOf(id) === -1) order.push(id);
+      });
+      var frag = document.createDocumentFragment();
+      order.forEach(function (id) { frag.appendChild(have[id]); });
+      reel.appendChild(frag);
+      /* carousel.js recounts its dots on resize */
+      try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+    })
+    .catch(function () { clearTimeout(timer); });
+})();
+
+/* Discord member count. Discord publishes it on the invite itself and lets
+   any site read it; no cookies are sent. If Discord does not answer, the
+   lines stay hidden. */
+(function () {
+  var spots = document.querySelectorAll('[data-gc-count]');
+  if (!spots.length || !window.fetch) return;
+  var ctl = ('AbortController' in window) ? new AbortController() : null;
+  var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 5000);
+  fetch('https://discord.com/api/v9/invites/UcJmm4XQVZ?with_counts=true',
+        { signal: ctl ? ctl.signal : undefined, credentials: 'omit' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      clearTimeout(timer);
+      if (!d) return;
+      var ok = function (n) { return typeof n === 'number' && isFinite(n) && n >= 0 && n < 1e7 && Math.floor(n) === n; };
+      var members = d.approximate_member_count, online = d.approximate_presence_count;
+      if (!ok(members) || members < 1) return;
+      var fmt = function (n) { return n.toLocaleString('en-US'); };
+      [].forEach.call(spots, function (p) {
+        p.textContent = '';
+        if (ok(online) && online > 0 && online <= members) {
+          p.appendChild(document.createElement('i'));
+          var b1 = document.createElement('b');
+          b1.textContent = fmt(online) + ' online';
+          p.appendChild(b1);
+          p.appendChild(document.createTextNode(' · '));
+        }
+        var b2 = document.createElement('b');
+        b2.textContent = fmt(members) + (members === 1 ? ' member' : ' members');
+        p.appendChild(b2);
+        p.appendChild(document.createTextNode(' in the Discord'));
+        p.hidden = false;
+      });
+    })
+    .catch(function () { clearTimeout(timer); });
+})();
+</script>
+<script src="/js/carousel.js?v=2" defer></script>
 <script src="/js/site.js?v=4" defer></script>
 </body>
 </html>
