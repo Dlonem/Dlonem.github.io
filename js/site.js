@@ -275,7 +275,7 @@
   (function () {
     if (document.querySelector('script[src^="/js/live.js"]')) return;
     var s = document.createElement('script');
-    s.src = '/js/live.js?v=3';
+    s.src = '/js/live.js?v=4';
     s.async = true;
     document.body.appendChild(s);
   })();

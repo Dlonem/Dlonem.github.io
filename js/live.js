@@ -246,8 +246,23 @@
     }
     return true;
   }
+  /* Apple turns away Cloudflare's servers (seen 8 Oct 2026), so when the Worker
+     has no answer the page asks Apple's public lookup itself. Only the app
+     pages that show a version do this. */
+  var APPLE = { thc: '6795227377' };
+  function appleDirect() {
+    var keys = Object.keys(APPLE), ios = {};
+    return Promise.all(keys.map(function (k) {
+      return getJSON('https://itunes.apple.com/lookup?country=us&id=' + APPLE[k], 6000).then(function (j) {
+        var a = j && j.results && j.results[0];
+        if (!a || String(a.trackId) !== APPLE[k] || !/^\d+(\.\d+){1,3}$/.test(String(a.version || ''))) return;
+        var t = Date.parse(a.currentVersionReleaseDate || '');
+        if (isFinite(t)) ios[k] = { version: String(a.version), released: new Date(t).toISOString() };
+      });
+    })).then(function () { return Object.keys(ios).length ? { ok: true, ios: ios } : null; });
+  }
   if (appVer.length || appDate.length) {
-    getJSON(FEED + 'apps').then(function (d) {
+    getJSON(FEED + 'apps').then(function (d) { return d && d.ok && d.ios ? d : appleDirect(); }).then(function (d) {
       if (!d || !d.ok || !d.ios) return;
       appVer.forEach(function (e) {
         var k = String(e.getAttribute('data-app-ver')).replace(/^ios\./, ''), a = d.ios[k];
