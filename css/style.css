@@ -964,6 +964,14 @@ code{
   stroke-linecap:round; stroke-linejoin:round; transition:transform .18s ease }
 .nav-caret:hover, .nav-item.is-open .nav-caret{ color:#fff; background:rgba(42,79,184,.45) }
 .nav-item.is-open .nav-caret svg{ transform:rotate(180deg) }
+/* the current section: the arrow sits inside the word's pill (desktop bar only;
+   the phone drawer keeps its separate full-size arrow) */
+@media (min-width:1041px){
+  .nav nav .nav-item.is-active > a{ padding-right:30px }
+  .nav-item.is-active .nav-caret{ position:absolute; right:4px; top:50%; transform:translateY(-50%);
+    margin:0; height:26px; color:var(--nav-active-ink,#fff) }
+  .nav-item.is-active .nav-caret:hover, .nav-item.is-active.is-open .nav-caret{ background:rgba(255,255,255,.22); color:var(--nav-active-ink,#fff) }
+}
 
 .nav-menu{
   position:absolute; top:calc(100% + 12px); left:50%;
@@ -1036,3 +1044,102 @@ code{
 .ds-list .ds-head{ padding:12px 14px 4px; font:600 .7rem/1 'Space Mono',monospace;
   letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft) }
 .patch[id]{ scroll-margin-top:96px }
+
+/* ==========================================================================
+   LIVE BITS (js/live.js; added 2026-10-08)
+   Discord member counts, and the YouTube live / next-stream bar. Everything
+   starts hidden and only appears once real data has arrived.
+   ========================================================================== */
+.dc-count{margin:12px 0 0;font-size:.9rem;color:var(--ink-soft)}
+.dc-count b{color:var(--ink);font-weight:700}
+.hero .dc-count{color:rgba(255,255,255,.84)}
+.hero .dc-count b{color:#fff}
+.card.server .dc-count{margin:0 0 12px}
+.dc-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2FA36B;
+  margin:0 7px 1px 1px;vertical-align:middle;box-shadow:0 0 0 3px rgba(47,163,107,.22)}
+.dc-total{margin-top:14px;color:rgba(255,255,255,.84);font-size:.95rem}
+.dc-total b{color:#fff;font-family:'Unbounded',sans-serif;font-weight:600}
+
+.yt-live-wrap{margin-top:22px}
+.yt-live{display:block}
+.yt-live[hidden]{display:none}
+.yt-live-in{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:14px 18px;border-radius:var(--radius);text-decoration:none;
+  background:var(--card);border:1px solid var(--line);box-shadow:0 10px 26px rgba(26,15,66,.10);color:var(--ink)}
+.yt-live-in:hover{border-color:#C9CFF2}
+.yt-live-tag{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 11px;border-radius:99px;background:#EEF0FF;color:#2A2370}
+.yt-live-tag::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.is-live .yt-live-tag{background:#D7263D;color:#fff}
+.is-live .yt-live-tag::before{background:#fff;animation:yt-pulse 1.4s ease-in-out infinite}
+.yt-live-txt{flex:1 1 260px;min-width:0;display:flex;flex-direction:column;gap:2px}
+.yt-live-txt b{font-weight:700;line-height:1.35}
+.yt-live-when{font-size:.86rem;color:var(--ink-soft)}
+.yt-live-go{flex:0 0 auto;font-weight:700;font-size:.88rem;padding:9px 16px;border-radius:10px;
+  background:var(--grad-brand);color:#fff}
+.is-live .yt-live-go{background:#D7263D}
+@keyframes yt-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.is-live .yt-live-tag::before{animation:none}}
+@media (max-width:560px){.yt-live-go{width:100%;text-align:center}}
+
+/* live notice on the logo, and the stream itself (js/live.js; 2026-10-08) */
+/* live: a red ring round the logo and a LIVE tag under it, the way YouTube
+   marks a live channel. The ring is a link over the logo (js/live.js). */
+.nav-inner{position:relative}
+.brand.is-live img{box-shadow:0 0 0 2px var(--midnight),0 0 0 4px #E5323B}
+.brand-live{position:absolute;z-index:5;display:block;border-radius:50%;text-decoration:none}
+.brand-live:focus-visible{outline:3px solid var(--cyan);outline-offset:4px}
+.bl-tag{position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);
+  padding:1px 5px;border-radius:4px;background:#E5323B;color:#fff;
+  font:700 .56rem/1.3 'Sora',system-ui,sans-serif;letter-spacing:.06em;box-shadow:0 0 0 2px var(--midnight)}
+.yt-live.ytl-big{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;align-items:center;
+  padding:18px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);
+  box-shadow:0 14px 34px rgba(26,15,66,.14);scroll-margin-top:90px}
+.yt-live.ytl-big[hidden]{display:none}
+.ytl-player{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0E0824}
+.ytl-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ytl-play{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0E0824}
+.ytl-play img{width:100%;height:100%;object-fit:cover;display:block}
+.ytl-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:12px 20px;border-radius:12px;
+  background:#D7263D;color:#fff;font-weight:700;font-size:1rem;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.ytl-play:hover .ytl-btn,.ytl-play:focus-visible .ytl-btn{background:#B81D31}
+.ytl-play:focus-visible{outline:3px solid var(--cyan);outline-offset:-3px}
+.ytl-info{min-width:0}
+.ytl-title{font-size:1.25rem;line-height:1.3;margin:10px 0 8px}
+.ytl-desc{color:var(--ink-soft);font-size:.92rem;white-space:pre-line;overflow:hidden;
+  display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;margin-bottom:14px}
+.ytl-actions .ytl-go{background:#D7263D;color:#fff}
+@media (max-width:760px){.yt-live.ytl-big{grid-template-columns:1fr}}
+
+/* the app pages' version line: Android from the news feed, iOS live from Apple */
+.app-ver{margin-top:14px;font-size:.86rem;color:rgba(255,255,255,.82);display:flex;gap:6px 16px;justify-content:center;flex-wrap:wrap}
+.app-ver b{color:#fff;font-weight:700}
+/* the newest uploads on the home rail */
+.vcard.is-new .vcard-tag{display:inline-block;width:auto;padding:2px 7px;border-radius:5px;background:#D7263D;color:#fff;margin-bottom:6px}
+
+/* the WoW Forever guide: Alliance blue on the left, Horde red on the right */
+.wf .hero{background:linear-gradient(90deg,#0A1F55 0%,#1C46A8 30%,#2A2F6E 50%,#8E1D24 70%,#4E0B10 100%);
+  background-size:100% 100%;animation:none}
+.wf .hero .eyebrow{color:#F2D788}
+.wf-facts .stat{position:relative;overflow:hidden}
+.wf-facts .stat::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;
+  background:linear-gradient(90deg,#1C46A8 0 50%,#B3262E 50% 100%)}
+/* a stream title or a long URL never pushes the page wider than the screen */
+.ytl-title,.yt-live-txt b,.vcard-title,.prose a,.prose code{overflow-wrap:anywhere}
+/* the home page's latest-news strip (written by build_news.py) */
+.hn-list{list-style:none;margin:0 auto;padding:0;max-width:760px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden}
+.hn-list li{display:flex;gap:14px;align-items:baseline;padding:13px 18px;border-top:1px solid var(--line)}
+.hn-list li:first-child{border-top:0}
+.hn-list time{flex:0 0 64px;font-family:'Space Mono',monospace;font-size:.78rem;color:var(--ink-soft)}
+.hn-list .hn-p{flex:0 0 auto;font-size:.78rem;font-weight:700;color:var(--violet)}
+.hn-list a{font-weight:600;text-decoration:none;line-height:1.4}
+.hn-list a:hover{text-decoration:underline}
+.hn-more{text-align:center;margin-top:14px;font-size:.9rem}
+@media (max-width:560px){.hn-list li{flex-wrap:wrap;gap:4px 10px}.hn-list a{flex-basis:100%}}
+/* the guide's "on this page" list */
+.wf-toc-wrap{margin-top:28px}
+.wf-toc{max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;list-style:none;padding:0}
+.wf-toc a{display:inline-block;padding:7px 13px;border-radius:99px;border:1px solid var(--line);background:var(--card);
+  font-size:.86rem;font-weight:600;text-decoration:none;color:var(--ink)}
+.wf-toc a:hover{border-color:#1C46A8;color:#1C46A8}

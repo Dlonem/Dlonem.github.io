@@ -128,11 +128,12 @@
         { t: 'Compatibility Patch', d: 'Run both together with AGOT', u: '/mods/#the-compatibility-patch', i: I + 'patch.png' }
       ], foot: ['Mods not working? Start here', '/ck3-mod-help/'] },
       comm: { items: [
-        { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png' },
-        { t: 'The Game Center', d: 'A gaming Discord since 2016', u: '/tgc/', i: I + 'tgc.png' },
-        { t: "Dlonem's Den", d: 'The YouTube channel’s server', u: '/community/#dlonems-den', i: I + 'den.png' },
-        { t: 'The Long Night', d: 'Discord for the mod', u: '/community/#the-long-night-server', i: I + 'long-night.png' },
-        { t: 'Supernatural', d: 'Discord for the mod', u: '/community/#supernatural-server', i: I + 'spn.png' }
+        { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ',
+          x: [['Guide', '/wow-forever/']] },
+        { t: 'The Game Center', d: 'A gaming Discord since 2016', u: '/tgc/', i: I + 'tgc.png', dc: 'hvZGMeJhB7' },
+        { t: "Dlonem's Den", d: 'The YouTube channel’s server', u: '/community/#dlonems-den', i: I + 'den.png', dc: 'StACe9hVtT' },
+        { t: 'The Long Night', d: 'Discord for the mod', u: '/community/#the-long-night-server', i: I + 'long-night.png', dc: 'PTJzPQbqG7' },
+        { t: 'Supernatural', d: 'Discord for the mod', u: '/community/#supernatural-server', i: I + 'spn.png', dc: 'Efvd2B97xx' }
       ] }
     };
     var hoverOK = window.matchMedia ? matchMedia('(hover: hover) and (pointer: fine)') : { matches: false };
@@ -163,6 +164,12 @@
       btn.setAttribute('aria-label', a.textContent.replace(/\s+/g, ' ').trim() + ' menu');
       btn.innerHTML = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
       item.appendChild(btn);
+      /* the page's own section: one pill around the word AND its arrow, in the
+         page's theme colour (each themed page styles a.active itself) */
+      if (a.classList.contains('active')) {
+        item.classList.add('is-active');
+        try { item.style.setProperty('--nav-active-ink', getComputedStyle(a).color); } catch (e) {}
+      }
 
       var here = location.pathname;
       var html = '<ul>' + cfg.items.map(function (it) {
@@ -174,7 +181,8 @@
             '>' + esc(s[0]) + '</a>';
         }).join('') + '</span>' : '';
         return '<li><a class="nm-link" href="' + esc(it.u) + '"' + cur + '>' +
-          '<img alt="" width="34" height="34" decoding="async" data-src="' + esc(it.i) + '">' +
+          '<img alt="" width="34" height="34" decoding="async" data-src="' + esc(it.i) + '"' +
+          (it.dc ? ' data-discord-icon="' + esc(it.dc) + '" data-size="64"' : '') + '>' +
           '<span class="nm-t">' + esc(it.t) + '</span><span class="nm-d">' + esc(it.d) + '</span></a>' + x + '</li>';
       }).join('') + '</ul>' +
         (cfg.foot ? '<a class="nm-foot" href="' + esc(cfg.foot[1]) + '">' + esc(cfg.foot[0]) + ' &rarr;</a>' : '');
@@ -259,6 +267,18 @@
     a.defer = true;
     document.head.appendChild(a);
   }
+
+  /* the live parts of the site (numbers, Discord counts and icons, the YouTube
+     live notice) live in one file, loaded here so every page gets it. It must stay ABOVE the scroll
+     reveal: that section returns early (reduced motion, no observer, a page
+     with nothing to reveal), and anything after it would never run. */
+  (function () {
+    if (document.querySelector('script[src^="/js/live.js"]')) return;
+    var s = document.createElement('script');
+    s.src = '/js/live.js?v=3';
+    s.async = true;
+    document.body.appendChild(s);
+  })();
 
   /* ---------------- scroll reveal ---------------- */
   var targets = [].slice.call(document.querySelectorAll(
