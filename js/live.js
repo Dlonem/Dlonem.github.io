@@ -29,6 +29,15 @@
        visitor's own time zone. From feed.dlonem.com/live.
    While live, every page also gets a red dot on the logo, linking to it.
 
+   <div class="modlog" data-modlog="spn"> / <span data-modver="spn">
+       The mod's newest Steam change note and version (feed.dlonem.com/modlog).
+   <div data-wf-news hidden>
+       The newest WoW Forever headlines from Wowhead (feed.dlonem.com/forever).
+   <div data-shorts-for="hunter" hidden>
+       The channel's newest WoW Forever Shorts that name that class.
+   <span data-countdown="2026-11-04">
+       "in 26 days" / "tomorrow" / "today" / "out now".
+
    Every value is written with textContent; links are built only from an
    11-character YouTube id or Discord's numeric ids; nothing is sent with
    cookies. */
@@ -143,9 +152,15 @@
   function discord() {
     if (discordP) return discordP;
     discordP = getJSON(FEED + 'discord').then(function (d) {
-      if (d && d.ok && d.servers) return d.servers;
-      if (!needsCounts) return {};
-      return Promise.all(SERVERS.map(function (c) {
+      /* Discord often answers the Worker for only some servers (it limits how
+         fast Cloudflare's shared servers can ask), so any server missing from
+         the Worker's answer is asked for directly - but only on a page that
+         shows server cards or counts; a page with just the nav menu keeps the
+         Worker's answer and its own icons for the rest. */
+      var have = (d && d.ok && d.servers) ? d.servers : {};
+      var missing = SERVERS.filter(function (c) { return !have[c]; });
+      if (!missing.length || !(needsCounts || icons.length)) return have;
+      return Promise.all(missing.map(function (c) {
         return getJSON('https://discord.com/api/v9/invites/' + c + '?with_counts=true', 5000).then(function (x) {
           if (!x || !x.guild) return null;
           var m = x.approximate_member_count, o = x.approximate_presence_count;
@@ -154,9 +169,8 @@
                        online: isCount(o) && o <= m ? o : null }];
         });
       })).then(function (rows) {
-        var by = {};
-        rows.forEach(function (r) { if (r) by[r[0]] = r[1]; });
-        return by;
+        rows.forEach(function (r) { if (r) have[r[0]] = r[1]; });
+        return have;
       });
     });
     return discordP;
@@ -323,6 +337,170 @@
     });
   }
 
+  /* ---------------------------------------------------------------- Steam change notes */
+  /* <div class="modlog" data-modlog="spn"> holds the newest change note as
+     written at the last site update (title link, <time>, .ml-sum), and
+     <span data-modver="spn">2.37</span> the version. feed.dlonem.com/modlog reads
+     each mod's Steam Change Notes page; a newer note replaces them. They only
+     ever move forward, and links must point at the Steam change notes. */
+  var logs = all('[data-modlog]'), vers = all('[data-modver]');
+  function isoDay(d) {
+    try {
+      var p = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: TZ }).format(d);
+      return /^\d{4}-\d{2}-\d{2}$/.test(p) ? p : null;
+    } catch (e) { return null; }
+  }
+  /* "2.37" > "2.35a" > "2.35"; "1.1.3a" > "1.1.3" */
+  function newerVer(a, b) {
+    var pa = String(a).match(/^(\d+(?:\.\d+)*)([a-z]?)$/i), pb = String(b).match(/^(\d+(?:\.\d+)*)([a-z]?)$/i);
+    if (!pa || !pb) return false;
+    var x = pa[1].split('.'), y = pb[1].split('.');
+    for (var i = 0; i < Math.max(x.length, y.length); i++) {
+      var u = +(x[i] || 0), v = +(y[i] || 0);
+      if (u !== v) return u > v;
+    }
+    return pa[2].toLowerCase() > pb[2].toLowerCase();
+  }
+  if (logs.length || vers.length) {
+    getJSON(FEED + 'modlog').then(function (d) {
+      if (!d || !d.ok || !d.mods) return;
+      var newest = function (key) {
+        var n = (d.mods[key] || [])[0];
+        if (!n || typeof n.title !== 'string' || typeof n.url !== 'string') return null;
+        if (n.url.indexOf('https://steamcommunity.com/sharedfiles/filedetails/changelog/') !== 0) return null;
+        var t = Date.parse(n.date || '');
+        if (!isFinite(t) || t > Date.now() + 864e5) return null;
+        return { title: n.title.slice(0, 120), summary: String(n.summary || '').slice(0, 400), url: n.url, t: t };
+      };
+      logs.forEach(function (box) {
+        var n = newest(box.getAttribute('data-modlog'));
+        if (!n || !n.title) return;
+        var tm = box.querySelector('time');
+        var was = tm ? Date.parse(tm.getAttribute('datetime') || '') : NaN;
+        if (isFinite(was) && n.t < was) return;
+        var a = box.querySelector('.ml-title a');
+        if (a) { a.textContent = n.title; a.href = n.url; }
+        if (tm) {
+          var iso = isoDay(new Date(n.t)), txt = day(new Date(n.t));
+          if (iso) tm.setAttribute('datetime', iso);
+          if (txt) tm.textContent = txt;
+        }
+        var sum = box.querySelector('.ml-sum');
+        if (sum) { sum.textContent = n.summary; sum.hidden = !n.summary; }
+      });
+      vers.forEach(function (e) {
+        var n = newest(e.getAttribute('data-modver'));
+        var m = n && n.title.match(/^v?(\d+(?:\.\d+){1,3}[a-z]?)(?=\s|$)/i);
+        if (m && newerVer(m[1], e.textContent.trim())) e.textContent = m[1];
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------- WoW Forever headlines */
+  /* <div data-wf-news hidden>: the newest WoW Forever headlines from Wowhead
+     (feed.dlonem.com/forever), shown only when they load. Wowhead links only. */
+  var wfn = all('[data-wf-news]');
+  if (wfn.length) {
+    getJSON(FEED + 'forever').then(function (d) {
+      if (!d || !d.ok || !d.items) return;
+      var items = d.items.filter(function (it) {
+        return it && typeof it.link === 'string' && it.link.indexOf('https://www.wowhead.com/') === 0 && it.title;
+      }).slice(0, 5);
+      if (!items.length) return;
+      wfn.forEach(function (box) {
+        var ol = box.querySelector('ol') || box.appendChild(el('ol', 'wf-news-list'));
+        ol.textContent = '';
+        items.forEach(function (it) {
+          var li = el('li');
+          var dt = new Date(it.date);
+          if (!isNaN(dt.getTime())) {
+            var tm = el('time', null, day(dt) || '');
+            var iso = isoDay(dt);
+            if (iso) tm.setAttribute('datetime', iso);
+            li.appendChild(tm);
+          }
+          var a = el('a', null, String(it.title).slice(0, 160));
+          a.href = it.link;
+          a.rel = 'noopener';
+          li.appendChild(a);
+          ol.appendChild(li);
+        });
+        box.hidden = false;
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------- Shorts by class */
+  /* <div class="cls-shorts" data-shorts-for="hunter">: the channel's WoW Forever
+     Shorts about that class. The ones written in stay; newer ones from
+     feed.dlonem.com/shorts whose title names the class are added in front. */
+  var CLASS_WORDS = {
+    warrior: /\bwarriors?\b/i, paladin: /\bpaladins?\b/i, hunter: /\bhunters?\b/i,
+    rogue: /\brogues?\b/i, priest: /\bpriests?\b/i, shaman: /\bshamans?\b/i,
+    mage: /\bmages?\b/i, warlock: /\bwarlocks?\b|\blife tap\b/i, druid: /\bdruids?\b|\bferal\b/i
+  };
+  var clsBoxes = all('[data-shorts-for]');
+  if (clsBoxes.length) {
+    getJSON(FEED + 'shorts').then(function (d) {
+      if (!d || !d.ok || !d.items) return;
+      clsBoxes.forEach(function (box) {
+        var re = CLASS_WORDS[box.getAttribute('data-shorts-for')];
+        if (!re) return;
+        var row = box.querySelector('.cls-shorts-row');
+        if (!row) return;
+        var have = [].map.call(row.querySelectorAll('a[href]'), function (a) { return a.href; }).join(' ');
+        var add = d.items.filter(function (v) {
+          return v && YTID.test(String(v.id || '')) && re.test(String(v.title || '')) && have.indexOf(v.id) === -1;
+        }).slice(0, 2);
+        add.reverse().forEach(function (v) {
+          var a = el('a', 'cls-short');
+          a.href = 'https://www.youtube.com/shorts/' + v.id;
+          a.rel = 'noopener';
+          var img = el('img');
+          img.alt = '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.width = 480;
+          img.height = 360;
+          img.onerror = function () { img.remove(); };
+          img.src = 'https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg';
+          a.appendChild(img);
+          a.appendChild(el('span', null, String(v.title).slice(0, 120)));
+          row.insertBefore(a, row.firstChild);
+        });
+        /* keep the row short: newest three */
+        var cards = row.querySelectorAll('.cls-short');
+        for (var i = 3; i < cards.length; i++) cards[i].remove();
+        if (row.children.length) box.hidden = false;
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------- countdown */
+  /* <span data-countdown="2026-11-04">release date</span>: adds "in 26 days",
+     "tomorrow", "today", and once the day has passed, "out now". Counted on
+     Pacific time, the clock Blizzard announces launches in, so nobody east or
+     west of it sees "out now" early. */
+  all('[data-countdown]').forEach(function (e) {
+    var m = String(e.getAttribute('data-countdown')).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!m) return;
+    var today = null;
+    try {
+      today = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'America/Los_Angeles' })
+        .format(new Date()).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    } catch (err) { today = null; }
+    if (!today) return;
+    var a = Date.UTC(+m[1], +m[2] - 1, +m[3]);
+    var b = Date.UTC(+today[1], +today[2] - 1, +today[3]);
+    var days = Math.round((a - b) / 864e5);
+    var base = e.getAttribute('data-base') || e.textContent;
+    e.setAttribute('data-base', base);
+    e.textContent = days > 1 ? base + ' · in ' + days + ' days'
+      : days === 1 ? base + ' · tomorrow'
+      : days === 0 ? base + ' · today'
+      : base + ' · out now';
+  });
+
   /* ---------------------------------------------------------------- YouTube live */
   getJSON(FEED + 'live').then(function (d) {
     if (!d || !d.ok || !d.video || !YTID.test(String(d.video.id || ''))) return;
@@ -429,7 +607,7 @@
       txt.appendChild(el('b', null, title));
       txt.appendChild(el('span', 'yt-live-when', when));
       a.appendChild(txt);
-      a.appendChild(el('span', 'yt-live-go', 'Set a reminder'));
+      a.appendChild(el('span', 'yt-live-go', 'Get notified on YouTube'));
       box.appendChild(a);
       box.hidden = false;
     });

@@ -129,7 +129,7 @@
       ], foot: ['Mods not working? Start here', '/ck3-mod-help/'] },
       comm: { items: [
         { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ',
-          x: [['Guide', '/wow-forever/']] },
+          x: [['Guide', '/wow-forever/'], ['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/']] },
         { t: 'The Game Center', d: 'A gaming Discord since 2016', u: '/tgc/', i: I + 'tgc.png', dc: 'hvZGMeJhB7' },
         { t: "Dlonem's Den", d: 'The YouTube channel’s server', u: '/community/#dlonems-den', i: I + 'den.png', dc: 'StACe9hVtT' },
         { t: 'The Long Night', d: 'Discord for the mod', u: '/community/#the-long-night-server', i: I + 'long-night.png', dc: 'PTJzPQbqG7' },
@@ -275,7 +275,7 @@
   (function () {
     if (document.querySelector('script[src^="/js/live.js"]')) return;
     var s = document.createElement('script');
-    s.src = '/js/live.js?v=4';
+    s.src = '/js/live.js?v=6';
     s.async = true;
     document.body.appendChild(s);
   })();

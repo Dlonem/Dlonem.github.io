@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=23"><script>document.documentElement.className+=" js"</script><script src="/js/sky.js?v=1"></script><link rel="icon" href="/assets/logo.png">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=25"><script>document.documentElement.className+=" js"</script><script src="/js/sky.js?v=1"></script><link rel="icon" href="/assets/logo.png">
 <title>Supernatural CK3 Mod Wiki: Vampires, Werewolves and the Hunt | Dlonem</title>
 <meta name="description" content="Reference for Supernatural 2.37, a Crusader Kings III mod: vampires, werewolves, the six hides, packs, hybrids, witches, mages, Magical Research, demons and the hunt.">
 <meta name="theme-color" content="#1A0F42">
@@ -106,8 +106,21 @@
 .art hr{border:0;border-top:1px solid var(--line);margin:22px 0}
 
 /* answer boxes */
-.ans{background:linear-gradient(160deg,#1A0F42,#3A1330);color:#F3E4E8;border:1px solid #55284A;border-radius:12px;padding:18px 20px;margin:14px 0 20px}
-.ans b.q{display:block;font-family:'Unbounded',sans-serif;font-size:.92rem;color:#fff;margin-bottom:8px}
+.ans{background:linear-gradient(160deg,#1A0F42,#3A1330);color:#F3E4E8;border:1px solid #55284A;border-radius:12px;padding:0;margin:0 0 8px;scroll-margin-top:84px}
+.ans > summary.q{display:flex;align-items:center;gap:12px;cursor:pointer;list-style:none;padding:14px 18px;min-height:52px;font-family:'Unbounded',sans-serif;font-size:.9rem;line-height:1.35;color:#fff;border-radius:12px}
+.ans > summary.q::-webkit-details-marker{display:none}
+.ans > summary.q::after{content:"";flex:none;margin-left:auto;width:9px;height:9px;border-right:2px solid #FFD9C2;border-bottom:2px solid #FFD9C2;transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s}
+.ans[open] > summary.q::after{transform:rotate(-135deg) translate(-2px,-2px)}
+.ans > summary.q:hover{background:rgba(255,255,255,.05)}
+.ans > summary.q:focus-visible{outline:2px solid #FFD9C2;outline-offset:2px}
+.ans .ans-a{padding:0 18px 16px}
+.qa-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 22px;align-items:start;margin-top:18px}
+.qa-grp{min-width:0}
+.qa-h{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:14px 0 8px;font-weight:400}
+.qa-tools{display:flex;justify-content:flex-end;margin-top:6px}
+.qa-all{font:inherit;font-size:.82rem;font-weight:600;color:var(--accent-ink,#2A4FB8);background:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;min-height:36px}
+@media(max-width:760px){.qa-grid{grid-template-columns:1fr}}
+@media print{.ans .ans-a{display:block}}
 .art .ans p,.ans p{color:#E0CDD4;margin-bottom:8px;font-size:.95rem}
 .ans p:last-child{margin-bottom:0}
 .art .ans strong,.ans strong{color:#FFD9C2}
@@ -288,40 +301,48 @@
 <div class="adslot adslot-top" data-ad="display"></div>
 <section id="quick">
 <h2 class="first"><span class="eyebrow" aria-hidden="true">Start here</span>Quick answers<a class="anc" href="#quick" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
-<p class="lead">The questions that come up most, each answered in a few lines with a link to the full section.</p>
+<p class="lead">The questions that come up most, grouped by topic. Tap a question to open its answer; each one links to the full section.</p>
 
-<div class="ans" id="q-become-vampire"><b class="q">How do I become a vampire?</b>
-<p>Get a vampire's blood into you, then finish the change. A vampire or hybrid can use <strong>Offer Blood</strong> and then <strong>Turn Vampire</strong> on you, or you can use <strong>Ask to be Turned</strong> on a vampire you know. Falling in battle or dying a natural death with the blood in you also turns you. Nobody is born a vampire. <a href="#becoming-vampire">Every route into vampirism.</a></p></div>
-
-<div class="ans" id="q-county-control"><b class="q">Why did my county lose control after I fed?</b>
-<p>A body leaves a mark on the county it was found in, and so does a feed somebody talks about. A drained body costs <strong>5 county control</strong>; a feed that gets talked about costs 1. Two incidents inside a year open a trail, <strong>Something Stalks Here</strong>, and at the third the county's lord is told. <a href="#trails">Trails and what leaves them.</a></p></div>
-
-<div class="ans" id="q-werewolf"><b class="q">How do I turn someone into a werewolf, and can it be cured?</b>
-<p>A werewolf uses <strong>Offer Gift</strong> or <strong>Force Gift</strong>. That gives the <strong>Infected Wound</strong>, which lasts one to three years and ends in a turning, a reprieve or death. The cure is the <strong>Abandon Lycanthropy</strong> decision, which needs the <strong>Supernatural: Embrace Decisions</strong> rule set to On. The rule is off by default. <a href="#the-bite">The bite, in full.</a> <a href="#werewolf-cure">The werewolf cure.</a></p></div>
-
-<div class="ans" id="q-hides"><b class="q">How do I get one of the six hides?</b>
-<p>Be a werewolf or hybrid whose traits suit the hide, then get hold of it. Most start as relics in shrines at holy sites. Learn where one is at a <strong>Werewolf Gathering</strong>, then hold the county, besiege it, go there on pilgrimage, or use <strong>Send for a Hide</strong>. A hide that accepts you makes you its <strong>Champion</strong>. <a href="#finding-hides">Where the hides are.</a> <a href="#the-six">Who each hide chooses.</a></p></div>
-
-<div class="ans" id="q-hunter-finds-you"><b class="q">How does a hunter find me, and what can I do about it?</b>
-<p>He follows the trail your kills leave on a county and tracks for <strong>three weeks</strong>. If his Tracking bar reaches 60 you are warned. At the door you choose an answer: fight, go to ground for two years, look him in the eye, send your progeny, let the wolf out, buy him off, or point him at a worse county. <a href="#the-door">The door, from both sides.</a></p></div>
-
-<div class="ans" id="q-play-hunter"><b class="q">How do I play a hunter?</b>
-<p>Take the <strong>Hunter</strong> trait in the ruler designer, or use <strong>Ask to be trained as a Hunter</strong> on a hunter you know. You pick monsters or witches first, and training then takes 75 to 115 days. If it fails you become an apprentice and finish on a hunt with your trainer. The work itself is the <strong>Supernatural Hunt</strong> activity. <a href="#hunters">Hunters.</a> <a href="#the-activity">Riding out on a hunt.</a></p></div>
-
-<div class="ans" id="q-hellion"><b class="q">Why does House Hellion have hundreds of members in my old save?</b>
-<p>Before 2.35 (10 September 2026), every witch a witch hunt invented was born into House Hellion, which is the demons' house. New witches have no dynasty. Nothing moves the old ones out, so a save from before the fix keeps them. <a href="#hellion">House Hellion.</a></p></div>
-
-<div class="ans" id="q-become-demon"><b class="q">How do I become a demon?</b>
-<p>Take <strong>Minor Demon</strong> in the ruler designer. Otherwise there are three routes: be born to a demon with Demonic Heritage, which becomes the trait in your twenties; answer a Magic Eruption with <em>I must harness this power at all costs</em>; or finish the <strong>Ascendancy</strong> special project. <a href="#becoming-demon">Becoming a demon.</a></p></div>
-
-<div class="ans" id="q-become-witch"><b class="q">How do I become a witch?</b>
-<p>A witch brings you in. The route is the <strong>Convert to Witchcraft</strong> scheme, which a witch runs on someone who is not one. Nobody is born a witch: what passes to children is the Source and Yaga's Blood. <a href="#becoming-witch">Becoming a witch.</a></p></div>
-
-<div class="ans" id="q-become-mage"><b class="q">How do I become a mage?</b>
-<p>Mage is the capstone of the <strong>Arcane</strong> tree in the Magic lifestyle. Arcane is closed to a plain witch: it opens with a magic artifact, the Source blood, a place of power, an academy, or a house that has one. Finish the tree and the Mage trait is yours. A hunter cannot take it. <a href="#magic-lifestyle">The Magic lifestyle and its trees.</a></p></div>
-
-<div class="ans" id="q-load-order"><b class="q">What is the load order with A Game of Thrones?</b>
-<p>A Game of Thrones, then AGOT submods, then <a href="/mods/the-long-night/">The Long Night &amp; Azor Ahai</a> if you use it, then <strong>Supernatural</strong>, then the <strong>compatibility patch</strong> last. Supernatural runs on the base game alone. Do not load it with <strong>Witchcraft</strong> or <strong>V&amp;L</strong>. <a href="#loadorder">Load order, in full.</a></p></div>
+<div class="qa-tools"><button type="button" class="qa-all" id="qa-all" aria-controls="quick" aria-expanded="false" hidden>Open all</button></div>
+<div class="qa-grid">
+<div class="qa-grp">
+<h3 class="qa-h">Vampires</h3>
+<details class="ans" id="q-become-vampire"><summary class="q">How do I become a vampire?</summary>
+<div class="ans-a"><p>Get a vampire's blood into you, then finish the change. A vampire or hybrid can use <strong>Offer Blood</strong> and then <strong>Turn Vampire</strong> on you, or you can use <strong>Ask to be Turned</strong> on a vampire you know. Falling in battle or dying a natural death with the blood in you also turns you. Nobody is born a vampire. <a href="#becoming-vampire">Every route into vampirism.</a></p></div></details>
+<details class="ans" id="q-county-control"><summary class="q">Why did my county lose control after I fed?</summary>
+<div class="ans-a"><p>A body leaves a mark on the county it was found in, and so does a feed somebody talks about. A drained body costs <strong>5 county control</strong>; a feed that gets talked about costs 1. Two incidents inside a year open a trail, <strong>Something Stalks Here</strong>, and at the third the county's lord is told. <a href="#trails">Trails and what leaves them.</a></p></div></details>
+</div>
+<div class="qa-grp">
+<h3 class="qa-h">Werewolves</h3>
+<details class="ans" id="q-werewolf"><summary class="q">How do I turn someone into a werewolf, and can it be cured?</summary>
+<div class="ans-a"><p>A werewolf uses <strong>Offer Gift</strong> or <strong>Force Gift</strong>. That gives the <strong>Infected Wound</strong>, which lasts one to three years and ends in a turning, a reprieve or death. The cure is the <strong>Abandon Lycanthropy</strong> decision, which needs the <strong>Supernatural: Embrace Decisions</strong> rule set to On. The rule is off by default. <a href="#the-bite">The bite, in full.</a> <a href="#werewolf-cure">The werewolf cure.</a></p></div></details>
+<details class="ans" id="q-hides"><summary class="q">How do I get one of the six hides?</summary>
+<div class="ans-a"><p>Be a werewolf or hybrid whose traits suit the hide, then get hold of it. Most start as relics in shrines at holy sites. Learn where one is at a <strong>Werewolf Gathering</strong>, then hold the county, besiege it, go there on pilgrimage, or use <strong>Send for a Hide</strong>. A hide that accepts you makes you its <strong>Champion</strong>. <a href="#finding-hides">Where the hides are.</a> <a href="#the-six">Who each hide chooses.</a></p></div></details>
+</div>
+<div class="qa-grp">
+<h3 class="qa-h">Hunters</h3>
+<details class="ans" id="q-hunter-finds-you"><summary class="q">How does a hunter find me, and what can I do about it?</summary>
+<div class="ans-a"><p>He follows the trail your kills leave on a county and tracks for <strong>three weeks</strong>. If his Tracking bar reaches 60 you are warned. At the door you choose an answer: fight, go to ground for two years, look him in the eye, send your progeny, let the wolf out, buy him off, or point him at a worse county. <a href="#the-door">The door, from both sides.</a></p></div></details>
+<details class="ans" id="q-play-hunter"><summary class="q">How do I play a hunter?</summary>
+<div class="ans-a"><p>Take the <strong>Hunter</strong> trait in the ruler designer, or use <strong>Ask to be trained as a Hunter</strong> on a hunter you know. You pick monsters or witches first, and training then takes 75 to 115 days. If it fails you become an apprentice and finish on a hunt with your trainer. The work itself is the <strong>Supernatural Hunt</strong> activity. <a href="#hunters">Hunters.</a> <a href="#the-activity">Riding out on a hunt.</a></p></div></details>
+</div>
+<div class="qa-grp">
+<h3 class="qa-h">Witches, demons and mages</h3>
+<details class="ans" id="q-become-witch"><summary class="q">How do I become a witch?</summary>
+<div class="ans-a"><p>A witch brings you in. The route is the <strong>Convert to Witchcraft</strong> scheme, which a witch runs on someone who is not one. Nobody is born a witch: what passes to children is the Source and Yaga's Blood. <a href="#becoming-witch">Becoming a witch.</a></p></div></details>
+<details class="ans" id="q-become-demon"><summary class="q">How do I become a demon?</summary>
+<div class="ans-a"><p>Take <strong>Minor Demon</strong> in the ruler designer. Otherwise there are three routes: be born to a demon with Demonic Heritage, which becomes the trait in your twenties; answer a Magic Eruption with <em>I must harness this power at all costs</em>; or finish the <strong>Ascendancy</strong> special project. <a href="#becoming-demon">Becoming a demon.</a></p></div></details>
+<details class="ans" id="q-become-mage"><summary class="q">How do I become a mage?</summary>
+<div class="ans-a"><p>Mage is the capstone of the <strong>Arcane</strong> tree in the Magic lifestyle. Arcane is closed to a plain witch: it opens with a magic artifact, the Source blood, a place of power, an academy, or a house that has one. Finish the tree and the Mage trait is yours. A hunter cannot take it. <a href="#magic-lifestyle">The Magic lifestyle and its trees.</a></p></div></details>
+</div>
+<div class="qa-grp">
+<h3 class="qa-h">Setup and older saves</h3>
+<details class="ans" id="q-load-order"><summary class="q">What is the load order with A Game of Thrones?</summary>
+<div class="ans-a"><p>A Game of Thrones, then AGOT submods, then <a href="/mods/the-long-night/">The Long Night &amp; Azor Ahai</a> if you use it, then <strong>Supernatural</strong>, then the <strong>compatibility patch</strong> last. Supernatural runs on the base game alone. Do not load it with <strong>Witchcraft</strong> or <strong>V&amp;L</strong>. <a href="#loadorder">Load order, in full.</a></p></div></details>
+<details class="ans" id="q-hellion"><summary class="q">Why does House Hellion have hundreds of members in my old save?</summary>
+<div class="ans-a"><p>Before 2.35 (10 September 2026), every witch a witch hunt invented was born into House Hellion, which is the demons' house. New witches have no dynasty. Nothing moves the old ones out, so a save from before the fix keeps them. <a href="#hellion">House Hellion.</a></p></div></details>
+</div>
+</div>
 </section>
 
 <section id="about">
@@ -2740,6 +2761,28 @@ document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===doc
   window.addEventListener('scroll',function(){ top.classList.toggle('show',window.scrollY>900); },{passive:true});
 })();
 </script>
-<script src="/js/site.js?v=8" defer></script>
+<script>
+/* Quick answers: a link to one question (#q-...) opens it; "Open all" opens or
+   closes every question. Find-in-page opens a closed question on its own. */
+(function(){
+  var box=document.getElementById('quick'); if(!box) return;
+  function openHash(){
+    var id=decodeURIComponent((location.hash||'').slice(1)); if(!id) return;
+    var el=document.getElementById(id); if(!el) return;
+    var d=el.closest ? el.closest('details.ans') : null;
+    if(d && !d.open){ d.open=true; el.scrollIntoView({block:'start'}); }
+  }
+  openHash(); window.addEventListener('hashchange',openHash);
+  var all=box.querySelectorAll('details.ans'), btn=document.getElementById('qa-all');
+  function sync(){ var n=0; all.forEach(function(d){ if(d.open) n++; }); btn.textContent = n===all.length ? 'Close all' : 'Open all'; btn.setAttribute('aria-expanded', n===all.length ? 'true' : 'false'); }
+  if(btn){
+    btn.hidden=false;
+    btn.addEventListener('click',function(){ var open = btn.getAttribute('aria-expanded')!=='true'; all.forEach(function(d){ d.open=open; }); sync(); });
+    all.forEach(function(d){ d.addEventListener('toggle',sync); });
+    sync();
+  }
+})();
+</script>
+<script src="/js/site.js?v=10" defer></script>
 </body>
 </html>
