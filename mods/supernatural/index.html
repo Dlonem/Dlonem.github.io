@@ -2,7 +2,7 @@
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=25"><script>document.documentElement.className+=" js"</script><script src="/js/sky.js?v=1"></script><link rel="icon" href="/assets/logo.png">
 <title>Supernatural — a CK3 (Crusader Kings III) mod by Dlonem</title>
-<meta name="description" content="Supernatural (SPN) adds vampires, werewolves, hybrids, witches, demons and hunters to Crusader Kings III: six lifestyles, ten perk trees, supernatural regiments, artifacts, twenty-two game rules, and a hunt where the monsters are real characters.">
+<meta name="description" content="Supernatural (SPN) adds vampires, werewolves, hybrids, witches, demons and hunters to Crusader Kings III: six lifestyles, ten perk trees, a secret society of Mages, supernatural regiments, artifacts, twenty-six game rules, and a hunt where the monsters are real characters.">
 <meta name="theme-color" content="#1A0F42">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dlonem">
@@ -32,11 +32,11 @@
  "url":"https://dlonem.com/mods/supernatural/",
  "sameAs":["https://steamcommunity.com/sharedfiles/filedetails/?id=2856525601","https://github.com/Dlonem/CK3SupernaturalMod","https://dlonem.com/mods/supernatural/wiki/"],
  "genre":"Video game modification",
- "version":"2.37",
+ "version":"2.38",
  "isAccessibleForFree":true,
  "keywords":"Crusader Kings 3 mod, CK3 vampire mod, CK3 werewolf mod, CK3 witch mod, monster hunter, Supernatural",
  "inLanguage":["en","es","ru"],
- "description":"A Crusader Kings III mod adding vampires, werewolves, hybrids, witches, demons and the hunters who go after them: six lifestyles, ten perk trees, supernatural regiments, artifacts, six legendary wolf hides and the packs that fight over them, twenty-four game rules, and a hunt where every monster is a character who left a trail.",
+ "description":"A Crusader Kings III mod adding vampires, werewolves, hybrids, witches, demons and the hunters who go after them: six lifestyles, ten perk trees, supernatural regiments, artifacts, six legendary wolf hides and the packs that fight over them, the Hermetic Order of the Blue Rose, twenty-six game rules, and a hunt where every monster is a character who left a trail.",
  "author":{"@type":"Organization","name":"Dlonem LLC","url":"https://dlonem.com/"}}
 ]}</script>
 <style>
@@ -91,7 +91,7 @@
 <a class="btn btn-ghost is-quiet" href="https://discord.gg/Efvd2B97xx">Join the Discord</a>
 </div>
 <p class="dc-count" data-discord="Efvd2B97xx" data-suffix="in the mod Discord" hidden></p>
-<div class="tag-row"><span>Version <span data-modver="spn">2.37</span></span><span>Updated <span data-live-date="spn.updated">4 October 2026</span></span><span>Works with base CK3</span><span>CK3 1.20</span><span>No other mods required</span><span>Free, forever</span></div>
+<div class="tag-row"><span>Version <span data-modver="spn">2.38</span></span><span>Updated <span data-live-date="spn.updated">10 October 2026</span></span><span>Works with base CK3</span><span>CK3 1.20</span><span>No other mods required</span><span>Free, forever</span></div>
 </div>
 </div>
 
@@ -105,7 +105,7 @@
 <div class="stat"><b>★★★★★</b><span>480 ratings</span></div>
 <div class="stat"><b data-live="spn.favs">1,900+</b><span>favorites</span></div>
 </div>
-<div class="modlog" data-modlog="spn"><span class="eyebrow">Latest update &middot; from the Steam change notes</span><h3 class="ml-title"><a href="https://steamcommunity.com/sharedfiles/filedetails/changelog/2856525601">2.37 — The Six Hides</a></h3><p class="ml-meta"><time datetime="2026-10-04">4 October 2026</time></p><p class="ml-sum">Six ancient wolf hides are loose in the world: Silverback, Timber, Tundra, Graybeard, Midnight and Alpha. Each has a will of its own and chooses a werewolf or hybrid who fits it, and its Champion is stronger, lives longer, never grows frail and can hear magic. Most start as relics in shrines at holy sites.</p><a class="ml-all" href="https://steamcommunity.com/sharedfiles/filedetails/changelog/2856525601">Every change note on Steam &rarr;</a></div>
+<div class="modlog" data-modlog="spn"><span class="eyebrow">Latest update &middot; from the Steam change notes</span><h3 class="ml-title"><a href="https://steamcommunity.com/sharedfiles/filedetails/changelog/2856525601">2.38: The Hermetic Order of the Blue Rose</a></h3><p class="ml-meta"><time datetime="2026-10-10">10 October 2026</time></p><p class="ml-sum">The Hermetic Order of the Blue Rose comes to Supernatural: temples of Mages that send a note and a blue rose, tests to pass, ranks to climb, relics to pledge, and a Gnostic Council whose chair passes by Conclave. The Vade Maecum Infernal, a demon thief called Zecchia, coven panels and a war for relics come with it.</p><a class="ml-all" href="https://steamcommunity.com/sharedfiles/filedetails/changelog/2856525601">Every change note on Steam &rarr;</a></div>
 </div>
 </section>
 
@@ -132,10 +132,10 @@
 <div class="section-head"><span class="eyebrow">Core features</span><h2>What the mod adds</h2></div>
 <div class="feature-list">
 <div class="feature"><h3>The blood</h3><p>Vampires feed, and it can cost the county. A body, or a victim who talks, leaves it harder to hold, a shaken county is easier to feed in next time, and a bite that takes will wake a man hungry. Since 2.36 your own rite judges what you do, once it knows what you are. Refuse the blood twice and it kills him. Every vampire has a maker and every maker has progeny, and the ranks run from Fledgling to Elder.</p></div>
-<div class="feature"><h3>The moon, and the hybrid</h3><p>A werewolf's wound festers for one to three years before it turns. Werewolves rank from Fledgling to Primal, and a known hybrid frightens a court more than a known vampire does. Since 2.37 six ancient wolf hides choose Champions of their own, and wolves run in packs with an alpha, a Second and a Werewolf Gathering of their own. Six lifestyles and ten perk trees cover vampires, werewolves, hunters, hybrids, magic and demons, and the demon tree alone is seventeen perks.</p></div>
+<div class="feature"><h3>The moon, and the hybrid</h3><p>A werewolf's wound festers for one to three years before it turns. Werewolves rank from Fledgling to Elder, and a known hybrid frightens a court more than a known vampire does. Since 2.37 six ancient wolf hides choose Champions of their own, and wolves run in packs with an alpha, a Second and a Werewolf Gathering of their own. Six lifestyles and ten perk trees cover vampires, werewolves, hunters, hybrids, magic and demons, and the demon tree alone is seventeen perks.</p></div>
 <div class="feature"><h3>The hunt</h3><p>Since 2.35 the monsters leave trails. A kill, or a feed somebody talks about, marks the county, the lord notices, and a real hunter runs a Supernatural Hunt there: a Monster Hunt or a Witch Hunt, three weeks of tracking to work out what it is and who it is, with the creature getting its own side of every beat. Hunters train apprentices, field their own regiment, and keep a Trailsman at court who reads the countryside.</p></div>
-<div class="feature"><h3>Regiments and artifacts</h3><p>Ten men-at-arms regiments: wolves, werewolves, bats, vampires and the hunters' own trainees, plus cultists, skeleton warriors, demonic knights, battle golems and Baba Yaga's hut. Artifacts to find or make, the Ring of Everlasting, the Magic Catalyst and the Black Grimoire among them.</p></div>
-<div class="feature"><h3>The craft</h3><p>Witches brew. One decision, Create Potion, rolls one of eleven potions, from youth and might to a mutagen that can go badly wrong. It needs a witch who is also a herbalist, the Advanced Alchemy perk, or a hunter's Combat Spells. Compulsion lets a vampire bend anyone who is not a vampire, hybrid, demon or witch.</p></div>
+<div class="feature"><h3>Regiments and artifacts</h3><p>Ten men-at-arms regiments: wolves, werewolves, bats, vampires and the hunters' own trainees, plus cultists, skeleton warriors, demonic knights, battle golems and Baba Yaga's hut. Artifacts to find or make, the Ring of Everlasting, the Magic Catalyst and the Black Grimoire among them, and since 2.38 seven lesser relics and the Seal of Solomon.</p></div>
+<div class="feature"><h3>The craft</h3><p>Witches brew. One decision, Create Potion, rolls one of eleven potions, from youth and might to a mutagen that can go badly wrong. It needs a witch who is also a herbalist, the Advanced Alchemy perk, or a hunter's Combat Spells. Compulsion lets a vampire bend anyone who is not a vampire, hybrid, demon or witch. Since 2.38 the Hermetic Order of the Blue Rose keeps temples of Mages and teaches the people it calls, with relics to pledge, a Gnostic Council chosen in masks at the Conclave, and a demon's book torn into four pages. A character can now be a Mage, a Warlock or a True Witch, not two.</p></div>
 <div class="feature"><h3>The look of it</h3><p>A red main menu and eighteen loading screens, so the game looks like the mod from the moment it opens.</p></div>
 </div>
 </div>
@@ -145,7 +145,7 @@
 <div class="wrap section-head">
 <span class="eyebrow">Customize your journey</span>
 <h2>Your arcane, your rules</h2>
-<p>Twenty-four game rules decide how much of this touches your campaign: how traits are inherited (eight settings), how demons pass theirs down, how common the creatures are, and how hard the hunters come. Hunt it, rule with it, or leave it at the edges of the map.</p>
+<p>Twenty-six game rules decide how much of this touches your campaign: how traits are inherited (eight settings), how demons pass theirs down, how common the creatures are, and how hard the hunters come. Hunt it, rule with it, or leave it at the edges of the map.</p>
 </div>
 </section>
 
