@@ -236,3 +236,99 @@
   var again = quiz.querySelector('.quiz-reset');
   if (again) again.addEventListener('click', function () { form.reset(); result.hidden = true; });
 })();
+
+/* ---------------------------------------------------------------- pass G
+   Separate from the block above, which stops early on pages without the class
+   data. Both parts read only what is written into the HTML.
+
+   [data-timeline] li[data-date]   dates before today (Pacific time, the clock
+                                   Blizzard announces in) fade; the next one is
+                                   tagged "Today" or "Next"
+   #rs-quiz                        the ruleset picker (data in #rs-data) */
+(function () {
+  'use strict';
+  if (!document.querySelector) return;
+  function all(sel, root) { return [].slice.call((root || document).querySelectorAll(sel)); }
+
+  /* ------------------------------------------------------------ timeline */
+  var today = null;
+  try {
+    today = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'America/Los_Angeles' })
+      .format(new Date());
+  } catch (e) { today = null; }
+  if (today && /^\d{4}-\d{2}-\d{2}$/.test(today)) {
+    all('[data-timeline]').forEach(function (list) {
+      var marked = false;
+      all('li[data-date]', list).forEach(function (li) {
+        var d = li.getAttribute('data-date');
+        if (d < today) { li.classList.add('is-past'); return; }
+        if (!marked) { li.setAttribute('data-when', d === today ? 'Today' : 'Next'); marked = true; }
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------ ruleset picker */
+  var el = document.getElementById('rs-data');
+  var quiz = document.getElementById('rs-quiz');
+  if (!el || !quiz) return;
+  var D = null;
+  try { D = JSON.parse(el.textContent); } catch (e) { D = null; }
+  if (!D) return;
+  var RS = D.rulesets, ORDER = D.order, Q = D.quiz;
+  var form = quiz.querySelector('form');
+  var result = document.getElementById('rs-result');
+  quiz.hidden = false;
+
+  function render() {
+    var pts = {}, why = {}, answered = 0;
+    ORDER.forEach(function (k) { pts[k] = 0; why[k] = []; });
+    Q.forEach(function (q) {
+      var picked = form.querySelector('input[name="' + q.id + '"]:checked');
+      if (!picked) return;
+      answered++;
+      var opt = q.options[+picked.value];
+      Object.keys(opt.pts || {}).forEach(function (k) {
+        pts[k] += opt.pts[k];
+        if (opt.pts[k] >= 2 && opt.why) why[k].push(opt.why);
+      });
+    });
+    result.textContent = '';
+    result.hidden = false;
+    if (answered < Q.length) {
+      result.className = 'quiz-result is-waiting';
+      result.textContent = 'Answer all ' + Q.length + ' questions to see your pick (' + answered + ' done).';
+      return;
+    }
+    var ranked = ORDER.slice().sort(function (a, b) { return pts[b] - pts[a] || ORDER.indexOf(a) - ORDER.indexOf(b); });
+    var top = ranked[0], next = ranked[1], r = RS[top];
+    result.className = 'quiz-result';
+    result.style.setProperty('--c', r.color);
+    var eb = document.createElement('span'); eb.className = 'eyebrow'; eb.textContent = 'Your best fit';
+    var h = document.createElement('h3'); h.textContent = r.name;
+    var p = document.createElement('p');
+    var reasons = why[top].slice(0, 3);
+    var said = reasons.length > 1 ? reasons.slice(0, -1).join(', ') + ' and ' + reasons[reasons.length - 1] : reasons.join('');
+    p.textContent = (said ? 'Because you ' + said + '. ' : '') + r.pitch;
+    result.appendChild(eb); result.appendChild(h); result.appendChild(p);
+    if (r.note) {
+      var n = document.createElement('p'); n.className = 'quiz-mine'; n.textContent = r.note;
+      result.appendChild(n);
+    }
+    var also = document.createElement('p'); also.className = 'quiz-also';
+    also.appendChild(document.createTextNode('Also worth a look: '));
+    var a2 = document.createElement('a'); a2.href = '#ruleset-' + next; a2.textContent = RS[next].name;
+    also.appendChild(a2);
+    also.appendChild(document.createTextNode('. '));
+    var a1 = document.createElement('a'); a1.href = '#ruleset-' + top; a1.textContent = 'Read the ' + r.name + ' card';
+    also.appendChild(a1);
+    also.appendChild(document.createTextNode('.'));
+    result.appendChild(also);
+    var fine = document.createElement('p'); fine.className = 'quiz-fine';
+    fine.textContent = 'Whatever this says, the ruleset your friends are on beats it: you can only group with players on your own.';
+    result.appendChild(fine);
+  }
+  form.addEventListener('change', render);
+  form.addEventListener('submit', function (e) { e.preventDefault(); render(); });
+  var again = quiz.querySelector('.quiz-reset');
+  if (again) again.addEventListener('click', function () { form.reset(); result.hidden = true; });
+})();

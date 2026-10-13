@@ -1343,3 +1343,49 @@ code{
 .muted{color:var(--ink-soft);font-weight:400;font-family:'Sora',sans-serif;font-size:.85rem}
 .wf-next{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
 .dun-table td:last-child{white-space:nowrap}
+
+/* ---- pass G, 13 Oct 2026 ------------------------------------------------ */
+/* dated timeline on the WoW guides; wf.js marks the next date (Pacific time) */
+.wf-timeline{list-style:none;margin:18px 0 22px;padding:0 0 0 4px;border-left:3px solid #C9D2F2}
+.wf-timeline li{position:relative;padding:0 0 18px 24px}
+.wf-timeline li:last-child{padding-bottom:4px}
+.wf-timeline li::before{content:"";position:absolute;left:-10px;top:5px;width:17px;height:17px;border-radius:50%;background:#fff;border:3px solid #1C46A8}
+.wf-timeline li.is-key::before{background:#B3262E;border-color:#B3262E}
+.wf-timeline li.is-past{opacity:.55}
+.wf-timeline time{display:block;font:700 .74rem 'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E2038}
+.wf-timeline b{display:block;font-size:1.02rem}
+.wf-timeline span{display:block;color:var(--ink-soft);font-size:.92rem}
+.wf-timeline li[data-when]::after{content:attr(data-when);position:absolute;right:0;top:0;font:700 .66rem 'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#1C46A8;padding:3px 8px;border-radius:99px}
+.wf-timeline li[data-when] b{padding-right:70px}
+/* a direct answer at the top of a section */
+.wf-answer{margin:6px 0 18px;padding:14px 18px;border-radius:var(--radius);background:#EEF1FB;border-left:6px solid #1C46A8}
+.wf-answer p{margin:0}
+/* ruleset cards */
+.rs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0}
+.rs-card{border:1px solid var(--line);border-top:6px solid var(--c);border-radius:var(--radius);background:var(--card);padding:16px 18px}
+.rs-card h3{font-size:1.2rem;margin:4px 0 8px;color:var(--c)}
+.rs-tag{font:700 .68rem 'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.rs-card p{font-size:.93rem;margin:0 0 10px}
+.rs-card dl{margin:0;font-size:.9rem}
+.rs-card dt{font-weight:700;margin-top:6px}
+.rs-card dd{margin:0;color:var(--ink-soft)}
+.rs-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 18px}
+.rs-scroll table.facts{min-width:620px;margin-bottom:6px}
+.rs-table td:first-child{font-weight:600;color:var(--ink)}
+.wf-diagram{margin:18px 0 22px;padding:14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
+.wf-diagram svg{display:block;width:100%;height:auto;max-width:640px;margin:0 auto}
+.wf-diagram figcaption{font-size:.85rem;color:var(--ink-soft);text-align:center;margin-top:8px}
+/* app screenshots inside the break guides and app pages */
+.app-shot{display:flex;align-items:center;gap:24px;margin:24px 0;padding:18px 22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
+.app-shot img{flex:none;width:168px;height:auto;filter:drop-shadow(0 10px 16px rgba(20,16,60,.25))}
+.app-shot figcaption{font-size:.92rem;line-height:1.6;color:var(--ink-soft)}
+.app-shot figcaption b{display:block;font-family:'Sora',sans-serif;color:var(--ink);font-size:1rem;margin-bottom:4px}
+.app-shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:24px 0}
+.app-shots .app-shot{flex-direction:column;text-align:center;margin:0}
+.app-shots .app-shot img{width:min(190px,70%)}
+@media (max-width:620px){
+  .app-shot{flex-direction:column;text-align:center;padding:18px 16px}
+  .app-shot img{width:min(210px,66%)}
+}
+/* six guides in the strip: three across on desktop, two on a tablet, one on a phone */
+.wf-next{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
