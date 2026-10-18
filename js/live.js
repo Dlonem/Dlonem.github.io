@@ -390,7 +390,9 @@
       });
       vers.forEach(function (e) {
         var n = newest(e.getAttribute('data-modver'));
-        var m = n && n.title.match(/^v?(\d+(?:\.\d+){1,3}[a-z]?)(?=\s|$)/i);
+        /* Steam titles read "2.39a: Hotfix" or "1.1.3 — The Player Reports": the
+           version ends at a space, a colon or the end */
+        var m = n && n.title.match(/^v?(\d+(?:\.\d+){1,3}[a-z]?)(?=[\s:]|$)/i);
         if (m && newerVer(m[1], e.textContent.trim())) e.textContent = m[1];
       });
     });

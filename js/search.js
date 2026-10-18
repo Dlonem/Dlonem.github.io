@@ -15,6 +15,7 @@
     { k: 'Mod', t: 'The Long Night & Azor Ahai', u: '/mods/the-long-night/' },
     { k: 'Wiki', t: 'Supernatural wiki', u: '/mods/supernatural/wiki/' },
     { k: 'Guide', t: 'CK3 mods not working?', u: '/ck3-mod-help/' },
+    { k: 'Guide', t: "WoW Forever beginner's guide", u: '/wow-forever/' },
     { k: 'Community', t: 'The Grey Company, a WoW Forever guild', u: '/community/the-grey-company/' },
     { k: 'App', t: 'THC Break Buddy', u: '/apps/thc-break-buddy/' }
   ];

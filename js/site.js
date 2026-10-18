@@ -41,7 +41,7 @@
       if (sLoaded) return;                 // already in flight
       sLoaded = true;
       var s = document.createElement('script');
-      s.src = '/js/search.js?v=3';
+      s.src = '/js/search.js?v=4';
       s.onerror = function () { sLoaded = false; };
       document.head.appendChild(s);        // search.js opens itself once parsed
     };
@@ -92,7 +92,7 @@
     });
 
     /* ---------------- menus ----------------
-       Apps, Mods and Community each open a short menu, so someone who knows
+       Apps, Mods, Games and Community each open a short menu, so someone who knows
        where they are going gets there in one move. The word itself still links
        to the hub page. The small arrow beside it opens the menu; on a desktop
        with a mouse, resting the pointer on the item opens it too. In the phone
@@ -119,7 +119,7 @@
           x: [['Android', PLAY('nicotinebreakbuddy'), 'Get it on Google Play']] },
         { t: 'Tiny Dragon Hoard', d: 'A cozy fantasy flight game', u: '/apps/tiny-dragon-hoard/', i: I + 'dragon.png',
           x: [['Android', PLAY('tinydragonhoard'), 'Get it on Google Play']] }
-      ] },
+      ], foot: ['Guides to taking a break', '/apps/#guides'] },
       mods: { items: [
         { t: 'The Long Night & Azor Ahai', d: 'Submod for A Game of Thrones', u: '/mods/the-long-night/', i: I + 'long-night.png',
           x: [['Wiki', '/mods/the-long-night/wiki/'], ['Download', '/mods/the-long-night/download/']] },
@@ -127,6 +127,13 @@
           x: [['Wiki', '/mods/supernatural/wiki/'], ['Download', '/mods/supernatural/download/']] },
         { t: 'Compatibility Patch', d: 'Run both together with AGOT', u: '/mods/#the-compatibility-patch', i: I + 'patch.png' }
       ], foot: ['Mods not working? Start here', '/ck3-mod-help/'] },
+      games: { items: [
+        { t: "WoW Forever beginner's guide", d: 'Classes, leveling, camping, Hardcore', u: '/wow-forever/', i: I + 'wow.png',
+          x: [['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/'], ['Rulesets', '/wow-forever/rulesets/']] },
+        { t: 'Hall of Thanes guide', d: 'The entrance, the quests, every boss', u: '/wow-forever/dungeons/hall-of-thanes/', i: I + 'thanes.png' },
+        { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ' },
+        { t: 'Recommended games', d: 'What I play, and buying keys safely', u: '/games/', i: I + 'games.png' }
+      ] },
       comm: { items: [
         { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ',
           x: [['Guide', '/wow-forever/'], ['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/']] },
@@ -275,7 +282,7 @@
   (function () {
     if (document.querySelector('script[src^="/js/live.js"]')) return;
     var s = document.createElement('script');
-    s.src = '/js/live.js?v=6';
+    s.src = '/js/live.js?v=7';
     s.async = true;
     document.body.appendChild(s);
   })();

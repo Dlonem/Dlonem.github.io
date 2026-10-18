@@ -409,7 +409,7 @@ body.spn .eyebrow{color:#C42B3D}
 footer{background:var(--midnight);color:#C9CFF2;margin-top:40px}
 .foot-inner{
   max-width:var(--wrap);margin:0 auto;padding:44px 20px 30px;
-  display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  display:grid;gap:24px 28px;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
 }
 footer h4{font-family:'Unbounded',sans-serif;font-size:.85rem;color:#fff;margin-bottom:12px}
 footer a{color:#C9CFF2;text-decoration:none;font-size:.9rem;display:block;padding:3px 0}
