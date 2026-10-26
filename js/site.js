@@ -130,13 +130,15 @@
       games: { items: [
         { t: "WoW Forever beginner's guide", d: 'Classes, leveling, camping, Hardcore', u: '/wow-forever/', i: I + 'wow.png',
           x: [['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/'], ['Rulesets', '/wow-forever/rulesets/']] },
+        { t: 'WoW Forever class quiz', d: 'Which class should you play?', u: '/wow-forever/class-quiz/', i: I + 'wow.png' },
+        { t: 'Best WoW Forever add-ons', d: 'By role, guild tools, world PvP', u: '/wow-forever/addons/', i: I + 'wow.png' },
         { t: 'Hall of Thanes guide', d: 'The entrance, the quests, every boss', u: '/wow-forever/dungeons/hall-of-thanes/', i: I + 'thanes.png' },
         { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ' },
         { t: 'Recommended games', d: 'What I play, and buying keys safely', u: '/games/', i: I + 'games.png' }
       ] },
       comm: { items: [
         { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ',
-          x: [['Guide', '/wow-forever/'], ['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/']] },
+          x: [['Guide', '/wow-forever/'], ['Classes', '/wow-forever/classes/'], ['Add-ons', '/wow-forever/addons/']] },
         { t: 'The Game Center', d: 'A gaming Discord since 2016', u: '/tgc/', i: I + 'tgc.png', dc: 'hvZGMeJhB7' },
         { t: "Dlonem's Den", d: 'The YouTube channel’s server', u: '/community/#dlonems-den', i: I + 'den.png', dc: 'StACe9hVtT' },
         { t: 'The Long Night', d: 'Discord for the mod', u: '/community/#the-long-night-server', i: I + 'long-night.png', dc: 'PTJzPQbqG7' },
