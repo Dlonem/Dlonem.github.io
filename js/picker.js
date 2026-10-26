@@ -6,12 +6,16 @@
    #pk        the form, one question at a time, with Back and Skip
    #pk-result the answer
 
-   Scoring: each answer adds points to some classes. A class's match is its points
-   divided by the most it could have earned on the questions you answered, so no
+   Scoring: each answer adds points to some classes. A second answer on the same
+   question ("this one fits too") counts half. A class's match is its points
+   divided by the most it could have earned on the questions you answered (the
+   best option, plus half the second-best where a second answer was given), so no
    class wins just by appearing in more answers. Ties go to raw points, then order.
+   picker_data.py is the same model in Python; verify_h.py runs both.
 
-   Nothing is sent or stored. The answers sit in the address bar (#a=...) so a
-   result can be shared and survives a reload.
+   Nothing is sent or stored. The answers sit in the address bar (#a=...), two
+   characters per question (first choice, second choice, x for none), so a result
+   can be shared and survives a reload. The older one-character form still reads.
 
    After the result, a short guild invite, built from the page's own "Find a guild"
    links so the Discord invite lives in one place. It only shows for a class that
@@ -27,8 +31,8 @@
 
   var Q = D.questions, N = Q.length, ORDER = D.order, CLS = D.classes;
   var MIN = 8;                       // answers needed before a result means much
-  var ans = [];
-  for (var i = 0; i < N; i++) ans.push(null);
+  var ans = [], sec = [];                 // first choice, second choice (half weight)
+  for (var i = 0; i < N; i++) { ans.push(null); sec.push(null); }
 
   var form = root.querySelector('form');
   var sets = [].slice.call(form.querySelectorAll('fieldset'));
@@ -40,7 +44,7 @@
   var skip = root.querySelector('.pk-skip');
   var out = document.getElementById('pk-result');
   var icons = document.getElementById('pk-icons');
-  var cur = 0, timer = null;
+  var cur = 0;
 
   top.hidden = false;
   nav.hidden = false;
@@ -60,6 +64,7 @@
     fill.style.width = Math.round(i / N * 100) + '%';
     back.hidden = i === 0;
     label();
+    paint(i);
     var lg = sets[i].querySelector('legend');
     if (lg && document.activeElement && document.activeElement !== document.body) {
       lg.setAttribute('tabindex', '-1');
@@ -72,33 +77,52 @@
   }
 
   // the second button reads Skip until the question has an answer, then Next
-  function label() { skip.textContent = ans[cur] === null ? 'Skip this one' : 'Next'; }
-
-  // A tap or click on an answer moves on by itself, even on the answer already
-  // chosen (after Back). Arrow keys only choose, so a keyboard can look through the
-  // answers; Enter or the Next button moves on.
-  function soon(i) {
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(function () {
-      var c = sets[i].querySelector('input:checked');
-      if (c && cur === i) { ans[i] = parseInt(c.value, 10); next(); }
-    }, 260);
+  function label() {
+    skip.textContent = ans[cur] === null ? 'Skip this one' : 'Next';
+    skip.classList.toggle('is-primary', ans[cur] !== null);
   }
+
+  // Marks the chosen options and keeps the hint under them current.
+  function paint(i) {
+    var labels = [].slice.call(sets[i].querySelectorAll('label'));
+    labels.forEach(function (l, j) {
+      l.classList.toggle('is-first', ans[i] === j);
+      l.classList.toggle('is-second', sec[i] === j);
+    });
+    var hint = sets[i].querySelector('.pk-hint');
+    if (!hint) { hint = el('p', 'pk-hint'); sets[i].appendChild(hint); }
+    hint.textContent = ans[i] === null ? '' :
+      sec[i] === null ? 'Does a second one fit too? Tap it; it counts half. Tap your pick again to change it.'
+                      : 'Your second pick counts half. Tap it again to remove it.';
+  }
+
+  // A tap on an answer: the first tap is the pick; a tap on another answer makes
+  // it the second pick (half weight); tapping the pick again clears the question.
   sets.forEach(function (f, i) {
     [].slice.call(f.querySelectorAll('input[type=radio]')).forEach(function (r) {
-      r.addEventListener('change', function () { ans[i] = parseInt(r.value, 10); label(); });
+      r.addEventListener('change', function () {     // keyboard arrows land here
+        ans[i] = parseInt(r.value, 10);
+        if (sec[i] === ans[i]) sec[i] = null;
+        label(); paint(i);
+      });
     });
-    f.addEventListener('click', function (e) {
-      if (!(e.detail > 0)) return;   // 0 means the keyboard (or a label passing the click on)
-      for (var t = e.target; t && t !== f; t = t.parentNode) if (t.tagName === 'LABEL') { soon(i); return; }
+    [].slice.call(f.querySelectorAll('label')).forEach(function (l, j) {
+      l.addEventListener('click', function (e) {
+        if (!(e.detail > 0)) return;                 // keyboard: let the radio do it
+        if (ans[i] === null) return;                 // first pick: the radio handles it
+        e.preventDefault();
+        if (j === ans[i]) { ans[i] = null; sec[i] = null; [].slice.call(f.querySelectorAll('input')).forEach(function (r) { r.checked = false; }); }
+        else sec[i] = (sec[i] === j) ? null : j;
+        label(); paint(i);
+      });
     });
     f.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' && ans[i] !== null) { e.preventDefault(); next(); }
     });
   });
   skip.addEventListener('click', function () {
-    if (timer) clearTimeout(timer);
     if (ans[cur] === null) {
+      sec[cur] = null;
       [].slice.call(sets[cur].querySelectorAll('input')).forEach(function (r) { r.checked = false; });
     }
     next();
@@ -111,13 +135,18 @@
     ORDER.forEach(function (k) { raw[k] = 0; best[k] = 0; });
     Q.forEach(function (q, i) {
       if (ans[i] === null) return;
+      var second = sec[i] !== null && sec[i] !== ans[i] ? sec[i] : null;
       ORDER.forEach(function (k) {
-        var m = 0;
-        q.options.forEach(function (o) { var v = o.pts[k] || 0; if (v > m) m = v; });
-        best[k] += m;
+        var vals = q.options.map(function (o) { return o.pts[k] || 0; }).sort(function (a, b) { return b - a; });
+        best[k] += Math.max(vals[0], 0);
+        if (second !== null) best[k] += Math.max(vals.length > 1 ? vals[1] : 0, 0) * 0.5;
       });
       var opt = q.options[ans[i]];
       Object.keys(opt.pts).forEach(function (k) { raw[k] += opt.pts[k]; });
+      if (second !== null) {
+        var o2 = q.options[second];
+        Object.keys(o2.pts).forEach(function (k) { raw[k] += o2.pts[k] * 0.5; });
+      }
     });
     ORDER.forEach(function (k) { pct[k] = best[k] ? raw[k] / best[k] : 0; });
     var ranked = ORDER.slice().sort(function (a, b) {
@@ -131,6 +160,7 @@
     Q.forEach(function (q, i) {
       if (ans[i] === null) return;
       q.options[ans[i]].tags.forEach(function (t) { tags[t] = true; });
+      if (sec[i] !== null && sec[i] !== ans[i]) q.options[sec[i]].tags.forEach(function (t) { tags[t] = true; });
     });
     var list = D.specs[k];
     for (var j = 0; j < list.length; j++) {
@@ -142,7 +172,9 @@
   }
 
   function code() {
-    return ans.map(function (a) { return a === null ? 'x' : String(a); }).join('');
+    return ans.map(function (a, i) {
+      return (a === null ? 'x' : String(a)) + (a === null || sec[i] === null ? 'x' : String(sec[i]));
+    }).join('');
   }
 
   function setHash(v) {
@@ -153,8 +185,9 @@
   function answered() { return ans.filter(function (a) { return a !== null; }).length; }
 
   function restart() {
-    for (var i = 0; i < N; i++) ans[i] = null;
+    for (var i = 0; i < N; i++) { ans[i] = null; sec[i] = null; }
     form.reset();
+    sets.forEach(function (f, i) { paint(i); });
     out.hidden = true;
     while (out.firstChild) out.removeChild(out.firstChild);
     form.hidden = false; top.hidden = false; nav.hidden = false;
@@ -182,7 +215,7 @@
     var hero = el('div', 'pk-hero');
     hero.style.setProperty('--c', c.color);
     var head = el('div', 'pk-head');
-    var ic = icons && icons.querySelector('[data-k="' + k + '"] svg');
+    var ic = icons && icons.querySelector('[data-k="' + k + '"] > *');
     if (ic) { var tile = el('span', 'pk-ico'); tile.appendChild(ic.cloneNode(true)); head.appendChild(tile); }
     var hd = el('div');
     hd.appendChild(el('small', null, 'Your best fit · ' + Math.round(s.pct[k] * 100) + '% match'));
@@ -199,6 +232,10 @@
       if (ans[i] === null) return;
       var o = q.options[ans[i]];
       if (o.why && (o.pts[k] || 0) >= 2) whys.push({ v: o.pts[k], t: o.why });
+      if (sec[i] !== null && sec[i] !== ans[i]) {
+        var o2 = q.options[sec[i]];
+        if (o2.why && (o2.pts[k] || 0) >= 3) whys.push({ v: o2.pts[k] * 0.5, t: o2.why + ' (your second pick)' });
+      }
     });
     whys.sort(function (a, b) { return b.v - a.v; });
     if (whys.length) {
@@ -279,25 +316,34 @@
     h3.focus();
   }
 
-  // a shared or reloaded result: #a= followed by one character per question
+  // a shared or reloaded result: #a= then two characters per question (first
+  // pick, second pick, x for none); the older one-character form still works
   var m = /^#a=([0-9x]+)$/.exec(location.hash || '');
-  if (m && m[1].length === N) {
-    var okHash = true;
-    m[1].split('').forEach(function (ch, i) {
-      if (ch === 'x') { ans[i] = null; return; }
-      var v = parseInt(ch, 10);
-      if (v >= Q[i].options.length) okHash = false; else ans[i] = v;
-    });
+  if (m && (m[1].length === N || m[1].length === 2 * N)) {
+    var okHash = true, wide = m[1].length === 2 * N;
+    for (var qi = 0; qi < N; qi++) {
+      var c1 = m[1].charAt(wide ? 2 * qi : qi), c2 = wide ? m[1].charAt(2 * qi + 1) : 'x';
+      if (c1 === 'x') { ans[qi] = null; sec[qi] = null; continue; }
+      var v1 = parseInt(c1, 10);
+      if (v1 >= Q[qi].options.length) { okHash = false; break; }
+      ans[qi] = v1;
+      if (c2 !== 'x') {
+        var v2 = parseInt(c2, 10);
+        if (v2 >= Q[qi].options.length) { okHash = false; break; }
+        sec[qi] = v2 === v1 ? null : v2;
+      }
+    }
     if (okHash && answered() >= MIN) {
       ans.forEach(function (v, i) {
         if (v === null) return;
         var r = sets[i].querySelector('input[value="' + v + '"]');
         if (r) r.checked = true;
+        paint(i);
       });
       finish();
       return;
     }
-    for (var z = 0; z < N; z++) ans[z] = null;
+    for (var z = 0; z < N; z++) { ans[z] = null; sec[z] = null; }
   }
   show(0);
 })();

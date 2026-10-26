@@ -128,14 +128,15 @@
         { t: 'Compatibility Patch', d: 'Run both together with AGOT', u: '/mods/#the-compatibility-patch', i: I + 'patch.png' }
       ], foot: ['Mods not working? Start here', '/ck3-mod-help/'] },
       games: { items: [
-        { t: "WoW Forever beginner's guide", d: 'Classes, leveling, camping, Hardcore', u: '/wow-forever/', i: I + 'wow.png',
-          x: [['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/'], ['Rulesets', '/wow-forever/rulesets/']] },
-        { t: 'WoW Forever class quiz', d: 'Which class should you play?', u: '/wow-forever/class-quiz/', i: I + 'wow.png' },
-        { t: 'Best WoW Forever add-ons', d: 'By role, guild tools, world PvP', u: '/wow-forever/addons/', i: I + 'wow.png' },
-        { t: 'Hall of Thanes guide', d: 'The entrance, the quests, every boss', u: '/wow-forever/dungeons/hall-of-thanes/', i: I + 'thanes.png' },
+        { t: 'Recommended games', d: 'What I play, and buying keys safely', u: '/games/', i: I + 'games.png',
+          x: [['Heavy rotation', '/games/#in-heavy-rotation'], ['Buying keys', '/games/#buying-keys-without-getting-burned']] },
+        { t: 'World of Warcraft: Forever', d: 'Guides from my own beta play', u: '/wow-forever/', i: I + 'wow.png',
+          x: [['Class quiz', '/wow-forever/class-quiz/'], ['Add-ons', '/wow-forever/addons/'], ['Rulesets', '/wow-forever/rulesets/'],
+              ['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/'], ['Names', '/wow-forever/name-reservation/']] },
         { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ' },
-        { t: 'Recommended games', d: 'What I play, and buying keys safely', u: '/games/', i: I + 'games.png' }
-      ] },
+        { t: 'Crusader Kings III', d: 'Two mods and a repair guide', u: '/mods/', i: I + 'spn.png',
+          x: [['Supernatural', '/mods/supernatural/'], ['The Long Night', '/mods/the-long-night/'], ['Mods not working?', '/ck3-mod-help/']] }
+      ], foot: ['All the WoW Forever guides', '/games/#wow-forever-guides'] },
       comm: { items: [
         { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ',
           x: [['Guide', '/wow-forever/'], ['Classes', '/wow-forever/classes/'], ['Add-ons', '/wow-forever/addons/']] },
@@ -284,9 +285,53 @@
   (function () {
     if (document.querySelector('script[src^="/js/live.js"]')) return;
     var s = document.createElement('script');
-    s.src = '/js/live.js?v=7';
+    s.src = '/js/live.js?v=8';
     s.async = true;
     document.body.appendChild(s);
+  })();
+
+  /* ---------------- the season ----------------
+     A touch on the hero (the purple banner at the top of every page), by date,
+     nothing fetched. October is Halloween: orange sparks and a few drifting
+     leaves. November is autumn: more leaves, in amber. December is winter:
+     snowflakes, and a snowbank along the foot of the hero that grows a little
+     every day until Christmas. All CSS (.season-* in style.css); the moving
+     parts sit out under prefers-reduced-motion. Change the dates here only. */
+  (function () {
+    var hero = document.querySelector('main .hero');
+    if (!hero) return;
+    var d = new Date(), m = d.getMonth() + 1, day = d.getDate(), season = '';
+    if (m === 10 && day >= 15) season = 'halloween';
+    else if (m === 11) season = 'autumn';
+    else if (m === 12 || (m === 1 && day <= 6)) season = 'winter';
+    if (!season) return;
+    document.documentElement.classList.add('season-' + season);
+    var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function drop(cls, n, text, size) {
+      for (var i = 0; i < n; i++) {
+        var f = document.createElement('span');
+        f.className = cls;
+        f.style.left = Math.round(Math.random() * 100) + '%';
+        f.style.animationDuration = (9 + Math.random() * 9).toFixed(1) + 's';
+        f.style.animationDelay = (-Math.random() * 18).toFixed(1) + 's';
+        f.style.opacity = (0.4 + Math.random() * 0.5).toFixed(2);
+        var px = size[0] + Math.random() * (size[1] - size[0]);
+        if (text) { f.textContent = text; f.style.fontSize = px.toFixed(0) + 'px'; }
+        else { f.style.width = px.toFixed(0) + 'px'; f.style.height = (px * 0.6).toFixed(0) + 'px'; }
+        f.setAttribute('aria-hidden', 'true');
+        hero.appendChild(f);
+      }
+    }
+    if (season === 'winter') {
+      if (!still) drop('snow', 16, '\u2744', [10, 20]);
+      var bank = document.createElement('span');          /* grows 1px a day to Christmas */
+      bank.className = 'snowbank';
+      bank.setAttribute('aria-hidden', 'true');
+      bank.style.height = (6 + Math.round(Math.min(m === 12 ? day : 25, 25) * 0.6)) + 'px';
+      hero.appendChild(bank);
+    } else if (!still) {
+      drop('leaf', season === 'autumn' ? 12 : 8, '', [12, 22]);
+    }
   })();
 
   /* ---------------- scroll reveal ---------------- */

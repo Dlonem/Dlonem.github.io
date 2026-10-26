@@ -414,6 +414,7 @@ footer{background:var(--midnight);color:#C9CFF2;margin-top:40px}
 footer h4{font-family:'Unbounded',sans-serif;font-size:.85rem;color:#fff;margin-bottom:12px}
 footer a{color:#C9CFF2;text-decoration:none;font-size:.9rem;display:block;padding:3px 0}
 footer a:hover{color:#8FE7F2}
+.foot-sub{display:block;font:700 .68rem 'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#8A93C9;margin:12px 0 4px}
 .foot-bottom{
   border-top:1px solid rgba(255,255,255,.12);
   text-align:center;font-size:.8rem;color:#8B92C4;padding:16px 20px;
@@ -1005,7 +1006,7 @@ code{
 .nm-link img{ grid-row:span 2; width:34px; height:34px; border-radius:9px; object-fit:cover; background:#E9ECF8 }
 .nm-t{ display:block }
 .nm-d{ display:block; margin-top:2px; font-size:.75rem; font-weight:400; color:#5B6080 }
-.nav .nav-menu .nm-x{ display:flex; gap:6px; padding:0 10px 8px 56px; margin-top:-3px }
+.nav .nav-menu .nm-x{ display:flex; flex-wrap:wrap; gap:6px; padding:0 10px 8px 56px; margin-top:-3px }
 .nav .nav-menu .nm-x a{
   min-height:0; padding:3px 10px; border-radius:999px;
   font-size:.72rem; font-weight:600; line-height:1.5;
@@ -1261,6 +1262,10 @@ code{
 .wf-news-list li:first-child{border-top:0}
 .wf-news-list time{flex:0 0 120px;font:.76rem 'Space Mono',monospace;color:var(--ink-soft)}
 .wf-news-list a{font-weight:600;text-decoration:none;line-height:1.4}
+.wf-news-list li.has-pic{align-items:center}
+.wf-news-pic{flex:0 0 96px;order:-1;border-radius:8px;overflow:hidden;background:#E6E9F7;aspect-ratio:16/9}
+.wf-news-pic img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:520px){.wf-news-list li.has-pic{flex-wrap:wrap}.wf-news-pic{flex-basis:100%;max-height:150px}.wf-news-list li.has-pic time{flex-basis:auto}}
 .wf-news-list a:hover{text-decoration:underline}
 @media (max-width:560px){.wf-news-list li{flex-wrap:wrap;gap:2px}.wf-news-list time{flex-basis:100%}}
 /* class guide */
@@ -1287,7 +1292,7 @@ code{
 .cls{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden;display:flex;flex-direction:column;scroll-margin-top:84px}
 .cls-top{display:flex;gap:12px;align-items:center;padding:14px 16px;border-top:6px solid var(--c);background:linear-gradient(180deg,color-mix(in srgb,var(--c) 14%,#fff),#fff)}
 .cls-ico{flex:none;width:46px;height:46px;border-radius:12px;background:#151A33;display:grid;place-items:center}
-.cls-ico svg{width:30px;height:30px}
+.cls-ico svg,.cls-ico img{width:36px;height:36px;border-radius:50%}
 .cls-top h3{margin:0;font-size:1.05rem}
 .cls-top .roles{display:flex;gap:5px;margin-top:4px;flex-wrap:wrap}
 .role{font:700 .64rem 'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:5px}
@@ -1427,6 +1432,31 @@ code{
 .wf-guild .btn-ghost{color:var(--ink);border-color:var(--line);background:var(--card)}
 .wf-guild .btn-ghost:hover{border-color:#1C46A8;background:var(--card)}
 .nobr{white-space:nowrap}
+/* a one-line affiliate note under a hero (the CK3 reflink on the mod pages) */
+.ck3-buy{max-width:760px;margin:18px auto 0;font-size:.9rem;color:var(--ink-soft);background:#EDF1FF;border:1px solid var(--line);border-radius:10px;padding:12px 16px;line-height:1.55}
+.ck3-buy b{color:var(--ink)}
+.sec-lede{max-width:640px;margin:-6px auto 18px;text-align:center;color:var(--ink-soft)}
+.wf-next--four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.wf-next--four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.wf-next--four{grid-template-columns:minmax(0,1fr)}}
+/* the season (site.js adds .season-* to <html> by date) */
+.season-halloween .spark,.season-autumn .spark{background:radial-gradient(circle,rgba(255,196,110,.95) 0 30%,rgba(255,150,60,.5) 60%,transparent 75%)}
+.season-halloween main .hero{box-shadow:inset 0 0 0 200vmax rgba(255,110,30,.13)}
+.season-autumn main .hero{box-shadow:inset 0 0 0 200vmax rgba(214,120,40,.12)}
+.leaf{position:absolute;top:-24px;pointer-events:none;background:linear-gradient(135deg,#F2A541,#C8521E);border-radius:0 70% 0 70%;box-shadow:inset 0 0 0 1px rgba(90,30,0,.25);animation:leaffall linear infinite}
+.season-halloween .leaf{background:linear-gradient(135deg,#FF8A2A,#8A2B5E)}
+@keyframes leaffall{0%{transform:translate3d(0,-24px,0) rotate(0)}50%{transform:translate3d(-40px,55vh,0) rotate(160deg)}100%{transform:translate3d(30px,110vh,0) rotate(400deg)}}
+.snow{position:absolute;top:-24px;color:#fff;pointer-events:none;line-height:1;text-shadow:0 0 6px rgba(255,255,255,.5);animation:snowfall linear infinite}
+@keyframes snowfall{0%{transform:translate3d(0,-24px,0) rotate(0)}100%{transform:translate3d(18px,110vh,0) rotate(200deg)}}
+.snowbank{position:absolute;left:0;right:0;bottom:0;pointer-events:none;opacity:.95;background:
+  radial-gradient(ellipse 10% 120% at 6% 100%,#fff 58%,transparent 60%),radial-gradient(ellipse 14% 140% at 24% 100%,#fff 58%,transparent 60%),
+  radial-gradient(ellipse 11% 110% at 44% 100%,#fff 58%,transparent 60%),radial-gradient(ellipse 15% 130% at 66% 100%,#fff 58%,transparent 60%),
+  radial-gradient(ellipse 12% 120% at 88% 100%,#fff 58%,transparent 60%),linear-gradient(#fff,#fff) left bottom/100% 45% no-repeat}
+.season-winter main .hero{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.snow,.leaf{display:none}}
+/* the store */
+.shop-frame{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:8px;min-height:320px;overflow:hidden}
+.shop-frame #myShop>a{display:block;padding:40px 0;text-align:center;font-weight:600}
 /* the class quiz */
 .pk{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:18px 18px 16px}
 .pk-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
@@ -1446,13 +1476,17 @@ code{
 .pk .opts input:checked + span{background:#1C46A8;color:#fff;border-color:#1C46A8}
 .pk .opts input:focus-visible + span{outline:2px solid #1C46A8;outline-offset:2px}
 .pk:not(.is-live) fieldset{margin-bottom:22px}
+.pk .opts label.is-second span{border-color:#1C46A8;background:#E8EDFF;color:#1A0F42;padding-right:92px;position:relative}
+.pk .opts label.is-second span::after{content:"also · ½";position:absolute;right:10px;top:50%;transform:translateY(-50%);font:700 .7rem 'Space Mono',monospace;letter-spacing:.04em;color:#1C46A8;background:#fff;border:1px solid #1C46A8;border-radius:99px;padding:2px 7px}
+.pk-hint{font-size:.82rem;color:var(--ink-soft);margin:10px 0 0;min-height:1.2em}
+.pk-nav .wf-btn.is-primary{background:#1C46A8;color:#fff;border-color:#1C46A8}
 .pk-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .pk-result{margin-top:4px}
 .pk-hero{border-radius:var(--radius);padding:18px 20px;border:2px solid var(--c,#1C46A8);background:linear-gradient(135deg,#fff,#F4F6FD);position:relative;overflow:hidden}
 .pk-hero::before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:var(--c,#1C46A8)}
 .pk-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
 .pk-ico{flex:none;width:58px;height:58px;border-radius:14px;background:#151A33;display:grid;place-items:center}
-.pk-ico svg{width:38px;height:38px}
+.pk-ico svg,.pk-ico img{width:44px;height:44px;border-radius:50%}
 .pk-head h3{margin:0;font-size:1.5rem;line-height:1.2}
 .pk-head h3:focus{outline:none}
 .pk-head small{display:block;font:700 .74rem 'Space Mono',monospace;letter-spacing:.08em;color:var(--ink-soft);text-transform:uppercase}

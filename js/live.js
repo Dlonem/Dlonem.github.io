@@ -424,6 +424,27 @@
           var a = el('a', null, String(it.title).slice(0, 160));
           a.href = it.link;
           a.rel = 'noopener';
+          /* Wowhead's own picture for the article, when the feed carries one
+             (only from wow.zamimg.com); the headline reads fine without it */
+          if (typeof it.image === 'string' && /^https:\/\/wow\.zamimg\.com\/[^\s"<>]+$/.test(it.image)) {
+            var th = el('a', 'wf-news-pic');
+            th.href = it.link;
+            th.rel = 'noopener';
+            th.tabIndex = -1;
+            th.setAttribute('aria-hidden', 'true');
+            var im = el('img');
+            im.alt = '';
+            im.loading = 'lazy';
+            im.decoding = 'async';
+            im.referrerPolicy = 'no-referrer';
+            im.width = 160;
+            im.height = 90;
+            im.onerror = function () { th.remove(); };
+            im.src = it.image;
+            th.appendChild(im);
+            li.appendChild(th);
+            li.classList.add('has-pic');
+          }
           li.appendChild(a);
           ol.appendChild(li);
         });
@@ -464,7 +485,8 @@
           img.decoding = 'async';
           img.width = 480;
           img.height = 360;
-          img.onerror = function () { img.remove(); };
+          img.onerror = function () { a.remove(); };
+          img.onload = function () { if (img.naturalWidth <= 120) a.remove(); };   /* YouTube's placeholder for a video that is not public */
           img.src = 'https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg';
           a.appendChild(img);
           a.appendChild(el('span', null, String(v.title).slice(0, 120)));
@@ -477,6 +499,16 @@
       });
     });
   }
+
+  /* ---------------------------------------------------------------- unlisted Shorts */
+  /* A Short written into a page that has since gone private: YouTube answers its
+     thumbnail with a 120x90 placeholder instead of a 404, so the card would show
+     a grey box. Drop the whole card when that happens. */
+  all('a[href*="youtube.com/shorts/"] img[src^="https://i.ytimg.com/vi/"]').forEach(function (img) {
+    var card = img.closest ? img.closest('a') : img.parentNode;
+    var check = function () { if (card && img.naturalWidth > 0 && img.naturalWidth <= 120) card.remove(); };
+    if (img.complete) check(); else img.addEventListener('load', check);
+  });
 
   /* ---------------------------------------------------------------- countdown */
   /* <span data-countdown="2026-11-04">release date</span>: adds "in 26 days",
