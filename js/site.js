@@ -293,8 +293,8 @@
   /* ---------------- the sky and the season ----------------
      The hero (the banner at the top of every page) follows the visitor's own
      clock and calendar, with nothing fetched. By the hour: a sun glow that
-     crosses the banner from left (6 am) to right (6 pm), stars that are faint
-     dots by day and twinkle only after dusk. By the date: a season, see SEASONS.
+     crosses the banner from left (6 am) to right (6 pm), clouds by day and
+     stars only after dusk. By the date: a season, see SEASONS.
      All CSS (.sky-* and .season-* in style.css); the moving parts sit out under
      prefers-reduced-motion. Dates and hours live here and nowhere else. */
   (function () {
@@ -314,6 +314,18 @@
       sun.style.left = Math.round(Math.min(Math.max((h - 6) / 12, 0), 1) * 100) + '%';
       sun.style.opacity = light.toFixed(2);
       hero.appendChild(sun);
+      /* by day the stars give way to a few slow clouds; they thin out at dusk */
+      if (!still) for (var c = 0; c < 5; c++) {
+        var cl = document.createElement('span');
+        cl.className = 'cloud';
+        cl.style.top = (6 + c * 16 + Math.random() * 8).toFixed(0) + '%';
+        cl.style.width = (160 + Math.random() * 220).toFixed(0) + 'px';
+        cl.style.animationDuration = (70 + Math.random() * 60).toFixed(0) + 's';
+        cl.style.animationDelay = (-Math.random() * 120).toFixed(0) + 's';
+        cl.style.opacity = (light * (0.2 + Math.random() * 0.14)).toFixed(2);
+        cl.setAttribute('aria-hidden', 'true');
+        hero.appendChild(cl);
+      }
     }
 
     /* the date: [fromMonth, fromDay, toMonth, toDay, name] */

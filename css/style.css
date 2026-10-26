@@ -1459,11 +1459,16 @@ code{
 /* the sky by the hour (site.js adds .sky-day / .sky-dusk / .sky-night to <html>) */
 .sun{position:absolute;top:-26%;width:76vmin;height:76vmin;max-width:980px;max-height:980px;transform:translateX(-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;
   background:radial-gradient(circle,rgba(255,240,200,.8) 0,rgba(255,196,120,.42) 30%,rgba(255,150,80,.16) 52%,transparent 70%)}
-.sky-day .hero::before{opacity:.35}
-.sky-day .hero::after{animation:none;opacity:.25}
-.sky-day .spark{animation:none;opacity:.3;transform:scale(.55)}
-.sky-dusk .hero::after{animation-duration:6s}
-.sky-dusk .spark{opacity:.6}
+.sky-day .hero::before,.sky-day .hero::after,.sky-day .spark{display:none}
+.sky-dusk .hero::before{opacity:.5}
+.sky-dusk .hero::after{animation-duration:6s;opacity:.5}
+.sky-dusk .spark{animation:none;opacity:.5;transform:scale(.7)}
+.cloud{position:absolute;left:-30%;height:46px;border-radius:50%;pointer-events:none;background:#fff;filter:blur(14px);
+  box-shadow:60px -18px 0 -4px #fff,-70px -10px 0 -8px #fff,120px -6px 0 -12px #fff,-20px -26px 0 -10px #fff;
+  animation:clouddrift linear infinite}
+@keyframes clouddrift{from{transform:translateX(0)}to{transform:translateX(160vw)}}
+.sky-night .cloud{display:none}
+@media (prefers-reduced-motion:reduce){.cloud{display:none}}
 /* the season (site.js adds .season-* to <html> by date) */
 .season-halloween .spark,.season-autumn .spark{background:radial-gradient(circle,rgba(255,196,110,.95) 0 30%,rgba(255,150,60,.5) 60%,transparent 75%)}
 .season-halloween main .hero{box-shadow:inset 0 0 0 200vmax rgba(255,110,30,.13)}
