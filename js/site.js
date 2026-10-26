@@ -41,7 +41,7 @@
       if (sLoaded) return;                 // already in flight
       sLoaded = true;
       var s = document.createElement('script');
-      s.src = '/js/search.js?v=5';
+      s.src = '/js/search.js?v=6';
       s.onerror = function () { sLoaded = false; };
       document.head.appendChild(s);        // search.js opens itself once parsed
     };
@@ -320,8 +320,8 @@
         cl.className = 'cloud';
         cl.style.top = (6 + c * 16 + Math.random() * 8).toFixed(0) + '%';
         cl.style.width = (160 + Math.random() * 220).toFixed(0) + 'px';
-        cl.style.animationDuration = (70 + Math.random() * 60).toFixed(0) + 's';
-        cl.style.animationDelay = (-Math.random() * 120).toFixed(0) + 's';
+        cl.style.animationDuration = (160 + Math.random() * 120).toFixed(0) + 's';
+        cl.style.animationDelay = (-Math.random() * 280).toFixed(0) + 's';
         cl.style.opacity = (light * (0.2 + Math.random() * 0.14)).toFixed(2);
         cl.setAttribute('aria-hidden', 'true');
         hero.appendChild(cl);
@@ -388,6 +388,29 @@
         }
       }
     }
+  })();
+
+  /* ---------------- the store nudge ----------------
+     Someone on their fifth page here has probably not seen that there is a
+     store. One small card, bottom corner, once; a tap on either button and it
+     never comes back. Counted in localStorage, nothing sent anywhere. */
+  (function () {
+    var KEY_SEEN = 'dl-pages', KEY_DONE = 'dl-nudge';
+    var path = location.pathname;
+    if (path.indexOf('/store/') === 0) { try { localStorage.setItem(KEY_DONE, '1'); } catch (e) {} return; }
+    var seen = 0, done = '';
+    try { done = localStorage.getItem(KEY_DONE) || ''; seen = (parseInt(localStorage.getItem(KEY_SEEN), 10) || 0) + 1; localStorage.setItem(KEY_SEEN, String(seen)); } catch (e) { return; }
+    if (done || seen < 5) return;
+    function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; }
+    function finish() { try { localStorage.setItem(KEY_DONE, '1'); } catch (e) {} if (card.parentNode) card.parentNode.removeChild(card); }
+    var card = el('aside', 'nudge'); card.setAttribute('aria-label', 'The Dlonem store');
+    var p = el('p'); p.appendChild(el('b', '', 'There is a store now.'));
+    p.appendChild(document.createTextNode('Shirts, hoodies and mugs with the Dlonem mark, printed to order. Each one helps keep the mods and apps free.'));
+    var row = el('div', 'nudge-row');
+    var go = el('a', 'btn btn-solid', 'Have a look'); go.href = '/store/'; go.addEventListener('click', finish);
+    var no = el('button', '', 'Not now'); no.type = 'button'; no.addEventListener('click', finish);
+    row.appendChild(go); row.appendChild(no); card.appendChild(p); card.appendChild(row);
+    setTimeout(function () { document.body.appendChild(card); }, 6000);
   })();
 
   /* ---------------- scroll reveal ---------------- */

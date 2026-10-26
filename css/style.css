@@ -1456,14 +1456,25 @@ code{
 .wf-next--four{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:900px){.wf-next--four{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.wf-next--four{grid-template-columns:minmax(0,1fr)}}
+/* the store nudge (site.js, after a few pages; one small card, never a modal) */
+.nudge{position:fixed;right:16px;bottom:16px;z-index:60;max-width:320px;padding:14px 16px;border-radius:14px;background:#fff;color:var(--ink,#1a1b3a);box-shadow:0 12px 40px rgba(20,16,60,.22);border:1px solid rgba(70,60,140,.12);font-size:.92rem;line-height:1.45;animation:nudgein .5s ease-out}
+.nudge p{margin:0 0 10px}
+.nudge b{display:block;margin-bottom:2px;font-family:'Unbounded',sans-serif;font-weight:600;font-size:.95rem}
+.nudge-row{display:flex;gap:8px;align-items:center}
+.nudge-row .btn{padding:8px 14px;font-size:.85rem}
+.nudge-row button{background:none;border:0;color:inherit;opacity:.7;cursor:pointer;font:inherit;padding:8px 6px}
+.nudge-row button:hover{opacity:1;text-decoration:underline}
+@keyframes nudgein{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (max-width:600px){.nudge{left:12px;right:12px;bottom:12px;max-width:none}}
+@media (prefers-reduced-motion:reduce){.nudge{animation:none}}
 /* the sky by the hour (site.js adds .sky-day / .sky-dusk / .sky-night to <html>) */
-.sun{position:absolute;top:-26%;width:76vmin;height:76vmin;max-width:980px;max-height:980px;transform:translateX(-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;
+.sun{position:absolute;top:-62%;width:76vmin;height:76vmin;max-width:980px;max-height:980px;transform:translateX(-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;
   background:radial-gradient(circle,rgba(255,240,200,.8) 0,rgba(255,196,120,.42) 30%,rgba(255,150,80,.16) 52%,transparent 70%)}
 .sky-day .hero::before,.sky-day .hero::after,.sky-day .spark{display:none}
 .sky-dusk .hero::before{opacity:.5}
 .sky-dusk .hero::after{animation-duration:6s;opacity:.5}
 .sky-dusk .spark{animation:none;opacity:.5;transform:scale(.7)}
-.cloud{position:absolute;left:-30%;height:46px;border-radius:50%;pointer-events:none;background:#fff;filter:blur(14px);
+.cloud{position:absolute;left:-30%;height:46px;border-radius:50%;pointer-events:none;background:#fff;filter:blur(7px);
   box-shadow:60px -18px 0 -4px #fff,-70px -10px 0 -8px #fff,120px -6px 0 -12px #fff,-20px -26px 0 -10px #fff;
   animation:clouddrift linear infinite}
 @keyframes clouddrift{from{transform:translateX(0)}to{transform:translateX(160vw)}}

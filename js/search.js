@@ -6,7 +6,10 @@
 (function () {
   'use strict';
 
-  var INDEX_URL = '/search-index.json?v=1';
+  /* no-cache: the browser asks GitHub whether the index changed (a 304 when it
+     has not), so a page added today shows up today instead of whenever the old
+     copy expires. */
+  var INDEX_URL = '/search-index.json?v=2';
 
   /* Shown before anything is typed: the pages people actually arrive for,
      taken from Search Console (top pages by clicks, Oct 2026). */
@@ -52,7 +55,7 @@
   /* ---------- index ---------- */
   function load() {
     if (loading) return loading;
-    loading = fetch(INDEX_URL, { cache: 'force-cache' })
+    loading = fetch(INDEX_URL, { cache: 'no-cache' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (j) {
         docs = (j.docs || []).map(function (d) {
@@ -65,6 +68,69 @@
       })
       .catch(function (e) { loading = null; throw e; });
     return loading;
+  }
+
+  /* ---------- typos ----------
+     "vamprire" finds vampire: a word that appears nowhere in the index is
+     swapped for the closest word that does (one edit for short words, two for
+     long ones), and the status line says so. Built once, from the index. */
+  var vocab = null;
+  function buildVocab() {
+    var seen = {}, out = [];
+    docs.forEach(function (d) {
+      var words = (d._t + ' ' + d._s + ' ' + d._x + ' ' + (ALIASES[(d.u || '').split('#')[0]] || '')).split(/[^a-z0-9']+/);
+      for (var i = 0; i < words.length; i++) {
+        var w = words[i];
+        if (w.length < 4) continue;
+        if (seen[w]) seen[w]++; else { seen[w] = 1; out.push(w); }
+      }
+    });
+    vocab = out.map(function (w) { return { w: w, n: seen[w] }; });
+  }
+  function edits(a, b, max) {
+    if (Math.abs(a.length - b.length) > max) return max + 1;
+    var prev = [], prev2 = [], cur, i, j;
+    for (j = 0; j <= b.length; j++) prev[j] = j;
+    for (i = 1; i <= a.length; i++) {
+      cur = [i]; var best = i;
+      for (j = 1; j <= b.length; j++) {
+        var c = a.charAt(i - 1) === b.charAt(j - 1) ? 0 : 1;
+        var v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + c);
+        if (i > 1 && j > 1 && a.charAt(i - 1) === b.charAt(j - 2) && a.charAt(i - 2) === b.charAt(j - 1)) v = Math.min(v, prev2[j - 2] + 1);
+        cur[j] = v; if (v < best) best = v;
+      }
+      if (best > max) return max + 1;
+      var prev2 = prev; prev = cur;
+    }
+    return prev[b.length];
+  }
+  function known(t) {
+    for (var i = 0; i < docs.length; i++) {
+      var d = docs[i];
+      if (d._t.indexOf(t) > -1 || d._s.indexOf(t) > -1 || d._x.indexOf(t) > -1) return true;
+      if (((ALIASES[(d.u || '').split('#')[0]] || '')).indexOf(t) > -1) return true;
+    }
+    return false;
+  }
+  function nearest(t) {
+    if (t.length < 4) return null;
+    if (!vocab) buildVocab();
+    var max = t.length < 6 ? 1 : 2, best = null, bestD = max + 1;
+    for (var i = 0; i < vocab.length; i++) {
+      var v = vocab[i], dd = edits(t, v.w, max);
+      if (dd < bestD || (dd === bestD && best && v.n > best.n)) { best = v; bestD = dd; }
+    }
+    return best ? best.w : null;
+  }
+  function correct(terms) {
+    var changed = false;
+    var out = terms.map(function (t) {
+      if (known(t)) return t;
+      var n = nearest(t);
+      if (n) { changed = true; return n; }
+      return t;
+    });
+    return changed ? out : null;
   }
 
   /* ---------- scoring ----------
@@ -107,8 +173,7 @@
     return total;
   }
 
-  function query(q) {
-    var terms = q.toLowerCase().split(/\s+/).filter(function (t) { return t.length > 1; });
+  function query(terms) {
     if (!terms.length) return [];
     var out = [];
     for (var i = 0; i < docs.length; i++) {
@@ -195,7 +260,12 @@
       }
     }
     if (!docs) { list.innerHTML = ''; status.textContent = 'Loading\u2026'; return; }
-    results = query(q);
+    results = query(terms);
+    var fixed = null;
+    if (!results.length) {
+      fixed = correct(terms);
+      if (fixed) { results = query(fixed); if (results.length) terms = fixed; else fixed = null; }
+    }
     if (!results.length) {
       list.innerHTML = '<li class="ds-none">Nothing matched “' + esc(q) +
         '”. Try a single word — “dragonglass”, “load order”, “caffeine”.</li>';
@@ -206,7 +276,7 @@
       return option(i, r.d, r.implied ? '' : snippet(r.d, terms), r);
     }).join('');
     var pages = results.filter(function (r) { return !r.sub; }).length;
-    status.textContent = pages + (pages === 1 ? ' page' : ' pages');
+    status.textContent = (fixed ? 'Showing results for \u201c' + fixed.join(' ') + '\u201d \u00b7 ' : '') + pages + (pages === 1 ? ' page' : ' pages');
   }
 
   function move(step) {
