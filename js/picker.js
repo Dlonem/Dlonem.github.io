@@ -245,6 +245,23 @@
       hero.appendChild(ul);
     }
 
+    /* a line for an answer that points somewhere else: a Paladin who liked the
+       locked chests gets told keys exist, instead of nothing */
+    var tips = [];
+    Q.forEach(function (q, i) {
+      [ans[i], sec[i]].forEach(function (v) {
+        if (v === null || v === undefined) return;
+        var o = q.options[v];
+        if (o.tip && o.tip.unless.indexOf(k) < 0 && tips.indexOf(o.tip.text) < 0) tips.push(o.tip.text);
+      });
+    });
+    if (tips.length) {
+      var tp = el('p', 'pk-tip');
+      tp.appendChild(el('b', null, 'Worth knowing: '));
+      tp.appendChild(document.createTextNode(tips.join(' ')));
+      hero.appendChild(tp);
+    }
+
     var sp = spec(k);
     var spd = el('div', 'pk-spec');
     spd.appendChild(document.createTextNode('A spec to start with: '));

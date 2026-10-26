@@ -41,7 +41,7 @@
       if (sLoaded) return;                 // already in flight
       sLoaded = true;
       var s = document.createElement('script');
-      s.src = '/js/search.js?v=4';
+      s.src = '/js/search.js?v=5';
       s.onerror = function () { sLoaded = false; };
       document.head.appendChild(s);        // search.js opens itself once parsed
     };
@@ -130,7 +130,7 @@
       games: { items: [
         { t: 'Recommended games', d: 'What I play, and buying keys safely', u: '/games/', i: I + 'games.png',
           x: [['Heavy rotation', '/games/#in-heavy-rotation'], ['Buying keys', '/games/#buying-keys-without-getting-burned']] },
-        { t: 'World of Warcraft: Forever', d: 'Guides from my own beta play', u: '/wow-forever/', i: I + 'wow.png',
+        { t: 'World of Warcraft: Forever', d: 'Guides from my own beta play', u: '/wow-forever/', i: I + 'wow-forever.png',
           x: [['Class quiz', '/wow-forever/class-quiz/'], ['Add-ons', '/wow-forever/addons/'], ['Rulesets', '/wow-forever/rulesets/'],
               ['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/'], ['Names', '/wow-forever/name-reservation/']] },
         { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ' },
@@ -290,47 +290,91 @@
     document.body.appendChild(s);
   })();
 
-  /* ---------------- the season ----------------
-     A touch on the hero (the purple banner at the top of every page), by date,
-     nothing fetched. October is Halloween: orange sparks and a few drifting
-     leaves. November is autumn: more leaves, in amber. December is winter:
-     snowflakes, and a snowbank along the foot of the hero that grows a little
-     every day until Christmas. All CSS (.season-* in style.css); the moving
-     parts sit out under prefers-reduced-motion. Change the dates here only. */
+  /* ---------------- the sky and the season ----------------
+     The hero (the banner at the top of every page) follows the visitor's own
+     clock and calendar, with nothing fetched. By the hour: a sun glow that
+     crosses the banner from left (6 am) to right (6 pm), stars that are faint
+     dots by day and twinkle only after dusk. By the date: a season, see SEASONS.
+     All CSS (.sky-* and .season-* in style.css); the moving parts sit out under
+     prefers-reduced-motion. Dates and hours live here and nowhere else. */
   (function () {
     var hero = document.querySelector('main .hero');
     if (!hero) return;
-    var d = new Date(), m = d.getMonth() + 1, day = d.getDate(), season = '';
-    if (m === 10 && day >= 15) season = 'halloween';
-    else if (m === 11) season = 'autumn';
-    else if (m === 12 || (m === 1 && day <= 6)) season = 'winter';
-    if (!season) return;
-    document.documentElement.classList.add('season-' + season);
+    var root = document.documentElement;
+    var d = new Date(), m = d.getMonth() + 1, day = d.getDate(), h = d.getHours() + d.getMinutes() / 60;
     var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function drop(cls, n, text, size) {
-      for (var i = 0; i < n; i++) {
+
+    /* the hour */
+    var light = h < 5 || h >= 20 ? 0 : h < 7 ? (h - 5) / 2 : h < 18 ? 1 : 1 - (h - 18) / 2;
+    root.classList.add(light >= 0.85 ? 'sky-day' : light > 0.15 ? 'sky-dusk' : 'sky-night');
+    if (light > 0) {
+      var sun = document.createElement('span');
+      sun.className = 'sun';
+      sun.setAttribute('aria-hidden', 'true');
+      sun.style.left = Math.round(Math.min(Math.max((h - 6) / 12, 0), 1) * 100) + '%';
+      sun.style.opacity = light.toFixed(2);
+      hero.appendChild(sun);
+    }
+
+    /* the date: [fromMonth, fromDay, toMonth, toDay, name] */
+    var SEASONS = [
+      [12, 28,  1,  2, 'newyear'],     /* confetti */
+      [ 2,  1,  2, 14, 'valentine'],   /* hearts */
+      [ 7,  1,  7,  4, 'fourth'],      /* fireworks */
+      [10, 15, 10, 31, 'halloween'],   /* orange, a few leaves */
+      [ 9, 22, 11, 30, 'autumn'],      /* leaves */
+      [12,  1,  1,  6, 'winter']       /* snow, and a snowbank that grows to Christmas */
+    ];
+    var today = m * 100 + day, season = '';
+    for (var i = 0; i < SEASONS.length && !season; i++) {
+      var c = SEASONS[i], from = c[0] * 100 + c[1], to = c[2] * 100 + c[3];
+      if (from <= to ? (today >= from && today <= to) : (today >= from || today <= to)) season = c[4];
+    }
+    if (!season) return;
+    root.classList.add('season-' + season);
+
+    function drop(cls, n, text, size, rise) {
+      for (var k = 0; k < n; k++) {
         var f = document.createElement('span');
         f.className = cls;
         f.style.left = Math.round(Math.random() * 100) + '%';
-        f.style.animationDuration = (9 + Math.random() * 9).toFixed(1) + 's';
+        f.style.animationDuration = (8 + Math.random() * 10).toFixed(1) + 's';
         f.style.animationDelay = (-Math.random() * 18).toFixed(1) + 's';
         f.style.opacity = (0.4 + Math.random() * 0.5).toFixed(2);
         var px = size[0] + Math.random() * (size[1] - size[0]);
         if (text) { f.textContent = text; f.style.fontSize = px.toFixed(0) + 'px'; }
-        else { f.style.width = px.toFixed(0) + 'px'; f.style.height = (px * 0.6).toFixed(0) + 'px'; }
+        else { f.style.width = px.toFixed(0) + 'px'; f.style.height = (px * (cls === 'confetti' ? 0.45 : 0.6)).toFixed(0) + 'px'; }
+        if (cls === 'confetti') f.style.background = ['#FF5C7A', '#FFD166', '#4FD1C5', '#8FA3DF', '#fff'][k % 5];
         f.setAttribute('aria-hidden', 'true');
         hero.appendChild(f);
       }
     }
     if (season === 'winter') {
-      if (!still) drop('snow', 16, '\u2744', [10, 20]);
-      var bank = document.createElement('span');          /* grows 1px a day to Christmas */
+      var storm = m === 12 && day >= 21 && day <= 25;        /* a proper snowfall for Christmas week */
+      if (!still) drop('snow', storm ? 40 : 16, '❄', [10, storm ? 24 : 20]);
+      if (storm) root.classList.add('season-storm');
+      var bank = document.createElement('span');
       bank.className = 'snowbank';
       bank.setAttribute('aria-hidden', 'true');
       bank.style.height = (6 + Math.round(Math.min(m === 12 ? day : 25, 25) * 0.6)) + 'px';
       hero.appendChild(bank);
     } else if (!still) {
-      drop('leaf', season === 'autumn' ? 12 : 8, '', [12, 22]);
+      if (season === 'autumn') drop('leaf', 14, '', [16, 28]);
+      else if (season === 'halloween') drop('leaf', 9, '', [16, 28]);
+      else if (season === 'valentine') drop('heart', 12, '♥', [12, 24]);
+      else if (season === 'newyear') drop('confetti', 36, '', [8, 14]);
+      else if (season === 'fourth') {
+        for (var b = 0; b < 6; b++) {
+          var fw = document.createElement('span');
+          fw.className = 'firework';
+          fw.style.left = (10 + Math.random() * 80).toFixed(0) + '%';
+          fw.style.top = (12 + Math.random() * 50).toFixed(0) + '%';
+          fw.style.animationDelay = (b * 1.4 + Math.random()).toFixed(1) + 's';
+          fw.style.color = ['#FF5C7A', '#fff', '#6FA8FF'][b % 3];
+          fw.setAttribute('aria-hidden', 'true');
+          hero.appendChild(fw);
+        }
+      }
     }
   })();
 

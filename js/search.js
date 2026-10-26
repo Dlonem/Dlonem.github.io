@@ -20,6 +20,26 @@
     { k: 'App', t: 'THC Break Buddy', u: '/apps/thc-break-buddy/' }
   ];
 
+  /* Words people type that a page's own text does not say, or does not say
+     first. A hit here counts like a hit in the title. */
+  var ALIASES = {
+    '/store/': 'store shop merch shirt shirts hoodie hoodies mug mugs tee buy spreadshirt',
+    '/wow-forever/class-quiz/': 'quiz class picker which class should i play test',
+    '/wow-forever/addons/': 'addons add-ons addon ui curseforge weakauras elvui',
+    '/wow-forever/rulesets/': 'ruleset rulesets pvp hardcore roleplay rp-pvp server realm',
+    '/wow-forever/name-reservation/': 'name reservation names reserve',
+    '/wow-forever/': 'wow forever guide beginner beginners',
+    '/games/': 'games g2a keys cheap steam recommended',
+    '/community/the-grey-company/': 'guild grey gray company join',
+    '/apps/': 'apps app android ios',
+    '/mods/': 'mods mod ck3 crusader kings workshop',
+    '/ck3-mod-help/': 'mods not working load order crash broken',
+    '/news/': 'news patch notes changelog updates',
+    '/legacy/': 'legacy history story origin name',
+    '/about/': 'about thomas who contact',
+    '/support/': 'support help bug email'
+  };
+
   /* A few searches deserve a better answer than "nothing matched". */
   var EGGS = [
     { re: /only ?fans?/, k: 'Members only', t: 'Dlonem: exclusive content',
@@ -61,15 +81,18 @@
     var tHit  = sec ? 22 : 80,  tLead  = sec ? 30 : 120;
     var sHit  = 64,             sLead  = 92;
     var total = 0;
+    var alias = ALIASES[(d.u || '').split('#')[0]] || '';
 
     for (var i = 0; i < terms.length; i++) {
       var t = terms[i], s = 0;
+      var whole = new RegExp('(^|[^a-z0-9])' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^a-z0-9]|$)');
       if (d._t.indexOf(t) === 0) s = tLead;
       else if (d._t.indexOf(t) > -1) s = tHit;
       if (sec) {
         if (d._s.indexOf(t) === 0) s = Math.max(s, sLead);
         else if (d._s.indexOf(t) > -1) s = Math.max(s, sHit);
       }
+      if (!sec && whole.test(' ' + alias + ' ')) s = Math.max(s, 100);
       if (s === 0) {
         var at = d._x.indexOf(t);
         if (at < 0) return 0;                 // term missing entirely -> drop
@@ -77,6 +100,8 @@
         var occ = d._x.split(t).length - 1;
         s += Math.min(occ, 6);
       }
+      /* the whole word beats a word that merely contains it ("store" over "stored") */
+      if (whole.test(d._t) || (sec && whole.test(d._s)) || whole.test(d._x)) s += 18;
       total += s;
     }
     return total;
@@ -91,7 +116,26 @@
       if (s > 0) out.push({ d: docs[i], s: s });
     }
     out.sort(function (a, b) { return b.s - a.s; });
-    return out.slice(0, 24);
+    /* One block per page: the page itself first, then its best sections under
+       it, so eleven hits on one guide read as one guide, not eleven pages. */
+    var groups = [], byPage = {};
+    out.forEach(function (r) {
+      var key = r.d.u.split('#')[0];
+      var g = byPage[key];
+      if (!g) { g = byPage[key] = { key: key, best: r.s, page: null, secs: [] }; groups.push(g); }
+      if (r.d.s) g.secs.push(r); else g.page = r;
+      if (r.s > g.best) g.best = r.s;
+    });
+    groups.sort(function (a, b) { return b.best - a.best; });
+    var flat = [];
+    groups.slice(0, 8).forEach(function (g) {
+      if (!g.page) {
+        for (var k = 0; k < docs.length; k++) if (docs[k].u === g.key && !docs[k].s) { g.page = { d: docs[k], s: 0, implied: true }; break; }
+      }
+      if (g.page) { g.page.head = true; flat.push(g.page); }
+      g.secs.slice(0, 3).forEach(function (r) { r.sub = true; flat.push(r); });
+    });
+    return flat;
   }
 
   /* ---------- snippet ---------- */
@@ -120,12 +164,12 @@
   }
 
   /* ---------- render ---------- */
-  function option(i, d, snip) {
-    return '<li role="option" id="ds-o' + i + '" aria-selected="false">' +
+  function option(i, d, snip, r) {
+    var cls = r && r.sub ? ' class="ds-sub"' : (r && r.head ? ' class="ds-page"' : '');
+    return '<li role="option" id="ds-o' + i + '" aria-selected="false"' + cls + '>' +
       '<a href="' + esc(d.u) + '" tabindex="-1">' +
-        '<span class="ds-kind">' + esc(d.k || '') + '</span>' +
+        (r && r.sub ? '' : '<span class="ds-kind">' + esc(d.k || '') + '</span>') +
         '<span class="ds-title">' + esc(d.s || d.t) + '</span>' +
-        (d.s ? '<span class="ds-in">in ' + esc(d.t) + '</span>' : '') +
         (snip ? '<span class="ds-snip">' + snip + '</span>' : '') +
       '</a></li>';
   }
@@ -159,9 +203,10 @@
       return;
     }
     list.innerHTML = results.map(function (r, i) {
-      return option(i, r.d, snippet(r.d, terms));
+      return option(i, r.d, r.implied ? '' : snippet(r.d, terms), r);
     }).join('');
-    status.textContent = results.length + (results.length === 1 ? ' result' : ' results');
+    var pages = results.filter(function (r) { return !r.sub; }).length;
+    status.textContent = pages + (pages === 1 ? ' page' : ' pages');
   }
 
   function move(step) {
