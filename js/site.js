@@ -131,7 +131,7 @@
         { t: 'Recommended games', d: 'What I play, and buying keys safely', u: '/games/', i: I + 'games.png',
           x: [['Heavy rotation', '/games/#in-heavy-rotation'], ['Buying keys', '/games/#buying-keys-without-getting-burned']] },
         { t: 'World of Warcraft: Forever', d: 'Guides from my own beta play', u: '/wow-forever/', i: I + 'wow-forever.png',
-          x: [['Class quiz', '/wow-forever/class-quiz/'], ['Add-ons', '/wow-forever/addons/'], ['Rulesets', '/wow-forever/rulesets/'],
+          x: [['Class quiz', '/wow-forever/class-quiz/'], ['Add-ons', '/wow-forever/addons/'], ['World PvP', '/wow-forever/world-pvp/'], ['Rulesets', '/wow-forever/rulesets/'],
               ['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/'], ['Names', '/wow-forever/name-reservation/']] },
         { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ' },
         { t: 'Crusader Kings III', d: 'Two mods and a repair guide', u: '/mods/', i: I + 'spn.png',
