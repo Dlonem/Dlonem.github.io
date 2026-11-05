@@ -41,7 +41,7 @@
       if (sLoaded) return;                 // already in flight
       sLoaded = true;
       var s = document.createElement('script');
-      s.src = '/js/search.js?v=6';
+      s.src = '/js/search.js?v=7';
       s.onerror = function () { sLoaded = false; };
       document.head.appendChild(s);        // search.js opens itself once parsed
     };
@@ -133,12 +133,12 @@
         { t: 'World of Warcraft: Forever', d: 'Guides from my own beta play', u: '/wow-forever/', i: I + 'wow-forever.png',
           x: [['Class quiz', '/wow-forever/class-quiz/'], ['Add-ons', '/wow-forever/addons/'], ['World PvP', '/wow-forever/world-pvp/'], ['Rulesets', '/wow-forever/rulesets/'],
               ['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/'], ['Names', '/wow-forever/name-reservation/']] },
-        { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ' },
+        { t: 'The Gray Company', d: 'Our WoW Forever guild', u: '/community/the-gray-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ' },
         { t: 'Crusader Kings III', d: 'Two mods and a repair guide', u: '/mods/', i: I + 'spn.png',
           x: [['Supernatural', '/mods/supernatural/'], ['The Long Night', '/mods/the-long-night/'], ['Mods not working?', '/ck3-mod-help/']] }
       ], foot: ['All the WoW Forever guides', '/games/#wow-forever-guides'] },
       comm: { items: [
-        { t: 'The Grey Company', d: 'Our WoW Forever guild', u: '/community/the-grey-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ',
+        { t: 'The Gray Company', d: 'Our WoW Forever guild', u: '/community/the-gray-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ',
           x: [['Guide', '/wow-forever/'], ['Classes', '/wow-forever/classes/'], ['Add-ons', '/wow-forever/addons/']] },
         { t: 'The Game Center', d: 'A gaming Discord since 2016', u: '/tgc/', i: I + 'tgc.png', dc: 'hvZGMeJhB7' },
         { t: "Dlonem's Den", d: 'The YouTube channel’s server', u: '/community/#dlonems-den', i: I + 'den.png', dc: 'StACe9hVtT' },

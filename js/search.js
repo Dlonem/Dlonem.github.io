@@ -19,7 +19,7 @@
     { k: 'Wiki', t: 'Supernatural wiki', u: '/mods/supernatural/wiki/' },
     { k: 'Guide', t: 'CK3 mods not working?', u: '/ck3-mod-help/' },
     { k: 'Guide', t: "WoW Forever beginner's guide", u: '/wow-forever/' },
-    { k: 'Community', t: 'The Grey Company, a WoW Forever guild', u: '/community/the-grey-company/' },
+    { k: 'Community', t: 'The Gray Company, a WoW Forever guild', u: '/community/the-gray-company/' },
     { k: 'App', t: 'THC Break Buddy', u: '/apps/thc-break-buddy/' }
   ];
 
@@ -33,7 +33,7 @@
     '/wow-forever/name-reservation/': 'name reservation names reserve',
     '/wow-forever/': 'wow forever guide beginner beginners',
     '/games/': 'games g2a keys cheap steam recommended',
-    '/community/the-grey-company/': 'guild grey gray company join',
+    '/community/the-gray-company/': 'guild grey gray company join',
     '/apps/': 'apps app android ios',
     '/mods/': 'mods mod ck3 crusader kings workshop',
     '/ck3-mod-help/': 'mods not working load order crash broken',

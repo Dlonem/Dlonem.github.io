@@ -305,15 +305,15 @@
     if (close) out.appendChild(el('p', 'pk-share', CLS[s.ranked[1]].name + ' is almost level with ' + c.name +
       '. Read both cards: either would suit the way you answered.'));
     var dc = document.querySelector('#find-a-guild a[href^="https://discord.gg/"]');
-    var about = document.querySelector('#find-a-guild a[href="/community/the-grey-company/"]');
+    var about = document.querySelector('#find-a-guild a[href="/community/the-gray-company/"]');
     if (dc && al.length) {
       var gb = el('div', 'pk-guild');
       var gp = el('p');
       gp.appendChild(el('b', null, 'Got your ' + c.name + '? Now find people to play it with. '));
-      gp.appendChild(document.createTextNode('If you play Alliance on the Normal ruleset in North America, The Grey Company is my guild: leveling and social, every time zone welcome.'));
+      gp.appendChild(document.createTextNode('If you play Alliance on the Normal ruleset in North America, The Gray Company is my guild: leveling and social, every time zone welcome.'));
       gb.appendChild(gp);
       var row = el('div', 'pk-guild-row');
-      var j = el('a', 'btn btn-solid', 'Join the Grey Company Discord');
+      var j = el('a', 'btn btn-solid', 'Join the Gray Company Discord');
       j.href = dc.href;
       row.appendChild(j);
       if (about) { var ab = el('a', 'wf-btn', 'About the guild'); ab.href = about.getAttribute('href'); row.appendChild(ab); }

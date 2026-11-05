@@ -1,32 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Grey Company — a World of Warcraft: Forever guild</title>
-<link rel="canonical" href="https://dlonem.com/community/the-grey-company/">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Sora:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css?v=31"><script>document.documentElement.className+=" js"</script><script src="/js/sky.js?v=1"></script><link rel="icon" href="/assets/logo.png">
+<title>The Gray Company: an Alliance guild for WoW Forever | Dlonem</title>
+<meta name="description" content="The Gray Company is an Alliance leveling and social guild for World of Warcraft: Forever, on NA servers and the Normal ruleset. Join through the Discord.">
 <meta name="theme-color" content="#0B1636">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dlonem">
-<meta property="og:url" content="https://dlonem.com/community/the-grey-company/">
-<meta property="og:title" content="The Grey Company — a World of Warcraft: Forever guild">
+<meta property="og:url" content="https://dlonem.com/community/the-gray-company/">
+<meta property="og:title" content="The Gray Company — a World of Warcraft: Forever guild">
 <meta property="og:description" content="Alliance, Normal ruleset, NA servers, leveling and social. WoW Forever's release date is 4 November 2026. Join through the Discord.">
-<meta property="og:image" content="https://dlonem.com/assets/img/og-grey-company.jpg">
-<meta property="og:image:secure_url" content="https://dlonem.com/assets/img/og-grey-company.jpg">
+<meta property="og:image" content="https://dlonem.com/assets/img/og-gray-company.jpg">
+<meta property="og:image:secure_url" content="https://dlonem.com/assets/img/og-gray-company.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Grey Company crest beside the words: World of Warcraft: Forever, The Grey Company, dlonem.com/grey">
+<meta property="og:image:alt" content="The Gray Company crest beside the words: World of Warcraft: Forever, The Gray Company, dlonem.com/gray">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@officialdlonem">
-<meta name="twitter:title" content="The Grey Company — a World of Warcraft: Forever guild">
+<meta name="twitter:title" content="The Gray Company — a World of Warcraft: Forever guild">
 <meta name="twitter:description" content="Alliance, Normal ruleset, NA servers, leveling and social. WoW Forever's release date is 4 November 2026. Join through the Discord.">
-<meta name="twitter:image" content="https://dlonem.com/assets/img/og-grey-company.jpg">
-<meta name="description" content="The Grey Company is an Alliance leveling and social guild for World of Warcraft: Forever, on NA servers and the Normal ruleset. Join through the Discord.">
-<script>location.replace("/community/the-grey-company/"+location.search+location.hash)</script>
-<meta http-equiv="refresh" content="0; url=/community/the-grey-company/">
+<meta name="twitter:image" content="https://dlonem.com/assets/img/og-gray-company.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dlonem.com/"}, {"@type": "ListItem", "position": 2, "name": "Community", "item": "https://dlonem.com/community/"}, {"@type": "ListItem", "position": 3, "name": "The Gray Company", "item": "https://dlonem.com/community/the-gray-company/"}]}, {"@type": "WebPage", "@id": "https://dlonem.com/community/the-gray-company/", "url": "https://dlonem.com/community/the-gray-company/", "name": "The Gray Company", "description": "The Gray Company is an Alliance leveling and social guild for World of Warcraft: Forever, on NA servers and the Normal ruleset. Join through the Discord.", "inLanguage": "en", "dateModified": "2026-11-04", "isPartOf": {"@type": "WebSite", "url": "https://dlonem.com/", "name": "Dlonem"}, "about": {"@type": "Organization", "name": "The Gray Company", "description": "An Alliance leveling and social guild for World of Warcraft: Forever, on NA servers and the Normal ruleset.", "foundingDate": "2026-09", "url": "https://dlonem.com/community/the-gray-company/", "logo": "https://dlonem.com/assets/img/gray-company.jpg", "founder": {"@type": "Person", "name": "Dlonem", "url": "https://dlonem.com/about/"}}}]}</script>
+<link rel="canonical" href="https://dlonem.com/community/the-gray-company/">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5299635657419886" crossorigin="anonymous"></script>
+<style>
+/* ---- The Gray Company theme, sampled from the guild crest: navy #070F28,
+   royal #2F5BB2, gold #E4BB51 / #F2D788. Scoped to body.gc like .tgc. ---- */
+.gc{--accent:#2F5BB2;--accent-soft:#F2D788;--accent-deep:#0B1636;--accent-ink:#1E3E86}
+.gc .hero{background:radial-gradient(120% 150% at 50% 0%,#2F5BB2 0%,#1E3E86 32%,#102050 64%,#070F28 100%)}
+.gc .hero .eyebrow{color:#F2D788}
+.gc main section .eyebrow{color:#1E3E86}
+.gc .nav{background:linear-gradient(90deg,#070F28,#16306E)}
+.gc .nav nav a.active{background:linear-gradient(90deg,#E4BB51,#F2D788);color:#0A1230}
+.gc .nav nav a.join{background:linear-gradient(90deg,#E4BB51,#F2D788);color:#0A1230}
+.gc .btn-solid{background:linear-gradient(90deg,#E4BB51,#F2D788);color:#0A1230;box-shadow:0 6px 18px rgba(228,187,81,.32)}
+.gc main a:not(.btn):not(.store):not(.brand){color:#1E3E86}
+.gc .stat b{color:#1E3E86}
+.gc-mark{width:132px;height:132px;border-radius:50%;display:block;margin:0 auto 18px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.gc-short{margin-top:18px;font-size:.92rem;color:#D6DDF5}
+.gc-count{margin-top:14px;font-size:.92rem;color:#D6DDF5}
+.gc-count b{color:#fff}
+.gc-cta .gc-count{color:var(--ink-soft)}
+.gc-cta .gc-count b{color:var(--ink)}
+.gc-short b{font-family:'Space Mono',monospace;font-weight:400;color:#F2D788;white-space:nowrap}
+.gc-facts .stat b{font-size:1.3rem}
+.gc-feed{list-style:none;margin:0 auto;max-width:760px;padding:0;border:1px solid #DCE3F5;border-radius:14px;background:#F7F9FF;overflow:hidden}
+.gc-feed li{display:flex;gap:14px;align-items:baseline;padding:12px 16px;border-top:1px solid #E6EBF8}
+.gc-feed li:first-child{border-top:0}
+.gc-feed time{flex:0 0 58px;font-family:'Space Mono',monospace;font-size:.78rem;color:#4A5578}
+.gc-feed a{font-weight:600;text-decoration:none;line-height:1.4}
+.gc-feed a:hover{text-decoration:underline}
+.gc-src{max-width:760px;margin:10px auto 0;font-size:.82rem;color:var(--ink-soft);text-align:center}
+.gc .faq{max-width:760px;margin:0 auto}
+.gc .faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.gc .faq summary{cursor:pointer;font-weight:600;font-family:'Sora',sans-serif}
+.gc .faq summary::marker{color:#2F5BB2}
+.gc .faq p{color:var(--ink-soft);font-size:.93rem;margin-top:8px}
+.gc-cta{text-align:center;margin-top:22px}
+.gc-intro{text-align:center;color:var(--ink-soft);margin:0 auto 18px;max-width:640px}
+/* Shorts reel: the site's .shots strip (js/carousel.js adds arrows, dots and auto-advance).
+   Five across on desktop, a peek of the next one on smaller screens. */
+.shots--reel{grid-auto-columns:calc((100% - 56px)/5);gap:14px;padding:6px 2px 12px}
+.shots--reel .shot{display:block;aspect-ratio:auto;border:0;border-radius:0;background:none;overflow:visible;scroll-snap-align:start;text-decoration:none}
+.shots--reel .shot:hover img{transform:none}
+@media (max-width:1040px){.shots--reel{grid-auto-columns:calc((100% - 42px)/3.4)}}
+.gc-st{position:relative;display:block;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#0B1636;box-shadow:0 8px 22px rgba(14,8,36,.18);transition:transform .2s ease}
+.shots--reel .shot:hover .gc-st{transform:translateY(-3px)}
+.gc-st img{width:100%;height:100%;object-fit:cover;display:block}
+.gc-st::after{content:"";position:absolute;right:10px;bottom:10px;width:30px;height:30px;border-radius:50%;background:rgba(10,18,48,.74) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 2.5l5.5 3.5L4 9.5z' fill='white'/%3E%3C/svg%3E") center/12px no-repeat}
+.gc-sc{display:block;margin-top:8px;font-size:.82rem;font-weight:600;line-height:1.35}
+@media (max-width:700px){.shots--reel{grid-auto-columns:44%;gap:12px}}
+@media (prefers-reduced-motion:reduce){.gc-st{transition:none}}
+.gc-cta .srcnote{margin-top:12px}
+.gc-sources{font-size:.85rem}
+</style>
 </head>
-<body>
-<p><a href="/community/the-grey-company/">The Grey Company — a World of Warcraft: Forever guild</a></p>
+<body class="gc" data-page="comm">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="nav-inner">
+<a class="brand" href="/"><img src="/assets/logo.png" alt="" onerror="this.remove()" width="256" height="256"><span>Dlonem</span></a>
+<nav aria-label="Main">
+<a href="/" data-p="home">Home</a>
+<a href="/news/" data-p="news">News</a>
+<a href="/apps/" data-p="apps">Apps</a>
+<a href="/mods/" data-p="mods">Mods</a>
+<a href="/community/" data-p="comm">Community</a>
+<a href="/legacy/" data-p="legacy">Legacy</a>
+<a href="/games/" data-p="games">Games</a>
+<a href="/store/" data-p="store">Store</a>
+<a class="join" href="https://discord.gg/UcJmm4XQVZ">Join the Gray Company</a>
+</nav>
+</div></header>
+<main id="main">
+<div class="hero compact">
+<span class="spark" style="top:24%;left:14%"></span>
+<span class="spark s2" style="top:62%;left:82%"></span>
+<span class="spark s3" style="top:36%;left:66%"></span>
+<div class="wrap">
+<img class="gc-mark" src="/assets/img/gray-company.jpg" alt="The Gray Company crest: a blue shield with a silver compass star and crossed swords, in a gold ring" width="400" height="400" data-discord-icon="UcJmm4XQVZ" data-size="256" data-alt-live="The Gray Company's Discord server icon">
+<span class="eyebrow">A World of Warcraft: Forever guild</span>
+<h1>The Gray Company</h1>
+<p class="lede">Alliance, Normal ruleset, NA servers. A leveling and social guild for people who plan to stick around. WoW Forever's release date is 4 November 2026, and the Discord is the way in.</p>
+<div class="btn-row">
+<a class="btn btn-solid" href="https://discord.gg/UcJmm4XQVZ">Join the Gray Company Discord</a>
+<a class="btn btn-ghost" href="#wow-forever">What WoW Forever is</a>
+</div>
+<p class="gc-count" data-discord="UcJmm4XQVZ" data-suffix="in the Discord" hidden></p>
+<p class="gc-short">Telling someone in game? Type <b>dlonem.com/gray</b></p>
+</div>
+</div>
+<div class="wrap yt-live-wrap"><div data-yt-live hidden></div></div>
+
+<section class="tight" id="at-a-glance">
+<div class="wrap">
+<div class="stats gc-facts">
+<div class="stat"><b>Alliance</b><span>faction</span></div>
+<div class="stat"><b>Normal</b><span>ruleset</span></div>
+<div class="stat"><b>NA</b><span>North American servers</span></div>
+<div class="stat"><b>Nov 4</b><span>launch day</span></div>
+</div>
+</div>
+</section>
+<div id="gc-feed-slot" data-feed="https://feed.dlonem.com/forever"></div>
+
+<section id="the-plan">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">The plan</span><h2>What we're building</h2></div>
+<div class="prose">
+<p>A guild for leveling, grouping up and hanging out on the North American (NA) servers, with players from every time zone welcome. The end game is still open; we'll pick it together once we see what Forever becomes.</p>
+<p>Some of us ran together on The Burning Crusade Anniversary. We left those names there. Forever is where we're staying.</p>
+<p>The Discord is where the guild lives between sessions: who's playing what, who needs a group, and what we're running next.</p>
+</div>
+</div>
+</section>
+
+<section class="tight" id="within-reason">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">House rules</span><h2>Everything within reason</h2></div>
+<div class="prose">
+<p>That's our unofficial motto, and it covers most of the rules.</p>
+<ul>
+<li><strong>Everyone's welcome.</strong> Who you are is your business, and nobody here gives anyone grief for it.</li>
+<li><strong>Politics and sexuality stay out of guild chat.</strong> That's not a judgment of anyone. Neither has anything to do with WoW, and they're the fastest way to split a guild.</li>
+<li><strong>You get one friendly warning.</strong> After that, you'll need to find another guild.</li>
+<li><strong>A little chaos is fine. Drama isn't.</strong> We're building for the people who stay.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="tight" id="the-name">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">The name</span><h2>Why the Gray Company</h2></div>
+<div class="prose">
+<p>It's Tolkien's. In The Lord of the Rings, the Grey Company are the Rangers of the North who ride south to join Aragorn and follow him through the Paths of the Dead. The Star Wars fans in the Discord heard Gray Jedi instead. Both work.</p>
+<p>Gray with an a. Tolkien spells it with an e, but another guild had that name in game first. Spell it grey and dlonem.com/grey still finds us.</p>
+</div>
+</div>
+</section>
+
+<div class="adslot" data-ad="article"></div>
+
+<section class="tight" id="the-discord">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">Inside</span><h2>What's in the Discord</h2></div>
+<div class="prose">
+<ul>
+<li>Guild intentions and rules, so you know what you're joining.</li>
+<li>Class, race and role tags: tank, healer or damage.</li>
+<li>Looking for group, professions, and a PvP call to arms. <a href="/wow-forever/world-pvp/">How world PvP works on Normal</a>.</li>
+<li>Mechanics worth knowing and addons worth installing.</li>
+<li>Guild stats, and a channel for the iconic moments.</li>
+<li>Event nights, posted as Discord events with reminders.</li>
+</ul>
+<p>No beta, upgrade or Classic experience needed. Join, grab your roles, and say hello.</p>
+</div>
+</div>
+</section>
+
+<section class="tight" id="before-you-join">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">Before you join</span><h2>Quick answers</h2></div>
+<div class="faq">
+<details><summary>Is it a raiding guild?</summary>
+<p>Not to start. We're leveling and social. Once people hit 60 and the new raids open, we'll decide together how far to take it.</p></details>
+<details><summary>Which region and time zone?</summary>
+<p>NA, the North American servers. I'm on US Eastern time, but if you play on NA you're welcome from any time zone.</p></details>
+<details><summary>Can I join if I play Horde?</summary>
+<p>The guild is Alliance. On the Normal ruleset you can make characters on both factions, so a Horde alt is fine; you just can't group with us on it.</p></details>
+<details><summary>Do I need to buy anything extra?</summary>
+<p>No. Forever is included with a WoW subscription or Game Time. The upgrades are optional; one only matters if you want to reserve your name early, 27 October to 3 November.</p></details>
+<details><summary>What about Hardcore?</summary>
+<p>We're on Normal. Hardcore is its own ruleset, which Blizzard said would open after the others. Characters can't move between rulesets, except that a Hardcore character who dies can transfer to another one.</p></details>
+</div>
+</div>
+</section>
+
+<section class="tight" id="wow-forever">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">The game</span><h2>WoW Forever, the short version</h2></div>
+<div class="prose">
+<p>What Blizzard has announced, checked against its own posts on 26 October 2026. Blizzard can change details, and its posts linked below are the final word. New to Forever? Read the <a href="/wow-forever/">beginner's guide</a>, find your class with <a href="/wow-forever/class-quiz/">the class quiz</a> or <a href="/wow-forever/classes/">the class guide</a>, set up <a href="/wow-forever/addons/">your add-ons</a>, and take your first dungeon with the <a href="/wow-forever/dungeons/hall-of-thanes/">Hall of Thanes guide</a>.</p>
+<ul>
+<li><strong>Launch:</strong> 4 November 2026 at 3:00 p.m. PST (6:00 p.m. Eastern).</li>
+<li><strong>What it is:</strong> a new, permanent version of WoW alongside the modern game and Classic. It's set before Molten Core and starts on the original continents with a level cap of 60.</li>
+<li><strong>Cost:</strong> included with a WoW subscription or Game Time. Upgrade packs are optional.</li>
+<li><strong>Name reservation:</strong> 27 October to 3 November 2026, with any upgrade pack. It opens at 1:00 p.m. PDT (4:00 p.m. Eastern) on 27 October in North America. Up to three characters in total across all rulesets, first come, first served. <a href="/wow-forever/name-reservation/">More on name reservation</a>.</li>
+<li><strong>No realm list:</strong> you pick a ruleset instead: Normal, PvP, Roleplaying, Roleplay-PvP or Hardcore. Blizzard announced Roleplay-PvP on 22 October and said Hardcore would open after the others. Switching means a new character. We're on Normal. <a href="/wow-forever/rulesets/">Compare the rulesets</a>.</li>
+<li><strong>Two names:</strong> every character has a first and a second name, and the full name has to be unique in your region.</li>
+<li><strong>Factions:</strong> Horde and Alliance still can't group together.</li>
+</ul>
+<p class="gc-sources">Sources, all Blizzard: <a href="https://worldofwarcraft.blizzard.com/en-us/news/24301508/">launch, cost and name reservation</a>, <a href="https://worldofwarcraft.blizzard.com/en-us/news/24303866/claim-your-world-of-warcraft-forever-character-names">the opening times</a>, <a href="https://worldofwarcraft.blizzard.com/en-us/news/24302070">rulesets and factions</a>, <a href="https://us.forums.blizzard.com/en/wow/t/the-roleplay-pvp-ruleset-is-coming-to-wow-forever/2389502">Roleplay-PvP</a>, <a href="https://worldofwarcraft.blizzard.com/en-us/news/24304161">character names</a>, and <a href="https://worldofwarcraft.blizzard.com/en-us/news/24302093/carve-a-new-path-with-world-of-warcraft-forever">what Forever is</a>. The game's own page is <a href="https://worldofwarcraft.blizzard.com/en-us/forever">worldofwarcraft.blizzard.com/forever</a>. World of Warcraft is a trademark of Blizzard Entertainment; this is a player guild, not an official Blizzard page.</p>
+</div>
+</div>
+</section>
+
+<section class="tight" id="on-the-channel">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">Meanwhile, on YouTube</span><h2>WoW Forever, in short</h2></div>
+<p class="gc-intro">Short videos from the channel, newest first. New ones show up here on their own; the rest are on <a href="https://www.youtube.com/@OfficialDlonem/shorts">the channel</a>.</p>
+<div class="shots shots--reel" id="gc-shorts" data-interval="6000" data-shorts="https://feed.dlonem.com/shorts">
+<a class="shot" href="https://www.youtube.com/shorts/Z5kaa-DVEmY" rel="noopener" data-id="Z5kaa-DVEmY"><span class="gc-st"><img src="https://i.ytimg.com/vi/Z5kaa-DVEmY/hqdefault.jpg" srcset="https://i.ytimg.com/vi/Z5kaa-DVEmY/hqdefault.jpg 480w, https://i.ytimg.com/vi/Z5kaa-DVEmY/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Healers Watching the Warlock Life Tap Again</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/qEB233banF4" rel="noopener" data-id="qEB233banF4"><span class="gc-st"><img src="https://i.ytimg.com/vi/qEB233banF4/hqdefault.jpg" srcset="https://i.ytimg.com/vi/qEB233banF4/hqdefault.jpg 480w, https://i.ytimg.com/vi/qEB233banF4/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Tanks Watching the Hunter Pet Pull Again</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/w2lNIB022_g" rel="noopener" data-id="w2lNIB022_g"><span class="gc-st"><img src="https://i.ytimg.com/vi/w2lNIB022_g/hqdefault.jpg" srcset="https://i.ytimg.com/vi/w2lNIB022_g/hqdefault.jpg 480w, https://i.ytimg.com/vi/w2lNIB022_g/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">No Wonder It&#39;s Taking Me So Long to Level</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/uoZqnOStW-0" rel="noopener" data-id="uoZqnOStW-0"><span class="gc-st"><img src="https://i.ytimg.com/vi/uoZqnOStW-0/hqdefault.jpg" srcset="https://i.ytimg.com/vi/uoZqnOStW-0/hqdefault.jpg 480w, https://i.ytimg.com/vi/uoZqnOStW-0/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Streamers Explaining Where the Gold Came From</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/K4yHr8IC7Hs" rel="noopener" data-id="K4yHr8IC7Hs"><span class="gc-st"><img src="https://i.ytimg.com/vi/K4yHr8IC7Hs/hqdefault.jpg" srcset="https://i.ytimg.com/vi/K4yHr8IC7Hs/hqdefault.jpg 480w, https://i.ytimg.com/vi/K4yHr8IC7Hs/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Tank and Healer Deciding Which DPS to Kick</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/TPt1TZKpkL0" rel="noopener" data-id="TPt1TZKpkL0"><span class="gc-st"><img src="https://i.ytimg.com/vi/TPt1TZKpkL0/hqdefault.jpg" srcset="https://i.ytimg.com/vi/TPt1TZKpkL0/hqdefault.jpg 480w, https://i.ytimg.com/vi/TPt1TZKpkL0/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">The Tank Going to Find the Hunter</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/qCx19Cmd5fo" rel="noopener" data-id="qCx19Cmd5fo"><span class="gc-st"><img src="https://i.ytimg.com/vi/qCx19Cmd5fo/hqdefault.jpg" srcset="https://i.ytimg.com/vi/qCx19Cmd5fo/hqdefault.jpg 480w, https://i.ytimg.com/vi/qCx19Cmd5fo/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Blizzard Trying to Throw In Retail for Free</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/2bFBHaQKo5Q" rel="noopener" data-id="2bFBHaQKo5Q"><span class="gc-st"><img src="https://i.ytimg.com/vi/2bFBHaQKo5Q/hqdefault.jpg" srcset="https://i.ytimg.com/vi/2bFBHaQKo5Q/hqdefault.jpg 480w, https://i.ytimg.com/vi/2bFBHaQKo5Q/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Undead Paladins Looking for Whoever Reported the Bubble</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/XkZtyMcLlw0" rel="noopener" data-id="XkZtyMcLlw0"><span class="gc-st"><img src="https://i.ytimg.com/vi/XkZtyMcLlw0/hqdefault.jpg" srcset="https://i.ytimg.com/vi/XkZtyMcLlw0/hqdefault.jpg 480w, https://i.ytimg.com/vi/XkZtyMcLlw0/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Alliance Players Seeing Orgrimmar for the First Time</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/U9-HQ3j_eHY" rel="noopener" data-id="U9-HQ3j_eHY"><span class="gc-st"><img src="https://i.ytimg.com/vi/U9-HQ3j_eHY/hqdefault.jpg" srcset="https://i.ytimg.com/vi/U9-HQ3j_eHY/hqdefault.jpg 480w, https://i.ytimg.com/vi/U9-HQ3j_eHY/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">POV: Questing in WoW Forever</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/Xf0G642LXFY" rel="noopener" data-id="Xf0G642LXFY"><span class="gc-st"><img src="https://i.ytimg.com/vi/Xf0G642LXFY/hqdefault.jpg" srcset="https://i.ytimg.com/vi/Xf0G642LXFY/hqdefault.jpg 480w, https://i.ytimg.com/vi/Xf0G642LXFY/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Every WoW veteran in the starting zone on November 4th</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/TORzYIOb4TI" rel="noopener" data-id="TORzYIOb4TI"><span class="gc-st"><img src="https://i.ytimg.com/vi/TORzYIOb4TI/hqdefault.jpg" srcset="https://i.ytimg.com/vi/TORzYIOb4TI/hqdefault.jpg 480w, https://i.ytimg.com/vi/TORzYIOb4TI/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">Rallying the boys for WoW Forever (6th time&#39;s the charm)</span></a>
+<a class="shot" href="https://www.youtube.com/shorts/XQTfPLhmq0E" rel="noopener" data-id="XQTfPLhmq0E"><span class="gc-st"><img src="https://i.ytimg.com/vi/XQTfPLhmq0E/hqdefault.jpg" srcset="https://i.ytimg.com/vi/XQTfPLhmq0E/hqdefault.jpg 480w, https://i.ytimg.com/vi/XQTfPLhmq0E/hq720.jpg 1280w" sizes="(max-width:700px) 380px, 470px" alt="" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()"></span><span class="gc-sc">My Steam backlog watching me reinstall WoW again</span></a>
+</div>
+</div>
+</section>
+
+<section class="tight" id="why-forever">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">Who's behind it</span><h2>My last stop in Azeroth</h2></div>
+<div class="prose">
+<p>WoW is where my name comes from. Dlonem is what the game's random name generator gave me for a death knight in sixth grade, give or take a few letters I changed. Before that I was Noaha, a warlock who joined Icecrown Citadel raids he had no business being in. <a href="/legacy/">The full story is on the Legacy page.</a></p>
+<p>I'm not going back to the modern game, and the only thing that would pull me back to Anniversary is Wrath. Blizzard calls Forever a permanent home it plans to keep building, starting on the original continents at level 60. If it lives up to that, it's the last version of WoW I need, and The Gray Company is built to last as long as it does.</p>
+<p>I've run Discord servers since 2016, and <a href="/tgc/#keeping-a-room-comfortable">the rooms that last</a> are the ones where people can relax. My first website existed to solve the can't-paste-an-invite problem for <a href="/tgc/#eight-characters-you-cannot-copy">The Game Center</a>. dlonem.com/gray is the same fix, years later.</p>
+</div>
+</div>
+</section>
+
+<section class="tight" id="one-link">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">Getting in</span><h2>One link to remember</h2></div>
+<div class="prose">
+<p>You can't paste a Discord invite into WoW chat, so inviting someone means spelling out random characters and hoping. In game, tell people <strong>dlonem.com/gray</strong> instead. It lands here, one click from the server.</p>
+<p><strong>dlonem.com/gray/join</strong> skips this page and opens the invite.</p>
+</div>
+<div class="gc-cta">
+<a class="btn btn-solid" href="https://discord.gg/UcJmm4XQVZ">Join the Gray Company Discord</a>
+<p class="gc-count" data-discord="UcJmm4XQVZ" data-suffix="in the Discord" hidden></p>
+<p class="srcnote">Or open the invite directly: <a href="https://discord.gg/UcJmm4XQVZ">discord.gg/UcJmm4XQVZ</a></p>
+</div>
+</div>
+</section>
+
+<div class="adslot" data-ad="multiplex"></div>
+</main>
+<footer><div class="foot-inner">
+<div><h4>Apps</h4><a href="/apps/">All apps</a><a href="/apps/thc-break-buddy/">THC Break Buddy</a><a href="/apps/caffeine-break-buddy/">Caffeine Break Buddy</a><a href="/apps/nicotine-break-buddy/">Nicotine Break Buddy</a><a href="/apps/tiny-dragon-hoard/">Tiny Dragon Hoard</a><a href="/tolerance-break/">Taking a tolerance break</a><a href="/caffeine-break/">Cutting back on caffeine</a><a href="/quit-nicotine/">Quitting nicotine</a></div>
+<div><h4>Mods</h4><a href="/mods/">All mods</a><a href="/mods/supernatural/">Supernatural</a><a href="/mods/supernatural/wiki/">Supernatural wiki</a><a href="/mods/the-long-night/">The Long Night</a><a href="/mods/the-long-night/wiki/">Long Night wiki</a><a href="/ck3-mod-help/">When CK3 mods break</a></div>
+<div><h4>Games</h4><a href="/wow-forever/">WoW Forever guide</a><a href="/wow-forever/classes/">WoW Forever classes</a><a href="/wow-forever/class-quiz/">WoW Forever class quiz</a><a href="/wow-forever/addons/">WoW Forever add-ons</a><a href="/wow-forever/world-pvp/">WoW Forever world PvP</a><a href="/wow-forever/rulesets/">WoW Forever rulesets</a><a href="/wow-forever/dungeons/">WoW Forever dungeons</a><a href="/wow-forever/dungeons/hall-of-thanes/">Hall of Thanes guide</a><a href="/games/">Recommended games</a></div>
+<div><h4>Community</h4><a href="/community/">All communities</a><a href="/tgc/">The Game Center</a><a href="/community/the-gray-company/">The Gray Company</a><span class="foot-sub">Discord servers</span><a href="https://discord.gg/StACe9hVtT">Dlonem's Den</a><a href="https://discord.gg/hvZGMeJhB7">The Game Center</a><a href="https://discord.gg/UcJmm4XQVZ">The Gray Company</a><a href="https://discord.gg/PTJzPQbqG7">The Long Night</a><a href="https://discord.gg/Efvd2B97xx">Supernatural</a></div>
+<div><h4>Elsewhere</h4><a href="https://www.youtube.com/c/Dlonem">YouTube</a><a href="https://www.twitch.tv/dlonem">Twitch</a><a href="https://www.tiktok.com/@dlonem">TikTok</a><a href="https://x.com/officialdlonem">X / Twitter</a><a href="https://www.facebook.com/Dlonem/">Facebook</a><a href="https://www.instagram.com/officialdlonem/">Instagram</a><a href="https://steamcommunity.com/id/Dlonem">Steam</a></div>
+<div><h4>Studio</h4><a href="/about/">About</a><a href="/store/">Store</a><a href="/news/">News &amp; patch notes</a><a href="/legacy/">Legacy</a><a href="/support/">Support</a><a href="/privacy/">Privacy policy</a><a href="mailto:contact@dlonem.com">contact@dlonem.com</a></div>
+</div><div class="foot-bottom">&copy; 2026 Dlonem LLC. Apps, mods, videos, and one made-up word.</div></footer>
+<script>
+/* Latest WoW Forever headlines. Browsers will not let this page read another
+   site's feed directly, so feed.dlonem.com (a Cloudflare Worker) fetches
+   Wowhead's Forever feed and hands back a few headlines. If it is not set up,
+   is slow, or fails, nothing is shown: the slot is an empty div and the rest
+   of the page never depends on it. Every value is written with textContent,
+   and only https://www.wowhead.com/ links are accepted. */
+(function () {
+  var slot = document.getElementById('gc-feed-slot');
+  if (!slot || !window.fetch) return;
+  var url = slot.getAttribute('data-feed');
+  if (!url) return;
+  var ctl = ('AbortController' in window) ? new AbortController() : null;
+  var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 5000);
+  fetch(url, { signal: ctl ? ctl.signal : undefined, credentials: 'omit' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      clearTimeout(timer);
+      if (!d || !d.items || !d.items.length) return;
+      var M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var ol = document.createElement('ol');
+      ol.className = 'gc-feed';
+      d.items.filter(function (it) {
+        return it && typeof it.link === 'string' && it.link.indexOf('https://www.wowhead.com/') === 0;
+      }).slice(0, 5).forEach(function (it) {
+        var li = document.createElement('li');
+        var dt = new Date(it.date);
+        if (!isNaN(dt.getTime())) {
+          var tm = document.createElement('time');
+          tm.dateTime = dt.toISOString().slice(0, 10);
+          tm.textContent = M[dt.getMonth()] + ' ' + dt.getDate();
+          li.appendChild(tm);
+        }
+        var a = document.createElement('a');
+        a.href = it.link;
+        a.rel = 'noopener';
+        a.textContent = String(it.title || '').slice(0, 160);
+        li.appendChild(a);
+        ol.appendChild(li);
+      });
+      if (!ol.children.length) return;
+      var sec = document.createElement('section');
+      sec.className = 'tight';
+      sec.id = 'latest-wow-forever-news';
+      var wrap = document.createElement('div');
+      wrap.className = 'wrap';
+      var head = document.createElement('div');
+      head.className = 'section-head';
+      var eb = document.createElement('span');
+      eb.className = 'eyebrow';
+      eb.textContent = 'Updated automatically';
+      var h2 = document.createElement('h2');
+      h2.textContent = 'Latest WoW Forever news';
+      head.appendChild(eb);
+      head.appendChild(h2);
+      var src = document.createElement('p');
+      src.className = 'gc-src';
+      src.appendChild(document.createTextNode('Headlines from '));
+      var wh = document.createElement('a');
+      wh.href = 'https://www.wowhead.com/';
+      wh.textContent = 'Wowhead';
+      src.appendChild(wh);
+      src.appendChild(document.createTextNode('\u2019s WoW Forever coverage. Blizzard\u2019s own announcements are in '));
+      var sv = document.createElement('a');
+      sv.href = '#wow-forever';
+      sv.textContent = 'the short version below';
+      src.appendChild(sv);
+      src.appendChild(document.createTextNode('.'));
+      wrap.appendChild(head);
+      wrap.appendChild(ol);
+      wrap.appendChild(src);
+      sec.appendChild(wrap);
+      slot.parentNode.replaceChild(sec, slot);
+    })
+    .catch(function () { clearTimeout(timer); });
+})();
+</script>
+<script>document.querySelectorAll('.nav nav a[data-p]').forEach(a=>{if(a.dataset.p===document.body.dataset.page)a.classList.add('active')});</script>
+<script>
+/* WoW Forever Shorts. The reel is written into the page and works on its own.
+   feed.dlonem.com/shorts (the same Cloudflare Worker as the headlines) reads
+   the channel's public upload list, so a Short posted after the last site
+   update still shows up, newest first. Only 11-character video ids are
+   accepted, every caption is set with textContent, and the reel never gets
+   shorter: a Short the Worker no longer lists stays where it was. */
+(function () {
+  var reel = document.getElementById('gc-shorts');
+  if (!reel || !window.fetch) return;
+  var url = reel.getAttribute('data-shorts');
+  if (!url) return;
+  var ID = /^[A-Za-z0-9_-]{11}$/;
+  var ctl = ('AbortController' in window) ? new AbortController() : null;
+  var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 5000);
+
+  function card(id, title) {
+    var a = document.createElement('a');
+    a.className = 'shot';
+    a.href = 'https://www.youtube.com/shorts/' + id;
+    a.rel = 'noopener';
+    a.setAttribute('data-id', id);
+    var st = document.createElement('span');
+    st.className = 'gc-st';
+    var img = document.createElement('img');
+    img.alt = '';
+    img.width = 480;
+    img.height = 360;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.onerror = function () { img.remove(); };
+    img.sizes = '(max-width:700px) 380px, 470px';
+    img.srcset = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg 480w, https://i.ytimg.com/vi/' + id + '/hq720.jpg 1280w';
+    img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+    st.appendChild(img);
+    var sc = document.createElement('span');
+    sc.className = 'gc-sc';
+    sc.textContent = title;
+    a.appendChild(st);
+    a.appendChild(sc);
+    return a;
+  }
+
+  fetch(url, { signal: ctl ? ctl.signal : undefined, credentials: 'omit' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      clearTimeout(timer);
+      if (!d || !d.items || !d.items.length) return;
+      var have = {}, order = [];
+      [].forEach.call(reel.querySelectorAll('a.shot[data-id]'), function (a) {
+        have[a.getAttribute('data-id')] = a;
+      });
+      d.items.forEach(function (it) {
+        if (!it || typeof it.id !== 'string' || !ID.test(it.id) || order.indexOf(it.id) !== -1) return;
+        if (!have[it.id]) {
+          var t = String(it.title || '').replace(/\s*#[A-Za-z0-9_]+/g, '').trim().slice(0, 140);
+          have[it.id] = card(it.id, t || 'WoW Forever Short');
+        }
+        order.push(it.id);
+      });
+      if (!order.length) return;
+      [].forEach.call(reel.querySelectorAll('a.shot[data-id]'), function (a) {
+        var id = a.getAttribute('data-id');
+        if (order.indexOf(id) === -1) order.push(id);
+      });
+      var frag = document.createDocumentFragment();
+      order.forEach(function (id) { frag.appendChild(have[id]); });
+      reel.appendChild(frag);
+      /* carousel.js recounts its dots on resize */
+      try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+    })
+    .catch(function () { clearTimeout(timer); });
+})();
+
+</script>
+<script src="/js/carousel.js?v=2" defer></script>
+<script src="/js/site.js?v=17" defer></script>
 </body>
 </html>

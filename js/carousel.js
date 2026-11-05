@@ -82,7 +82,7 @@
        Netflix/Amazon rails do. Counting them per image would leave dots that can
        never activate. */
     /* measured from the strip's CURRENT slides, so a page that adds or
-       reorders slides after load (the Grey Company Shorts reel) stays right */
+       reorders slides after load (the Gray Company Shorts reel) stays right */
     function step() {
       var now = strip.querySelectorAll('.shot');
       if (now.length < 2) return 1;
