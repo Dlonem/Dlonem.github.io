@@ -1568,3 +1568,77 @@ code{
 .pk-nine{padding-left:20px}
 .pk-nine li{margin:0 0 10px;line-height:1.55}
 .pk-nine .roles{display:inline-flex;vertical-align:middle;margin:0 2px}
+
+/* ==========================================================================
+   Themes (12 Nov 2026). site.js stamps .season-* on <html> by the calendar or
+   by the visitor's pick from the gear. Leaves and snow are one canvas over
+   the whole window; the lights hang from the menu bar; the snowbank sits on
+   the bottom edge of the window.
+   ========================================================================== */
+.season-thanksgiving .spark{background:radial-gradient(circle,rgba(255,196,110,.95) 0 30%,rgba(255,150,60,.5) 60%,transparent 75%)}
+.season-thanksgiving main .hero{box-shadow:inset 0 0 0 200vmax rgba(214,110,30,.17)}
+.season-christmas main .hero{box-shadow:inset 0 0 0 200vmax rgba(150,20,40,.10)}
+.season-christmas .nav{border-bottom-color:rgba(255,90,100,.45)}
+.season-thanksgiving .nav{border-bottom-color:rgba(255,170,80,.45)}
+
+.fx-fall{position:fixed;inset:0;width:100%;height:100%;z-index:40;pointer-events:none}
+@media print{.fx-fall,.lights,.snowbank-page{display:none}}
+
+.snowbank.snowbank-page{position:fixed;z-index:41;filter:drop-shadow(0 -2px 5px rgba(60,80,150,.28))}
+
+.lights{position:absolute;left:0;right:0;top:100%;height:34px;overflow:hidden;pointer-events:none;z-index:1;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='16'%3E%3Cpath d='M0 1 Q22 13 44 1' fill='none' stroke='%230c1322' stroke-width='1.5'/%3E%3C/svg%3E") 0 0 repeat-x}
+.lights i{position:absolute;top:7px;width:10px;height:14px;border-radius:50% 50% 50% 50%/38% 38% 62% 62%;
+  background:currentColor;box-shadow:0 0 9px 2px currentColor,inset 0 -3px 4px rgba(0,0,0,.18),inset 0 2px 2px rgba(255,255,255,.55);
+  animation:bulb 3s ease-in-out infinite}
+.lights i::before{content:"";position:absolute;left:2.5px;top:-3px;width:5px;height:4px;border-radius:1px;background:#1b2436}
+@keyframes bulb{0%,100%{opacity:1}50%{opacity:.72}}
+@media (prefers-reduced-motion:reduce){.lights i{animation:none}}
+.nav.is-open .lights{display:none}
+
+/* the gear and its panel */
+.nav-gear{position:relative;display:inline-flex;flex:none;margin-left:-6px}
+.nav-gear > button{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;
+  background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.26);border-radius:11px;cursor:pointer;
+  transition:background .18s ease,border-color .18s ease}
+.nav-gear > button:hover,.nav-gear > button[aria-expanded="true"]{background:rgba(255,255,255,.20);border-color:rgba(255,255,255,.44)}
+.nav-gear svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.nav-inner .nav-gear ~ nav{margin-left:0}
+.theme-pop{position:absolute;top:calc(100% + 12px);left:0;z-index:70;width:236px;padding:10px;border-radius:14px;
+  background:#fff;color:#231C4F;border:1px solid #DDE1F5;box-shadow:0 18px 44px rgba(26,15,66,.28);animation:nmdrop .16s ease both}
+.theme-pop[hidden]{display:none}
+.tp-h{margin:6px 8px 4px;font:700 .68rem/1 'Sora',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#0B7285}
+.tp-o{display:flex;align-items:center;gap:10px;width:100%;padding:8px;border:2px solid transparent;border-radius:10px;
+  background:none;color:inherit;font:600 .9rem/1.2 'Sora',sans-serif;text-align:left;cursor:pointer}
+.tp-o:hover{background:#F0F2FF}
+.tp-o[aria-pressed="true"]{border-color:#2A4FB8;background:#EEF0FF}
+.tp-o span{flex:1}
+.tp-o small{display:block;margin-top:2px;font-weight:400;font-size:.76rem;color:#4A4670}
+.tp-o i{flex:none;width:18px;height:18px;border-radius:50%;background:#C9CEE8;box-shadow:inset 0 0 0 1px rgba(26,15,66,.18)}
+.tp-auto i{background:conic-gradient(#F2A541,#C8521E,#4DA3FF,#34D17A,#FF4D5E,#F2A541)}
+.tp-autumn i{background:linear-gradient(135deg,#F2A541,#C8521E)}
+.tp-thanksgiving i{background:linear-gradient(135deg,#FFD98A,#F0652B)}
+.tp-christmas i{background:linear-gradient(135deg,#E5303F 0 50%,#1FA35B 50%)}
+.tp-winter i{background:linear-gradient(135deg,#fff,#9DB8F2)}
+.tp-none i{background:#fff}
+.tp-fx i{border-radius:5px;background:#fff}
+.tp-fx[aria-pressed="true"] i{background:#2A4FB8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4 9.5l3.2 3L14 5.5' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat}
+.tp-n{margin:8px 8px 2px;font-size:.74rem;color:#4A4670}
+@media (max-width:1040px){
+  .nav-gear > button{width:44px;height:44px}
+  .theme-pop{left:auto;right:-60px}
+}
+
+/* the section bar under the menu bar */
+.subnav{background:#150C38;border-bottom:1px solid rgba(37,175,196,.25)}
+.subnav-inner{max-width:var(--wrap);margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:4px;
+  overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.subnav-inner::-webkit-scrollbar{display:none}
+.subnav-t{flex:none;margin-right:10px;padding-right:14px;border-right:1px solid rgba(255,255,255,.2);
+  font:600 .72rem/1 'Sora',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8FE7F2}
+.subnav a{flex:none;padding:12px 11px 10px;border-bottom:2px solid transparent;color:#DEE5FF;text-decoration:none;font:600 .86rem/1 'Sora',sans-serif}
+.subnav a:hover{color:#fff;border-bottom-color:rgba(255,255,255,.4)}
+.subnav a[aria-current="page"]{color:#fff;border-bottom-color:#8FE7F2}
+.has-lights .subnav{padding-top:20px}
+@media (min-width:1500px){.subnav-inner{max-width:1340px}}
+@media (max-width:700px){.subnav-t{display:none}}

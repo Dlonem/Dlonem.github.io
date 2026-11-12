@@ -158,6 +158,37 @@
       menus.forEach(function (m) { if (m !== except) m.set(false); });
     };
 
+    /* ---------------- the section bar ----------------
+       Inside a section that has its own pages (the WoW Forever guides, each
+       mod's overview / wiki / download) a second row sits under the menu bar
+       with that section's pages, so the next one is a single click. Read from
+       MENUS above: add a page to a menu and it appears here too. Only for
+       menu entries whose links all live under the entry's own address. It
+       scrolls away with the page; the menu bar itself is what follows you. */
+    (function () {
+      var here = location.pathname, found = null;
+      Object.keys(MENUS).forEach(function (key) {
+        MENUS[key].items.forEach(function (it) {
+          if (found || !it.x || it.u.indexOf('#') >= 0 || here.indexOf(it.u) !== 0) return;
+          var inside = it.x.filter(function (s) { return s[1].indexOf(it.u) === 0 && s[1].indexOf('#') < 0; });
+          if (inside.length >= 2 && inside.length === it.x.length) found = it;
+        });
+      });
+      if (!found) return;
+      var links = [['Overview', found.u]].concat(found.x), best = 0;
+      links.forEach(function (s, n) { if (here.indexOf(s[1]) === 0 && s[1].length > links[best][1].length) best = n; });
+      var bar = document.createElement('nav');
+      bar.className = 'subnav';
+      bar.setAttribute('aria-label', found.t);
+      bar.innerHTML = '<div class="subnav-inner"><span class="subnav-t">' + esc(found.t) + '</span>' +
+        links.map(function (s, n) {
+          return '<a href="' + esc(s[1]) + '"' + (n === best ? ' aria-current="page"' : '') + '>' + esc(s[0]) + '</a>';
+        }).join('') + '</div>';
+      header.parentNode.insertBefore(bar, header.nextSibling);
+      var cur = bar.querySelector('[aria-current]');
+      if (cur && cur.offsetLeft + cur.offsetWidth > bar.clientWidth) bar.querySelector('.subnav-inner').scrollLeft = cur.offsetLeft - 20;
+    })();
+
     [].slice.call(list.querySelectorAll('a[data-p]')).forEach(function (a) {
       var key = a.getAttribute('data-p'), cfg = MENUS[key];
       if (!cfg) return;
@@ -299,7 +330,6 @@
      prefers-reduced-motion. Dates and hours live here and nowhere else. */
   (function () {
     var hero = document.querySelector('main .hero');
-    if (!hero) return;
     var root = document.documentElement;
     var d = new Date(), m = d.getMonth() + 1, day = d.getDate(), h = d.getHours() + d.getMinutes() / 60;
     var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -307,7 +337,7 @@
     /* the hour */
     var light = h < 5 || h >= 20 ? 0 : h < 7 ? (h - 5) / 2 : h < 18 ? 1 : 1 - (h - 18) / 2;
     root.classList.add(light >= 0.85 ? 'sky-day' : light > 0.15 ? 'sky-dusk' : 'sky-night');
-    if (light > 0) {
+    if (hero && light > 0) {
       var sun = document.createElement('span');
       sun.className = 'sun';
       sun.setAttribute('aria-hidden', 'true');
@@ -328,24 +358,52 @@
       }
     }
 
-    /* the date: [fromMonth, fromDay, toMonth, toDay, name] */
+    /* the date: [fromMonth, fromDay, toMonth, toDay, name] — first match wins */
     var SEASONS = [
       [12, 28,  1,  2, 'newyear'],     /* confetti */
       [ 2,  1,  2, 14, 'valentine'],   /* hearts */
       [ 7,  1,  7,  4, 'fourth'],      /* fireworks */
       [10, 15, 10, 31, 'halloween'],   /* orange, a few leaves */
+      [11, 20, 11, 30, 'thanksgiving'],/* leaves, and warm lights under the menu bar */
       [ 9, 22, 11, 30, 'autumn'],      /* leaves */
+      [12,  1, 12, 27, 'christmas'],   /* snow, the snowbank, and coloured lights */
       [12,  1,  1,  6, 'winter']       /* snow, and a snowbank that grows to Christmas */
     ];
-    var today = m * 100 + day, season = '';
-    for (var i = 0; i < SEASONS.length && !season; i++) {
-      var c = SEASONS[i], from = c[0] * 100 + c[1], to = c[2] * 100 + c[3];
-      if (from <= to ? (today >= from && today <= to) : (today >= from || today <= to)) season = c[4];
+    var today = m * 100 + day, calendar = '';
+    for (var i = 0; i < SEASONS.length && !calendar; i++) {
+      var s = SEASONS[i], from = s[0] * 100 + s[1], to = s[2] * 100 + s[3];
+      if (from <= to ? (today >= from && today <= to) : (today >= from || today <= to)) calendar = s[4];
     }
-    if (!season) return;
-    root.classList.add('season-' + season);
 
-    function drop(cls, n, text, size, rise) {
+    /* ---- the visitor's own choice (the gear in the menu bar) ----
+       'auto' follows the calendar above. Kept in this browser's localStorage,
+       sent nowhere. dl-fx = '0' stops the falling leaves and snow only. */
+    var PICK = [['auto', 'Auto'], ['autumn', 'Autumn'], ['thanksgiving', 'Thanksgiving'],
+                ['christmas', 'Christmas'], ['winter', 'Winter'], ['none', 'Plain']];
+    var NAMES = { newyear: 'New Year', valentine: 'Valentine’s', fourth: 'Fourth of July', halloween: 'Halloween',
+                  thanksgiving: 'Thanksgiving', autumn: 'autumn', christmas: 'Christmas', winter: 'winter' };
+    var get = function (k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
+    var set = function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} };
+    var choice = get('dl-theme') || 'auto', fx = get('dl-fx') !== '0';
+    var ok = false;
+    for (var p = 0; p < PICK.length; p++) if (PICK[p][0] === choice) ok = true;
+    if (!ok) choice = 'auto';
+
+    var made = [], raf = 0, timer = 0;        /* everything a season adds, so a new pick can take it away */
+    var add = function (parent, el) { el.setAttribute('aria-hidden', 'true'); parent.appendChild(el); made.push(el); return el; };
+
+    function clear() {
+      made.forEach(function (el) { if (el.parentNode) el.parentNode.removeChild(el); });
+      made = [];
+      if (raf) cancelAnimationFrame(raf);
+      if (timer) clearInterval(timer);
+      raf = timer = 0;
+      root.className = root.className.replace(/\s*\bseason-[a-z]+\b/g, '').replace(/\s*\bhas-lights\b/g, '');
+      document.body.style.paddingBottom = '';
+    }
+
+    function drop(cls, n, text, size) {
+      if (!hero) return;
       for (var k = 0; k < n; k++) {
         var f = document.createElement('span');
         f.className = cls;
@@ -355,27 +413,128 @@
         f.style.opacity = (0.4 + Math.random() * 0.5).toFixed(2);
         var px = size[0] + Math.random() * (size[1] - size[0]);
         if (text) { f.textContent = text; f.style.fontSize = px.toFixed(0) + 'px'; }
-        else { f.style.width = px.toFixed(0) + 'px'; f.style.height = (px * (cls === 'confetti' ? 0.45 : 0.6)).toFixed(0) + 'px'; }
+        else { f.style.width = px.toFixed(0) + 'px'; f.style.height = (px * 0.45).toFixed(0) + 'px'; }
         if (cls === 'confetti') f.style.background = ['#FF5C7A', '#FFD166', '#4FD1C5', '#8FA3DF', '#fff'][k % 5];
-        f.setAttribute('aria-hidden', 'true');
-        hero.appendChild(f);
+        add(hero, f);
       }
     }
-    if (season === 'winter') {
-      var storm = m === 12 && day >= 21 && day <= 25;        /* a proper snowfall for Christmas week */
-      if (!still) drop('snow', storm ? 40 : 16, '❄', [10, storm ? 24 : 20]);
-      if (storm) root.classList.add('season-storm');
-      var bank = document.createElement('span');
-      bank.className = 'snowbank';
-      bank.setAttribute('aria-hidden', 'true');
-      bank.style.height = (6 + Math.round(Math.min(m === 12 ? day : 25, 25) * 0.6)) + 'px';
-      hero.appendChild(bank);
-    } else if (!still) {
-      if (season === 'autumn') drop('leaf', 14, '', [16, 28]);
-      else if (season === 'halloween') drop('leaf', 9, '', [16, 28]);
+
+    /* Leaves and snow fall down the whole window, not just the banner. One
+       canvas under the menu bar that ignores the mouse. Nothing is ever drawn
+       over an advert: the ad boxes are measured twice a second and any flake
+       inside one is skipped. Stops while the tab is in the background. */
+    function fall(kind, n, fast) {
+      if (still || !fx) return;
+      var cv = add(document.body, document.createElement('canvas'));
+      cv.className = 'fx-fall';
+      var ctx = cv.getContext('2d');
+      if (!ctx) return;
+      var W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2), ads = [];
+      var size = function () {
+        W = innerWidth; H = innerHeight;
+        cv.width = W * dpr; cv.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      size();
+      addEventListener('resize', size);
+      if (W < 700) n = Math.round(n * 0.5);
+      var LEAF = kind === 'halloween' ? ['#FF8A2A', '#B5407A', '#E0661F'] : ['#F2A541', '#C8521E', '#E07B2A', '#D9A030'];
+      var bits = [];
+      for (var k = 0; k < n; k++) bits.push({
+        x: Math.random(), y: Math.random(), r: kind === 'snow' ? 1.3 + Math.random() * 2.3 : 6 + Math.random() * 6,
+        v: (kind === 'snow' ? 22 : 30) + Math.random() * 34, a: Math.random() * 6.28, w: 0.4 + Math.random() * 1.1,
+        o: 0.55 + Math.random() * 0.4, c: LEAF[k % LEAF.length]
+      });
+      var measure = function () {
+        ads = [].slice.call(document.querySelectorAll('ins.adsbygoogle, .google-auto-placed, .adslot.is-filled')).map(function (el) {
+          return el.getBoundingClientRect();
+        }).filter(function (r) { return r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < H; });
+      };
+      measure();
+      timer = setInterval(measure, 500);
+      var last = 0;
+      var frame = function (t) {
+        raf = requestAnimationFrame(frame);
+        if (document.hidden) { last = 0; return; }
+        var dt = last ? Math.min((t - last) / 1000, 0.05) : 0;
+        last = t;
+        ctx.clearRect(0, 0, W, H);
+        for (var k = 0; k < bits.length; k++) {
+          var b = bits[k];
+          b.y += b.v * (fast ? 2.6 : 1) * dt / H;
+          b.a += b.w * dt;
+          if (b.y > 1.03) { b.y = -0.03; b.x = Math.random(); }
+          var x = b.x * W + Math.sin(b.a) * (kind === 'snow' ? 14 : 30) - (fast ? b.y * 120 : 0), y = b.y * H, hit = false;
+          for (var j = 0; j < ads.length && !hit; j++) {
+            var r = ads[j];
+            hit = x > r.left - 14 && x < r.right + 14 && y > r.top - 14 && y < r.bottom + 14;
+          }
+          if (hit) continue;
+          ctx.globalAlpha = b.o;
+          if (kind === 'snow') {
+            ctx.beginPath(); ctx.arc(x, y, b.r, 0, 6.2832);
+            ctx.fillStyle = '#D9E3FC'; ctx.fill();
+            ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(104,134,216,.42)'; ctx.stroke();   /* so it reads on the pale sections too */
+          } else {
+            ctx.save(); ctx.translate(x, y); ctx.rotate(b.a);
+            ctx.beginPath(); ctx.moveTo(-b.r, 0);
+            ctx.quadraticCurveTo(0, -b.r * 0.75, b.r, 0); ctx.quadraticCurveTo(0, b.r * 0.75, -b.r, 0);
+            ctx.fillStyle = b.c; ctx.fill();
+            ctx.lineWidth = 0.8; ctx.strokeStyle = 'rgba(90,30,0,.35)';
+            ctx.beginPath(); ctx.moveTo(-b.r, 0); ctx.lineTo(b.r, 0); ctx.stroke();
+            ctx.restore();
+          }
+        }
+        ctx.globalAlpha = 1;
+      };
+      raf = requestAnimationFrame(frame);
+    }
+
+    /* a string of bulbs that hangs under the menu bar and follows it down the page */
+    function lights(colours) {
+      var nav = document.querySelector('.nav');
+      if (!nav) return;
+      var row = add(nav, document.createElement('div'));
+      row.className = 'lights';
+      var n = Math.ceil((nav.clientWidth || innerWidth) / 44) + 1;
+      for (var k = 0; k < n; k++) {
+        var b = document.createElement('i');
+        b.style.left = (k * 44 + 17) + 'px';
+        b.style.color = colours[(k * 7 + (k % 3)) % colours.length];
+        b.style.animationDelay = (-Math.random() * 4).toFixed(2) + 's';
+        b.style.animationDuration = (2.6 + Math.random() * 2.2).toFixed(2) + 's';
+        row.appendChild(b);
+      }
+      root.classList.add('has-lights');
+    }
+
+    function snowbank() {
+      var bank = add(document.body, document.createElement('span'));
+      bank.className = 'snowbank snowbank-page';
+      var grown = 6 + Math.round(Math.min(m === 12 ? day : 25, 25) * 0.6);
+      if (innerWidth < 700) grown = Math.min(grown, 12);
+      bank.style.height = grown + 'px';
+      document.body.style.paddingBottom = grown + 'px';     /* so the last line of the footer clears it */
+    }
+
+    function apply() {
+      clear();
+      var season = choice === 'auto' ? calendar : choice === 'none' ? '' : choice;
+      if (!season) return;
+      root.classList.add('season-' + season);
+      if (season === 'winter' || season === 'christmas') {
+        var storm = choice === 'auto' && m === 12 && day >= 21 && day <= 25;   /* a proper snowfall for Christmas week */
+        if (storm) root.classList.add('season-storm');
+        fall('snow', storm ? 90 : 46, storm);
+        snowbank();
+        if (season === 'christmas') lights(['#FF4D5E', '#34D17A', '#FFC83D', '#4DA3FF', '#FF7AD9']);
+      } else if (season === 'autumn') fall('leaf', 16);
+      else if (season === 'thanksgiving') { fall('leaf', 16); lights(['#FFB347', '#FF8A3D', '#FFD98A', '#F0652B']); }
+      else if (season === 'halloween') fall('halloween', 10);
+      else if (still) return;
       else if (season === 'valentine') drop('heart', 12, '♥', [12, 24]);
       else if (season === 'newyear') drop('confetti', 36, '', [8, 14]);
-      else if (season === 'fourth') {
+      else if (season === 'fourth' && hero) {
         for (var b = 0; b < 6; b++) {
           var fw = document.createElement('span');
           fw.className = 'firework';
@@ -383,11 +542,64 @@
           fw.style.top = (12 + Math.random() * 50).toFixed(0) + '%';
           fw.style.animationDelay = (b * 1.4 + Math.random()).toFixed(1) + 's';
           fw.style.color = ['#FF5C7A', '#fff', '#6FA8FF'][b % 3];
-          fw.setAttribute('aria-hidden', 'true');
-          hero.appendChild(fw);
+          add(hero, fw);
         }
       }
     }
+    apply();
+
+    /* ---- the gear: pick a theme, or switch the falling bits off ----
+       Built here for the same reason the search button is: one file, and the
+       navs cannot drift apart. */
+    var sBtn = document.querySelector('.nav-inner .nav-search');
+    if (!sBtn) return;
+    var wrap = document.createElement('span');
+    wrap.className = 'nav-gear';
+    var gear = document.createElement('button');
+    gear.type = 'button';
+    gear.setAttribute('aria-label', 'Theme and effects');
+    gear.setAttribute('aria-expanded', 'false');
+    gear.setAttribute('aria-controls', 'theme-pop');
+    gear.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/>' +
+      '<path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M5.5 18.5l1.8-1.8M16.7 7.3l1.8-1.8"/></svg>';
+    var pop = document.createElement('div');
+    pop.className = 'theme-pop';
+    pop.id = 'theme-pop';
+    pop.hidden = true;
+    wrap.appendChild(gear);
+    wrap.appendChild(pop);
+    sBtn.parentNode.insertBefore(wrap, sBtn.nextSibling);
+
+    function draw() {
+      var auto = calendar ? 'Today: ' + NAMES[calendar] : 'Nothing on today';
+      pop.innerHTML = '<p class="tp-h">Theme</p>' + PICK.map(function (o) {
+        return '<button type="button" class="tp-o tp-' + o[0] + '" data-theme="' + o[0] + '" aria-pressed="' + (o[0] === choice) + '">' +
+          '<i></i><span>' + o[1] + (o[0] === 'auto' ? '<small>' + auto + '</small>' : '') + '</span></button>';
+      }).join('') +
+        '<p class="tp-h">Effects</p>' +
+        '<button type="button" class="tp-o tp-fx" data-fx="1" aria-pressed="' + fx + '"><i></i><span>Falling leaves and snow' +
+        (still ? '<small>Off: your device asks for less motion</small>' : '') + '</span></button>' +
+        '<p class="tp-n">Saved in this browser only.</p>';
+    }
+    function open(on) {
+      if (on) draw();
+      pop.hidden = !on;
+      gear.setAttribute('aria-expanded', on ? 'true' : 'false');
+    }
+    gear.addEventListener('click', function (e) { e.stopPropagation(); open(pop.hidden); });
+    pop.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var b = e.target.closest ? e.target.closest('button') : null;
+      if (!b) return;
+      if (b.getAttribute('data-fx')) { fx = !fx; set('dl-fx', fx ? '1' : '0'); }
+      else { choice = b.getAttribute('data-theme'); set('dl-theme', choice); }
+      apply();
+      draw();
+    });
+    document.addEventListener('click', function () { if (!pop.hidden) open(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !pop.hidden) { open(false); gear.focus(); }
+    });
   })();
 
   /* ---------------- the store nudge ----------------
