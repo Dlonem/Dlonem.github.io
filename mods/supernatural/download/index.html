@@ -196,9 +196,9 @@
 <a class="btn btn-solid" href="https://github.com/Dlonem/CK3SupernaturalMod/releases">Download from GitHub</a>
 <a class="btn" href="https://github.com/Dlonem/CK3SupernaturalMod">Browse the source</a>
 </div>
-<div class="dlmeta"><span>current release on GitHub</span><span>CK3 1.20</span><span>no other mods required</span><span>free, forever</span></div>
+<div class="dlmeta"><span>current release on GitHub</span><span>CK3 1.21</span><span>no other mods required</span><span>free, forever</span></div>
 <p class="srcnote" style="text-align:center">On the newest release, take <strong>Source code (zip)</strong> under Assets. The <code>.tar.gz</code> is the same files in a wrapper Windows can't open on its own, so stick with the zip.</p>
-<p class="srcnote" style="text-align:center;margin-top:10px"><strong>Still on CK3 1.19?</strong> Take <a href="https://github.com/Dlonem/CK3SupernaturalMod/releases/tag/v2.35a">v2.35a</a>, the last version built for 1.19. That is the one to use with A Game of Thrones until AGOT is updated for 1.20.</p>
+<p class="srcnote" style="text-align:center;margin-top:10px"><strong>Still on CK3 1.19?</strong> Take <a href="https://github.com/Dlonem/CK3SupernaturalMod/releases/tag/v2.35a">v2.35a</a>, the last version built for 1.19. That is the one to use with A Game of Thrones until AGOT is updated. <strong>Still on CK3 1.20?</strong> Take <a href="https://github.com/Dlonem/CK3SupernaturalMod/releases/tag/v2.40">v2.40</a>.</p>
 <p class="srcnote" style="text-align:center;margin-top:10px"><strong>Fair warning about the size.</strong> Supernatural is a large mod. The art alone is a few hundred megabytes, so expect a download in that range rather than a quick one. That is the mod itself, not padding, and it is the same weight the Workshop copy takes up on your disk.</p>
 </div>
 </section>
@@ -213,7 +213,7 @@
 
 <li>
 <h3>Unzip it</h3>
-<p>The archive holds one folder named after the version, something like <code>CK3SupernaturalMod-2.40</code>. <strong>Open it.</strong> That outer folder is only packaging and is not what goes into your game.</p>
+<p>The archive holds one folder named after the version, something like <code>CK3SupernaturalMod-2.41</code>. <strong>Open it.</strong> That outer folder is only packaging and is not what goes into your game.</p>
 <p>Inside are the two things you need, sitting side by side:</p>
 <ul>
 <li><code>supernatural_mod</code>: the mod folder, containing <code>common</code>, <code>events</code>, <code>gfx</code>, <code>gui</code>, <code>history</code>, <code>localization</code>, <code>music</code> and <code>descriptor.mod</code></li>
@@ -237,7 +237,7 @@
 <p>Open <code>supernatural_mod.mod</code> in any plain text editor (Notepad is fine), select everything, delete it, and paste this in its place:</p>
 <div class="codewrap">
 <button class="copy" type="button" data-copy="mod-descriptor">copy</button>
-<pre id="mod-descriptor">version="2.40"
+<pre id="mod-descriptor">version="2.41"
 picture="thumbnail.png"
 tags={
 	"Alternative History"
@@ -246,7 +246,7 @@ tags={
 	"Character Interactions"
 }
 name="Supernatural"
-supported_version="1.20.*"
+supported_version="1.21.*"
 path="mod/supernatural_mod"</pre>
 </div>
 <p>Two things changed, and both matter. <code>path=</code> is now <strong>relative</strong>: it says "the <code>supernatural_mod</code> folder inside <code>mod</code>", which is true on every machine. And the <code>remote_file_id</code> line is <strong>gone</strong>: that line tells the launcher "this is a Steam Workshop item", which is exactly what your copy isn't, and leaving it in is a good way to have the launcher ignore your folder or replace it.</p>
