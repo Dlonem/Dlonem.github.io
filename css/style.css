@@ -1642,3 +1642,37 @@ code{
 .has-lights .subnav{padding-top:20px}
 @media (min-width:1500px){.subnav-inner{max-width:1340px}}
 @media (max-width:700px){.subnav-t{display:none}}
+
+/* ---- pass K (17 Nov 2026) -----------------------------------------------
+   The menu bar on one row. The gear (12 Nov) made the logo, search, gear and
+   links 11px wider than the bar between 1041 and 1499px, so on every page the
+   links dropped to a second row; on the guild and mod pages the longer Join
+   button did the same above 1500px. Slightly tighter spacing fits every page
+   at every desktop width (checked in a real browser with the real fonts), and
+   site.js adds .nav-fit as a safety net if anything still wraps. */
+@media (min-width:1041px){
+  .nav-inner{gap:12px}
+  .nav nav{gap:2px}
+  .nav nav a{padding-left:10px;padding-right:10px}
+  .nav nav .nav-item > a{padding-right:28px}
+  .nav nav a.join{margin-left:6px}
+}
+@media (min-width:1041px) and (max-width:1139px){
+  .nav nav a{font-size:.84rem;padding-left:8px;padding-right:8px}
+  .nav nav .nav-item > a{padding-right:26px}
+  .brand span{font-size:.98rem}
+}
+@media (min-width:1041px){
+  .nav.nav-fit .nav-inner{gap:8px}
+  .nav.nav-fit nav a{font-size:.8rem;padding-left:7px;padding-right:7px}
+  .nav.nav-fit nav .nav-item > a{padding-right:24px}
+  .nav.nav-fit .nav-search{padding:0 10px}
+}
+@media (min-width:1500px){
+  .nav.nav-fit nav a{font-size:.95rem}
+}
+/* the dungeon guide grid (on the hub and every dungeon guide) */
+.wf-dungeons{margin-top:6px}
+.wf-more{margin:14px 0 0;font-weight:600}
+/* an App Store link for an app Apple has unlisted (live.js, pass L): greyed out, not a link */
+a.store-off,.nav .nav-menu .nm-x a.store-off{opacity:.5;filter:grayscale(1);pointer-events:none;text-decoration:none;box-shadow:none}

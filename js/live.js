@@ -264,10 +264,15 @@
      has no answer the page asks Apple's public lookup itself. Only the app
      pages that show a version do this. */
   var APPLE = { thc: '6795227377' };
+  /* one request per app per page: the version line and the App Store guard share it */
+  var appleLookups = {};
+  function appleLookup(id) {
+    return appleLookups[id] || (appleLookups[id] = getJSON('https://itunes.apple.com/lookup?country=us&id=' + id, 6000));
+  }
   function appleDirect() {
     var keys = Object.keys(APPLE), ios = {};
     return Promise.all(keys.map(function (k) {
-      return getJSON('https://itunes.apple.com/lookup?country=us&id=' + APPLE[k], 6000).then(function (j) {
+      return appleLookup(APPLE[k]).then(function (j) {
         var a = j && j.results && j.results[0];
         if (!a || String(a.trackId) !== APPLE[k] || !/^\d+(\.\d+){1,3}$/.test(String(a.version || ''))) return;
         var t = Date.parse(a.currentVersionReleaseDate || '');
@@ -291,6 +296,65 @@
       });
     });
   }
+
+  /* ---------------------------------------------------------------- App Store guard */
+  /* Apple sometimes takes an app off the store (THC Break Buddy, November 2026). Its
+     public lookup then answers resultCount 0: a definite "not listed", which is
+     different from a lookup that fails. Only that answer greys out the app's App
+     Store links and says so; a failed or slow lookup leaves them exactly as written.
+     The answer is kept for 30 minutes in this tab (sessionStorage). The menus call
+     window.DlonemAppStore(panel) when they open, so a page without an App Store link
+     in its own content never asks Apple anything. */
+  var storeAnswers = {};
+  function appleListed(id) {
+    if (storeAnswers[id]) return storeAnswers[id];
+    var key = 'dl-as-' + id, kept = null;
+    try { kept = JSON.parse(sessionStorage.getItem(key) || 'null'); } catch (e) { kept = null; }
+    if (kept && typeof kept.ok === 'boolean' && Date.now() - kept.at < 18e5) {
+      storeAnswers[id] = Promise.resolve(kept.ok);
+      return storeAnswers[id];
+    }
+    storeAnswers[id] = appleLookup(id).then(function (j) {
+      if (!j || typeof j.resultCount !== 'number') return null;          /* no answer: change nothing */
+      var ok = j.resultCount > 0 && j.results && j.results.some(function (a) { return String(a.trackId) === id; });
+      try { sessionStorage.setItem(key, JSON.stringify({ ok: ok, at: Date.now() })); } catch (e) {}
+      return ok;
+    });
+    return storeAnswers[id];
+  }
+  var OFF = 'Not on the App Store right now';
+  function storeOff(a) {
+    if (a.classList.contains('store-off')) return;
+    a.classList.add('store-off');
+    a.setAttribute('aria-disabled', 'true');
+    a.setAttribute('data-href', a.getAttribute('href'));
+    a.removeAttribute('href');
+    a.setAttribute('title', OFF);
+    if (a.hasAttribute('aria-label')) a.setAttribute('aria-label', a.getAttribute('aria-label').replace(/(Get it|Download) on the App Store/, OFF));
+    if (a.classList.contains('btn') || a.classList.contains('store')) a.textContent = OFF;
+    else if (a.classList.contains('nm-store')) a.textContent = a.textContent + ' (not listed)';
+    else a.parentNode.insertBefore(document.createTextNode(' (not on the App Store right now)'), a.nextSibling);
+  }
+  function appStoreGuard(root) {
+    var byId = {};
+    [].slice.call((root || document).querySelectorAll('a[href*="apps.apple.com/"]')).forEach(function (a) {
+      var m = /\/id(\d{5,12})(?:[?#/]|$)/.exec(a.getAttribute('href') || '');
+      if (m) (byId[m[1]] = byId[m[1]] || []).push(a);
+    });
+    Object.keys(byId).forEach(function (id) {
+      appleListed(id).then(function (ok) {
+        if (ok !== false) return;
+        byId[id].forEach(storeOff);
+        if (id === APPLE.thc) all('[data-app-ver="ios.thc"]').forEach(function (b) {
+          var line = b.parentNode;
+          if (line && !line.getAttribute('data-off')) { line.setAttribute('data-off', '1'); line.textContent = 'iOS: not on the App Store right now'; }
+        });
+      });
+    });
+  }
+  window.DlonemAppStore = appStoreGuard;
+  var mainEl = document.querySelector('main');
+  if (mainEl) appStoreGuard(mainEl);
 
   /* ---------------------------------------------------------------- newest uploads */
   /* <div class="vidrail" data-yt-newest>: the channel's newest full video and

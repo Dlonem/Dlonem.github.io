@@ -41,7 +41,7 @@
       if (sLoaded) return;                 // already in flight
       sLoaded = true;
       var s = document.createElement('script');
-      s.src = '/js/search.js?v=7';
+      s.src = '/js/search.js?v=8';
       s.onerror = function () { sLoaded = false; };
       document.head.appendChild(s);        // search.js opens itself once parsed
     };
@@ -130,12 +130,11 @@
       games: { items: [
         { t: 'Recommended games', d: 'What I play, and buying keys safely', u: '/games/', i: I + 'games.png',
           x: [['Heavy rotation', '/games/#in-heavy-rotation'], ['Buying keys', '/games/#buying-keys-without-getting-burned']] },
-        { t: 'World of Warcraft: Forever', d: 'Guides from my own beta play', u: '/wow-forever/', i: I + 'wow-forever.png',
-          x: [['Class quiz', '/wow-forever/class-quiz/'], ['Add-ons', '/wow-forever/addons/'], ['World PvP', '/wow-forever/world-pvp/'], ['Rulesets', '/wow-forever/rulesets/'],
-              ['Classes', '/wow-forever/classes/'], ['Dungeons', '/wow-forever/dungeons/'], ['Names', '/wow-forever/name-reservation/']] },
+        { t: 'World of Warcraft: Forever', d: 'Guides from my own runs', u: '/wow-forever/', i: I + 'wow-forever.png',
+          x: [['Dungeons', '/wow-forever/dungeons/'], ['Add-ons', '/wow-forever/addons/']] },
         { t: 'The Gray Company', d: 'Our WoW Forever guild', u: '/community/the-gray-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ' },
         { t: 'Crusader Kings III', d: 'Two mods and a repair guide', u: '/mods/', i: I + 'spn.png',
-          x: [['Supernatural', '/mods/supernatural/'], ['The Long Night', '/mods/the-long-night/'], ['Mods not working?', '/ck3-mod-help/']] }
+          x: [['Supernatural', '/mods/supernatural/'], ['The Long Night', '/mods/the-long-night/']] }
       ], foot: ['All the WoW Forever guides', '/games/#wow-forever-guides'] },
       comm: { items: [
         { t: 'The Gray Company', d: 'Our WoW Forever guild', u: '/community/the-gray-company/', i: I + 'grey.png', dc: 'UcJmm4XQVZ',
@@ -159,34 +158,52 @@
     };
 
     /* ---------------- the section bar ----------------
-       Inside a section that has its own pages (the WoW Forever guides, each
-       mod's overview / wiki / download) a second row sits under the menu bar
-       with that section's pages, so the next one is a single click. Read from
-       MENUS above: add a page to a menu and it appears here too. Only for
-       menu entries whose links all live under the entry's own address. It
-       scrolls away with the page; the menu bar itself is what follows you. */
+       A second row under the menu bar listing the pages of the section you
+       are in, with the current one marked, so the next page is one click.
+       BARS is the one list: a page belongs to the bar whose link is the
+       longest match for its address (/mods/supernatural/wiki/ picks the
+       Supernatural bar, /mods/ the Crusader Kings bar), and the first bar
+       wins a tie, so the specific bars sit above the general ones. The home
+       page has none. The dropdown menus above keep only a couple of
+       shortcuts each; the full list of a section's pages lives here.
+       It scrolls away with the page; the menu bar itself is what follows you. */
+    var BARS = [
+      { t: 'World of Warcraft: Forever', l: [['Overview', '/wow-forever/'], ['Dungeons', '/wow-forever/dungeons/'],
+        ['Classes', '/wow-forever/classes/'], ['Class quiz', '/wow-forever/class-quiz/'], ['Add-ons', '/wow-forever/addons/'],
+        ['World PvP', '/wow-forever/world-pvp/'], ['Rulesets', '/wow-forever/rulesets/'], ['Names', '/wow-forever/name-reservation/'],
+        ['Our guild', '/community/the-gray-company/']] },
+      { t: 'Supernatural', l: [['Overview', '/mods/supernatural/'], ['Wiki', '/mods/supernatural/wiki/'], ['Download', '/mods/supernatural/download/']] },
+      { t: 'The Long Night', l: [['Overview', '/mods/the-long-night/'], ['Wiki', '/mods/the-long-night/wiki/'], ['Download', '/mods/the-long-night/download/']] },
+      { t: 'Crusader Kings III', l: [['All mods', '/mods/'], ['Supernatural', '/mods/supernatural/'], ['The Long Night', '/mods/the-long-night/'],
+        ['Mods not working?', '/ck3-mod-help/']] },
+      { t: 'Apps', l: [['All apps', '/apps/'], ['THC Break Buddy', '/apps/thc-break-buddy/'], ['Caffeine Break Buddy', '/apps/caffeine-break-buddy/'],
+        ['Nicotine Break Buddy', '/apps/nicotine-break-buddy/'], ['Tiny Dragon Hoard', '/apps/tiny-dragon-hoard/']] },
+      { t: 'Taking a break', l: [['Tolerance break', '/tolerance-break/'], ['Caffeine break', '/caffeine-break/'],
+        ['Quitting nicotine', '/quit-nicotine/'], ['The apps', '/apps/']] },
+      { t: 'Community', l: [['All communities', '/community/'], ['The Gray Company', '/community/the-gray-company/'], ['The Game Center', '/tgc/']] },
+      { t: 'Games', l: [['Recommended games', '/games/'], ['WoW Forever', '/wow-forever/'], ['Crusader Kings III', '/mods/']] },
+      { t: 'News', l: [['Latest', '/news/'], ['2025', '/news/2025/'], ['2024', '/news/2024/'], ['2023', '/news/2023/'], ['2022', '/news/2022/']] },
+      { t: 'Dlonem', l: [['About', '/about/'], ['Legacy', '/legacy/'], ['Store', '/store/'], ['Support', '/support/'], ['Privacy', '/privacy/']] }
+    ];
     (function () {
-      var here = location.pathname, found = null;
-      Object.keys(MENUS).forEach(function (key) {
-        MENUS[key].items.forEach(function (it) {
-          if (found || !it.x || it.u.indexOf('#') >= 0 || here.indexOf(it.u) !== 0) return;
-          var inside = it.x.filter(function (s) { return s[1].indexOf(it.u) === 0 && s[1].indexOf('#') < 0; });
-          if (inside.length >= 2 && inside.length === it.x.length) found = it;
+      var here = location.pathname, found = null, best = -1, cur = -1;
+      if (here === '/' || here === '/index.html') return;
+      BARS.forEach(function (b) {
+        b.l.forEach(function (s, n) {
+          if (here.indexOf(s[1]) === 0 && s[1].length > best) { best = s[1].length; found = b; cur = n; }
         });
       });
       if (!found) return;
-      var links = [['Overview', found.u]].concat(found.x), best = 0;
-      links.forEach(function (s, n) { if (here.indexOf(s[1]) === 0 && s[1].length > links[best][1].length) best = n; });
       var bar = document.createElement('nav');
       bar.className = 'subnav';
       bar.setAttribute('aria-label', found.t);
       bar.innerHTML = '<div class="subnav-inner"><span class="subnav-t">' + esc(found.t) + '</span>' +
-        links.map(function (s, n) {
-          return '<a href="' + esc(s[1]) + '"' + (n === best ? ' aria-current="page"' : '') + '>' + esc(s[0]) + '</a>';
+        found.l.map(function (s, n) {
+          return '<a href="' + esc(s[1]) + '"' + (n === cur ? ' aria-current="page"' : '') + '>' + esc(s[0]) + '</a>';
         }).join('') + '</div>';
       header.parentNode.insertBefore(bar, header.nextSibling);
-      var cur = bar.querySelector('[aria-current]');
-      if (cur && cur.offsetLeft + cur.offsetWidth > bar.clientWidth) bar.querySelector('.subnav-inner').scrollLeft = cur.offsetLeft - 20;
+      var on = bar.querySelector('[aria-current]');
+      if (on && on.offsetLeft + on.offsetWidth > bar.clientWidth) bar.querySelector('.subnav-inner').scrollLeft = on.offsetLeft - 20;
     })();
 
     [].slice.call(list.querySelectorAll('a[data-p]')).forEach(function (a) {
@@ -251,6 +268,8 @@
           });
           closeAll(m);
           panel.hidden = false;
+          /* an App Store chip in this menu: live.js greys it out if Apple has the app unlisted */
+          if (window.DlonemAppStore && panel.querySelector('a[href*="apps.apple.com/"]')) window.DlonemAppStore(panel);
           item.classList.add('is-open');
           place();
         } else {
@@ -300,6 +319,40 @@
     }
   }
 
+  /* ---------------- keep the menu bar on one row ----------------
+     On a desktop the logo, search, gear and every link share one row. A
+     longer Join button (the guild page, the mod pages) or a new link can
+     push the last items onto a second row, which is the bug this guards
+     against: if the links have wrapped below the logo, the bar switches to
+     a tighter size (.nav-fit in style.css) and checks again. Measured after
+     the webfont loads and on every resize; the drawer below BP is left alone. */
+  (function () {
+    var nav = document.querySelector('.nav'), links = nav && nav.querySelector('.nav-inner nav'),
+        brand = nav && nav.querySelector('.brand');
+    if (!links || !brand) return;
+    var wrapped = function () {
+      return links.getBoundingClientRect().top > brand.getBoundingClientRect().bottom - 4;
+    };
+    /* first the long Join buttons swap to their short label (data-short on
+       the guild and mod pages), so every page keeps the same type size; only
+       if that is not enough does the whole bar tighten */
+    var join = links.querySelector('a.join[data-short]'), long = join && join.textContent;
+    var fit = function () {
+      nav.classList.remove('nav-fit');
+      if (join) join.textContent = long;
+      if (innerWidth <= BP) return;
+      if (join && wrapped()) join.textContent = join.getAttribute('data-short');
+      if (wrapped()) nav.classList.add('nav-fit');
+    };
+    /* the gear is added further down this file, so measure just before the
+       first paint, once everything in the bar exists */
+    if (window.requestAnimationFrame) requestAnimationFrame(fit); else fit();
+    var t = 0;
+    addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 80); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    addEventListener('load', fit);
+  })();
+
   /* ---------------- ad placements ----------------
      Only pages that declare a .adslot pay for this request. */
   if (document.querySelector('.adslot')) {
@@ -316,7 +369,7 @@
   (function () {
     if (document.querySelector('script[src^="/js/live.js"]')) return;
     var s = document.createElement('script');
-    s.src = '/js/live.js?v=8';
+    s.src = '/js/live.js?v=9';
     s.async = true;
     document.body.appendChild(s);
   })();

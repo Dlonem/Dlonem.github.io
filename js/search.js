@@ -13,24 +13,31 @@
 
   /* Shown before anything is typed: the pages people actually arrive for,
      taken from Search Console (top pages by clicks, Oct 2026). */
-  var POPULAR = [
-    { k: 'Wiki', t: 'The Long Night & Azor Ahai wiki', u: '/mods/the-long-night/wiki/' },
-    { k: 'Mod', t: 'The Long Night & Azor Ahai', u: '/mods/the-long-night/' },
+  var POPULAR = [   /* Search Console's top pages by clicks, 17 Nov 2026 (the mod wikis lead), plus the newest guides */
     { k: 'Wiki', t: 'Supernatural wiki', u: '/mods/supernatural/wiki/' },
+    { k: 'Wiki', t: 'The Long Night & Azor Ahai wiki', u: '/mods/the-long-night/wiki/' },
+    { k: 'Mod', t: 'Supernatural', u: '/mods/supernatural/' },
+    { k: 'Mod', t: 'The Long Night & Azor Ahai', u: '/mods/the-long-night/' },
     { k: 'Guide', t: 'CK3 mods not working?', u: '/ck3-mod-help/' },
+    { k: 'Guide', t: 'WoW Forever dungeon guides', u: '/wow-forever/dungeons/' },
     { k: 'Guide', t: "WoW Forever beginner's guide", u: '/wow-forever/' },
-    { k: 'Community', t: 'The Gray Company, a WoW Forever guild', u: '/community/the-gray-company/' },
-    { k: 'App', t: 'THC Break Buddy', u: '/apps/thc-break-buddy/' }
+    { k: 'Community', t: 'The Gray Company, a WoW Forever guild', u: '/community/the-gray-company/' }
   ];
 
   /* Words people type that a page's own text does not say, or does not say
      first. A hit here counts like a hit in the title. */
   var ALIASES = {
+    '/wow-forever/dungeons/shadowfang-keep/': 'sfk shadowfang black tome',
+    '/wow-forever/dungeons/city-of-dalaran/': 'cod dalaran sewer key lyn',
+    '/wow-forever/dungeons/ruins-of-lordaeron/': 'rol lordaeron victor viktor crest',
+    '/wow-forever/dungeons/gnomeregan/': 'gnomer gnome punch card workshop key',
+    '/wow-forever/dungeons/excavation-site-wetlands/': 'wetlands excavation thelgen',
+    '/wow-forever/dungeons/': 'dungeons dungeon instances instance guides',
     '/store/': 'store shop merch shirt shirts hoodie hoodies mug mugs tee buy spreadshirt',
     '/wow-forever/class-quiz/': 'quiz class picker which class should i play test',
     '/wow-forever/addons/': 'addons add-ons addon ui curseforge weakauras elvui',
     '/wow-forever/rulesets/': 'ruleset rulesets pvp hardcore roleplay rp-pvp server realm',
-    '/wow-forever/name-reservation/': 'name reservation names reserve',
+    '/wow-forever/name-reservation/': 'name names reservation reserve second surname character',
     '/wow-forever/': 'wow forever guide beginner beginners',
     '/games/': 'games g2a keys cheap steam recommended',
     '/community/the-gray-company/': 'guild grey gray company join',

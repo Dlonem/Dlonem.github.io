@@ -74,6 +74,31 @@ border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:1px}
     if (IOS) {
       target = IOS_PT ? IOS + "?pt=" + IOS_PT + "&ct=" + encodeURIComponent(src) + "&mt=8" : IOS;
       label = "Download on the App Store";
+      /* Apple sometimes takes the app off the store (November 2026). Its public lookup
+         then answers resultCount 0, and an iPhone is not sent to a dead page. If the
+         lookup fails or takes over 2.5 seconds, the visitor goes to the store as before. */
+      var done = false, go = function () {
+        if (done) return; done = true;
+        var b = document.getElementById("primary"); b.href = target; b.textContent = label;
+        location.replace(target);
+      };
+      var t = setTimeout(go, 2500);
+      fetch("https://itunes.apple.com/lookup?country=us&id=6795227377", { credentials: "omit" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {
+          if (done) return;
+          if (j && j.resultCount === 0) {
+            done = true; clearTimeout(t);
+            document.getElementById("msg").textContent =
+              "THC Break Buddy isn't on the App Store right now. The Android version, the guide and everything else are here in the meantime.";
+            var pb = document.getElementById("primary");
+            pb.textContent = "See THC Break Buddy"; pb.href = "/apps/thc-break-buddy/";
+            return;
+          }
+          clearTimeout(t); go();
+        })
+        .catch(function () { clearTimeout(t); go(); });
+      return;
     }
     else {
       document.getElementById("msg").textContent =
